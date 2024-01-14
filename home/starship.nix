@@ -20,12 +20,12 @@
         disabled = false;
         format = "[$symbol$percentage]($style)";
       };
-      battery.display = {
+      battery.display = [{
         threshold = 90;
         style = "bg:#9A348E fg:#DA627D";
         charging_symbol = "⚡";
         discharging_symbol = "💀";
-      };
+      }];
       directory = {
         style = "bg:#DA627D";
         format = "[ $path ]($style)";
