@@ -8,14 +8,13 @@
       gdm.enable = true;
       # Enable automatic login for the user.
       autoLogin.enable = true;
-      # TODO: use global variable
+      # TODO: username: use global variable
       autoLogin.user = "atimofeev";
     };
     # Configure keymap in X11
-    # TODO: add language change hotkey
-    # TODO: use global variable
-    layout = "us,ru";
-    xkbVariant = "";
+    # TODO: kb_layouts: use global variable
+    xkb.layout = "us,ru";
+    xkb.options = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).
     # libinput.enable = true;
