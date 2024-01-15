@@ -37,7 +37,7 @@
     };
   };
 
-  # TODO: move to global var
+  # TODO: username: move to global var
   home = {
     username = "atimofeev";
     homeDirectory = "/home/atimofeev";

@@ -1,6 +1,6 @@
 { ... }: {
-  # TODO: use global variable
-  networking.hostName = "milaptop-nixos"; # Define your hostname.
+  # TODO: username: use global variable
+  networking.hostName = "milaptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

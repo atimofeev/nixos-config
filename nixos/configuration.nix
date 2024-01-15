@@ -21,16 +21,17 @@
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
-  # TODO: use global variable
+  # TODO: tz_name: use global variable
   time.timeZone = "Asia/Tbilisi";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # TODO: use global variable
+  # TODO: font_name: use global variable
   fonts.packages = with pkgs;
     [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
 
+  # TODO: username: use global variable
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = { "atimofeev" = import ../home/home.nix; };
