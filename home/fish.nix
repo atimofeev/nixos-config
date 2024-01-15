@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # FIX: enable fish in sudo and nvim
+  # FIX: enable fish in sudo
   programs = {
     starship.enableFishIntegration = true;
     fzf.enableFishIntegration = true;

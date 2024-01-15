@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       # Font
-      # TODO: move to global var
+      # TODO: font_name, font_size: move to global var
       font_size = "12";
       font_family = "DejaVuSansM Nerd Font Mono";
       bold_font = "auto";
@@ -26,7 +26,7 @@
       "ctrl+v" = "paste_from_clipboard";
     };
 
-    # TODO: move to global var
+    # TODO: theme: move to global var
     theme = "Tokyo Night Moon";
   };
 }
