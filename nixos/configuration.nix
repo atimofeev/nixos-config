@@ -70,12 +70,14 @@
     statix
     nixfmt
     nixpkgs-fmt
+    nixd
     ansible
     terraform
     minikube
     kubectl
     k9s
     kubernetes-helm
+    slack
   ];
 
   system.stateVersion = "23.11";
