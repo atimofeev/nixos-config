@@ -5,6 +5,7 @@
     #./firefox.nix
     ./fish.nix
     ./git.nix
+    ./gnome.nix
     ./kitty.nix
     ./nvim.nix
     ./starship.nix
