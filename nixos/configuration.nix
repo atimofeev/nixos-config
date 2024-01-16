@@ -41,36 +41,22 @@
   # $ nix search wget
   # TODO: categorize 
   environment.systemPackages = with pkgs; [
-    xclip
-    gcc
-    nodejs_21
-    go
-    cargo
+    firefox
     chrome-gnome-shell
     coreutils
     curl
     fd
     ripgrep
     file
-    git
-    kitty
-    neovim
     wget
     htop
     # nvtop
     spotify-player
-    glances
     nmap
     unzip
     util-linux
     telegram-desktop
-    starship
-    fish
     jq
-    statix
-    nixfmt
-    nixpkgs-fmt
-    nixd
     ansible
     terraform
     minikube
