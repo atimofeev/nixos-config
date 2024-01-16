@@ -12,16 +12,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      vars = import ./variables.nix;
     in
     {
-    
+
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [ 
-            ./nixos/configuration.nix
-            inputs.home-manager.nixosModules.default
-          ];
-        };
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./nixos/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
 
     };
 }
