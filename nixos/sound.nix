@@ -1,4 +1,6 @@
 { ... }: {
+  # FIX: milaptop built-in mic has +30db gain in alsa by default
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;

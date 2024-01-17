@@ -23,14 +23,14 @@ List of apps and simultaneously a progress track for migration from my [dotfiles
 
 ### Work
 
-- [ ] Ansible
-- [ ] Terraform
-- [ ] Docker
-- [ ] K8s: minikube, kubectl, helm, k9s
+- [x] Ansible
+- [x] Terraform
+- [x] Docker
+- [x] K8s: minikube, kubectl, helm, k9s
 
 ### Multimedia
 
-- [ ] mpv
+- [x] mpv
 - [ ] qbittorrent
 - [ ] VCV Rack 2
 

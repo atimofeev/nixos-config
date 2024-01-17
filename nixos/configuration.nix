@@ -64,6 +64,7 @@
     k9s
     kubernetes-helm
     slack
+    prusa-slicer
   ];
 
   system.stateVersion = "23.11";

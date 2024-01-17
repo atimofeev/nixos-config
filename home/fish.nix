@@ -2,6 +2,7 @@
   # FIX: enable fish in sudo
   programs = {
     starship.enableFishIntegration = true;
+    # FIX: not working
     fzf.enableFishIntegration = true;
     fish = {
       enable = true;
