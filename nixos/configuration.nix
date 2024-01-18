@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }: {
+{ pkgs, inputs, vars, ... }: {
   imports = [
     ./boot.nix
     ./docker.nix
@@ -21,20 +21,17 @@
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
-  # TODO: tz_name: use global variable
-  time.timeZone = "Asia/Tbilisi";
+  time.timeZone = vars.tz_name;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # TODO: font_name: use global variable
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; }) ];
 
-  # TODO: username: use global variable
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = { "atimofeev" = import ../home/home.nix; };
+    extraSpecialArgs = { inherit inputs vars; };
+    users = { ${vars.username} = import ../home/home.nix; };
   };
 
   # List packages installed in system profile. To search, run:
@@ -67,6 +64,7 @@
     prusa-slicer
     eza
     bat
+    python3
   ];
 
   system.stateVersion = "23.11";
