@@ -65,6 +65,8 @@
     kubernetes-helm
     slack
     prusa-slicer
+    eza
+    bat
   ];
 
   system.stateVersion = "23.11";
