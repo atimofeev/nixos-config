@@ -1,4 +1,4 @@
-{ ... }: {
+{ vars, ... }: {
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
@@ -8,12 +8,10 @@
       gdm.enable = true;
       # Enable automatic login for the user.
       autoLogin.enable = true;
-      # TODO: username: use global variable
-      autoLogin.user = "atimofeev";
+      autoLogin.user = vars.username;
     };
     # Configure keymap in X11
-    # TODO: kb_layouts: use global variable
-    xkb.layout = "us,ru";
+    xkb.layout = vars.kb_layouts;
     xkb.options = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).

@@ -1,6 +1,5 @@
-{ ... }: {
-  # TODO: username: use global variable
-  networking.hostName = "milaptop"; # Define your hostname.
+{ vars, ... }: {
+  networking.hostName = vars.hostname;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

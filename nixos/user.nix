@@ -1,13 +1,11 @@
-{ pkgs, ... }: {
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # TODO: username, shell: use global variable
+{ pkgs, vars, ... }: {
   # TODO: add sudo without pass
   programs.fish.enable = true;
-  users.users.atimofeev = {
+  users.users.${vars.username} = {
     isNormalUser = true;
-    description = "atimofeev";
+    description = vars.username;
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.fish;
+    shell = pkgs.${vars.shell};
     packages = with pkgs; [ firefox ];
   };
 }

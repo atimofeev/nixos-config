@@ -1,6 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ config, pkgs, ... }: {
+{ pkgs, vars, ... }: {
   imports = [
     #./firefox.nix
     ./fish.nix
@@ -22,10 +22,9 @@
     };
   };
 
-  # TODO: username: move to global var
   home = {
-    username = "atimofeev";
-    homeDirectory = "/home/atimofeev";
+    username = vars.username;
+    homeDirectory = "/home/${vars.username}";
   };
 
   # Add stuff for your user as you see fit:

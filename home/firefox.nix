@@ -3,8 +3,7 @@
 { pkgs, vars, ... }: {
   programs.firefox = {
     enable = true;
-    # TODO: username: use global variable
-    profiles.atimofeev = {
+    profiles.${vars.username} = {
       search.engines = {
         "Google" = { metaData.alias = [ "g" ]; };
         "GitHub" = {

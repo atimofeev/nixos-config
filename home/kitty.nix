@@ -1,10 +1,10 @@
-{ ... }: {
+{ vars, ... }: {
   programs.kitty = {
     enable = true;
     settings = {
       # Font
       # TODO: font_name, font_size: move to global var
-      font_size = "12";
+      font_size = vars.terminal.font_size;
       font_family = "DejaVuSansM Nerd Font Mono";
       bold_font = "auto";
       italic_font = "auto";

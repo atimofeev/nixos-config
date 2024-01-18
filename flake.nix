@@ -17,7 +17,7 @@
     {
 
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs vars; };
         modules = [
           ./nixos/configuration.nix
           inputs.home-manager.nixosModules.default
