@@ -1,5 +1,4 @@
 { ... }: {
-  # TODO: configure max cpu freq for both modes
   powerManagement.enable = true;
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
