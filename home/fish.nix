@@ -1,28 +1,29 @@
 { pkgs, ... }: {
   # FIX: enable fish in sudo
   programs = {
+    kitty.shellIntegration.enableFishIntegration = true;
     starship.enableFishIntegration = true;
-    # FIX: not working
-    fzf.enableFishIntegration = true;
     fish = {
       enable = true;
-      # FIX: none of these are working properly
+      # TODO: add z or zoxide.fish
       plugins = [
         {
           name = "autopair";
-          src = pkgs.fishPlugins.autopair;
-        }
-        {
-          name = "z";
-          src = pkgs.fishPlugins.z;
+          src = pkgs.fetchFromGitHub {
+            owner = "jorgebucaran";
+            repo = "autopair.fish";
+            rev = "4d1752ff5b39819ab58d7337c69220342e9de0e2";
+            sha256 = "sha256-qt3t1iKRRNuiLWiVoiAYOu+9E7jsyECyIqZJ/oRIT1A=";
+          };
         }
         {
           name = "puffer-fish";
-          src = pkgs.fishPlugins.puffer;
-        }
-        {
-          name = "fzf";
-          src = pkgs.fishPlugins.fzf;
+          src = pkgs.fetchFromGitHub {
+            owner = "nickeb96";
+            repo = "puffer-fish";
+            rev = "5d3cb25e0d63356c3342fb3101810799bb651b64";
+            sha256 = "sha256-aPxEHSXfiJJXosIm7b3Pd+yFnyz43W3GXyUB5BFAF54=";
+          };
         }
       ];
       shellAliases = {
@@ -42,10 +43,10 @@
         mk = "minikube";
         # EZA
         ls = "eza --color=always --group-directories-first";
-        ll = "eza -l --color=always --group-directories-first";
-        la = "eza --all -l --color=always --group-directories-first";
+        ll = "eza --long --color=always --group-directories-first";
+        la = "eza --all --long --color=always --group-directories-first";
         ld =
-          "eza --list-dirs -l --color=always --group-directories-first"; # show exact dir info
+          "eza --list-dirs --long --color=always --group-directories-first"; # show exact dir info
         lt =
           "eza --tree --level 2 --all --color=always --group-directories-first";
         # TODO: escape egrep quotes
@@ -56,9 +57,7 @@
         #set -x MANROFFOPT -c # bat man pages formatting fix
         less = "bat --color=always --style=auto";
         cat = "bat --color=always --style=plain --paging=never";
-        # RIPGREP
-        rg = "rg --color=always --ignore-case";
-        # ---
+        rg = "rg --color=always --ignore-case"; # ripgrep
         tb = "nc termbin.com 9999"; # [command] | tb
         nf = "neofetch --backend off --color_blocks off";
         chx = "chmod +x";
@@ -77,6 +76,20 @@
         rm = "rm --interactive";
         #mv="mv --interactive";
       };
+      # TODO: add these functions
+      #
+      # function touchx
+      #     for file in $argv
+      #         touch $file
+      #         chmod +x $file
+      #     end
+      # end
+      #
+      # function dn
+      #     $argv 2>/dev/null
+      # end
+      # TODO: how about famous archive extraction function?
+      # TODO: add custom fzf functions 
     };
   };
 }
