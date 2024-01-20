@@ -52,9 +52,6 @@
         # TODO: escape egrep quotes
         #l.="eza --all | egrep "^\.""; #show only dotfiles
         # BAT
-        # TODO: set MANPAGER to bat
-        #set -x MANPAGER "sh -c 'col -bx | bat -l man -p'" # man pages -> bat
-        #set -x MANROFFOPT -c # bat man pages formatting fix
         less = "bat --color=always --style=auto";
         cat = "bat --color=always --style=plain --paging=never";
         rg = "rg --color=always --ignore-case"; # ripgrep
@@ -91,5 +88,10 @@
       # TODO: how about famous archive extraction function?
       # TODO: add custom fzf functions 
     };
+  };
+  home.sessionVariables = {
+    fish_greeting = "";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'"; # man pages -> bat
+    MANROFFOPT = "-c"; # bat man pages formatting fix
   };
 }
