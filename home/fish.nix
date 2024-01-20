@@ -32,6 +32,7 @@
           "sudo nixos-rebuild test --flake ~/repos/nixos-config#default";
         nix-rebuild-switch =
           "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
+
         # WORK
         restart-vpn = "sudo systemctl restart openvpn-officeVPN.service";
         ssh = "TERM=xterm-256color command ssh";
@@ -41,6 +42,7 @@
         t = "terraform";
         k = "kubectl";
         mk = "minikube";
+
         # EZA
         ls = "eza --color=always --group-directories-first";
         ll = "eza --long --color=always --group-directories-first";
@@ -51,6 +53,7 @@
           "eza --tree --level 2 --all --color=always --group-directories-first";
         # TODO: escape egrep quotes
         #l.="eza --all | egrep "^\.""; #show only dotfiles
+
         # BAT
         less = "bat --color=always --style=auto";
         cat = "bat --color=always --style=plain --paging=never";
@@ -58,16 +61,19 @@
         tb = "nc termbin.com 9999"; # [command] | tb
         nf = "neofetch --backend off --color_blocks off";
         chx = "chmod +x";
+
         # adding flags
         df =
           "df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs --exclude-type=efivarfs";
         du = "du --human-readable";
         free = "free --human";
         mkdir = "mkdir --parents --verbose";
+
         # Colorize grep output (good for log files)
         grep = "grep --color=auto";
         egrep = "egrep --color=auto";
         fgrep = "fgrep --color=auto";
+
         # confirm before overwriting something
         cp = "cp --interactive";
         rm = "rm --interactive";
