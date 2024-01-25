@@ -28,8 +28,14 @@
     homeDirectory = "/home/${vars.username}";
   };
 
-  # Add stuff for your user as you see fit:
-  # home.packages = with pkgs; [ steam ];
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      Host *.devspt.com
+          StrictHostKeyChecking no
+          UserKnownHostsFile /dev/null
+    '';
+  };
 
   programs.home-manager.enable = true;
 
