@@ -1,4 +1,5 @@
 { ... }: {
+  # FIX: make it unkillable by gnome or anyone else
   powerManagement.enable = true;
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
