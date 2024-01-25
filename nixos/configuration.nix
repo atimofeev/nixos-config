@@ -34,6 +34,12 @@
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    #xwayland.enable = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # TODO: categorize 
