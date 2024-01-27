@@ -19,9 +19,8 @@
     ./work.nix # apps for work
   ];
 
+  system.stateVersion = vars.nix.stateVersion;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
@@ -45,5 +44,4 @@
       #rust
     ];
 
-  system.stateVersion = "23.11";
 }
