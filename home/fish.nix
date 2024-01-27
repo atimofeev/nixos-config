@@ -37,6 +37,7 @@
         restart-vpn = "sudo systemctl restart openvpn-officeVPN.service";
         ssh = "TERM=xterm-256color command ssh";
         d = "docker";
+        dc = "docker-compose";
         d-stop-all = "docker stop $(docker ps -q)";
         a = "ansible";
         t = "terraform";
