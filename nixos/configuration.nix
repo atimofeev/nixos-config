@@ -4,15 +4,19 @@
 
 { pkgs, inputs, vars, ... }: {
   imports = [
+    ./apps.nix # various GUI or TUI apps
     ./boot.nix
-    ./docker.nix
+    ./desktop.nix # desktop environment setup
+    ./games.nix
     ./hardware-configuration.nix
     ./locale.nix
     ./network.nix
+    ./nvidia.nix
     ./power.nix
     ./sound.nix
     ./user.nix
-    ./x11.nix
+    ./utils.nix # various CLI utils
+    ./work.nix # apps for work
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -34,44 +38,12 @@
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    #xwayland.enable = true;
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # TODO: categorize 
-  environment.systemPackages = with pkgs; [
-    firefox
-    chrome-gnome-shell
-    coreutils
-    curl
-    fd
-    ripgrep
-    file
-    wget
-    htop
-    # nvtop
-    spotify-player
-    nmap
-    unzip
-    util-linux
-    telegram-desktop
-    jq
-    ansible
-    terraform
-    minikube
-    kubectl
-    k9s
-    kubernetes-helm
-    slack
-    prusa-slicer
-    eza
-    bat
-    python3
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      python3
+      #go
+      #rust
+    ];
 
   system.stateVersion = "23.11";
 }
