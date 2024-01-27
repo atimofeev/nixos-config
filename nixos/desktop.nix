@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ inputs, pkgs, vars, ... }: {
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
@@ -23,4 +23,11 @@
     "autovt@tty1".enable = false;
     "getty@tty1".enable = false;
   };
+
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    #xwayland.enable = true;
+  };
+
 }
