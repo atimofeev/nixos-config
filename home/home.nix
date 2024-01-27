@@ -2,6 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { pkgs, vars, ... }: {
   imports = [
+    ./hyprland
     #./firefox.nix
     ./fish.nix
     ./git.nix
@@ -10,17 +11,20 @@
     ./mpv.nix
     ./nvim.nix
     ./starship.nix
-    ./hyprland
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
   ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-    };
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = vars.nix.stateVersion;
+  programs.home-manager.enable = true;
+  systemd.user.startServices =
+    "sd-switch"; # reload system units on config update
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    # Workaround for https://github.com/nix-community/home-manager/issues/2942
+    allowUnfreePredicate = _: true;
   };
 
   home = {
@@ -36,12 +40,4 @@
           UserKnownHostsFile /dev/null
     '';
   };
-
-  programs.home-manager.enable = true;
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
 }

@@ -1,4 +1,5 @@
 {
+  nix.stateVersion = "23.11";
   username = "atimofeev";
   hostname = "milaptop";
   kb_layouts = "us,ru";
