@@ -1,5 +1,4 @@
-{ vars, ... }: {
-
+{ ... }: {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       "float, org.kde.polkit-kde-authentication-agent-1"

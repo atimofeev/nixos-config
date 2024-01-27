@@ -11,7 +11,7 @@ let
 in
 {
 
-  imports = [ ./binds.nix ./rules.nix ./settings.nix ];
+  imports = [ ./keybinds.nix ./window-rules.nix ./settings.nix ];
 
   home.packages = with pkgs; [
     sddm # display manager
