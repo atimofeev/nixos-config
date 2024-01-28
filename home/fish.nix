@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # FIX: enable fish in sudo
+  # FIX: enable fish in sudo (and nix-shell?)
   programs = {
     kitty.shellIntegration.enableFishIntegration = true;
     starship.enableFishIntegration = true;
