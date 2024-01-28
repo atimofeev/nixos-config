@@ -55,8 +55,8 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
   - [ ] Hardware control (brightness, volume, bluetooth, wireless, camera)
   - [ ] Wallpaper tool (random wallpapers from directory)
   - [ ] Screenshot tool
-  - [ ] Create base16 colorscheme based on Doom One (Doom Emacs default theme).
-  - [ ] With [base16.nix](https://github.com/SenchoPens/base16.nix) use this theme across all applicable apps
+  - [ ] Use [base16 Doom One colorscheme](https://github.com/MArpogaus/base16-doom/) ([Doom Emacs default theme](https://github.com/doomemacs/themes/blob/master/themes/doom-one-theme.el)).
+  - [ ] With [base16.nix](https://github.com/SenchoPens/base16.nix) or [stylix](https://github.com/danth/stylix) apply this theme across all applicable apps
     - [ ] Display manager
     - [ ] Hyprland window borders
     - [ ] Bar
