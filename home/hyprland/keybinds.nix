@@ -7,13 +7,28 @@
     bind = [
       # apps
       "$mod, Return, exec, $term"
+      "$mod SHIFT, V, exec, kitty -e vi"
       "$mod SHIFT, H, exec, kitty -e htop"
+
+      # laptop fn keys
+      # ", xf86audiomute, exec, $scriptsDir/Volume.sh --toggle"
+      # ", xf86audiolowervolume, exec, $scriptsDir/Volume.sh --dec" # volume down
+      # ", xf86audioraisevolume, exec, $scriptsDir/Volume.sh --inc" # volume up
+      # ", xf86KbdBrightnessDown, exec, $scriptsDir/BrightnessKbd.sh --dec" # Keyboard brightness Down
+      # ", xf86KbdBrightnessUp, exec, $scriptsDir/BrightnessKbd.sh --inc" # Keyboard brightness up
+      # "scissorsLaptopButtonF7, exec, mediaPlayPause?"
+      # "printScreenLaptopButtonF11, exec, printScreenApplication"
+      ", xf86Sleep, exec, systemctl suspend" # sleep button
 
       # main
       "$mod, Q, killactive" # or closewindow?
       "$mod SHIFT, F, fullscreen"
       "$mod, F, togglefloating"
       "$mod ALT, F, exec, hyprctl dispatch workspaceopt allfloat"
+
+      # group
+      "$mod, G, togglegroup"
+      "ALT, tab, changegroupactive"
 
       # move focus
       "$mod, left, movefocus, l"
