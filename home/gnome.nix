@@ -1,4 +1,4 @@
-{ ... }: {
+{ vars, ... }: {
   dconf.settings = {
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -28,29 +28,29 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
         binding = "<Super>Return";
-        command = "kitty";
-        name = "kitty";
+        command = vars.terminal.name;
+        name = vars.terminal.name;
       };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
       {
         binding = "<Shift><Super>h";
-        command = "kitty -e htop";
+        command = "${vars.terminal.name} -e htop";
         name = "htop";
       };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
       {
         binding = "<Shift><Super>s";
-        command = "kitty -e spotify_player";
+        command = "${vars.terminal.name} -e spotify_player";
         name = "spotify-player";
       };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
       {
-        binding = "<Shift><Super>v";
-        command = "kitty -e vi";
-        name = "vi";
+        binding = "<Shift><Super>Return";
+        command = "${vars.terminal.name} -e ${vars.terminal.editor}";
+        name = vars.terminal.editor;
       };
 
   };

@@ -127,7 +127,7 @@
       enable_swallow = true;
       no_direct_scanout = true; # for fullscreen games
       focus_on_activate = false;
-      swallow_regex = "^(kitty)$";
+      swallow_regex = "^(${vars.terminal.name})$";
       #disable_autoreload = true;
     };
 

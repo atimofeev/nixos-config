@@ -1,5 +1,6 @@
-{ ... }: {
+{ vars, ... }: {
   wayland.windowManager.hyprland.settings = {
+
     windowrule = [
       "float, org.kde.polkit-kde-authentication-agent-1"
       "float, nm-connection-editor|blueman-manager"
@@ -17,11 +18,10 @@
     windowrulev2 = [
       "opacity 0.9 0.6, class:^([Rr]ofi)$"
       "opacity 0.9 0.7, class:^(firefox)$"
-      "opacity 0.9 0.7, class:^(Firefox-esr)$"
       "opacity 0.9 0.8, class:^([Tt]hunar)$"
       "opacity 0.8 0.6, class:^(pcmanfm-qt)$"
       "opacity 0.9 0.7, class:^(gedit)$"
-      "opacity 0.9 0.8, class:^(kitty)$"
+      "opacity 0.9 0.8, class:^(${vars.terminal.name})$"
       "opacity 0.9 0.7, class:^(mousepad)$"
       "opacity 0.9 0.7, class:^(yad)$"
 
