@@ -6,8 +6,9 @@
   tz_name = "Asia/Tbilisi";
   shell = "fish";
   terminal = {
-    name = "kitty";
+    name = "kitty"; # should be executable
     font_name = "DejaVuSansMono";
     font_size = "12";
+    editor = "nvim"; # should be executable
   };
 }

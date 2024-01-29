@@ -2,13 +2,12 @@
 
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
-    "$term" = vars.terminal.name;
 
     bind = [
       # apps
-      "$mod, Return, exec, $term"
-      "$mod SHIFT, V, exec, kitty -e vi"
-      "$mod SHIFT, H, exec, kitty -e htop"
+      "$mod, Return, exec, ${vars.terminal.name}"
+      "$mod SHIFT, Return, exec, ${vars.terminal.name} -e ${vars.terminal.editor}"
+      "$mod SHIFT, H, exec, ${vars.terminal.name} -e htop"
 
       # laptop fn keys
       # ", xf86audiomute, exec, $scriptsDir/Volume.sh --toggle"
