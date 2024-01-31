@@ -5,6 +5,9 @@
     starship.enableFishIntegration = true;
     fish = {
       enable = true;
+      shellInit = ''
+        set fish_user_paths $HOME/.config/emacs/bin
+      '';
       # TODO: add z or zoxide.fish
       plugins = [
         {
