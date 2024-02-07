@@ -34,10 +34,9 @@
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host *.devspt.com
-          StrictHostKeyChecking no
-          UserKnownHostsFile /dev/null
-    '';
+    matchBlocks."*.devspt.com".extraOptions = {
+      StrictHostKeyChecking = "no";
+      UserKnownHostsFile = "/dev/null";
+    };
   };
 }
