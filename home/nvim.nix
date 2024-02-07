@@ -14,6 +14,7 @@
       go
       cargo
       # lint/fmt/lsp
+      stylua
       statix
       nixfmt
       nixpkgs-fmt
