@@ -8,6 +8,7 @@
     nmap
     unzip
     file
+    bc
 
     # improved utils
     fd # find
