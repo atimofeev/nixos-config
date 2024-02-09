@@ -6,7 +6,7 @@ let
 
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
+    ${pkgs.swww}/bin/swww img ${../../assets/wallpaper.jpg} &
   '';
 in
 {
