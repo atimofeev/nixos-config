@@ -1,7 +1,4 @@
-{ ... }: {
-  # FIX: milaptop built-in mic has +30db gain in alsa by default
-
-  # Enable sound with pipewire.
+{ pkgs, ... }: {
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -17,5 +14,20 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+  };
+
+  # Mi Notebook: Fix +30gb default gain on built-in mic
+  environment.etc."alsa-state.conf".source = ../assets/alsa-state.conf;
+  environment.systemPackages = with pkgs; [ alsaUtils ];
+  systemd.services.load-alsa-state = {
+    after = [ "sound.target" ];
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      ${pkgs.alsaUtils}/bin/alsactl -f /etc/alsa-state.conf restore
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
   };
 }
