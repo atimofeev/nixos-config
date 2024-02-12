@@ -31,13 +31,14 @@
       ];
       shellAliases = {
         # NIX
-        nix-rebuild-test =
+        rebuild =
           "sudo nixos-rebuild test --flake ~/repos/nixos-config#default";
-        nix-rebuild-switch =
+        rebuild-switch =
           "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
+        shell = "nix-shell --run $SHELL";
 
         # WORK
-        restart-vpn = "sudo systemctl restart openvpn-officeVPN.service";
+        vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
         ssh = "TERM=xterm-256color command ssh";
         d = "docker";
         dc = "docker-compose";
