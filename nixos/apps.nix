@@ -16,5 +16,6 @@
 
     # misc
     prusa-slicer
+    vcv-rack
   ];
 }
