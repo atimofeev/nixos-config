@@ -47,6 +47,7 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [ ] Hyprland DE config
   - [x] Hotkeys
   - [x] Window rules
+  - [ ] Clipboard
   - [ ] Nvidia support
   - [ ] Display manager (sddm)
   - [ ] Bar (waybar or ags)

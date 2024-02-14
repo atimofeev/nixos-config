@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       # Font
-      # TODO: font_name, font_size: move to global var
+      # TODO: font_name: move to global var
       font_size = vars.terminal.font_size;
       font_family = "DejaVuSansM Nerd Font Mono";
       bold_font = "auto";
@@ -18,8 +18,10 @@
 
       copy_on_select = "yes";
 
-      #background_opacity = toString default.terminal.opacity;
+      # Fix issues related to SSH (may break kitty functionality):
+      term = "xterm-256color";
     };
+
     keybindings = {
       "ctrl+backspace" = "send_text all \\x17";
       "ctrl+delete" = "send_text all \\ed";
