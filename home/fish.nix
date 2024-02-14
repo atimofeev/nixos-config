@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # FIX: enable fish in sudo (and nix-shell?)
+  # FIX: enable fish in sudo
   programs = {
     kitty.shellIntegration.enableFishIntegration = true;
     starship.enableFishIntegration = true;
@@ -39,10 +39,12 @@
 
         # WORK
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
-        ssh = "TERM=xterm-256color command ssh";
+        # fix for ingenious kitty dev decisions
+        # ssh = "TERM=xterm-256color command ssh";
         d = "docker";
-        dc = "docker-compose";
         d-stop-all = "docker stop $(docker ps -q)";
+        d-img-del-all = "docker rmi $(docker images -aq) --force";
+        dc = "docker-compose";
         a = "ansible";
         t = "terraform";
         k = "kubectl";
