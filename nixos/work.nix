@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     docker-compose
     ansible
+    sshpass # for ansible: ssh auth with pass
     terraform
     minikube
     kubectl
