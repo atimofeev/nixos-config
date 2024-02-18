@@ -1,4 +1,5 @@
 { pkgs, vars, ... }: {
+  imports = [ ./gns3.nix ];
   virtualisation.docker.enable = true;
   users.users.${vars.username}.extraGroups = [ "docker" ];
   environment.systemPackages = with pkgs; [
