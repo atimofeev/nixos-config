@@ -1,6 +1,7 @@
 { vars, ... }: {
   programs.kitty = {
     enable = true;
+
     settings = {
       # Font
       # TODO: font_name: move to global var
