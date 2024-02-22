@@ -5,6 +5,7 @@
   kb_layouts = "us,ru";
   tz_name = "Asia/Tbilisi";
   shell = "fish";
+
   terminal = {
     name = "kitty"; # should be executable
     font_name = "DejaVuSansMono";

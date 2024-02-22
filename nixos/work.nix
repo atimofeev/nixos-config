@@ -2,6 +2,7 @@
   imports = [ ./gns3.nix ];
   virtualisation.docker.enable = true;
   users.users.${vars.username}.extraGroups = [ "docker" ];
+
   environment.systemPackages = with pkgs; [
     docker-compose
     ansible
@@ -13,6 +14,8 @@
     k9s
     slack
   ];
+
+  # Pin ansible version
   nixpkgs.config = {
     packageOverrides = pkgs: {
       ansible = pkgs.ansible.overrideAttrs (oldAttrs: {

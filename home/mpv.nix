@@ -1,10 +1,12 @@
 { pkgs, ... }: {
   programs.mpv = {
     enable = true;
+
     config = {
       slang = "eng,en";
       alang = "jpn,jap,ja,jp";
     };
+
     bindings = {
       a = "cycle audio";
       s = "cycle sub";
@@ -12,8 +14,8 @@
       WHEEL_DOWN = "add volume -2.5";
       UP = "add volume 2.5";
       DOWN = "add volume -2.5";
-
     };
+
     scripts = [
       pkgs.mpvScripts.inhibit-gnome # do not let gnome sleep during playback
       pkgs.mpvScripts.mpris # integrate with media controls

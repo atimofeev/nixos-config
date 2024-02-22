@@ -8,6 +8,7 @@
       shellInit = ''
         set fish_user_paths $HOME/.config/emacs/bin
       '';
+
       # TODO: add z or zoxide.fish
       plugins = [
         {
@@ -29,6 +30,7 @@
           };
         }
       ];
+
       shellAliases = {
         # NIX
         rebuild =
@@ -39,8 +41,6 @@
 
         # WORK
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
-        # fix for ingenious kitty dev decisions
-        # ssh = "TERM=xterm-256color command ssh";
         d = "docker";
         d-stop-all = "docker stop $(docker ps -q)";
         d-img-del-all = "docker rmi $(docker images -aq) --force";
@@ -102,6 +102,7 @@
       # TODO: add custom fzf functions 
     };
   };
+
   home.sessionVariables = {
     fish_greeting = "";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'"; # man pages -> bat
