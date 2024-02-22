@@ -11,16 +11,15 @@ let
 in
 {
 
-  imports = [ ./keybinds.nix ./window-rules.nix ./settings.nix ];
+  imports =
+    [ ./keybinds.nix ./window-rules.nix ./settings.nix ./waybar ./rofi ];
 
   home.packages = with pkgs; [
     sddm # display manager
-    waybar # bar
     dunst # notifications
     libnotify
     #hyprpaper # wallpaperd. others: swaybg, wpaperd, mpvpaper, swww
     swww
-    rofi-wayland # app launcher
   ];
 
   wayland.windowManager.hyprland = {
