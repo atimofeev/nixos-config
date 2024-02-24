@@ -10,6 +10,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     hyprland-plugins.inputs.hyprland.follows = "hyprland";
+
+    xremap.url = "github:xremap/nix-flake";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -25,6 +27,7 @@
         modules = [
           ./nixos/configuration.nix
           inputs.home-manager.nixosModules.default
+          inputs.xremap.nixosModules.default
         ];
       };
 
