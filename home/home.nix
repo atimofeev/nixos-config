@@ -10,6 +10,7 @@
     ./kitty.nix
     ./mpv.nix
     ./nvim.nix
+    ./ssh.nix
     ./starship.nix
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
@@ -24,22 +25,5 @@
   home = {
     username = vars.username;
     homeDirectory = "/home/${vars.username}";
-  };
-
-  programs.ssh = {
-    enable = true;
-    matchBlocks = {
-      "*.devspt.com".extraOptions = {
-        StrictHostKeyChecking = "no";
-        UserKnownHostsFile = "/dev/null";
-        LogLevel = "ERROR";
-      };
-      "kafka-prd-htz-jump-host".extraOptions = {
-        HostName = "mongo1-prd-hidden-ams1.devspt.com";
-      };
-      "kafka-prd-htz-node*.devspt.com".extraOptions = {
-        ProxyJump = "kafka-prd-htz-jump-host";
-      };
-    };
   };
 }
