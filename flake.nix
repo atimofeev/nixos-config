@@ -21,7 +21,6 @@
       vars = import ./variables.nix;
     in
     {
-
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs vars; };
         modules = [
@@ -30,6 +29,5 @@
           inputs.xremap.nixosModules.default
         ];
       };
-
     };
 }

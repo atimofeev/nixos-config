@@ -33,12 +33,13 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [x] Docker
 - [x] K8s: minikube, kubectl, helm, k9s
 
-### Multimedia
+### Apps
 
 - [x] mpv
 - [x] spotify-player
 - [ ] qbittorrent
 - [ ] VCV Rack 2
+- [ ] Fusion 360 ([example](https://github.com/mrshmllow/ryo/blob/73793e6a045a51c7be5bf1d345b6f119e18cf128/desktop/apps/fusion.nix))
 
 ## Issues
 
@@ -71,3 +72,6 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [ ] NeoVim config
   - [ ] Create separate repo with current NvChad config
   - [ ] Create [NixVim](https://github.com/nix-community/nixvim) config from scratch
+- [ ] Xremap [config](https://www.youtube.com/watch?v=lyxScRCe6bE)
+  - [ ] Caps Lock -> Ctrl; Caps+hjkl -> arrows
+  - [ ] Browser basic vim motions
