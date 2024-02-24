@@ -37,7 +37,7 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 
 - [x] mpv
 - [x] spotify-player
-- [ ] qbittorrent
+- [x] qbittorrent
 - [ ] VCV Rack 2
 - [ ] Fusion 360 ([example](https://github.com/mrshmllow/ryo/blob/73793e6a045a51c7be5bf1d345b6f119e18cf128/desktop/apps/fusion.nix))
 
