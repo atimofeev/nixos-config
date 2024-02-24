@@ -6,7 +6,6 @@
     firefox
     telegram-desktop
     spotify-player
-    qbittorrent
 
     # fun
     lolcat
