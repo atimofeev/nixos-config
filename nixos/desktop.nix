@@ -26,4 +26,17 @@
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     #xwayland.enable = true;
   };
+
+  services.xremap = {
+    # withHypr = true;
+    withGnome = true;
+    userName = vars.username;
+    config = {
+      modmap = [{
+        name = "main remaps";
+        remap = { capslock = "shift_l"; };
+      }];
+    };
+  };
+
 }
