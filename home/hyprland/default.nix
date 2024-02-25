@@ -12,7 +12,7 @@ in
 {
 
   imports =
-    [ ./keybinds.nix ./window-rules.nix ./settings.nix ./waybar ./rofi ];
+    [ ./keybinds.nix ./window-rules.nix ./settings.nix ./waybar ./apps ];
 
   home.packages = with pkgs; [
     sddm # display manager
