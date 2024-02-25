@@ -27,16 +27,22 @@
     #xwayland.enable = true;
   };
 
+  # Wait for proper implementation: 
+  # https://github.com/NixOS/nixpkgs/issues/234076
   services.xremap = {
-    # withHypr = true;
-    withGnome = true;
+    # withGnome = true;
+    # withWlroots = true;
     userName = vars.username;
     config = {
       modmap = [{
-        name = "main remaps";
+        name = "fix broken shift key";
         remap = { capslock = "shift_l"; };
+      }];
+      keymap = [{
+        # FIX: not working in GNOME or Hypr when installed system-wide
+        name = "desktop apps";
+        remap = { shift-super-o.launch = [ "kitty" "-e" "htop" ]; };
       }];
     };
   };
-
 }
