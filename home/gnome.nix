@@ -42,7 +42,9 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
       {
         binding = "<Shift><Super>s";
-        command = "${vars.terminal.name} -e spotify_player";
+        # command = "${vars.terminal.name} -e spotify_player";
+        # show images in kitty
+        command = "kitty -o term=xterm-kitty -e spotify_player";
         name = "spotify-player";
       };
 
