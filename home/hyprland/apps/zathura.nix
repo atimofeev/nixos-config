@@ -1,4 +1,6 @@
 { ... }: {
+  # example config:
+  # https://github.com/RicArch97/nixos-config/blob/main/modules/desktop/apps/zathura.nix
   programs.zathura = {
     enable = true;
     options = {
