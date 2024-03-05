@@ -1,6 +1,7 @@
 { pkgs, vars, ... }: {
   imports = [
     ./hyprland
+    ./bat.nix
     #./firefox.nix
     ./fish.nix
     ./git.nix
