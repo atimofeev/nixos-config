@@ -10,11 +10,11 @@
       gcc
       xclip
       # mason installers
+      luarocks
       nodejs_21
       go
       cargo
       # lint/fmt/lsp
-      stylua
       statix
       nixfmt
       nixpkgs-fmt
