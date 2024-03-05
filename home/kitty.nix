@@ -29,7 +29,6 @@
       "ctrl+v" = "paste_from_clipboard";
     };
 
-    # TODO: theme: move to global var
-    theme = "Tokyo Night Moon";
+    theme = "Catppuccin-Macchiato";
   };
 }
