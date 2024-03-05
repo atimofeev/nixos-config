@@ -14,7 +14,6 @@
     fd # find
     ripgrep # grep
     eza # ls
-    bat # cat
     htop # top
   ];
 }
