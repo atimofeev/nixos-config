@@ -2,18 +2,31 @@
 # adding qBittorrent into home-manager is not looking realistic without config overhaul by app devs
 # hence there is a hacky solution for qBittorrent dotfiles
 let
-  # home directory is templated
+  themeName = "macchiato.qbtheme";
+
   configSource = pkgs.writeText "qBittorrent.conf"
-    (builtins.replaceStrings [ "{{HOME}}" ] [ config.home.homeDirectory ]
+    (builtins.replaceStrings [ "{{HOME}}" "{{THEME}}" ] [
+      config.home.homeDirectory
+      themeName
+    ]
       (builtins.readFile ../assets/qBittorrent.conf));
-  themeSource = ../assets/mocha.qbtheme;
 in
 {
   home.packages = with pkgs; [ qbittorrent ];
   xdg.configFile = {
-    "qBittorrent/qBittorrent.conf".source = configSource;
-    "qBittorrent/qBittorrent.conf".force = true; # overwrite destination file
-    "qBittorrent/mocha.qbtheme".source = themeSource;
-    "qBittorrent/mocha.qbtheme".force = true;
+    "qBittorrent/qBittorrent.conf" = {
+      force = true; # overwrite destination file
+      source = configSource;
+    };
+    "qBittorrent/${themeName}" = {
+      force = true;
+      source = pkgs.fetchFromGitHub
+        {
+          owner = "catppuccin";
+          repo = "qbittorrent";
+          rev = "c2fa170731a17644a6f93d4d8fc4614426488c62";
+          sha256 = "sha256-j9QqhT5oiYZp7CJVZmUvJvwtoKNYAxJKmzLpy8KsCZs=";
+        } + "/${themeName}"; # path to theme in repo
+    };
   };
 }
