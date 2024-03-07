@@ -8,19 +8,16 @@ let
     (builtins.replaceStrings [ "{{HOME}}" "{{THEME}}" ] [
       config.home.homeDirectory
       themeName
-    ]
-      (builtins.readFile ../assets/qBittorrent.conf));
+    ] (builtins.readFile ../assets/qBittorrent.conf));
 
-  themeSource = pkgs.fetchFromGitHub
-    {
-      owner = "catppuccin";
-      repo = "qbittorrent";
-      rev = "c2fa170731a17644a6f93d4d8fc4614426488c62";
-      sha256 = "sha256-j9QqhT5oiYZp7CJVZmUvJvwtoKNYAxJKmzLpy8KsCZs=";
-    } + "/${themeName}"; # path to theme in repo
+  themeSource = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "qbittorrent";
+    rev = "c2fa170731a17644a6f93d4d8fc4614426488c62";
+    sha256 = "sha256-j9QqhT5oiYZp7CJVZmUvJvwtoKNYAxJKmzLpy8KsCZs=";
+  } + "/${themeName}"; # path to theme in repo
 
-in
-{
+in {
   home.packages = with pkgs; [ qbittorrent ];
   xdg.configFile = {
     "qBittorrent/qBittorrent.conf" = {
