@@ -15,6 +15,5 @@
     fd # find
     ripgrep # grep
     eza # ls
-    htop # top
   ];
 }
