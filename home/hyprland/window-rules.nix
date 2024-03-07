@@ -21,7 +21,7 @@
       "opacity 0.9 0.8, class:^([Tt]hunar)$"
       "opacity 0.8 0.6, class:^(pcmanfm-qt)$"
       "opacity 0.9 0.7, class:^(gedit)$"
-      "opacity 0.9 0.8, class:^(${vars.terminal.name})$"
+      "opacity 0.95 0.8, class:^(${vars.terminal.name})$"
       "opacity 0.9 0.7, class:^(mousepad)$"
       "opacity 0.9 0.7, class:^(yad)$"
 
