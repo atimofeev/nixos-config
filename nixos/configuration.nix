@@ -1,4 +1,4 @@
-{ pkgs, inputs, vars, ... }: {
+{ pkgs, pkgs-unstable, inputs, vars, ... }: {
   imports = [
     ./apps.nix # various GUI or TUI apps
     ./boot.nix
@@ -33,10 +33,13 @@
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages = (with pkgs;
     [
       python3
       #go
       #rust
-    ];
+    ]) ++ (with pkgs-unstable;
+      [
+        # yamlfix 
+      ]);
 }
