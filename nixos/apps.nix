@@ -5,7 +5,6 @@
     vscode
     firefox
     telegram-desktop
-    spotify-player
 
     # fun
     lolcat

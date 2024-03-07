@@ -12,6 +12,7 @@
     ./mpv.nix
     ./nvim.nix
     ./qbittorrent.nix
+    ./spotify-player.nix
     ./ssh.nix
     ./starship.nix
     # If you want to use home-manager modules from other flakes (such as nix-colors):
