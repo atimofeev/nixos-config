@@ -15,8 +15,21 @@
       # ", xf86audioraisevolume, exec, $scriptsDir/Volume.sh --inc" # volume up
       # ", xf86KbdBrightnessDown, exec, $scriptsDir/BrightnessKbd.sh --dec" # Keyboard brightness Down
       # ", xf86KbdBrightnessUp, exec, $scriptsDir/BrightnessKbd.sh --inc" # Keyboard brightness up
-      # "scissorsLaptopButtonF7, exec, mediaPlayPause?"
-      # "printScreenLaptopButtonF11, exec, printScreenApplication"
+
+      # Make screenshots!
+      # https://www.youtube.com/watch?v=J1L1qi-5dr0
+      # depends on: grim, slurp, wl-clipboard, swappy
+      # "scissorsLaptopButtonF7, exec, grim -t png -g "$(slurp)" - | wl-copy"
+      # "printScreenLaptopButtonF11, exec, grim -t png - | wl-copy"
+      # "SHIFT, scissorsLaptopButtonF7, exec, grim -t png -g "$(slurp)" - | swappy -f -"
+      # "SOMEKEY, exec, wl-paste | swappy -f -" # edit clipboard image
+
+      # Record screen!
+      # wf-recorder
+      # wf-recorder -g "$(slurp)"
+      # wf-recorder --audio
+      # wf-recorder -f "name.mp4"
+
       ", xf86Sleep, exec, systemctl suspend" # sleep button
 
       # main

@@ -24,17 +24,17 @@
       border_size = 2;
       resize_on_border = true;
 
-      col.active_border = "$color0 $color2 $color4 $color6 $color8 90deg";
-      col.inactive_border = "$backgroundCol";
+      # col.active_border = "$color0 $color2 $color4 $color6 $color8 90deg";
+      # col.inactive_border = "$backgroundCol";
 
       layout = "master";
     };
 
-    group = {
-      col.border_active = "$color15";
-
-      groupbar = { col.active = "$color0"; };
-    };
+    # group = {
+    #   col.border_active = "$color15";
+    #
+    #   groupbar = { col.active = "$color0"; };
+    # };
 
     decoration = {
       rounding = 8;
@@ -49,8 +49,8 @@
       drop_shadow = true;
       shadow_range = 6;
       shadow_render_power = 1;
-      col.shadow = "$color2";
-      col.shadow_inactive = "0x50000000";
+      # col.shadow = "$color2";
+      # col.shadow_inactive = "0x50000000";
 
       blur = {
         enabled = true;
@@ -91,7 +91,7 @@
     input = {
       kb_layout = vars.kb_layouts;
       kb_options = "grp:win_space_toggle";
-      repeat_rate = 50;
+      repeat_rate = 45;
       repeat_delay = 300;
       numlock_by_default = 1;
       left_handed = 0;
