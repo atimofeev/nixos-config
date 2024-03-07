@@ -1,7 +1,7 @@
 { ... }: {
   programs.waybar.style = ''
     * {
-    font-family: "JetBrainsMono Nerd Font";
+    font-family: "DejaVuSansM Nerd Font Mono";
     font-weight: bold;
     min-height: 0;
     /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
