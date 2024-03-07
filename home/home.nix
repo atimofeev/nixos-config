@@ -6,6 +6,7 @@
     ./fish.nix
     ./git.nix
     ./gnome.nix
+    ./htop.nix
     ./k9s.nix
     ./kitty.nix
     ./mpv.nix
