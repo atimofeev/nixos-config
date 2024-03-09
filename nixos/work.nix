@@ -1,4 +1,8 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+let
+  python-with-global-packages =
+    pkgs.python3.withPackages (ps: with ps; [ boto3 botocore hvac pip pytest ]);
+in {
   imports = [ ./gns3.nix ];
   virtualisation.docker.enable = true;
   users.users.${vars.username}.extraGroups = [ "docker" ];
@@ -6,7 +10,8 @@
   environment.systemPackages = with pkgs; [
     docker-compose
     ansible
-    sshpass # for ansible: ssh auth with pass
+    sshpass # ansible: ssh auth with pass
+    python-with-global-packages # ansible: python packages
     terraform
     minikube
     kubectl
