@@ -1,8 +1,4 @@
-{ pkgs, vars, ... }:
-let
-  python-with-global-packages =
-    pkgs.python3.withPackages (ps: with ps; [ boto3 botocore hvac pip pytest ]);
-in {
+{ pkgs, vars, ... }: {
   imports = [ ./gns3.nix ];
   virtualisation.docker.enable = true;
   users.users.${vars.username}.extraGroups = [ "docker" ];
@@ -11,7 +7,6 @@ in {
     docker-compose
     ansible
     sshpass # ansible: ssh auth with pass
-    python-with-global-packages # ansible: python packages
     terraform
     minikube
     kubectl
@@ -30,7 +25,10 @@ in {
           rev = "v2.11.6";
           sha256 = "sha256-+ljma9q1tDo0/0YQmjKO2R756BRydFgAu+2wDu+ARto=";
         };
+        propagatedBuildInputs = oldAttrs.propagatedBuildInputs
+          ++ [ pkgs.python311Packages.hvac ];
       });
     };
   };
+
 }
