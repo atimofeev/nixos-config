@@ -15,5 +15,8 @@
     fd # find
     ripgrep # grep
     eza # ls
+
+    # nix utils
+    comma # launch any nixpkg with ', <pkg>'
   ];
 }
