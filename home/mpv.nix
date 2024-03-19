@@ -14,6 +14,7 @@
       WHEEL_DOWN = "add volume -2.5";
       UP = "add volume 2.5";
       DOWN = "add volume -2.5";
+      ENTER = "ignore";
     };
 
     scripts = with pkgs.mpvScripts; [
