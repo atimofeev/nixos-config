@@ -33,13 +33,13 @@
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
-  environment.systemPackages = (with pkgs;
+  environment.systemPackages = (with pkgs; [
+    python3
+    yamlfix
+    #go
+    #rust
+  ]) ++ (with pkgs-unstable;
     [
-      python3
-      #go
-      #rust
-    ]) ++ (with pkgs-unstable;
-      [
-        # yamlfix 
-      ]);
+      # yamlfix 
+    ]);
 }
