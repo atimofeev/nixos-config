@@ -104,9 +104,5 @@
     };
   };
 
-  home.sessionVariables = {
-    fish_greeting = "";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'"; # man pages -> bat
-    MANROFFOPT = "-c"; # bat man pages formatting fix
-  };
+  home.sessionVariables.fish_greeting = "";
 }
