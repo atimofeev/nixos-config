@@ -29,7 +29,7 @@
     [ (nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; }) ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs vars; };
+    extraSpecialArgs = { inherit pkgs pkgs-unstable inputs vars; };
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
