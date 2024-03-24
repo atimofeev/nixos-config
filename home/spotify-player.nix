@@ -1,5 +1,4 @@
 { pkgs, pkgs-unstable, ... }: {
-  # TODO: https://github.com/catppuccin/spotify-player
   home.packages = with pkgs-unstable; [ spotify-player ];
 
   # FIX: not working properly with kitty themes
