@@ -1,7 +1,8 @@
 { pkgs, pkgs-unstable, ... }: {
   home.packages = with pkgs-unstable; [ spotify-player ];
 
-  # FIX: not working properly with kitty themes
+  # NOTE: not used, as theme is inherited from terminal
+  # FIX: catppuccin themes have broken HL groups
   xdg.configFile."spotify-player/theme.toml" = let
     themeSource = pkgs.fetchFromGitHub {
       owner = "catppuccin";
