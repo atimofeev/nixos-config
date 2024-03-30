@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, inputs, vars, ... }: {
+{ pkgs, pkgs-unstable, inputs, libx, vars, ... }: {
   imports = [
     ./apps.nix # various GUI or TUI apps
     ./boot.nix
@@ -29,7 +29,7 @@
     [ (nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; }) ];
 
   home-manager = {
-    extraSpecialArgs = { inherit pkgs pkgs-unstable inputs vars; };
+    extraSpecialArgs = { inherit pkgs pkgs-unstable inputs libx vars; };
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
