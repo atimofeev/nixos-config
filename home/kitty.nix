@@ -12,7 +12,7 @@
       bold_italic_font = "auto";
 
       # Window
-      background_opacity = "0.8";
+      # background_opacity = "0.8";
       hide_window_decorations = "yes";
       scrollback_lines = "10000";
       confirm_os_window_close = "2";
