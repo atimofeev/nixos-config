@@ -14,6 +14,8 @@
 
     # misc
     prusa-slicer
+    freecad
+    openscad
     vcv-rack
   ];
 }
