@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   fromYAML =
+    # https://github.com/NixOS/nix/pull/7340
     # https://github.com/NixOS/nix/issues/4910
 
     # Read a YAML file into a Nix datatype using IFD.
