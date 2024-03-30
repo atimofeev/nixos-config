@@ -1,4 +1,4 @@
-{ libx, pkgs, ... }:
+{ pkgs, libx, ... }:
 # TODO: remap ; -> :
 let
   themeName = "catppuccin-macchiato.yaml";
@@ -11,8 +11,6 @@ let
 in {
   programs.k9s = {
     enable = true;
-    # FIX: custom lib source
-    # https://github.com/luisnquin/nixos-config/blob/628f3f1e4598f59f871c02c85aeb1d09bba84201/lib/formats.nix
-    # skin = libx.formats.fromYAML themeSource;
+    skin = libx.formats.fromYAML themeSource;
   };
 }

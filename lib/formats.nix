@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   fromYAML =
     # https://github.com/NixOS/nix/issues/4910
 
@@ -19,7 +19,6 @@
     let
       jsonOutputDrv =
         pkgs.runCommand "from-yaml" { nativeBuildInputs = [ pkgs.remarshal ]; }
-          ''remarshal -if yaml -i "${path}" -of json -o "$out"'';
-    in
-    builtins.fromJSON (builtins.readFile jsonOutputDrv);
+        ''remarshal -if yaml -i "${path}" -of json -o "$out"'';
+    in builtins.fromJSON (builtins.readFile jsonOutputDrv);
 }
