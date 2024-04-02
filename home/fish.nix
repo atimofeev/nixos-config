@@ -42,6 +42,7 @@
 
         # WORK
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
+        vpn-status = "sudo systemctl status openvpn-officeVPN.service";
         d = "docker";
         d-stop-all = "docker stop $(docker ps -q)";
         d-img-del-all = "docker rmi $(docker images -aq) --force";
