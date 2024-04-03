@@ -5,6 +5,7 @@
     ./desktop.nix # desktop environment setup
     ./games.nix
     ./hardware-configuration.nix
+    ./homepage.nix
     ./locale.nix
     ./network.nix
     ./nvidia.nix
