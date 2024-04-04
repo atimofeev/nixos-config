@@ -24,7 +24,9 @@
       vars = import ./variables.nix;
     in {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs pkgs-unstable libx vars; };
+        specialArgs = {
+          inherit inputs pkgs-unstable nixpkgs-unstable libx vars;
+        };
         modules = [
           ./nixos/configuration.nix
           inputs.home-manager.nixosModules.default
