@@ -1,5 +1,5 @@
 { nixpkgs-unstable, pkgs-unstable, vars, ... }: {
-  # NOTE: override service channel to unstable
+  # NOTE: override nix options channel to unstable
   imports = [
     (nixpkgs-unstable + "/nixos/modules/services/misc/homepage-dashboard.nix")
   ];
@@ -12,6 +12,8 @@
     };
   };
 
+  # TODO: configure
+  # https://github.com/jnsgruk/nixos-config/blob/2869fc81225903238fecb34b82ebe11699d98fa4/host/common/services/homepage/thor.nix#L13
   services.homepage-dashboard = {
     enable = true;
     listenPort = 8888;
