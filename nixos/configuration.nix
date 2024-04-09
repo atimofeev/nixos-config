@@ -21,11 +21,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
-  # Set your time zone.
   time.timeZone = vars.tz_name;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   fonts.packages = with pkgs;
     [ (nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; }) ];
