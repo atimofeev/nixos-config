@@ -15,6 +15,10 @@
     fd # find
     ripgrep # grep
     eza # ls
+    du-dust # du
+
+    # misc
+    tldr
 
     # nix utils
     comma # launch any nixpkg with ', <pkg>'
