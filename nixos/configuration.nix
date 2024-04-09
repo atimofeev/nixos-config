@@ -1,6 +1,7 @@
 { pkgs, pkgs-unstable, inputs, libx, vars, ... }: {
   imports = [
     ./apps.nix # various GUI or TUI apps
+    ./bluetooth.nix
     ./boot.nix
     ./desktop.nix # desktop environment setup
     ./games.nix
