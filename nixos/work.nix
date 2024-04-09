@@ -1,7 +1,21 @@
 { pkgs, vars, ... }: {
   imports = [ ./gns3.nix ];
-  virtualisation.docker.enable = true;
-  users.users.${vars.username}.extraGroups = [ "docker" ];
+
+  users.users.${vars.username}.extraGroups = [ "docker" "libvirtd" ];
+
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+  };
+
+  programs.virt-manager.enable = true;
+  # TODO: move this into home-manager
+  # dconf.settings = {
+  #   "org/virt-manager/virt-manager/connections" = {
+  #     autoconnect = [ "qemu:///system" ];
+  #     uris = [ "qemu:///system" ];
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     docker-compose
