@@ -59,6 +59,7 @@ in {
       format = lib.strings.concatStrings [
         "[](${section1.bg})"
         "$battery"
+        "$username"
         "[](fg:${section1.bg} bg:${section2.bg})"
         "$directory"
         "[](fg:${section2.bg} bg:${section3.bg})"
@@ -81,6 +82,12 @@ in {
         style = "fg:${section1.fg} bg:${section1.bg}";
         threshold = 90;
       }];
+
+      username = {
+        disabled = false;
+        format = "[!]($style)";
+        style_root = "fg:${section1.fg} bg:${section1.bg}";
+      };
 
       directory = {
         format = "[ $path ]($style)";
