@@ -19,6 +19,8 @@
 
   environment.systemPackages = with pkgs; [
     docker-compose
+    podman-desktop
+    # podman-tui # NOTE: useless without podman itself
     ansible
     sshpass # ansible: ssh auth with pass
     terraform
