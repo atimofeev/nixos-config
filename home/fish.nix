@@ -38,7 +38,7 @@
         rebuild-switch =
           "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
         shell = "nix-shell --run $SHELL";
-        vix = "nix run ~/repos/nixvim-config/";
+        v = "nix run ~/repos/nixvim-config/";
 
         # WORK
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
