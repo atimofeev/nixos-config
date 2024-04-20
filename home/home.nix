@@ -15,6 +15,7 @@
     ./spotify-player.nix
     ./ssh.nix
     ./starship.nix
+    ./vcv-rack.nix
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
   ];
