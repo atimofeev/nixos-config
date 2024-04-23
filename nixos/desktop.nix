@@ -1,4 +1,6 @@
 { inputs, pkgs, vars, ... }: {
+  environment.systemPackages = with pkgs; [ gnome.gnome-tweaks ];
+
   services.xserver = {
     enable = true;
     desktopManager.gnome.enable = true;
