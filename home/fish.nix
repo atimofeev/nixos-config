@@ -40,6 +40,12 @@
         shell = "nix-shell --run $SHELL";
         v = "nix run ~/repos/nixvim-config/";
 
+        # MISC
+        icat = "kitty +kitten icat";
+        pipewire-restart = ''
+          systemctl --user restart pipewire.service && \
+          systemctl --user restart pipewire-pulse.service'';
+
         # WORK
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
         vpn-status = "sudo systemctl status openvpn-officeVPN.service";
