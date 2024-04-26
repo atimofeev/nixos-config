@@ -45,6 +45,11 @@
         pipewire-restart = ''
           systemctl --user restart pipewire.service && \
           systemctl --user restart pipewire-pulse.service'';
+        rg = "rg --color=always --ignore-case"; # ripgrep
+        tb = "nc termbin.com 9999"; # [command] | tb
+        nf = "neofetch --backend off --color_blocks off";
+        chx = "chmod +x";
+        ip = "ip -4 a";
 
         # WORK
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
@@ -85,19 +90,52 @@
         rm = "rm --interactive";
         #mv="mv --interactive";
       };
-      # TODO: add these functions
-      #
-      # function touchx
-      #     for file in $argv
-      #         touch $file
-      #         chmod +x $file
-      #     end
-      # end
-      #
-      # function dn
-      #     $argv 2>/dev/null
-      # end
-      # TODO: how about famous archive extraction function?
+
+      functions = {
+        touchx = ''
+          for file in $argv
+              touch $file
+              chmod +x $file
+          end
+        '';
+
+        dn = "$argv 2>/dev/null";
+
+        ex = ''
+          if not test -f "$argv[1]"
+              echo "'$argv[1]' is not a valid file"
+              return
+          end
+
+          switch "$argv[1]"
+              case '*.tar.bz2' '*.tbz2'
+                  tar xjf $argv[1]
+              case '*.tar.gz' '*.tgz'
+                  tar xzf $argv[1]
+              case '*.bz2'
+                  bunzip2 $argv[1]
+              case '*.rar'
+                  unrar x $argv[1]
+              case '*.gz'
+                  gunzip $argv[1]
+              case '*.tar'
+                  tar xf $argv[1]
+              case '*.zip'
+                  unzip $argv[1]
+              case '*.Z'
+                  uncompress $argv[1]
+              case '*.7z'
+                  7z x $argv[1]
+              case '*.tar.xz'
+                  tar -Jxf $argv[1]
+              case '*.tar.zst'
+                  unzstd $argv[1]
+              case '*'
+                  echo "'$argv[1]' cannot be extracted via ex()"
+          end
+        '';
+      };
+
       # TODO: add custom fzf functions 
     };
   };
