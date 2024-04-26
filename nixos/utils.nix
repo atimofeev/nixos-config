@@ -18,6 +18,7 @@
     du-dust # du
 
     # misc
+    fzf
     tldr
 
     # nix utils
