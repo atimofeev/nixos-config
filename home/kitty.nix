@@ -14,13 +14,16 @@
       # Window
       # background_opacity = "0.8";
       hide_window_decorations = "yes";
-      scrollback_lines = "10000";
       confirm_os_window_close = "2";
 
       copy_on_select = "yes";
 
       # Fix issues related to SSH (may break kitty functionality):
       term = "xterm-256color";
+
+      scrollback_lines = "10000";
+      scrollback_pager = ''
+        nvim -c 'setlocal nonumber nolist showtabline=0 foldcolumn=0|Man!' -c "autocmd VimEnter * normal G" -'';
     };
 
     keybindings = {
