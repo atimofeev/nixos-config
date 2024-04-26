@@ -66,16 +66,7 @@
           "eza --list-dirs --long --color=always --group-directories-first"; # show exact dir info
         lt =
           "eza --tree --level 2 --all --color=always --group-directories-first";
-        # TODO: escape egrep quotes
-        #l.="eza --all | egrep "^\.""; #show only dotfiles
-
-        # BAT
-        less = "bat --color=always --style=auto";
-        cat = "bat --color=always --style=plain --paging=never";
-        rg = "rg --color=always --ignore-case"; # ripgrep
-        tb = "nc termbin.com 9999"; # [command] | tb
-        nf = "neofetch --backend off --color_blocks off";
-        chx = "chmod +x";
+        "l." = ''eza --all | egrep "^\."''; # show only dotfiles
 
         # adding flags
         df =
