@@ -28,6 +28,7 @@
     kubectl
     kubernetes-helm
     slack
+    zoom
   ];
 
   # Pin ansible version
