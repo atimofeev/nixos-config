@@ -1,5 +1,6 @@
 # FIX: non-idempotent: firefox updates config, breaking home-manager
 # FIX: search.engines: aliases not working
+# TODO: vim binds: https://github.com/tridactyl/tridactyl
 # TODO: themes: https://github.com/catppuccin/firefox
 # https://github.com/catppuccin/dark-reader
 # https://github.com/catppuccin/userstyles
