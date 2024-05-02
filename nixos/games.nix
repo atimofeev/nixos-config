@@ -1,4 +1,6 @@
 { pkgs, vars, ... }: {
+  # TODO: retroarch https://nixos.wiki/wiki/RetroArch
+  # ballance game
   environment.systemPackages = with pkgs; [
     # virt
     playonlinux
