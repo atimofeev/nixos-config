@@ -4,6 +4,10 @@
   environment.systemPackages = with pkgs; [
     # virt
     playonlinux
+
+    # tools
+    mangohud # mangohud %command%
+
     # games
     space-cadet-pinball
   ];
