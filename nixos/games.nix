@@ -8,9 +8,17 @@
     space-cadet-pinball
   ];
 
-  programs.steam = {
-    enable = true;
-    # platformOptimizations.enable = true; # TODO: install https://github.com/fufexan/nix-gaming
+  programs = {
+    # TODO: configure
+    gamemode = {
+      enable = true; # gamemoderun %command% (?)
+      # settings = { };
+    };
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true; # gamescope %command% (?)
+      # platformOptimizations.enable = true; TODO: install https://github.com/fufexan/nix-gaming
+    };
   };
 
   # FIX: xone-dongle module is not launched on dongle insert
