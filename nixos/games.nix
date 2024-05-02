@@ -11,5 +11,7 @@
     # platformOptimizations.enable = true; # TODO: install https://github.com/fufexan/nix-gaming
   };
 
-  hardware.steam-hardware.enable = true;
+  # FIX: xone-dongle module is not launched on dongle insert
+  # https://github.com/NixOS/nixpkgs/issues/308028
+  hardware.xone.enable = true;
 }
