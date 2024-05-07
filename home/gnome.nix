@@ -17,6 +17,11 @@
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     "org/freedesktop/appearance".color-scheme = 1;
 
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = true;
+      night-light-schedule-automatic = true;
+      night-light-temperature = lib.hm.gvariant.mkUint32 4500;
+    };
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
       move-to-workspace-1 = [ "<Shift><Super>1" ];
