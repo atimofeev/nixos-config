@@ -22,6 +22,7 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
       ];
     };
 
@@ -42,19 +43,25 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
       {
         binding = "<Shift><Super>s";
-        # command = "${vars.terminal.name} -e spotify_player";
         # show images in kitty
         command = "kitty -o term=xterm-kitty -e spotify_player";
+        # command = "${vars.terminal.name} -e spotify_player";
         name = "spotify-player";
       };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
       {
-        binding = "<Shift><Super>Return";
-        command = "${vars.terminal.name} -e ${vars.terminal.editor}";
-        name = vars.terminal.editor;
+        binding = "<Super>e";
+        command = "/usr/bin/env nautilus";
+        name = "File Manager";
       };
 
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" =
+      {
+        binding = "<Shift><Super>n";
+        command = "${vars.terminal.name} -e nvtop";
+        name = "nvtop";
+      };
   };
 
 }
