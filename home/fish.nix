@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   # FIX: enable fish in sudo
+  # TODO: persistance for fish_history
+  # ~/.local/share/fish/fish_history
   programs = {
     kitty.shellIntegration.enableFishIntegration = true;
     starship.enableFishIntegration = true;
