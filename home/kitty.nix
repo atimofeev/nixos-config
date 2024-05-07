@@ -16,6 +16,7 @@
       hide_window_decorations = "yes";
       confirm_os_window_close = "2";
 
+      enable_audio_bell = "no";
       copy_on_select = "yes";
 
       # Fix issues related to SSH (may break kitty functionality):
