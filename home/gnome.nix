@@ -14,6 +14,13 @@
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
   dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [ "pip-on-top@rafostar.github.com" ];
+    };
+
+    "org/gnome/shell/extensions/pip-on-top" = { stick = true; };
+
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     "org/freedesktop/appearance".color-scheme = 1;
 

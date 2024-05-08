@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     gnome.dconf-editor
+    gnomeExtensions.pip-on-top
   ];
 
   services.xserver = {
