@@ -27,6 +27,7 @@
     minikube
     kubectl
     kubernetes-helm
+    kubie
     slack
     zoom-us
   ];
