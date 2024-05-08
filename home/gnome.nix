@@ -40,11 +40,19 @@
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     "org/freedesktop/appearance".color-scheme = 1;
 
+    "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
+      power-button-action = "interactive";
+      sleep-inactive-ac-type = "nothing";
+    };
+    "org/gnome/desktop/session".idle-delay = lib.hm.gvariant.mkUint32 0;
+
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = true;
       night-light-temperature = lib.hm.gvariant.mkUint32 4500;
     };
+
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
       move-to-workspace-1 = [ "<Shift><Super>1" ];
