@@ -25,6 +25,12 @@
     };
 
     "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "kitty.desktop"
+        "steam.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
       disable-user-extensions = false;
       enabled-extensions = [ "pip-on-top@rafostar.github.com" ];
     };
