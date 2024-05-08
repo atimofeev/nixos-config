@@ -1,4 +1,10 @@
-{ vars, ... }: {
+{ lib, vars, ... }: {
+  # TODO: tiling
+  # https://github.com/material-shell/material-shell
+  # https://itsfoss.com/material-shell/
+
+  # https://github.com/forge-ext/forge
+
   qt = {
     enable = true;
     style.name = "Adwaita-dark";
@@ -80,6 +86,19 @@
       switch-to-application-8 = [ ];
       switch-to-application-9 = [ ];
       switch-to-application-10 = [ ];
+    };
+
+    "org/gnome/mutter" = {
+      center-new-windows = true;
+      dynamic-workspaces = true;
+      edge-tiling = true;
+      experimental-features = [ "scale-monitor-framebuffer" ]; # hidpi
+      workspaces-only-on-primary = true;
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      resize-with-right-button = true;
+      focus-mode = "sloppy";
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
