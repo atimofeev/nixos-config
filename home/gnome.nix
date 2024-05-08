@@ -13,7 +13,17 @@
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
+
   dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      # Use different keyboard language for each window
+      per-window = true;
+      sources = [
+        (lib.hm.gvariant.mkTuple [ "xkb" "us" ])
+        (lib.hm.gvariant.mkTuple [ "xkb" "ru" ])
+      ];
+    };
+
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [ "pip-on-top@rafostar.github.com" ];
