@@ -5,6 +5,8 @@
     # FIX: vmware-workstation is unavailable for download
     # https://github.com/NixOS/nixpkgs/issues/310121
     # ./gns3.nix 
+
+    ./tofu.nix
   ];
 
   users.users.${vars.username}.extraGroups = [ "docker" "libvirtd" ];
