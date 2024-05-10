@@ -43,6 +43,16 @@
 
     "org/gnome/shell/extensions/pip-on-top" = { stick = true; };
 
+    "org/gnome/desktop/background" = {
+      picture-uri = "file://${../assets/dark-shore-upscaled.png}";
+      picture-uri-dark = "file://${../assets/dark-shore-upscaled.png}";
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      picture-uri = "file://${../assets/dark-shore-upscaled.png}";
+      picture-uri-dark = "file://${../assets/dark-shore-upscaled.png}";
+    };
+
     "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     "org/freedesktop/appearance".color-scheme = 1;
 
