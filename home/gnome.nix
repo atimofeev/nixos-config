@@ -100,6 +100,15 @@
       resize-with-right-button = true;
       focus-mode = "sloppy";
     };
+
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden = true;
+      sort-directories-first = true;
+      view-type = "list";
+    };
+
+    "org/gnome/TextEditor".keybindings = "vim";
+
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
