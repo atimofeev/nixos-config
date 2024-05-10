@@ -17,6 +17,8 @@
     ./work # apps for work
   ];
 
+  # TODO: nix-sops or something with AES256 encryption
+
   system.stateVersion = vars.nix.stateVersion;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;

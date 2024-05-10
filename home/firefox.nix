@@ -2,6 +2,7 @@
 # FIX: search.engines: aliases not working
 # TODO: vim binds: https://github.com/tridactyl/tridactyl
 # TODO: themes: https://github.com/catppuccin/firefox
+# https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2
 # https://github.com/catppuccin/dark-reader
 # https://github.com/catppuccin/userstyles
 { pkgs, vars, ... }: {
