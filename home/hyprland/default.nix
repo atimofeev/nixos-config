@@ -16,7 +16,7 @@ let
 
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${../../assets/wallpaper.jpg} &
+    ${pkgs.swww}/bin/swww img ${../../assets/dark-shore-upscaled.png} &
   '';
 in {
 
