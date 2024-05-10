@@ -14,7 +14,7 @@
     ./sound.nix
     ./user.nix
     ./utils.nix # various CLI utils
-    ./work.nix # apps for work
+    ./work # apps for work
   ];
 
   system.stateVersion = vars.nix.stateVersion;
