@@ -1,72 +1,6 @@
-{ lib, vars, ... }: {
-  qt = {
-    enable = true;
-    style.name = "Adwaita-dark";
-  };
-
-  gtk = {
-    enable = true;
-    theme.name = "Adwaita-dark";
-    gtk2.extraConfig = ''
-      gtk-application-prefer-dark-theme = true;
-    '';
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
-  };
-
+{ vars, ... }: {
   dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      # Use different keyboard language for each window
-      per-window = true;
-      sources = [
-        (lib.hm.gvariant.mkTuple [ "xkb" "us" ])
-        (lib.hm.gvariant.mkTuple [ "xkb" "ru" ])
-      ];
-    };
-
-    "org/gnome/desktop/peripherals/keyboard" = {
-      delay = lib.hm.gvariant.mkUint32 300;
-      repeat-interval = lib.hm.gvariant.mkUint32 32;
-    };
-
-    "org/gnome/shell" = {
-      favorite-apps = [
-        "firefox.desktop"
-        "kitty.desktop"
-        "steam.desktop"
-        "org.gnome.Nautilus.desktop"
-      ];
-      disable-user-extensions = false;
-      enabled-extensions = [ "pip-on-top@rafostar.github.com" ];
-    };
-
-    "org/gnome/shell/extensions/pip-on-top" = { stick = true; };
-
-    "org/gnome/desktop/background" = {
-      picture-uri = "file://${../assets/dark-shore.png}";
-      picture-uri-dark = "file://${../assets/dark-shore.png}";
-    };
-
-    "org/gnome/desktop/screensaver" = {
-      picture-uri = "file://${../assets/dark-shore.png}";
-      picture-uri-dark = "file://${../assets/dark-shore.png}";
-    };
-
-    "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-    "org/freedesktop/appearance".color-scheme = 1;
-
-    "org/gnome/settings-daemon/plugins/power" = {
-      idle-dim = false;
-      power-button-action = "interactive";
-      sleep-inactive-ac-type = "nothing";
-    };
-    "org/gnome/desktop/session".idle-delay = lib.hm.gvariant.mkUint32 0;
-
-    "org/gnome/settings-daemon/plugins/color" = {
-      night-light-enabled = true;
-      night-light-schedule-automatic = true;
-      night-light-temperature = lib.hm.gvariant.mkUint32 4500;
-    };
+    "org/gnome/TextEditor".keybindings = "vim";
 
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
@@ -96,27 +30,6 @@
       switch-to-application-9 = [ ];
       switch-to-application-10 = [ ];
     };
-
-    "org/gnome/mutter" = {
-      center-new-windows = true;
-      dynamic-workspaces = true;
-      edge-tiling = true;
-      experimental-features = [ "scale-monitor-framebuffer" ]; # hidpi
-      workspaces-only-on-primary = true;
-    };
-
-    "org/gnome/desktop/wm/preferences" = {
-      resize-with-right-button = true;
-      focus-mode = "sloppy";
-    };
-
-    "org/gtk/gtk4/settings/file-chooser" = {
-      show-hidden = true;
-      sort-directories-first = true;
-      view-type = "list";
-    };
-
-    "org/gnome/TextEditor".keybindings = "vim";
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
@@ -165,5 +78,4 @@
         name = "nvtop";
       };
   };
-
 }
