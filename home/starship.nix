@@ -1,5 +1,4 @@
 { lib, ... }:
-# TODO: move cmd timer to separate section
 let
   # catppuccin macchiato palette
   colors = {
@@ -119,10 +118,11 @@ in {
         format = "[ 󱦟$duration ]($style)";
         style = "fg:${section5.fg} bg:${section5.bg}";
         min_time = 1000;
-        #Waiting for resolution of this:
-        #https://github.com/starship/starship/issues/1933
+
         #show_notifications = true;
         #min_time_to_notify = 45000;
+        #Waiting for resolution of this:
+        #https://github.com/starship/starship/issues/1933
       };
 
       status = {

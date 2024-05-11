@@ -5,5 +5,4 @@
   };
 
   users.users.${vars.username}.extraGroups = [ "networkmanager" ];
-
 }

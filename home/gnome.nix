@@ -1,10 +1,4 @@
 { lib, vars, ... }: {
-  # TODO: tiling
-  # https://github.com/material-shell/material-shell
-  # https://itsfoss.com/material-shell/
-
-  # https://github.com/forge-ext/forge
-
   qt = {
     enable = true;
     style.name = "Adwaita-dark";

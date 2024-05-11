@@ -1,5 +1,4 @@
-{ ... }: {
-  # TODO: migrate to tlp
+_: {
   powerManagement = {
     enable = true;
     powertop.enable = true;

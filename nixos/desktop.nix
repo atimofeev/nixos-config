@@ -41,8 +41,6 @@
     };
   };
 
-  # Wait for proper implementation: 
-  # https://github.com/NixOS/nixpkgs/issues/234076
   services.xremap = {
     # withGnome = true;
     # withWlroots = true;

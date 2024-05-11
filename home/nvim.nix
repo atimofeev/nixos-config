@@ -1,4 +1,3 @@
-# TODO: migrate dotfile conf to nix conf
 { pkgs, ... }: {
   programs.neovim = {
     enable = true;

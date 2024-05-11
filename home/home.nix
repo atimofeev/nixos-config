@@ -31,8 +31,6 @@
     homeDirectory = "/home/${vars.username}";
   };
 
-  # NOTE: misc config
-
   # Autoconnect for virt-manager
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

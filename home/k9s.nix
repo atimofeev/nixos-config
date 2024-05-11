@@ -1,6 +1,4 @@
 { pkgs, libx, ... }:
-# TODO: remap ; -> :
-# remap ESC (exit current view, or go back) -> Backspace / q
 let
   themeName = "catppuccin-macchiato.yaml";
   themeSource = pkgs.fetchFromGitHub {
