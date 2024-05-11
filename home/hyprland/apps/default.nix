@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./lf.nix ./zathura.nix ]; }
+_: { imports = [ ./lf.nix ./zathura.nix ]; }

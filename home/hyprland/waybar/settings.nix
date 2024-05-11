@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   # TODO: make it following format:
   # left: workspaces
   # center: 22 Feb 14:58 (click: notifications + calendar)

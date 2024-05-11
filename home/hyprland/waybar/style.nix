@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   programs.waybar.style = ''
     * {
     font-family: "DejaVuSansM Nerd Font Mono";

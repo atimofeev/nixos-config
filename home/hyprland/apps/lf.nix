@@ -7,6 +7,6 @@
 # image previews
 # filetype associations with my software
 # fzf, z.lua, d-bus, etc: https://github.com/gokcehan/lf/wiki/Integrations
-{ ... }: {
+_: {
   programs.lf = { enable = true; };
 }
