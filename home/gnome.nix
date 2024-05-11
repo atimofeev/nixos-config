@@ -24,6 +24,11 @@
       ];
     };
 
+    "org/gnome/desktop/peripherals/keyboard" = {
+      delay = lib.hm.gvariant.mkUint32 300;
+      repeat-interval = lib.hm.gvariant.mkUint32 32;
+    };
+
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
