@@ -12,6 +12,7 @@
     ./nvidia.nix
     ./power.nix
     ./sound.nix
+    ./sudo.nix
     ./user.nix
     ./utils.nix # various CLI utils
     ./work # apps for work
