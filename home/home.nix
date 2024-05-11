@@ -5,7 +5,7 @@
     #./firefox.nix
     ./fish.nix
     ./git.nix
-    ./gnome.nix
+    ./gnome
     ./htop.nix
     ./k9s.nix
     ./kitty.nix
