@@ -75,3 +75,26 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [ ] Xremap [config](https://www.youtube.com/watch?v=lyxScRCe6bE)
   - [ ] Caps Lock -> Ctrl; Caps+hjkl -> arrows
   - [ ] Browser basic vim motions
+
+## Notes
+
+### Useful code examples
+
+- `builtins.map`
+
+```nix
+sudo = {
+  enable = true;
+  extraRules = [
+    {
+      commands =
+        builtins.map (command: {
+          command = "/run/current-system/sw/bin/${command}";
+          options = ["NOPASSWD"];
+        })
+        ["poweroff" "reboot" "nixos-rebuild" "nix-env" "bandwhich" "mic-light-on" "mic-light-off" "systemctl"];
+      groups = ["wheel"];
+    }
+  ];
+};
+```
