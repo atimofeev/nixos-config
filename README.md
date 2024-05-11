@@ -65,13 +65,17 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [ ] Firefox
   - [ ] Search engines with aliases
   - [ ] [Theme](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [this](https://github.com/catppuccin/firefox)
+  - [ ] [Extensions example with NUR](https://github.com/chadcat7/crystal/blob/d412b11824f13e251186afec31714abda29e323c/home/namish/conf/browsers/firefox/default.nix)
   - [ ] [Userstyles](https://github.com/catppuccin/userstyles)
   - [ ] [Vim motions](https://github.com/tridactyl/tridactyl)
-- [ ] Gnome: Tiling [1](https://github.com/material-shell/material-shell) ([itsfoss](https://itsfoss.com/material-shell/)), [2](https://github.com/forge-ext/forge)
+- [ ] Gnome Tiling
+  - [ ] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
+  - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
+  - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
 - [ ] Fish: preserve history `~/.local/share/fish/fish_history`
 - [ ] VCV Rack 2: use config and patch repos
 - [ ] mpv
-  - [ ] try out `simple-mpv-ui` plugin
+  - [ ] try out [mpvScripts.simple-mpv-webui](https://github.com/open-dynaMIX/simple-mpv-webui) plugin
   - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
   - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
 - [ ] Hyprland
@@ -93,8 +97,10 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - `2.4 wireless mouse` on boot won't work properly unless dongle is reconnected\
   Not reproducible with clean Nix Gnome setup
 - `xone` won't work with Xbox wireless dongle. [nixpkgs issue](https://github.com/NixOS/nixpkgs/issues/308028)
-- `Firefox` conflicting config between home-manager and firefox profile sync.\
-  Custom search engines config breaks search aliases
+- `Firefox`
+  - Conflicting config between home-manager and firefox profile sync.\
+    Custom search engines config breaks search aliases
+  - HEVC video playback on github is broken. [example](https://github.com/mrjones2014/smart-splits.nvim/issues/179#issuecomment-2049847490)
 - `k9s` aliases and plugins config is broken
 - `xremap` not working with DE for app shortcuts\
   Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)\
