@@ -42,9 +42,22 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [x] Docker
 - [x] K8s: minikube, kubectl, helm, k9s
 
-## Goals (TODOs actually)
+## TODOs
+
+### OS
 
 - [ ] nix-sops with AES256 for secret management
+- [ ] Gaming
+  - [ ] gamemode
+  - [ ] gamescope
+  - [ ] Emulators (retroarch, etc...)
+  - [ ] [nix-gaming](https://github.com/fufexan/nix-gaming) to use steam platformOptimizations
+  - [ ] Launch options: pure iGPU & dGPU-offload
+- [x] Xremap: Caps Lock + hjkl -> arrows
+- [ ] auto-cpufreq -> tlp
+
+### Apps
+
 - [ ] NeoVim
   - [ ] [NixVim](https://github.com/atimofeev/nixvim-config) config
   - [ ] Minimal config via home-manager
@@ -54,21 +67,13 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
   - [ ] [Theme](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [this](https://github.com/catppuccin/firefox)
   - [ ] [Userstyles](https://github.com/catppuccin/userstyles)
   - [ ] [Vim motions](https://github.com/tridactyl/tridactyl)
-- [ ] Gnome: tiling [1](https://github.com/material-shell/material-shell) ([itsfoss](https://itsfoss.com/material-shell/)), [2](https://github.com/forge-ext/forge)
-- [ ] Gaming
-  - [ ] gamemode
-  - [ ] gamescope
-  - [ ] Emulators (retroarch, etc...)
-  - [ ] [nix-gaming](https://github.com/fufexan/nix-gaming) to use steam platformOptimizations
-  - [ ] Launch options: pure iGPU & dGPU-offload
-- [x] Xremap: Caps Lock + hjkl -> arrows
+- [ ] Gnome: Tiling [1](https://github.com/material-shell/material-shell) ([itsfoss](https://itsfoss.com/material-shell/)), [2](https://github.com/forge-ext/forge)
 - [ ] Fish: preserve history `~/.local/share/fish/fish_history`
-- [ ] auto-cpufreq -> tlp
 - [ ] VCV Rack 2: use config and patch repos
 - [ ] mpv
   - [ ] try out `simple-mpv-ui` plugin
-  - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) plugin
-  - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) plugin
+  - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
+  - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
 - [ ] Hyprland
   - [x] Hotkeys
   - [x] Window rules
