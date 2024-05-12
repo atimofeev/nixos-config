@@ -29,11 +29,6 @@
   };
 
   programs = {
-    # FIX: available only in pkgs.unstable
-    # nautilus-open-any-terminal = {
-    #   enable = true;
-    #   terminal = vars.terminal.name;
-    # };
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages."${pkgs.system}".hyprland;
