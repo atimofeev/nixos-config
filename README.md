@@ -97,7 +97,6 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - `bluetooth` BLE headset device only works in handsfree mode after auto reconnect
 - `2.4 wireless mouse` on boot won't work properly unless dongle is reconnected\
   Not reproducible with clean Nix Gnome setup
-- `xone` won't work with Xbox wireless dongle. [nixpkgs issue](https://github.com/NixOS/nixpkgs/issues/308028)
 - `Firefox`
   - Conflicting config between home-manager and firefox profile sync.\
     Custom search engines config breaks search aliases
