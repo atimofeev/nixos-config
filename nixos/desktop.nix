@@ -41,32 +41,4 @@
     };
   };
 
-  services.xremap = {
-    # withGnome = true;
-    # withWlroots = true;
-    userName = vars.username;
-    config = {
-      virtual_modifiers = [ "capslock" ];
-      # modmap = [{
-      #   name = "fix broken shift key";
-      #   remap = { capslock = "shift_l"; };
-      # }];
-      keymap = [
-        {
-          # FIX: not working in GNOME or Hypr when installed system-wide
-          name = "desktop apps";
-          remap = { shift-super-o.launch = [ "kitty" "-e" "htop" ]; };
-        }
-        {
-          name = "hjkl anywhere";
-          remap = {
-            capslock-h = "left";
-            capslock-j = "down";
-            capslock-k = "up";
-            capslock-l = "right";
-          };
-        }
-      ];
-    };
-  };
 }
