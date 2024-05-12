@@ -72,6 +72,7 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
   - [ ] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
   - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
   - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
+- [ ] nautilus-open-any-terminal (nix unstable option): use kitty
 - [ ] Fish: preserve history `~/.local/share/fish/fish_history`
 - [ ] VCV Rack 2: use config and patch repos
 - [ ] mpv
