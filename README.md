@@ -102,9 +102,8 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
     Custom search engines config breaks search aliases
   - HEVC video playback on github is broken. [example](https://github.com/mrjones2014/smart-splits.nvim/issues/179#issuecomment-2049847490)
 - `k9s` aliases and plugins config is broken
-- `xremap` not working with DE for app shortcuts\
-  Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)\
-  Or use [gnomeExtensions.xremap](https://search.nixos.org/packages?channel=23.11&from=0&size=50&sort=relevance&type=packages&query=xremap)? [gh link](https://github.com/xremap/xremap-gnome)
+- `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
+  Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)
 - `Mi Notebook Pro integrated mic` had +30db gain, alsa state config asset is not working
 
 ## Notes

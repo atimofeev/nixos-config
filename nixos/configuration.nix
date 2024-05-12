@@ -16,6 +16,7 @@
     ./user.nix
     ./utils.nix # various CLI utils
     ./work # apps for work
+    ./xremap.nix
   ];
 
   system.stateVersion = vars.nix.stateVersion;
