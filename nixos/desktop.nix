@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     gnome.dconf-editor
+    gnome.gnome-boxes
     gnomeExtensions.pip-on-top
     gnomeExtensions.appindicator
   ];
