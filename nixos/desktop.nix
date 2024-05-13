@@ -4,6 +4,7 @@
     gnome.gnome-tweaks
     gnome.dconf-editor
     gnomeExtensions.pip-on-top
+    gnomeExtensions.appindicator
   ];
 
   services.xserver = {
