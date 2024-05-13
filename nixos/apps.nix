@@ -16,5 +16,6 @@
     prusa-slicer
     freecad
     openscad
+    upscayl
   ];
 }
