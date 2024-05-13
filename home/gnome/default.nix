@@ -31,6 +31,8 @@
       workspaces-only-on-primary = true;
     };
 
+    "org/gnome/shell/app-switcher" = { current-workspace-only = true; };
+
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;
       focus-mode = "sloppy";
