@@ -17,5 +17,6 @@
     freecad
     openscad
     upscayl
+    eyedropper # pick colors
   ];
 }
