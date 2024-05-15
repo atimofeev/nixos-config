@@ -71,6 +71,7 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [ ] Gnome Tiling
   - [ ] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
   - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
+  - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
   - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
 - [ ] nautilus-open-any-terminal (nix unstable option): use kitty
 - [ ] Fish: preserve history `~/.local/share/fish/fish_history`
@@ -94,7 +95,6 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 
 ## Issues
 
-- `bluetooth` BLE headset device only works in handsfree mode after auto reconnect
 - `2.4 wireless mouse` on boot won't work properly unless dongle is reconnected\
   Not reproducible with clean Nix Gnome setup
 - `Firefox`
@@ -104,7 +104,13 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - `k9s` aliases and plugins config is broken
 - `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
   Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)
-- `Mi Notebook Pro integrated mic` had +30db gain, alsa state config asset is not working
+- `xone` dongle does not enter pairing mode\
+  Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
+- `bluetooth` BLE headset device only works in handsfree mode after auto reconnect
+  Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16)
+- `Mi Notebook Pro integrated mic` had +30db gain, alsa state config asset is not working\
+  Turn it off completely?\
+  Or fix and use as a replacement for handsfree mode?
 
 ## Notes
 
