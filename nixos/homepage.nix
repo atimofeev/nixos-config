@@ -49,6 +49,13 @@
             }];
           }
           {
+            awx = [{
+              abbr = "AW";
+              href = "https://awx.devspt.com/";
+              icon = "ansible.svg";
+            }];
+          }
+          {
             vault = [{
               abbr = "VL";
               href = "https://vault.devspt.com/";
