@@ -1,12 +1,10 @@
 # NixOS configuration with dotfiles
 
-This is my fist attempt on NixOS config and currently it's a work in progress in a very early stage.\
-A lot of changes are coming.
+NixOS configuration with Gnome DE, utilizing catppuccin-macchiato color theme for most apps.
 
 ## Apps & Features
 
-List of current apps and features of this config.
-Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
+List of configured apps and features of this config.
 
 ### Hardware
 
@@ -23,24 +21,26 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
 - [x] Kitty
 - [x] Fish
 - [x] Starship
-- [x] Core utils
-- [x] Improved & fun utils
-- [ ] NeoVim
+- [x] Core & misc utils
 
-### Apps
+### GUI/TUI Apps
 
+- [ ] NeoVim (i use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
 - [ ] Firefox
 - [x] mpv
 - [x] spotify-player
 - [x] qbittorrent
 - [ ] VCV Rack 2
+- [x] k9s
 
 ### Work
 
 - [x] Ansible
 - [x] Terraform
 - [x] Docker
-- [x] K8s: minikube, kubectl, helm, k9s
+- [x] Kubernetes utils
+- [x] GNS3
+- [x] VM utils
 
 ## TODOs
 
@@ -55,31 +55,20 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
   - [ ] Launch options: pure iGPU & dGPU-offload
 - [x] Xremap: Caps Lock + hjkl -> arrows
 - [ ] auto-cpufreq -> tlp
+- [ ] implement unstable as overlay. [example](https://github.com/gongqian/maxbrunet_dotfiles/blob/facde44c304443798167e972d87afcab3ace69e0/flake.nix#L41)
 
-### Apps
+### Desktop
 
-- [ ] NeoVim
-  - [ ] [NixVim](https://github.com/atimofeev/nixvim-config) config
-  - [ ] Minimal config via home-manager
-- [ ] k9s: remap system actions `cmd mode = ;`, `back = backspace/q`
-- [ ] Firefox
-  - [ ] Search engines with aliases
-  - [ ] [Theme](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [this](https://github.com/catppuccin/firefox)
-  - [ ] [Extensions example with NUR](https://github.com/chadcat7/crystal/blob/d412b11824f13e251186afec31714abda29e323c/home/namish/conf/browsers/firefox/default.nix)
-  - [ ] [Userstyles](https://github.com/catppuccin/userstyles)
-  - [ ] [Vim motions](https://github.com/tridactyl/tridactyl)
-- [ ] Gnome Tiling
-  - [ ] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
-  - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
-  - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
-  - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
-- [ ] nautilus-open-any-terminal (nix unstable option): use kitty
-- [ ] Fish: preserve history `~/.local/share/fish/fish_history`
-- [ ] VCV Rack 2: use config and patch repos
-- [ ] mpv
-  - [ ] try out [mpvScripts.simple-mpv-webui](https://github.com/open-dynaMIX/simple-mpv-webui) plugin
-  - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
-  - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
+- [ ] Gnome
+  - Tiling:
+    - [ ] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
+    - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
+    - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
+    - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
+  - Misc:
+    - [ ] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
+    - [ ] nautiusl-open-any-terminal (nix unstable option): use kitty
+    - [ ] Remove unused apps. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L11)
 - [ ] Hyprland
   - [x] Hotkeys
   - [x] Window rules
@@ -92,6 +81,25 @@ Under active migration from my [dotfiles](https://github.com/atimofeev/dotfiles)
   - [ ] Hardware control (brightness, volume, bluetooth, wireless, camera)
   - [ ] Wallpaper tool (random wallpapers from directory)
   - [ ] Screenshot tool
+
+### Apps
+
+- [ ] NeoVim
+  - [x] [NixVim](https://github.com/atimofeev/nixvim-config) config
+  - [ ] Minimal config via home-manager
+- [ ] k9s: remap system actions `cmd mode = ;`, `back = backspace/q`
+- [ ] Firefox
+  - [ ] Search engines with aliases
+  - [ ] [Theme](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [this](https://github.com/catppuccin/firefox)
+  - [ ] [Extensions example with NUR](https://github.com/chadcat7/crystal/blob/d412b11824f13e251186afec31714abda29e323c/home/namish/conf/browsers/firefox/default.nix)
+  - [ ] [Userstyles](https://github.com/catppuccin/userstyles)
+  - [ ] [Vim motions](https://github.com/tridactyl/tridactyl)
+- [ ] Fish: preserve history `~/.local/share/fish/fish_history`
+- [ ] VCV Rack 2: use config and patch repos
+- [ ] mpv
+  - [ ] try out [mpvScripts.simple-mpv-webui](https://github.com/open-dynaMIX/simple-mpv-webui) plugin
+  - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
+  - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
 
 ## Issues
 
