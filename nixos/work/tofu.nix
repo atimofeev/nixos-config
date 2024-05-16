@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [ terraform opentofu ];
 
-  # FIX: Pin tofu version
+  # Pin tofu version
+  # FIX: golang build fails: conflict between vendor/modules.txt and go.mod requirements
   # nixpkgs.config = {
   #   packageOverrides = pkgs: {
   #     opentofu = pkgs.opentofu.overrideAttrs (oldAttrs: {
