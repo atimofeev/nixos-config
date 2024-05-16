@@ -31,6 +31,9 @@
     kubernetes-helm
     kubie
 
+    # VMs
+    gnome.gnome-boxes
+
     # communication
     slack
     zoom-us
