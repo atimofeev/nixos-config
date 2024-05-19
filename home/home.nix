@@ -27,7 +27,7 @@
     "sd-switch"; # reload system units on config update
 
   home = {
-    username = vars.username;
+    inherit (vars) username;
     homeDirectory = "/home/${vars.username}";
   };
 
