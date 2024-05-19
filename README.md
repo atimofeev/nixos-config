@@ -125,6 +125,8 @@ List of configured apps and features of this config.
 
 ### Useful code examples
 
+https://nix.dev/guides/best-practices
+
 - `with`
 
 ```nix
