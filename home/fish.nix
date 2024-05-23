@@ -61,6 +61,8 @@
         t = "terraform";
         k = "kubectl";
         mk = "minikube";
+        kx = "kubie ctx";
+        kn = "kubie ns";
 
         # EZA
         ls = "eza --color=always --group-directories-first";
