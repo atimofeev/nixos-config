@@ -21,6 +21,7 @@
   };
   # in ~/.config/GNS3/2.2/gns3_server.conf
   # update "ubridge_path = /run/wrappers/bin/ubridge" 
+  # https://discourse.nixos.org/t/dynamically-change-file-content-created-with-home-file/14968
 
   # NOTE: fix vmware-workstation download URLs
   nixpkgs.overlays = [
