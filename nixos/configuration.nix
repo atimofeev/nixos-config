@@ -4,7 +4,7 @@
     ./bluetooth.nix
     ./boot.nix
     ./desktop.nix # desktop environment setup
-    ./games.nix
+    ./games
     ./hardware-configuration.nix
     ./homepage.nix
     ./locale.nix

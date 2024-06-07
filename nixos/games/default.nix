@@ -1,7 +1,9 @@
 { pkgs, config, vars, ... }: {
   environment.systemPackages = with pkgs; [
     # virt
-    playonlinux
+    lutris
+    wine
+    winetricks
 
     # tools
     mangohud # mangohud %command%
