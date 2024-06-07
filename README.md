@@ -173,3 +173,7 @@ sudo = {
   ];
 };
 ```
+
+### Nix commands
+
+- Update flake input: `nix flake lock --update-input nixpkgs-unstable --update-input 123`
