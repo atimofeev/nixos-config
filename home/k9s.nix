@@ -11,10 +11,10 @@ in {
 
   programs.k9s = {
     enable = true;
-    skin = libx.formats.fromYAML themeSource;
+    settings.k9s.ui.skin = "skin";
+    skins.skin = libx.formats.fromYAML themeSource;
   };
 
-  # FIX:
   xdg.configFile."k9s/aliases.yaml".text = ''
     ---
     aliases:

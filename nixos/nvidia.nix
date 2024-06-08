@@ -9,7 +9,7 @@ let
     exec "$@"
   '';
 in {
-  environment.systemPackages = [ nvidia-offload pkgs.nvtop ];
+  environment.systemPackages = [ nvidia-offload pkgs.nvtopPackages.full ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     nvidiaSettings = true;

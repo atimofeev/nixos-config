@@ -135,6 +135,8 @@ List of configured apps and features of this config.
   Or fix and use as a replacement for handsfree mode?
 - `nvidia-offload` does not seem to work properly
 - `gwe` is missing NV-CONTROL. Probably relates to `nvidia-offload` issue. [archlinux thread](https://bbs.archlinux.org/viewtopic.php?id=255504)
+- `vcv-rack` newer versions are incompatible with GLFW used by Gnome\
+  https://github.com/NixOS/nixpkgs/issues/318205
 
 ## Notes
 
