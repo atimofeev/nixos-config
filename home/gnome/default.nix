@@ -1,5 +1,4 @@
-{ lib, vars, ... }: {
-
+_: {
   imports =
     [ ./dark-mode.nix ./extensions.nix ./input.nix ./keybinds.nix ./power.nix ];
 
