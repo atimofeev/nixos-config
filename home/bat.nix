@@ -46,16 +46,8 @@ in {
       functions = {
         head = ''
           set file $argv[1]
-
-          if set -q argv[2]
-              set show $argv[2]
-          else
-              set show 10
-          end
-
-          set range "1:"$show
-
-          bat $file --color=always --style=plain --paging=never --line-range $range
+          set show (set -q argv[2]; and echo $argv[2]; or echo 10)
+          bat $file --color=always --style=plain --paging=never --line-range 1:$show
         '';
       };
     };
