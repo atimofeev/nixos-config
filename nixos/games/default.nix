@@ -12,6 +12,7 @@
 
     # games
     space-cadet-pinball
+    dwarf-fortress
   ];
 
   programs = {
