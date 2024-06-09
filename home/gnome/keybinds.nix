@@ -45,7 +45,7 @@
       {
         binding = "<Super>Return";
         command = vars.terminal.name;
-        name = vars.terminal.name;
+        inherit (vars.terminal) name;
       };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =

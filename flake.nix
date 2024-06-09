@@ -15,7 +15,7 @@
     xremap.url = "github:xremap/nix-flake";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
