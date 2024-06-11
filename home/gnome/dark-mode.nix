@@ -1,4 +1,6 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+let i = lib.hm.gvariant.mkUint32;
+in {
   qt = {
     enable = true;
     style.name = "Adwaita-dark";
@@ -16,7 +18,7 @@
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = true;
-      night-light-temperature = lib.hm.gvariant.mkUint32 4500;
+      night-light-temperature = i 4500;
     };
   };
 }
