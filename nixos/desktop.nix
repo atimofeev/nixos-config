@@ -5,6 +5,7 @@
     gnome-graphs
     gnome.gnome-tweaks
     gnome.dconf-editor
+    gnomeExtensions.pop-shell
     gnomeExtensions.appindicator
   ]) ++ (with pkgs-unstable; [
     letterpress
