@@ -58,7 +58,7 @@
         d-img-del-all = "docker rmi $(docker images -aq) --force";
         dc = "docker-compose";
         a = "ansible";
-        t = "terraform";
+        t = "tofu";
         k = "kubectl";
         mk = "minikube";
         kx = "kubie ctx";
