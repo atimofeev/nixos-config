@@ -1,3 +1,7 @@
-{ pkgs, pkgs-unstable, ... }: {
-  environment.systemPackages = [ pkgs.terraform pkgs-unstable.opentofu ];
+{ pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    terraform
+    opentofu
+    tenv # https://github.com/tofuutils/tenv-nix#usage
+  ];
 }
