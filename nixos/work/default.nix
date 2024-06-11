@@ -11,6 +11,8 @@
   programs.virt-manager.enable = true;
 
   environment.systemPackages = with pkgs; [
+    awscli2
+
     # containers
     # TODO: move to root-less podman
     # podman-desktop
