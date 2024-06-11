@@ -57,6 +57,7 @@ List of configured apps and features of this config.
 - [ ] auto-cpufreq -> tlp
 - [ ] implement unstable as overlay. [example](https://github.com/gongqian/maxbrunet_dotfiles/blob/facde44c304443798167e972d87afcab3ace69e0/flake.nix#L41)
 - [ ] Downvolt and overclock MX150 memory for 20-30% gain. [yt vid](https://www.youtube.com/watch?v=ZOAxpsusICw)
+- [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
 
 ### Desktop
 
@@ -68,7 +69,8 @@ List of configured apps and features of this config.
     - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
   - Misc:
     - [ ] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
-    - [ ] nautiusl-open-any-terminal (nix unstable option): use kitty
+    - [ ] nautilus-open-any-terminal (nix unstable option): use kitty \
+           [nixos option](https://mynixos.com/nixpkgs/option/programs.nautilus-open-any-terminal.terminal)
     - [ ] Remove unused apps. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L11)
     - [ ] Drop-down terminal extension: [gnomeExtensions.drop-down-terminal](https://github.com/zzrough/gs-extensions-drop-down-terminal) or [gnomeExtensions.quake-terminal](https://github.com/diegodario88/quake-terminal) or [gnomeExtensions.quake-mode](https://github.com/repsac-by/gnome-shell-extension-quake-mode)
 - [ ] Hyprland
@@ -122,7 +124,6 @@ List of configured apps and features of this config.
     Custom search engines config breaks search aliases
   - HEVC video playback on github is broken. [example](https://github.com/mrjones2014/smart-splits.nvim/issues/179#issuecomment-2049847490)
 - `ungoogled-chromium` try out. Config examples: [1](https://github.com/berbiche/dotfiles/blob/1e4d0501bde814be76419d8f21cf2fb9079e6a93/profiles/programs/chromium.nix#L49), [2](https://github.com/corytertel/nix-configuration/blob/15c5acf13669ef26e697cba514258c8c098aaf98/overlays/ungoogled-chromium.nix#L4), [3](https://github.com/pokon548/OysterOS/blob/31f46814e655da2cf4df53fd8f02a764fc7960fa/desktop/application/ungoogled-chromium/default.nix#L7), [4](https://github.com/kalbasit/soxincfg/blob/b600fb23f8611158e54b0cee85790b927ee2d89c/modules/programs/chromium/nixos.nix#L16)
-- `k9s` aliases and plugins config is broken
 - `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
   Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)
 - `xone` dongle does not enter pairing mode\
@@ -130,9 +131,8 @@ List of configured apps and features of this config.
 - `bluetooth` BLE headset device only works in handsfree mode after auto reconnect
   Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16)\
   dmesg: `[289876.436013] Bluetooth: hci0: corrupted SCO packet`
-- `Mi Notebook Pro integrated mic` had +30db gain, alsa state config asset is not working\
-  Turn it off completely?\
-  Or fix and use as a replacement for handsfree mode?
+- `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
+  Probably can be fixed with pipewire/wireplumber config
 - `nvidia-offload` does not seem to work properly
 - `gwe` is missing NV-CONTROL. Probably relates to `nvidia-offload` issue. [archlinux thread](https://bbs.archlinux.org/viewtopic.php?id=255504)
 - `vcv-rack` newer versions are incompatible with GLFW used by Gnome\
