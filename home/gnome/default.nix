@@ -1,6 +1,12 @@
 _: {
-  imports =
-    [ ./dark-mode.nix ./extensions.nix ./input.nix ./keybinds.nix ./power.nix ];
+  imports = [
+    ./dark-mode.nix
+    ./extensions.nix
+    ./input.nix
+    ./keybinds.nix
+    ./pop-shell.nix
+    ./power.nix
+  ];
 
   dconf.settings = {
     "org/gnome/shell" = {
