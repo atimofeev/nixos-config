@@ -1,4 +1,6 @@
 { nixpkgs-unstable, pkgs-unstable, vars, ... }: {
+  # WARN: CHANGES IN 24.05
+
   # NOTE: override nix options channel to unstable
   imports = [
     (nixpkgs-unstable + "/nixos/modules/services/misc/homepage-dashboard.nix")
@@ -7,10 +9,11 @@
   disabledModules = [ "services/misc/homepage-dashboard.nix" ];
 
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      homepage-dashboard = pkgs-unstable.homepage-dashboard;
-    };
+    packageOverrides = pkgs: { inherit (pkgs-unstable) homepage-dashboard; };
   };
+
+  # NOTE: icons: https://gethomepage.dev/main/configs/services/#icons
+  # https://github.com/walkxcode/dashboard-icons
 
   # TODO: configure
   # https://github.com/jnsgruk/nixos-config/blob/2869fc81225903238fecb34b82ebe11699d98fa4/host/common/services/homepage/thor.nix#L13
@@ -74,6 +77,13 @@
               abbr = "GF";
               href = "https://grafana.devspt.com/";
               icon = "grafana.svg";
+            }];
+          }
+          {
+            kibana = [{
+              abbr = "KB";
+              href = "https://kibana.devspt.com/";
+              icon = "kibana.svg";
             }];
           }
           {
