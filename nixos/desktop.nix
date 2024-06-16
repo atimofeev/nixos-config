@@ -26,6 +26,10 @@
       package = inputs.hyprland.packages."${pkgs.system}".hyprland;
       #xwayland.enable = true;
     };
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = vars.terminal.name;
+    };
   };
 
 }
