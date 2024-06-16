@@ -5,7 +5,7 @@
     settings = {
       # Font
       # TODO: font_name: move to global var
-      font_size = vars.terminal.font_size;
+      inherit (vars.terminal) font_size;
       font_family = "DejaVuSansM Nerd Font Mono";
       bold_font = "auto";
       italic_font = "auto";
