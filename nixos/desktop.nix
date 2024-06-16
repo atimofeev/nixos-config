@@ -1,4 +1,4 @@
-{ inputs, pkgs, pkgs-unstable, vars, ... }: {
+{ pkgs, pkgs-unstable, vars, ... }: {
 
   environment.systemPackages = (with pkgs; [
     switcheroo
@@ -23,15 +23,18 @@
   };
 
   programs = {
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-      #xwayland.enable = true;
-    };
+
     nautilus-open-any-terminal = {
       enable = true;
       terminal = vars.terminal.name;
     };
+
+    # hyprland = {
+    #   enable = true;
+    #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    #   #xwayland.enable = true;
+    # };
+
   };
 
 }

@@ -1,11 +1,11 @@
-{ pkgs, vars, ... }: {
+{ vars, ... }: {
   imports = [
-    ./hyprland
+    ./gnome
+    # ./hyprland
     ./bat.nix
     #./firefox.nix
     ./fish.nix
     ./git.nix
-    ./gnome
     ./htop.nix
     ./k9s.nix
     ./kitty.nix
