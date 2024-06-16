@@ -5,6 +5,7 @@ _: {
   # overlays have no effect; pkgOverride fails with random error
   # kernel patch can't find destination file to apply itself
   # https://github.com/medusalix/xone/pull/35
+  # https://github.com/medusalix/xone/pull/45
   # https://nixos.wiki/wiki/Linux_kernel#Overriding_kernel_packages
   # https://search.nixos.org/options?channel=23.11&show=boot.kernelPatches&from=0&size=50&sort=relevance&type=packages&query=boot.kernelPatches
   # nixpkgs.overlays = [
