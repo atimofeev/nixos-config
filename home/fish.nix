@@ -7,9 +7,6 @@
     };
     fish = {
       enable = true;
-      shellInit = ''
-        set fish_user_paths $HOME/.config/emacs/bin
-      '';
 
       # TODO: add z or zoxide.fish
       plugins = [
@@ -47,7 +44,7 @@
         pipewire-restart = ''
           systemctl --user restart pipewire.service && \
           systemctl --user restart pipewire-pulse.service'';
-        rg = "rg --color=always --ignore-case --no-line-number"; # ripgrep
+        rg = "rg --color=always --smart-case --no-line-number"; # ripgrep
         tb = "nc termbin.com 9999"; # [command] | tb
         nf = "neofetch --backend off --color_blocks off";
         chx = "chmod +x";
