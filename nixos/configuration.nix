@@ -21,7 +21,10 @@
 
   system.stateVersion = vars.nix.stateVersion;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ (import ../overlays/neovim-unwrapped.nix) ];
+  };
 
   time.timeZone = vars.tz_name;
 
