@@ -1,7 +1,10 @@
 { pkgs, ... }: {
   programs = {
     kitty.shellIntegration.enableFishIntegration = true;
-    starship.enableFishIntegration = true;
+    starship = {
+      enableFishIntegration = true;
+      enableTransience = true;
+    };
     fish = {
       enable = true;
       shellInit = ''
