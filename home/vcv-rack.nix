@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 let
   vcv-config-source = pkgs.pkgs.writeShellScriptBin "source" ''
     rm -rf $HOME/.Rack2

@@ -1,10 +1,4 @@
-{ pkgs, vars, ... }: {
-  # boot.kernelModules = [ "uinput" ];
-  # services.udev.extraRules = ''
-  #   # KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-  #   KERNEL=="uinput", GROUP="input", TAG+="uaccess"
-  # '';
-
+{ vars, ... }: {
   services.xremap = {
     # withGnome = true;
     # withWlroots = true;

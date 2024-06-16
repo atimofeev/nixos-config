@@ -2,8 +2,10 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     loader = {
-      systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 15;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 15;
+      };
       efi.canTouchEfiVariables = true;
     };
   };
