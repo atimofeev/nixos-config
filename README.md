@@ -56,23 +56,22 @@ List of configured apps and features of this config.
 - [x] Xremap: Caps Lock + hjkl -> arrows
 - [ ] auto-cpufreq -> tlp
 - [ ] implement unstable as overlay. [example](https://github.com/gongqian/maxbrunet_dotfiles/blob/facde44c304443798167e972d87afcab3ace69e0/flake.nix#L41)
-- [ ] Downvolt and overclock MX150 memory for 20-30% gain. [yt vid](https://www.youtube.com/watch?v=ZOAxpsusICw)
 - [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
+- [ ] Configure agenix. Example: [1](https://github.com/LongerHV/nixos-configuration/blob/bb78577665eb3a8e421e895eb81cbfa2086a4636/secrets/secrets.nix)
 
 ### Desktop
 
 - [ ] Gnome
   - Tiling:
-    - [ ] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
+    - [x] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell) **Way too buggy for daily use**
     - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
     - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
     - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
   - Misc:
     - [ ] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
-    - [ ] nautilus-open-any-terminal (nix unstable option): use kitty \
-           [nixos option](https://mynixos.com/nixpkgs/option/programs.nautilus-open-any-terminal.terminal)
     - [ ] Remove unused apps. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L11)
     - [ ] Drop-down terminal extension: [gnomeExtensions.drop-down-terminal](https://github.com/zzrough/gs-extensions-drop-down-terminal) or [gnomeExtensions.quake-terminal](https://github.com/diegodario88/quake-terminal) or [gnomeExtensions.quake-mode](https://github.com/repsac-by/gnome-shell-extension-quake-mode)
+    - [ ] Configure file associations. Example: [1](https://github.com/zoriya/flake/blob/cc58c927b06f687ad524770371a9ac28edb4ea15/modules/common/apps.nix)
 - [ ] Hyprland
   - [x] Hotkeys
   - [x] Window rules
@@ -98,13 +97,13 @@ List of configured apps and features of this config.
     - [ ] Settings:
 - [ ] k9s: remap system actions `cmd mode = ;`, `back = backspace/q`
 - [ ] Firefox
-  - Vim
+  - Vim motions
     - [ ] [vimium](https://github.com/philc/vimium)
     - [ ] [tridactyl](https://github.com/tridactyl/tridactyl)
     - [ ] [Surgingkeys](https://github.com/brookhong/Surfingkeys)
     - [ ] [firenvim](https://github.com/glacambre/firenvim)
   - [ ] Search engines with aliases
-  - [ ] [Theme](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [this](https://github.com/catppuccin/firefox)
+  - [ ] Themes: [1](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [2](https://github.com/catppuccin/firefox)
   - [ ] [Extensions example with NUR](https://github.com/chadcat7/crystal/blob/d412b11824f13e251186afec31714abda29e323c/home/namish/conf/browsers/firefox/default.nix)
   - [ ] [Userstyles](https://github.com/catppuccin/userstyles)
 - [ ] Fish: preserve history `~/.local/share/fish/fish_history`
@@ -128,14 +127,12 @@ List of configured apps and features of this config.
   Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
-- `bluetooth` BLE headset device only works in handsfree mode after auto reconnect
+- `bluetooth` BLE headset device sometimes works only in handsfree mode after auto reconnect. Need service restart
   Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16)\
   dmesg: `[289876.436013] Bluetooth: hci0: corrupted SCO packet`
 - `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
   Probably can be fixed with pipewire/wireplumber config
-- `nvidia-offload` does not seem to work properly
-- `gwe` is missing NV-CONTROL. Probably relates to `nvidia-offload` issue. [archlinux thread](https://bbs.archlinux.org/viewtopic.php?id=255504)
-- `vcv-rack` newer versions are incompatible with GLFW used by Gnome\
+- `vcv-rack` newer versions are incompatible with GLFW used by Gnome Wayland\
   https://github.com/NixOS/nixpkgs/issues/318205
 
 ## Notes
