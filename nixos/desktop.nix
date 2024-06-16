@@ -16,8 +16,10 @@
     enable = true;
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
-    xkb.layout = vars.kb_layouts;
-    xkb.options = "grp:win_space_toggle";
+    xkb = {
+      layout = vars.kb_layouts;
+      options = "grp:win_space_toggle";
+    };
   };
 
   programs = {

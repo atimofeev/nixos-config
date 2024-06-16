@@ -1,4 +1,6 @@
-_: {
+_:
+let wallpaper-uri = "file://${../../assets/dark-shore-upscaled.png}";
+in {
   imports = [
     ./dark-mode.nix
     ./extensions.nix
@@ -9,6 +11,7 @@ _: {
   ];
 
   dconf.settings = {
+
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -19,13 +22,13 @@ _: {
     };
 
     "org/gnome/desktop/background" = {
-      picture-uri = "file://${../../assets/dark-shore.png}";
-      picture-uri-dark = "file://${../../assets/dark-shore.png}";
+      picture-uri = wallpaper-uri;
+      picture-uri-dark = wallpaper-uri;
     };
 
     "org/gnome/desktop/screensaver" = {
-      picture-uri = "file://${../../assets/dark-shore.png}";
-      picture-uri-dark = "file://${../../assets/dark-shore.png}";
+      picture-uri = wallpaper-uri;
+      picture-uri-dark = wallpaper-uri;
     };
 
     "org/gnome/mutter" = {
