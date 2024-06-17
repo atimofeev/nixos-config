@@ -9,6 +9,7 @@ _: {
   # https://nixos.wiki/wiki/Linux_kernel#Overriding_kernel_packages
   # https://search.nixos.org/options?channel=23.11&show=boot.kernelPatches&from=0&size=50&sort=relevance&type=packages&query=boot.kernelPatches
   # nixpkgs.overlays = [
+
   #   (final: prev: {
   #     xone = prev.xone.overrideAttrs (oldAttrs: {
   #       src = pkgs.fetchFromGitHub {
@@ -19,8 +20,7 @@ _: {
   #       };
   #     });
   #   })
-  # ];
-  # nixpkgs.overlays = [
+
   #   (self: super: {
   #     linuxPackages = super.linuxPackages.extend (lpself: lpsuper: {
   #       xone = super.linuxPackages.xone.overrideAttrs (oldAttrs: {
@@ -35,6 +35,31 @@ _: {
   #       });
   #     });
   #   })
+
+  # (self: super: {
+  #   linuxPackages = super.linuxPackages.extend (lpself: lpsuper: {
+  #     xone = super.linuxPackages.xone.overrideAttrs (oldAttrs: {
+  #       src = pkgs.fetchFromGitHub {
+  #         rev = "29ec3577e52a50f876440c81267f609575c5161e";
+  #         hash = "";
+  #       };
+  #     });
+  #   });
+  # })
+
+  # (final: prev: {
+  #   xone = prev.xone.overrideAttrs (oldAttrs: {
+  #     version = "pull.45";
+  #     src = final.fetchFromGitHub {
+  #       owner = "medusalix";
+  #       repo = "xone";
+  #       rev = "29ec3577e52a50f876440c81267f609575c5161e";
+  #       # rev = "pull/45/head";
+  #       hash = "";
+  #     };
+  #   });
+  # })
+
   # ];
   # nixpkgs.config.packageOverrides = pkgs: rec {
   #   linuxPackages.xone = pkgs.linuxPackages.xone.overrideDerivation (attrs: {
@@ -55,4 +80,21 @@ _: {
   #     sha256 = "sha256-CS4vCSFciFJ8kH0YzNMvBwABR2wKBSzw5QIbPbAqHUs=";
   #   };
   # }];
+
+  # # nixpkgs.config.packageOverrides = pkgs: {
+  # #   xone = pkgs.callPackage ./pkg-xone.nix { };
+  # # };
+  # boot.kernelPackages = 
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   linuxPackages = pkgs.linuxPackages.extend (self: super: {
+  #     # xone = self.callPackage ./pkg-xone.nix { }; 
+  #     xpadneo = super.xpadneo.overrideAttrs (o: rec {
+  #       src = pkgs.fetchFromGitHub {
+  #         rev = "pull/45/head";
+  #         hash = "";
+  #       };
+  #     });
+  #
+  #   });
+  # };
 }
