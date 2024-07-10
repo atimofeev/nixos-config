@@ -1,10 +1,11 @@
 { pkgs, pkgs-unstable, inputs, libx, vars, ... }: {
   imports = [
+    ./games
+    ./work
     ./apps.nix # various GUI or TUI apps
     ./bluetooth.nix
     ./boot.nix
     ./desktop.nix # desktop environment setup
-    ./games
     ./hardware-configuration.nix
     ./homepage.nix
     ./locale.nix
@@ -15,7 +16,6 @@
     ./sudo.nix
     ./user.nix
     ./utils.nix # various CLI utils
-    ./work # apps for work
     ./xremap.nix
   ];
 
@@ -36,15 +36,8 @@
     users = { ${vars.username} = import ../home/home.nix; };
   };
 
-  environment.systemPackages = (with pkgs; [
-    python3
-    yamlfix
-    #go
-    #rust
-  ]) ++ (with pkgs-unstable;
-    [
-      # yamlfix 
-    ]);
+  environment.defaultPackages = with pkgs; [ python3 ];
+
   # (?)fix connection issues with Razer Basilisk X Hyperspeed
   hardware.openrazer = {
     enable = true;

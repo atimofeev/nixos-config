@@ -44,11 +44,11 @@ in {
         tail = "${tail}/bin/tail";
       };
       functions = {
-        head = ''
-          set file $argv[1]
-          set show (set -q argv[2]; and echo $argv[2]; or echo 10)
-          bat $file --color=always --style=plain --paging=never --line-range 1:$show
-        '';
+        head = # fish
+          ''
+            set file $argv[1]
+            set show (set -q argv[2]; and echo $argv[2]; or echo 10)
+            bat $file --color=always --style=plain --paging=never --line-range 1:$show'';
       };
     };
   };
