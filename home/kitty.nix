@@ -11,6 +11,11 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
+      # gotta go fast!
+      repaint_delay = 8; # 150 FPS
+      input_delay = 0; # Remove artificial input delay
+      sync_to_monitor = "no"; # turn off vsync
+
       # Window
       # background_opacity = "0.8";
       hide_window_decorations = "yes";
