@@ -45,4 +45,10 @@
     [
       # yamlfix 
     ]);
+  # (?)fix connection issues with Razer Basilisk X Hyperspeed
+  hardware.openrazer = {
+    enable = true;
+    users = [ "${vars.username}" ];
+    batteryNotifier.enable = false;
+  };
 }
