@@ -12,10 +12,12 @@
 
   environment.systemPackages = with pkgs; [
     awscli2
+    nodejs_18
 
     # containers
     # TODO: move to root-less podman
     # podman-desktop
+    # podman-compose
     # podman-tui 
     docker-compose
 
