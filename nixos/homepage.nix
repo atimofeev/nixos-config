@@ -73,6 +73,13 @@
             }];
           }
           {
+            alertmgr-ams1 = [{
+              abbr = "AM";
+              href = "http://alertmgr1-ams1.devspt.com:9093";
+              icon = "alertmanager.svg";
+            }];
+          }
+          {
             grafana = [{
               abbr = "GF";
               href = "https://grafana.devspt.com/";
@@ -112,6 +119,13 @@
               abbr = "AW";
               href = "https://450341735216.signin.aws.amazon.com/console";
               icon = "aws.svg";
+            }];
+          }
+          {
+            nextcloud = [{
+              abbr = "NC";
+              href = "https://c.devspt.com/";
+              icon = "nextcloud.svg";
             }];
           }
         ];
