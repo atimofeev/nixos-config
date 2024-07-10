@@ -26,7 +26,7 @@ List of configured apps and features of this config.
 ### GUI/TUI Apps
 
 - [ ] NeoVim (i use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
-- [ ] Firefox
+- [ ] Firefox -> LibreWolf(?)
 - [x] mpv
 - [x] spotify-player
 - [x] qbittorrent
@@ -37,7 +37,7 @@ List of configured apps and features of this config.
 
 - [x] Ansible
 - [x] Terraform
-- [x] Docker
+- [ ] Docker -> Podman
 - [x] Kubernetes utils
 - [x] GNS3
 - [x] VM utils
@@ -63,7 +63,7 @@ List of configured apps and features of this config.
 
 - [ ] Gnome
   - Tiling:
-    - [x] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell) **Way too buggy for daily use**
+    - [x] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
     - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
     - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
     - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
@@ -113,6 +113,7 @@ List of configured apps and features of this config.
   - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
   - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
 - [ ] Kitty: setup layouts. [gh examples](https://github.com/search?q=enabled_layouts+path%3A**%2Fkitty.conf&type=code), [docs](https://sw.kovidgoyal.net/kitty/layouts/)
+- [ ] Terminal FM: `yazi` or `lf`
 
 ## Issues
 
