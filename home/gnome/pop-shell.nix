@@ -3,15 +3,19 @@
 # mappings https://community.frame.work/t/ubuntu-popos-shell-how-do-you-configure-the-keyboard-shortcuts-to-try-to-mimic-my-i3wm-config/6223/2
 # official default shortcuts https://support.system76.com/articles/pop-keyboard-shortcuts/
 let
+  mf = lib.mkForce;
   f = lib.mkForce false;
   t = lib.mkForce true;
   i = lib.hm.gvariant.mkUint32;
 in {
   dconf.settings = {
+
     "org/gnome/shell" = {
       disable-user-extensions = f;
       enabled-extensions = [ "pop-shell@system76.com" ];
     };
+
+    "org/gnome/shell/keybindings" = { toggle-quick-settings = mf [ ]; };
 
     "org/gnome/mutter" = {
       center-new-windows = f;
@@ -24,13 +28,23 @@ in {
       # focus-mode = lib.mkForce "click";
     };
 
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screensaver = mf [ "<Shift><Control><Super>l" ];
+    };
+
+    "org/gnome/desktop/wm/keybindings" = {
+      minimize = mf [ "<Shift><Control><Super>h" ];
+      maximize = mf [ ];
+      unmaximize = mf [ ];
+    };
+
     "org/gnome/shell/extensions/pop-shell" = {
       tile-by-default = true;
       toggle-tiling = [ "<Super>y" ];
 
       # gaps
       gap-inner = i 2;
-      gap-outer = i 1;
+      gap-outer = i 0;
       smart-gaps = true; # no gaps on single window
 
       # hint
@@ -45,12 +59,12 @@ in {
       # toggle-stacking-global = [ "<Super>s" ];
 
       # movement
-      # mouse-cursor-follows-active-window = true;
-      # mouse-cursor-focus-location = i 4;
-      # focus-left = [ "<Super>Left" "<Super>h" ];
-      # focus-down = [ "<Super>Down" "<Super>j" ];
-      # focus-up = [ "<Super>Up" "<Super>k" ];
-      # focus-right = [ "<Super>Right" "<Super>l" ];
+      mouse-cursor-follows-active-window = true;
+      mouse-cursor-focus-location = i 4;
+      focus-left = [ "<Super>h" ];
+      focus-down = [ "<Super>j" ];
+      focus-up = [ "<Super>k" ];
+      focus-right = [ "<Super>l" ];
 
       # tile manipulation
       tile-enter = [ "<Super>r" ];
@@ -69,10 +83,10 @@ in {
       # show-skip-taskbar = true;
 
       # search = [ "<Super>d" ];
-      # tile-move-down = [ "<Shift>j" ];
-      # tile-move-left = [ "<Shift>h" ];
-      # tile-move-right = [ "<Shift>l" ];
-      # tile-move-up = [ "<Shift>k" ];
+      tile-move-left = [ "<Shift>h" ];
+      tile-move-down = [ "<Shift>j" ];
+      tile-move-up = [ "<Shift>k" ];
+      tile-move-right = [ "<Shift>l" ];
       # tile-resize-down = [ "<Super>i" ];
       # tile-resize-left = [ "<Super>u" ];
       # tile-resize-right = [ "<Super>p" ];
@@ -113,4 +127,48 @@ in {
 
     };
   };
+
+  # xdg.configFile."pop-shell/config.json" = # json
+  #   ''
+  #     {
+  #       "float": [
+  #         {
+  #           "class": "pop-shell-exceptions"
+  #         },
+  #         {
+  #           "class": "org.gnome.Settings"
+  #         },
+  #         {
+  #           "class": "org.gnome.Extensions"
+  #         },
+  #         {
+  #           "class": "org.gnome.tweaks"
+  #         },
+  #         {
+  #           "class": "org.gnome.Loupe"
+  #         },
+  #         {
+  #           "class": "org.gnome.Calculator"
+  #         },
+  #         {
+  #           "class": "org.gnome.Snapshot"
+  #         },
+  #         {
+  #           "class": "com.github.finefindus.eyedropper"
+  #         },
+  #         {
+  #           "class": "gcolor3"
+  #         },
+  #         {
+  #           "class": "pavucontrol"
+  #         },
+  #         {
+  #           "class": "nvidia-settings"
+  #         }
+  #       ],
+  #       "skiptaskbarhidden": [],
+  #       "log_on_focus": false
+  #     }
+  #   '';
+
 }
