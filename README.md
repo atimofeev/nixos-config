@@ -174,6 +174,20 @@ sudo = {
 };
 ```
 
+- Override module (options) channel
+
+```nix
+  imports = [
+    (nixpkgs-unstable + "/nixos/modules/services/misc/homepage-dashboard.nix")
+  ];
+
+  disabledModules = [ "services/misc/homepage-dashboard.nix" ];
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: { inherit (pkgs-unstable) homepage-dashboard; };
+  };
+```
+
 ### Nix commands
 
 - Update flake input: `nix flake lock --update-input nixpkgs-unstable --update-input 123`
