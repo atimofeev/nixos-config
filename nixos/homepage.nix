@@ -1,17 +1,4 @@
-{ nixpkgs-unstable, pkgs-unstable, vars, ... }: {
-  # WARN: CHANGES IN 24.05
-
-  # NOTE: override nix options channel to unstable
-  imports = [
-    (nixpkgs-unstable + "/nixos/modules/services/misc/homepage-dashboard.nix")
-  ];
-
-  disabledModules = [ "services/misc/homepage-dashboard.nix" ];
-
-  nixpkgs.config = {
-    packageOverrides = pkgs: { inherit (pkgs-unstable) homepage-dashboard; };
-  };
-
+{ vars, ... }: {
   # NOTE: icons: https://gethomepage.dev/main/configs/services/#icons
   # https://github.com/walkxcode/dashboard-icons
 
@@ -24,26 +11,24 @@
     settings = {
       title = "${vars.username} dashboard";
       background = {
-        # image = "../assets/wallpaper.jpg";
+        image =
+          "https://raw.githubusercontent.com/atimofeev/nixos-config/main/assets/dark-shore.png";
         # blur = "sm";
         saturate = 50;
-        brightness = 50;
+        brightness = 85;
         opacity = 50;
       };
       cardBlur = "sm";
       theme = "dark";
-      # color = "zinc";
-      # iconStyle = "theme";
-      # statusStyle = "dot";
+      color = "slate";
 
       target = "_blank"; # open links in new tabs
 
       hideVersion = true;
-      # disableCollapse = true;
     };
     bookmarks = [
       {
-        work = [
+        work-main = [
           {
             gitlab = [{
               abbr = "GL";
@@ -100,6 +85,10 @@
               icon = "portainer.svg";
             }];
           }
+        ];
+      }
+      {
+        work-cloud = [
           {
             cloudflare = [{
               abbr = "CF";
@@ -170,7 +159,7 @@
         ];
       }
     ];
-    # services = "";
+
     widgets = [
       {
         search = {
@@ -195,8 +184,8 @@
         openmeteo = {
           label = "Tbilisi";
           timezone = "Asia/Tbilisi";
-          latitude = "41.70696381385158";
-          longitude = "44.883735610511145";
+          latitude = "41.697006";
+          longitude = "44.798851";
           units = "metric";
         };
       }
