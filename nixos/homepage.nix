@@ -26,9 +26,24 @@
 
       hideVersion = true;
     };
+
     bookmarks = [
       {
         work-main = [
+          {
+            jira = [{
+              abbr = "JI";
+              href = "https://betby.atlassian.net/jira/dashboards/10024";
+              icon = "jira.png";
+            }];
+          }
+          {
+            confluence = [{
+              abbr = "CF";
+              href = "https://betby.atlassian.net/wiki/home";
+              icon = "si-confluence-#146CE7";
+            }];
+          }
           {
             gitlab = [{
               abbr = "GL";
@@ -39,8 +54,8 @@
           {
             awx = [{
               abbr = "AW";
-              href = "https://awx.devspt.com/";
-              icon = "ansible.svg";
+              href = "https://awx.devspt.com/ui_next";
+              icon = "si-ansible-#BF2626";
             }];
           }
           {
@@ -50,6 +65,56 @@
               icon = "vault.svg";
             }];
           }
+          {
+            portainer = [{
+              abbr = "PT";
+              href = "https://portainer1-ams1.devspt.com/";
+              icon = "portainer.svg";
+            }];
+          }
+        ];
+      }
+      {
+        work-cloud = [
+          {
+            cloudflare = [{
+              abbr = "CF";
+              href = "https://dash.cloudflare.com/";
+              icon = "cloudflare.svg";
+            }];
+          }
+          {
+            aws_home = [{
+              abbr = "AW";
+              href = "https://eu-central-1.console.aws.amazon.com/console/home";
+              icon = "aws.svg";
+            }];
+          }
+          {
+            aws_login_main = [{
+              abbr = "AW";
+              href = "https://370297574318.signin.aws.amazon.com/console";
+              icon = "aws.svg";
+            }];
+          }
+          {
+            aws_login_gambite = [{
+              abbr = "AW";
+              href = "https://450341735216.signin.aws.amazon.com/console";
+              icon = "aws.svg";
+            }];
+          }
+          {
+            nextcloud = [{
+              abbr = "NC";
+              href = "https://c.devspt.com/";
+              icon = "nextcloud.svg";
+            }];
+          }
+        ];
+      }
+      {
+        work-monitor = [
           {
             prom-ams1 = [{
               abbr = "PT";
@@ -78,45 +143,6 @@
               icon = "kibana.svg";
             }];
           }
-          {
-            portainer = [{
-              abbr = "PT";
-              href = "https://portainer1-ams1.devspt.com/";
-              icon = "portainer.svg";
-            }];
-          }
-        ];
-      }
-      {
-        work-cloud = [
-          {
-            cloudflare = [{
-              abbr = "CF";
-              href = "https://dash.cloudflare.com/";
-              icon = "cloudflare.svg";
-            }];
-          }
-          {
-            aws_main = [{
-              abbr = "AW";
-              href = "https://370297574318.signin.aws.amazon.com/console";
-              icon = "aws.svg";
-            }];
-          }
-          {
-            aws_gambite = [{
-              abbr = "AW";
-              href = "https://450341735216.signin.aws.amazon.com/console";
-              icon = "aws.svg";
-            }];
-          }
-          {
-            nextcloud = [{
-              abbr = "NC";
-              href = "https://c.devspt.com/";
-              icon = "nextcloud.svg";
-            }];
-          }
         ];
       }
       {
@@ -125,7 +151,7 @@
             github = [{
               abbr = "GH";
               href = "https://github.com/atimofeev";
-              icon = "github.svg";
+              icon = "si-github-#FFFFFF";
             }];
           }
           {
@@ -153,7 +179,25 @@
             mynixos = [{
               abbr = "MN";
               href = "https://mynixos.com/";
-              icon = "nix.svg";
+              icon = "si-nixos-#5277C3";
+            }];
+          }
+        ];
+      }
+
+      {
+        utils = [
+          {
+            diffchecker = [{
+              abbr = "DC";
+              href = "https://diffchecker.com/text-compare/";
+            }];
+          }
+          {
+            draw-io = [{
+              abbr = "DR";
+              href = "https://app.diagrams.net/";
+              icon = "diagrams-net.svg";
             }];
           }
         ];
