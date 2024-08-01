@@ -213,14 +213,8 @@
       }
       {
         resources = {
-          label = "system";
           cpu = true;
           memory = true;
-        };
-      }
-      {
-        resources = {
-          label = "storage";
           disk = [ "/" ];
         };
       }
