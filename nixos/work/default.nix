@@ -20,6 +20,7 @@
     # podman-compose
     # podman-tui 
     docker-compose
+    dive
 
     # k8s 
     minikube
