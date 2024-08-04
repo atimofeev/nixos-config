@@ -25,7 +25,7 @@ List of configured apps and features of this config.
 
 ### GUI/TUI Apps
 
-- [ ] NeoVim (i use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
+- [x] NeoVim (i also use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
 - [ ] Firefox -> LibreWolf(?)
 - [x] mpv
 - [x] spotify-player
@@ -36,9 +36,9 @@ List of configured apps and features of this config.
 ### Work
 
 - [x] Ansible
-- [x] Terraform
+- [x] Tofu
 - [ ] Docker -> Podman
-- [x] Kubernetes utils
+- [x] Kubernetes
 - [x] GNS3
 - [x] VM utils
 
@@ -46,7 +46,7 @@ List of configured apps and features of this config.
 
 ### OS
 
-- [ ] nix-sops with AES256 for secret management
+- [ ] nix-sops with AES256 for secret management. Other examples: [1](https://github.com/ryan4yin/nix-config/tree/main/secrets), [2](https://gitlab.com/usmcamp0811/dotfiles/-/blob/nixos/docs/SECRETS.md?ref_type=heads)
 - [ ] Gaming
   - [ ] gamemode
   - [ ] gamescope
@@ -68,7 +68,7 @@ List of configured apps and features of this config.
     - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
     - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
   - Misc:
-    - [ ] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
+    - [x] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
     - [ ] Remove unused apps. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L11)
     - [ ] Drop-down terminal extension: [gnomeExtensions.drop-down-terminal](https://github.com/zzrough/gs-extensions-drop-down-terminal) or [gnomeExtensions.quake-terminal](https://github.com/diegodario88/quake-terminal) or [gnomeExtensions.quake-mode](https://github.com/repsac-by/gnome-shell-extension-quake-mode)
     - [ ] Configure file associations. Example: [1](https://github.com/zoriya/flake/blob/cc58c927b06f687ad524770371a9ac28edb4ea15/modules/common/apps.nix)
@@ -84,20 +84,13 @@ List of configured apps and features of this config.
   - [ ] Hardware control (brightness, volume, bluetooth, wireless, camera)
   - [ ] Wallpaper tool (random wallpapers from directory)
   - [ ] Screenshot tool
+  - [ ] Drop-down terminal (?) [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop)
 
 ### Apps
 
-- [ ] NeoVim
-  - [x] [NixVim](https://github.com/atimofeev/nixvim-config) config
-  - [ ] Minimal config via home-manager
-    - [ ] Plugins: `better-escape-nvim`, `nvim-autopairs`, `vim-move`
-    - [ ] highlight on yank
-    - [ ] Keymaps: `; -> :`, `ESC -> Clear highlights`, `switch P<->p [x] mode`
-    - [ ] Motion: `go through wrapped lines`, `change lines with h/l`
-    - [ ] Settings:
 - [ ] k9s: remap system actions `cmd mode = ;`, `back = backspace/q`
 - [ ] Firefox
-  - Vim motions
+  - [ ] Vim motions
     - [ ] [vimium](https://github.com/philc/vimium)
     - [ ] [tridactyl](https://github.com/tridactyl/tridactyl)
     - [ ] [Surgingkeys](https://github.com/brookhong/Surfingkeys)
@@ -129,7 +122,7 @@ List of configured apps and features of this config.
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
 - `bluetooth` BLE headset device sometimes works only in handsfree mode after auto reconnect. Need service restart
-  Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16)\
+  Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16), [3](https://discussion.fedoraproject.org/t/issue-with-fedora-38-and-bluetooth-headset-missing-headset-mode-after-reboot-only-handsfree-mode-shows-up/85896/4)\
   dmesg: `[289876.436013] Bluetooth: hci0: corrupted SCO packet`
 - `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
   Probably can be fixed with pipewire/wireplumber config
@@ -187,6 +180,8 @@ sudo = {
     packageOverrides = pkgs: { inherit (pkgs-unstable) homepage-dashboard; };
   };
 ```
+
+- Override Go app: [1](https://discourse.nixos.org/t/inconsistent-vendoring-in-buildgomodule-when-overriding-source/9225/6), [2](https://github.com/NixOS/nixpkgs/issues/86349#issuecomment-945210042)
 
 ### Nix commands
 
