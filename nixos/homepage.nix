@@ -12,7 +12,7 @@
       title = "${vars.username} dashboard";
       background = {
         image =
-          "https://raw.githubusercontent.com/atimofeev/nixos-config/main/assets/dark-shore.png";
+          "https://raw.githubusercontent.com/atimofeev/nixos-config/main/assets/dark-shore-comp.png";
         # blur = "sm";
         saturate = 50;
         brightness = 85;
