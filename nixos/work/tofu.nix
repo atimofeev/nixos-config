@@ -2,10 +2,16 @@
 let tflint-w-plugins = pkgs.tflint.withPlugins (p: [ p.tflint-ruleset-aws ]);
 in {
   environment.systemPackages = (with pkgs; [
-    terraform
+    # terraform
     opentofu
-    tenv # https://github.com/tofuutils/tenv-nix#usage
+
+    # import tools
     terraformer
+    cf-terraforming
+
+    # misc
+    tenv # https://github.com/tofuutils/tenv-nix#usage
+    tftui
   ]) ++ [ tflint-w-plugins ];
 
   # NOTE: small guide on terraformer
