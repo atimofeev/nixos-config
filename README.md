@@ -53,7 +53,9 @@ List of configured apps and features of this config.
   - [ ] Emulators (retroarch, etc...)
   - [ ] [nix-gaming](https://github.com/fufexan/nix-gaming) to use steam platformOptimizations
   - [ ] Launch options: pure iGPU & dGPU-offload
-- [x] Xremap: Caps Lock + hjkl -> arrows
+- [x] Xremap:
+  - [x] Caps Lock + hjkl -> arrows
+  - [x] Caps Lock tap = Esc
 - [ ] auto-cpufreq -> tlp
 - [ ] implement unstable as overlay. [example](https://github.com/gongqian/maxbrunet_dotfiles/blob/facde44c304443798167e972d87afcab3ace69e0/flake.nix#L41)
 - [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
@@ -118,7 +120,8 @@ List of configured apps and features of this config.
   - HEVC video playback on github is broken. [example](https://github.com/mrjones2014/smart-splits.nvim/issues/179#issuecomment-2049847490)
 - `ungoogled-chromium` try out. Config examples: [1](https://github.com/berbiche/dotfiles/blob/1e4d0501bde814be76419d8f21cf2fb9079e6a93/profiles/programs/chromium.nix#L49), [2](https://github.com/corytertel/nix-configuration/blob/15c5acf13669ef26e697cba514258c8c098aaf98/overlays/ungoogled-chromium.nix#L4), [3](https://github.com/pokon548/OysterOS/blob/31f46814e655da2cf4df53fd8f02a764fc7960fa/desktop/application/ungoogled-chromium/default.nix#L7), [4](https://github.com/kalbasit/soxincfg/blob/b600fb23f8611158e54b0cee85790b927ee2d89c/modules/programs/chromium/nixos.nix#L16)
 - `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
-  Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076)
+  Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076) \
+  Or move to Hyprland: [1](https://github.com/Maticzpl/nix-config/blob/1d84bb79d5e3f0e0b7996e914653c1cfc89e7844/nix-modules/hyprland/xremap.nix)
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
 - `bluetooth` BLE headset device sometimes works only in handsfree mode after auto reconnect. Need service restart
