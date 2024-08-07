@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-  # TODO: use system clipboard
   imports = [ ./plugins ./keymap.nix ./options.nix ];
   programs.neovim = {
     enable = true;

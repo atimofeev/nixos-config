@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./catppuccin.nix
-    # ./kitty-scrollback.nix 
+    ./kitty-scrollback.nix
     ./lualine.nix
     ./mini-surround.nix
     # ./nvim-tree.nix
