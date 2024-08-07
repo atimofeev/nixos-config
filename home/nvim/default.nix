@@ -27,6 +27,13 @@
             vim.highlight.on_yank({higroup='Search', timeout=300})
           end,
         })
+
+        vim.api.nvim_create_autocmd("TermClose", {
+          desc = 'Close terminal if its process has ended',
+          callback = function()
+             vim.cmd("bdelete")
+          end
+        })
       '';
 
   };
