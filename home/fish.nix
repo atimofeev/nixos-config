@@ -32,10 +32,8 @@
 
       shellAliases = {
         # NIX
-        rebuild =
-          "sudo nixos-rebuild test --flake ~/repos/nixos-config#default";
-        rebuild-switch =
-          "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
+        r = "sudo nixos-rebuild test --flake ~/repos/nixos-config#default";
+        rs = "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
         shell = "nix-shell --run $SHELL";
         v = "nix run ~/repos/nixvim-config/";
 
