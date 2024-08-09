@@ -39,10 +39,7 @@ in {
       # TODO: setup https://github.com/chrishrb/gx.nvim
       plugin = gx-nvim;
       type = "lua";
-      config = # lua
-        ''
-          require("gx").setup()
-        '';
+      config = "require('gx').setup()";
     }];
 
     extraLuaConfig = # lua

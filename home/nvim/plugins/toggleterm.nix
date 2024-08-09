@@ -35,12 +35,12 @@
         end
 
         map('t','<Esc>','<C-\\><C-N>') -- escape terminal mode
-        map('n','<leader>v','<Cmd>ToggleTerm direction=vertical<CR>') -- toggleterm vertical
-        map('n','<leader>s','<Cmd>ToggleTerm direction=horizontal<CR>') -- toggleterm horizontal
-        map('n','<leader>B','<Cmd>enew | setlocal nonumber norelativenumber | term<CR>i') -- toggleterm buffer 
-        map('n','<C-w>S','<Cmd>20new | setlocal nonumber norelativenumber | term<CR>i') -- term split
-        map('n','<C-w>V','<Cmd>80vnew | setlocal nonumber norelativenumber | term<CR>i') -- term split
-        map('n','<leader>tt','<Cmd>ToggleTerm direction=tab<CR>') -- toggleterm tab
+        map('n','<leader>v','<Cmd>ToggleTerm direction=vertical<CR>',{desc = "Toggleterm vertical"})
+        map('n','<leader>s','<Cmd>ToggleTerm direction=horizontal<CR>',{desc = "Toggleterm horizontal"})
+        map('n','<leader>B','<Cmd>enew | setlocal nonumber norelativenumber | term<CR>i',{desc = "Toggleterm buffer"})
+        map('n','<C-w>S','<Cmd>20new | setlocal nonumber norelativenumber | term<CR>i',{desc = "Term split"})
+        map('n','<C-w>V','<Cmd>80vnew | setlocal nonumber norelativenumber | term<CR>i',{desc = "Term vsplit"})
+        map('n','<leader>tt','<Cmd>ToggleTerm direction=tab<CR>',{desc = "Toggleterm tab"})
         -- map('n','<leader>fT','<Cmd>Telescope toggleterm<CR>') -- Telescope integration
         map('t','<C-h>','<Cmd>wincmd h<CR>')
         map('t','<C-j>','<Cmd>wincmd j<CR>')

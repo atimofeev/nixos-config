@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./catppuccin.nix
+    ./harpoon.nix
     ./kitty-scrollback.nix
     ./lualine.nix
     ./mini-surround.nix
@@ -10,6 +11,7 @@
     # ./telescope.nix
     # ./toggleterm.nix
     # ./treesitter.nix
+    ./which-key.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -17,23 +19,22 @@
     {
       plugin = better-escape-nvim;
       type = "lua";
-      config = ''
-        require("better_escape").setup()
-      '';
+      config = "require('better_escape').setup()";
     }
     {
       plugin = nvim-comment;
       type = "lua";
-      config = ''
-        require('nvim_comment').setup()
-      '';
+      config = "require('nvim_comment').setup()";
     }
     {
       plugin = nvim-autopairs;
       type = "lua";
-      config = ''
-        require("nvim-autopairs").setup()
-      '';
+      config = "require('nvim-autopairs').setup()";
+    }
+    {
+      plugin = guess-indent-nvim;
+      type = "lua";
+      config = "require('guess-indent').setup()";
     }
   ];
 }
