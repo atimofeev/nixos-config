@@ -28,8 +28,6 @@
       term = "xterm-256color";
 
       scrollback_lines = "10000";
-      scrollback_pager = ''
-        nvim -c 'setlocal nonumber nolist showtabline=0 foldcolumn=0|Man!' -c "autocmd VimEnter * normal G" -'';
     };
 
     keybindings = {
