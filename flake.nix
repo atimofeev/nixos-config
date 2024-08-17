@@ -20,21 +20,15 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
       libx = import ./lib { inherit pkgs; };
       vars = import ./variables.nix;
     in {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs pkgs-unstable nixpkgs-unstable libx vars;
-        };
+        specialArgs = { inherit inputs libx vars; };
         modules = [
           ./nixos/configuration.nix
           inputs.home-manager.nixosModules.default
