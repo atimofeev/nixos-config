@@ -40,8 +40,6 @@
     users = { ${vars.username} = import ../home; };
   };
 
-  environment.defaultPackages = with pkgs; [ python3 ];
-
   # (?)fix connection issues with Razer Basilisk X Hyperspeed
   hardware.openrazer = {
     enable = true;
@@ -61,6 +59,6 @@
         copytruncate = true;
       };
     };
-
   };
+
 }

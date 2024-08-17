@@ -3,7 +3,7 @@
     ./gnome
     # ./hyprland
     ./nvim
-    
+
     ./bat.nix
     #./firefox.nix
     ./fish.nix
@@ -30,14 +30,6 @@
   home = {
     inherit (vars) username;
     homeDirectory = "/home/${vars.username}";
-  };
-
-  # Autoconnect for virt-manager
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
-    };
   };
 
 }
