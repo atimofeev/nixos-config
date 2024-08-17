@@ -46,20 +46,14 @@ List of configured apps and features of this config.
 
 ### OS
 
-- [ ] nix-sops with AES256 for secret management. Other examples: [1](https://github.com/ryan4yin/nix-config/tree/main/secrets), [2](https://gitlab.com/usmcamp0811/dotfiles/-/blob/nixos/docs/SECRETS.md?ref_type=heads)
 - [ ] Gaming
   - [ ] gamemode
   - [ ] gamescope
   - [ ] Emulators (retroarch, etc...)
   - [ ] [nix-gaming](https://github.com/fufexan/nix-gaming) to use steam platformOptimizations
   - [ ] Launch options: pure iGPU & dGPU-offload
-- [x] Xremap:
-  - [x] Caps Lock + hjkl -> arrows
-  - [x] Caps Lock tap = Esc
 - [ ] auto-cpufreq -> tlp
-- [x] implement unstable as overlay. [example](https://github.com/gongqian/maxbrunet_dotfiles/blob/facde44c304443798167e972d87afcab3ace69e0/flake.nix#L41)
 - [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
-- [ ] Configure agenix. Example: [1](https://github.com/LongerHV/nixos-configuration/blob/bb78577665eb3a8e421e895eb81cbfa2086a4636/secrets/secrets.nix)
 
 ### Desktop
 
