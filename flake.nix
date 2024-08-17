@@ -30,7 +30,7 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs libx vars; };
         modules = [
-          ./nixos/configuration.nix
+          ./nixos
           inputs.home-manager.nixosModules.default
           inputs.xremap.nixosModules.default
         ];
