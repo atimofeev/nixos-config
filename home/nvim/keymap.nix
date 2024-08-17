@@ -14,6 +14,7 @@ _: {
 
       -- main
       map('n',';',':',{silent = false}) -- cmd mode with ;
+      map('n',':',';',{silent = false}) -- next symbol match with :
       map('x','p','P') -- paste without yank
       map('x','P','p') -- paste and yank
       map({'n','v'},'j','gj') -- go through wrapped lines
