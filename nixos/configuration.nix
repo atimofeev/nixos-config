@@ -23,7 +23,10 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [ (import ../overlays/neovim-unwrapped.nix) ];
+    overlays = [
+      (import ../overlays/unstable.nix { inherit inputs; })
+      (import ../overlays/neovim-unwrapped.nix)
+    ];
   };
 
   time.timeZone = vars.tz_name;
@@ -32,7 +35,7 @@
     [ (nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; }) ];
 
   home-manager = {
-    extraSpecialArgs = { inherit pkgs pkgs-unstable inputs libx vars; };
+    extraSpecialArgs = { inherit inputs pkgs libx vars; };
     users = { ${vars.username} = import ../home/home.nix; };
   };
 

@@ -1,5 +1,5 @@
-{ pkgs, pkgs-unstable, ... }: {
-  home.packages = with pkgs-unstable; [ spotify-player ];
+{ pkgs, ... }: {
+  home.packages = [ pkgs.unstable.spotify-player ];
 
   # NOTE: not used, as theme is inherited from terminal
   # FIX: catppuccin themes have broken HL groups

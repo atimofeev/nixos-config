@@ -1,16 +1,15 @@
-{ pkgs, pkgs-unstable, vars, ... }: {
+{ pkgs, vars, ... }: {
 
-  environment.systemPackages = (with pkgs; [
+  environment.systemPackages = with pkgs; [
     switcheroo
     gnome-graphs
     gnome.gnome-tweaks
     gnome.dconf-editor
     gnomeExtensions.pop-shell
     gnomeExtensions.appindicator
-  ]) ++ (with pkgs-unstable; [
-    letterpress
-    gnomeExtensions.pip-on-top # update to v8 for compatibility with Gnome 46
-  ]);
+    unstable.letterpress
+    unstable.gnomeExtensions.pip-on-top # update to v8 for compatibility with Gnome 46
+  ];
 
   services.xserver = {
     enable = true;
