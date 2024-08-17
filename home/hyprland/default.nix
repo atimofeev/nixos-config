@@ -1,4 +1,4 @@
-{ pkgs, inputs, vars, ... }:
+{ inputs, pkgs, vars, ... }:
 # TODO: apply colors:
 # https://github.com/catppuccin/hyprland
 # https://github.com/catppuccin/waybar

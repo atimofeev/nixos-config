@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, inputs, libx, vars, ... }: {
+{ inputs, pkgs, libx, vars, ... }: {
   imports = [
     ./games
     ./work
@@ -21,6 +21,7 @@
 
   system.stateVersion = vars.nix.stateVersion;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
