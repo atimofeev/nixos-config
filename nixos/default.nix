@@ -37,7 +37,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs pkgs libx vars; };
-    users = { ${vars.username} = import ../home/home.nix; };
+    users = { ${vars.username} = import ../home; };
   };
 
   environment.defaultPackages = with pkgs; [ python3 ];
