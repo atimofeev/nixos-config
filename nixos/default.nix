@@ -12,6 +12,7 @@
     ./network.nix
     ./nvidia.nix
     ./power.nix
+    ./sops.nix
     ./sound.nix
     ./sudo.nix
     ./user.nix

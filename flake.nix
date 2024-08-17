@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     # hyprland-plugins.inputs.hyprland.follows = "hyprland";
@@ -32,6 +37,7 @@
         modules = [
           ./nixos
           inputs.home-manager.nixosModules.default
+          inputs.sops-nix.nixosModules.sops
           inputs.xremap.nixosModules.default
         ];
       };

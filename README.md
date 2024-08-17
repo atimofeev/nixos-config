@@ -134,6 +134,26 @@ List of configured apps and features of this config.
 
 ## Notes
 
+### Secrets
+
+- Generate private age key from SSH key:\
+  `nix run nixpkgs#ssh-to-age -- -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt`
+- Generate public key:\
+  `nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt`
+- Create `.sops.yaml` file:\
+
+```yaml
+keys:
+  - &primary { { PUBLIC_KEY_HERE } }
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *primary
+```
+
+- Run `sops path_to_secrets/secrets.yaml` and add your secrets
+
 ### Useful code examples
 
 https://nix.dev/guides/best-practices

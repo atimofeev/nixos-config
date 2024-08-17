@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, vars, ... }: {
   environment.systemPackages = with pkgs; [
     ansible
     sshpass # ssh auth with password
@@ -21,4 +21,17 @@
       });
     };
   };
+
+  sops.secrets = {
+    "work/env/VAULT_ADDR".owner = vars.username;
+    "work/env/VAULT_TOKEN".owner = vars.username;
+  };
+
+  environment.shellInit = ''
+    export VAULT_ADDR="$(cat ${config.sops.secrets."work/env/VAULT_ADDR".path})"
+    export VAULT_TOKEN="$(cat ${
+      config.sops.secrets."work/env/VAULT_TOKEN".path
+    })"
+  '';
+
 }
