@@ -1,14 +1,16 @@
 { pkgs, ... }: {
   programs = {
+
     kitty.shellIntegration.enableFishIntegration = true;
+    zoxide.enableFishIntegration = true;
     starship = {
       enableFishIntegration = true;
       enableTransience = true;
     };
+
     fish = {
       enable = true;
 
-      # TODO: add z or zoxide.fish
       plugins = [
         {
           name = "autopair";
