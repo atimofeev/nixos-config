@@ -36,7 +36,7 @@
         # NIX
         r = "sudo nixos-rebuild test --flake ~/repos/nixos-config#default";
         rs = "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
-        shell = "nix-shell --run $SHELL";
+        shell = "NIXPKGS_ALLOW_UNFREE=1 nix-shell --run $SHELL";
         v = "nix run ~/repos/nixvim-config/";
         sops-secrets = "sops ~/repos/nixos-config/secrets/secrets.yaml";
 
