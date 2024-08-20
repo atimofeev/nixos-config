@@ -53,7 +53,7 @@
     enable = true;
     settings = {
       "/home/${vars.username}/.local/state/nvim/*log" = {
-        size = "50M";
+        size = "25M";
         rotate = 4;
         compress = true;
         missingok = true;
