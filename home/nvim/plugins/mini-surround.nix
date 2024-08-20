@@ -13,7 +13,13 @@
             highlight = "gzh", -- Highlight surrounding
             replace = "gzr", -- Replace surrounding
             update_n_lines = "gzn", -- Update `n_lines`
-          };
+
+            suffix_last = "N", -- Suffix to search with "prev" method
+            suffix_next = "n", -- Suffix to search with "next" method
+          },
+
+          -- Number of lines within which surrounding is searched
+          n_lines = 45,
         })
       '';
   }];
