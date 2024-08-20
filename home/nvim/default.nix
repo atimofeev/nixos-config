@@ -28,12 +28,17 @@
           end,
         })
 
-        vim.api.nvim_create_autocmd("TermClose", {
-          desc = 'Close terminal if its process has ended',
-          callback = function()
-             vim.cmd("bdelete")
-          end
-        })
+        -- Disable in kitty-scrollback
+        -- https://github.com/mikesmithgh/kitty-scrollback.nvim/issues/265
+        if vim.env.KITTY_SCROLLBACK_NVIM ~= 'true' then
+          vim.api.nvim_create_autocmd("TermClose", {
+            desc = 'Close terminal if its process has ended',
+            callback = function()
+               vim.cmd("bdelete")
+            end
+          })
+        end
+
       '';
 
   };
