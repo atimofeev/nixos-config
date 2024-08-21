@@ -1,13 +1,13 @@
 { inputs, pkgs, libx, vars, ... }: {
   imports = [
     ./games
+    ./homepage
     ./work
     ./apps.nix # various GUI or TUI apps
     ./bluetooth.nix
     ./boot.nix
     ./desktop.nix # desktop environment setup
     ./hardware-configuration.nix
-    ./homepage.nix
     ./locale.nix
     ./network.nix
     ./nvidia.nix
