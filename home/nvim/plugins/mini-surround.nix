@@ -20,6 +20,19 @@
 
           -- Number of lines within which surrounding is searched
           n_lines = 45,
+
+          -- swap opening and closing pair behavior
+          -- use closing pair to match spaces
+          custom_surroundings = {
+            [')'] = { input = { '%b()', '^.%s*().-()%s*.$' }, output = { left = '( ', right = ' )' } },
+            ['('] = { input = { '%b()', '^.().*().$' },       output = { left = '(',  right = ')' } },
+            [']'] = { input = { '%b[]', '^.%s*().-()%s*.$' }, output = { left = '[ ', right = ' ]' } },
+            ['['] = { input = { '%b[]', '^.().*().$' },       output = { left = '[',  right = ']' } },
+            ['}'] = { input = { '%b{}', '^.%s*().-()%s*.$' }, output = { left = '{ ', right = ' }' } },
+            ['{'] = { input = { '%b{}', '^.().*().$' },       output = { left = '{',  right = '}' } },
+            ['>'] = { input = { '%b<>', '^.%s*().-()%s*.$' }, output = { left = '< ', right = ' >' } },
+            ['<'] = { input = { '%b<>', '^.().*().$' },       output = { left = '<',  right = '>' } },
+          },
         })
       '';
   }];
