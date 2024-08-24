@@ -14,7 +14,12 @@ _: {
       o.backup = false
       o.backspace = "indent,eol,start"
       -- o.fillchars.eob = " "
-      o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+      o.langmap = table.concat({
+        'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        'фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz',
+        'ёхъжэбю\\.;\\`\\[\\]\\;\'\\,\\./',
+        'ЁХЪ/ЖЭБЮ\\,;~{}\\|:\\"<>?'
+      }, ',')
 
       -- cursor / line
       o.cursorline = true
