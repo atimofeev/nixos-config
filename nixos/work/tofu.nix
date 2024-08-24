@@ -2,7 +2,6 @@
 let tflint-w-plugins = pkgs.tflint.withPlugins (p: [ p.tflint-ruleset-aws ]);
 in {
   environment.systemPackages = (with pkgs; [
-    # terraform
     opentofu
 
     # import tools
