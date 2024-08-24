@@ -19,7 +19,7 @@
     {
       plugin = better-escape-nvim;
       type = "lua";
-      config = "require('better_escape').setup()";
+      config = "require('better_escape').setup({mapping = { 'jk', 'ол' },})";
     }
     {
       plugin = nvim-comment;

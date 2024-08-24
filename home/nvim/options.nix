@@ -14,6 +14,7 @@ _: {
       o.backup = false
       o.backspace = "indent,eol,start"
       -- o.fillchars.eob = " "
+      o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
       -- cursor / line
       o.cursorline = true
