@@ -55,22 +55,24 @@ in {
     settings = {
       add_newline = false;
 
-      format = lib.strings.concatStrings [
-        "[](${section1.bg})"
-        "$battery"
-        "$username"
-        "[](fg:${section1.bg} bg:${section2.bg})"
-        "$directory"
-        "[](fg:${section2.bg} bg:${section3.bg})"
-        "$git_branch"
-        "$git_status"
-        "[](fg:${section3.bg} bg:${section4.bg})"
-        "$time"
-        "[](fg:${section4.bg} bg:${section5.bg})"
-        "$cmd_duration"
-        "$status"
-        "[ ](fg:${section5.bg})"
-      ];
+      format = lib.strings.replaceStrings [ "\n" ] [ "" ] # toml
+        ''
+          [](${section1.bg})
+          $battery
+          $username
+          $env_var
+          [](fg:${section1.bg} bg:${section2.bg})
+          $directory
+          [](fg:${section2.bg} bg:${section3.bg})
+          $git_branch
+          $git_status
+          [](fg:${section3.bg} bg:${section4.bg})
+          $time
+          [](fg:${section4.bg} bg:${section5.bg})
+          $cmd_duration
+          $status
+          [ ](fg:${section5.bg})
+        '';
 
       battery = {
         disabled = false;
@@ -86,6 +88,15 @@ in {
         disabled = false;
         format = "[!]($style)";
         style_root = "fg:${section1.fg} bg:${section1.bg}";
+      };
+
+      env_var = {
+        IN_NIX_SHELL = {
+          format = "[$symbol]($style)";
+          style = "fg:${colors.blue} bg:${section1.bg}";
+          symbol = "";
+          variable = "IN_NIX_SHELL";
+        };
       };
 
       directory = {
@@ -119,10 +130,10 @@ in {
         style = "fg:${section5.fg} bg:${section5.bg}";
         min_time = 1000;
 
-        #show_notifications = true;
-        #min_time_to_notify = 45000;
-        #Waiting for resolution of this:
-        #https://github.com/starship/starship/issues/1933
+        # show_notifications = true;
+        # min_time_to_notify = 45000;
+        # Waiting for resolution of this:
+        # https://github.com/starship/starship/issues/1933
       };
 
       status = {
