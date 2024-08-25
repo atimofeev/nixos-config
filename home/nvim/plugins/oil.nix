@@ -32,6 +32,7 @@ in {
                     end,
               },
               win_options = { wrap = true };
+              keymaps = { ["<BS>"] = "actions.parent", },
             })
           '';
       }
