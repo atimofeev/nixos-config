@@ -62,6 +62,8 @@
         t = "tofu";
         k = "kubectl";
         mk = "minikube";
+        # FIX: https://github.com/sbstp/kubie/issues/123
+        # kx = "kubie ctx; k9s";
         kx = "kubie ctx";
         kn = "kubie ns";
 
