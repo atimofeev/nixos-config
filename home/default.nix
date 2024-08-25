@@ -2,6 +2,7 @@
   imports = [
     ./gnome
     # ./hyprland
+    ./k9s
     ./nvim
 
     ./bat.nix
@@ -9,7 +10,6 @@
     ./fish.nix
     ./git.nix
     ./htop.nix
-    ./k9s.nix
     ./kitty.nix
     ./mpv.nix
     ./qbittorrent.nix
