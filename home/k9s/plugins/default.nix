@@ -19,16 +19,15 @@ _: {
       ];
     };
 
-    # FIX: Error code 127
-    open-ing = {
+    open-ingress = {
       shortCut = "Ctrl-O";
-      description = "open-ing";
+      description = "open-ingress";
       background = true;
       scopes = [ "ing" ];
       command = "bash";
       args = [
         "-c"
-        "open $(kubectl get ing -n $NAMESPACE $NAME --context $CONTEXT -o jsonpath='https://{.spec.rules[0].host}')"
+        "xdg-open $(kubectl get ing -n $NAMESPACE $NAME --context $CONTEXT -o jsonpath='https://{.spec.rules[0].host}')"
       ];
     };
 
@@ -39,18 +38,6 @@ _: {
       scopes = [ "all" ];
       command = "sh";
       args = [ "-c" "echo -n $NAME | wl-copy" ];
-    };
-
-    # FIX: no resources found in $NAMESPACE
-    watch-events = {
-      shortCut = "Shift-E";
-      description = "watch-events";
-      scopes = [ "all" ];
-      command = "sh";
-      args = [
-        "-c"
-        "watch -n 5 kubectl get events --context $CONTEXT --namespace $NAMESPACE --field-selector involvedObject.name=$NAME"
-      ];
     };
 
   };
