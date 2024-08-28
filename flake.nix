@@ -24,6 +24,9 @@
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
+
   };
 
   outputs = { nixpkgs, ... }@inputs:
@@ -40,6 +43,7 @@
           inputs.home-manager.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           inputs.xremap.nixosModules.default
+          inputs.nix-flatpak.nixosModules.nix-flatpak
         ];
       };
     };
