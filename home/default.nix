@@ -33,4 +33,5 @@
     homeDirectory = "/home/${vars.username}";
   };
 
+  manual.json.enable = true; # required for manix
 }

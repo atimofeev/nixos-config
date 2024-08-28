@@ -30,6 +30,7 @@
       (import ../overlays/unstable.nix { inherit inputs; })
       (import ../overlays/master.nix { inherit inputs; })
       (import ../overlays/neovim-unwrapped.nix)
+      (import ../overlays/manix.nix)
       # (import ../overlays/xone.nix { inherit pkgs; })
     ];
   };
