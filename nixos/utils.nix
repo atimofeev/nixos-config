@@ -23,5 +23,6 @@
 
     # nix utils
     comma # launch any nixpkg with ', <pkg>'
+    manix # search pkgs & options
   ];
 }
