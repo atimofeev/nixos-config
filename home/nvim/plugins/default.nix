@@ -1,40 +1,23 @@
-{ pkgs, ... }: {
+_: {
+
   imports = [
+    ./better-escape.nix
     ./catppuccin.nix
+    ./guess-indent.nix
     ./harpoon.nix
     ./kitty-scrollback.nix
     ./lualine.nix
     ./mini-surround.nix
+    ./nvim-autopairs.nix
+    ./nvim-comment.nix
     # ./nvim-tree.nix
     ./oil.nix
     # ./project.nix
     # ./telescope.nix
     # ./toggleterm.nix
     # ./treesitter.nix
+    ./vim-move.nix
     ./which-key.nix
   ];
 
-  programs.neovim.plugins = with pkgs.vimPlugins; [
-    vim-move
-    {
-      plugin = better-escape-nvim;
-      type = "lua";
-      config = "require('better_escape').setup({mapping = { 'jk', 'ол' },})";
-    }
-    {
-      plugin = nvim-comment;
-      type = "lua";
-      config = "require('nvim_comment').setup()";
-    }
-    {
-      plugin = nvim-autopairs;
-      type = "lua";
-      config = "require('nvim-autopairs').setup()";
-    }
-    {
-      plugin = guess-indent-nvim;
-      type = "lua";
-      config = "require('guess-indent').setup()";
-    }
-  ];
 }

@@ -4,10 +4,7 @@
     plugins = with pkgs.vimPlugins; [{
       plugin = harpoon;
       type = "lua";
-      config = # lua
-        ''
-          require('harpoon').setup()
-        '';
+      config = "require('harpoon').setup()";
     }];
 
     extraLuaConfig = # lua

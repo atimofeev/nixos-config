@@ -20,6 +20,7 @@ _: {
         'ёхъжэбю;\\`\\[\\]\\;\'\\,\\.',
         'ЁХЪЖЭБЮ;~{}:\\"<>'
       }, ',')
+      o.foldcolumn = "auto"
 
       -- cursor / line
       o.cursorline = true
