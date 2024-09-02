@@ -8,7 +8,7 @@ List of configured apps and features of this config.
 
 ### Hardware
 
-- [x] auto-cpufreq
+- [ ] auto-cpufreq -> tlp
 - [x] Nvidia support
 
 ### Desktop Environment
@@ -26,7 +26,7 @@ List of configured apps and features of this config.
 ### GUI/TUI Apps
 
 - [x] NeoVim (i also use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
-- [ ] Firefox -> LibreWolf(?)
+- [ ] Firefox -> Zen-browser
 - [x] mpv
 - [x] spotify-player
 - [x] qbittorrent
@@ -36,7 +36,7 @@ List of configured apps and features of this config.
 ### Work
 
 - [x] Ansible
-- [x] Tofu
+- [x] OpenTofu
 - [ ] Docker -> Podman
 - [x] Kubernetes
 - [x] GNS3
@@ -52,7 +52,6 @@ List of configured apps and features of this config.
   - [ ] Emulators (retroarch, etc...)
   - [ ] [nix-gaming](https://github.com/fufexan/nix-gaming) to use steam platformOptimizations
   - [ ] Launch options: pure iGPU & dGPU-offload
-- [ ] auto-cpufreq -> tlp
 - [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
 
 ### Desktop
@@ -71,14 +70,13 @@ List of configured apps and features of this config.
 - [ ] Hyprland
   - [x] Hotkeys
   - [x] Window rules
-  - [ ] Clipboard
+  - [ ] Clipboard manager
   - [ ] Nvidia support
   - [ ] Display manager (sddm)
-  - [ ] Bar (waybar or ags)
-  - [ ] Notifications (dunst or ags)
+  - [ ] Bar, notifications and widgets (ags)
   - [ ] App runner (rofi-wayland)
   - [ ] Hardware control (brightness, volume, bluetooth, wireless, camera)
-  - [ ] Wallpaper tool (random wallpapers from directory)
+  - [ ] Wallpaper tool (hyprpaper)
   - [ ] Screenshot tool
   - [ ] Drop-down terminal (?) [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop)
 
@@ -119,12 +117,17 @@ List of configured apps and features of this config.
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
 - `bluetooth` BLE headset device sometimes works only in handsfree mode after auto reconnect. Need service restart
-  Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16), [3](https://discussion.fedoraproject.org/t/issue-with-fedora-38-and-bluetooth-headset-missing-headset-mode-after-reboot-only-handsfree-mode-shows-up/85896/4)\
-  dmesg: `[289876.436013] Bluetooth: hci0: corrupted SCO packet`
+  Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16), [3](https://discussion.fedoraproject.org/t/issue-with-fedora-38-and-bluetooth-headset-missing-headset-mode-after-reboot-only-handsfree-mode-shows-up/85896/4), [4](https://github.com/bluez/bluez/issues/752)\
+   dmesg: `[289876.436013] Bluetooth: hci0: corrupted SCO packet` \
+  `journalctl -u bluetooth -f`:
+
+  ```console
+  Aug 31 19:50:55 milaptop bluetoothd[924]: profiles/audio/avdtp.c:session_cb() No pending request, ignoring message
+  Aug 31 19:51:01 milaptop bluetoothd[924]: src/service.c:btd_service_connect() a2dp-sink profile connect failed for 00:25:D1:37:8C:19: Device or resource busy
+  ```
+
 - `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
   Probably can be fixed with pipewire/wireplumber config
-- `vcv-rack` newer versions are incompatible with GLFW used by Gnome Wayland\
-  https://github.com/NixOS/nixpkgs/issues/318205
 
 ## Notes
 
