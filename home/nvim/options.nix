@@ -5,7 +5,7 @@ _: {
 
       -- main
       o.shortmess:append "sI" -- disable nvim intro
-      o.mouse = "a"
+      o.mouse = ""  --fkin stop registering touchpad
       o.undofile = true
       o.termguicolors = true
       o.updatetime = 250
@@ -42,7 +42,6 @@ _: {
       -- indenting
       o.smartindent = true
       o.autoindent = true
-      o.cindent = true
       o.breakindent = true
 
       -- tab
