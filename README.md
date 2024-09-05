@@ -116,16 +116,6 @@ List of configured apps and features of this config.
   Or move to Hyprland: [1](https://github.com/Maticzpl/nix-config/blob/1d84bb79d5e3f0e0b7996e914653c1cfc89e7844/nix-modules/hyprland/xremap.nix)
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
-- `bluetooth` BLE headset device sometimes works only in handsfree mode after auto reconnect. Need service restart
-  Possible solutions: [1](https://github.com/Snektron/nixos-config/blob/5f3fb5c29c28e2059e9a4d55994dd7217187792c/hosts/common/desktop.nix#L56), [2](https://github.com/DarkKronicle/nazarick/blob/438197f8a33f6bf4a78a1a946b31723ad4f86134/modules/nixos/system/bluetooth/default.nix#L17C5-L17C16), [3](https://discussion.fedoraproject.org/t/issue-with-fedora-38-and-bluetooth-headset-missing-headset-mode-after-reboot-only-handsfree-mode-shows-up/85896/4), [4](https://github.com/bluez/bluez/issues/752)\
-   dmesg: `[289876.436013] Bluetooth: hci0: corrupted SCO packet` \
-  `journalctl -u bluetooth -f`:
-
-  ```console
-  Aug 31 19:50:55 milaptop bluetoothd[924]: profiles/audio/avdtp.c:session_cb() No pending request, ignoring message
-  Aug 31 19:51:01 milaptop bluetoothd[924]: src/service.c:btd_service_connect() a2dp-sink profile connect failed for 00:25:D1:37:8C:19: Device or resource busy
-  ```
-
 - `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
   Probably can be fixed with pipewire/wireplumber config
 
