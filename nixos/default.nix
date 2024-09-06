@@ -15,6 +15,7 @@
     ./power.nix
     ./sops.nix
     ./sound.nix
+    ./ssd.nix
     ./sudo.nix
     ./user.nix
     ./utils.nix # various CLI utils
