@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+
   environment.systemPackages = with pkgs; [
     # GUI/TUI apps
     emacs29
@@ -19,4 +20,5 @@
     upscayl
     eyedropper # pick colors
   ];
+
 }

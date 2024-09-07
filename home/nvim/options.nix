@@ -37,7 +37,7 @@ _: {
       o.smartcase = true
       o.hlsearch = true
       o.showmatch = true
-      o.inccommand = 'split' -- show change preview in split window
+      o.inccommand = 'split' -- show `:s` preview in split window
 
       -- indenting
       o.smartindent = true
