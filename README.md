@@ -26,7 +26,7 @@ List of configured apps and features of this config.
 ### GUI/TUI Apps
 
 - [x] NeoVim (i also use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
-- [ ] Firefox -> Zen-browser
+- [ ] Firefox -> Zen-browser?
 - [x] mpv
 - [x] spotify-player
 - [x] qbittorrent
@@ -110,7 +110,6 @@ List of configured apps and features of this config.
   - Conflicting config between home-manager and firefox profile sync.\
     Custom search engines config breaks search aliases
   - HEVC video playback on github is broken. [example](https://github.com/mrjones2014/smart-splits.nvim/issues/179#issuecomment-2049847490)
-- `ungoogled-chromium` try out. Config examples: [1](https://github.com/berbiche/dotfiles/blob/1e4d0501bde814be76419d8f21cf2fb9079e6a93/profiles/programs/chromium.nix#L49), [2](https://github.com/corytertel/nix-configuration/blob/15c5acf13669ef26e697cba514258c8c098aaf98/overlays/ungoogled-chromium.nix#L4), [3](https://github.com/pokon548/OysterOS/blob/31f46814e655da2cf4df53fd8f02a764fc7960fa/desktop/application/ungoogled-chromium/default.nix#L7), [4](https://github.com/kalbasit/soxincfg/blob/b600fb23f8611158e54b0cee85790b927ee2d89c/modules/programs/chromium/nixos.nix#L16)
 - `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
   Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076) \
   Or move to Hyprland: [1](https://github.com/Maticzpl/nix-config/blob/1d84bb79d5e3f0e0b7996e914653c1cfc89e7844/nix-modules/hyprland/xremap.nix)
@@ -141,6 +140,81 @@ creation_rules:
 
 - Run `sops path_to_secrets/secrets.yaml` and add your secrets
 
+### Pin package version
+
+#### Override via whole nixpkgs
+
+- `NOTE` Installs all original dependencies. Takes a lot of disk space
+- Go to [history.nix-packages.com](https://history.nix-packages.com/) and find commit ref
+- Make an overlay using commit ref in URL path:
+
+```nix
+nixpkgs.overlays = [
+  (final: _prev: {
+    bluez571 = import (builtins.fetchTarball {
+      url =
+        "https://github.com/NixOS/nixpkgs/archive/442d407992384ed9c0e6d352de75b69079904e4e.tar.gz";
+      sha256 = "sha256:0rbaxymznpr2gfl5a9jyii5nlpjc9k2lrwlw2h5ccinds58c202k";
+    }) { inherit (final) system; };
+  })
+];
+```
+
+- Use the package:
+
+```nix
+hardware.bluetooth = {
+  enable = true;
+  package = pkgs.bluez571.bluez;
+};
+```
+
+#### Override package code
+
+- `NOTE` Uses current dependencies, just replaces code. Prone to failures, but is way more flexible
+
+```nix
+nixpkgs.config = {
+  packageOverrides = pkgs: {
+    ansible = pkgs.ansible.overrideAttrs (oldAttrs: {
+      version = "2.11.6";
+      src = pkgs.fetchFromGitHub {
+        owner = "ansible";
+        repo = "ansible";
+        rev = "v2.11.6";
+        sha256 = "sha256-+ljma9q1tDo0/0YQmjKO2R756BRydFgAu+2wDu+ARto=";
+      };
+    });
+  };
+};
+```
+
+```nix
+nixpkgs.overlays = [
+  (final: prev: {
+    manix = prev.manix.override (old: {
+      rustPlatform = old.rustPlatform // {
+        buildRustPackage = args:
+          old.rustPlatform.buildRustPackage (args // {
+
+            version = "0.8.0-pr20";
+
+            src = prev.fetchFromGitHub {
+              owner = "nix-community";
+              repo = "manix";
+              rev = "c532d14b0b59d92c4fab156fc8acd0565a0836af";
+              sha256 = "sha256-Uo+4/be6rT0W8Z1dvCRXOANvoct6gJ4714flhyFzmKU=";
+            };
+
+            cargoHash = "sha256-ey8nXMCFnDSlJl+2uYYFm1YrhJ+r0sq48qtCwhqI0mo=";
+
+          });
+      };
+    });
+  })
+];
+```
+
 ### Useful code examples
 
 https://nix.dev/guides/best-practices
@@ -148,14 +222,14 @@ https://nix.dev/guides/best-practices
 - `with`
 
 ```nix
-  environment.systemPackages = (with pkgs; [
-    python3
-    #go
-    #rust
-  ]) ++ (with pkgs-unstable;
-    [
-      yamlfix
-    ]);
+environment.systemPackages = (with pkgs; [
+  python3
+  #go
+  #rust
+]) ++ (with pkgs-unstable;
+  [
+    yamlfix
+  ]);
 ```
 
 - `builtins.map`
@@ -180,15 +254,15 @@ sudo = {
 - Override module (options) channel
 
 ```nix
-  imports = [
-    (nixpkgs-unstable + "/nixos/modules/services/misc/homepage-dashboard.nix")
-  ];
+imports = [
+  (nixpkgs-unstable + "/nixos/modules/services/misc/homepage-dashboard.nix")
+];
 
-  disabledModules = [ "services/misc/homepage-dashboard.nix" ];
+disabledModules = [ "services/misc/homepage-dashboard.nix" ];
 
-  nixpkgs.config = {
-    packageOverrides = pkgs: { inherit (pkgs-unstable) homepage-dashboard; };
-  };
+nixpkgs.config = {
+  packageOverrides = pkgs: { inherit (pkgs-unstable) homepage-dashboard; };
+};
 ```
 
 - Override Go app: [1](https://discourse.nixos.org/t/inconsistent-vendoring-in-buildgomodule-when-overriding-source/9225/6), [2](https://github.com/NixOS/nixpkgs/issues/86349#issuecomment-945210042)
