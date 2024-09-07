@@ -9,6 +9,7 @@
     ./desktop.nix # desktop environment setup
     ./flatpak.nix
     ./hardware-configuration.nix
+    ./intel.nix
     ./locale.nix
     ./network.nix
     ./nvidia.nix
