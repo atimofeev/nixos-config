@@ -47,10 +47,10 @@ in {
       gap-outer = i 0;
       smart-gaps = true; # no gaps on single window
 
-      # hint
-      active-hint = true;
-      active-hint-border-radius = i 7;
-      hint-color-rgba = "rgba(198,160,246,0.85)"; # mauve #c6a0f6
+      # # hint
+      # active-hint = true;
+      # active-hint-border-radius = i 7;
+      # hint-color-rgba = "rgba(198,160,246,0.85)"; # mauve #c6a0f6
 
       # window
       show-title = false;
