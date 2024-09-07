@@ -6,7 +6,7 @@
     ./nvim
 
     ./bat.nix
-    #./firefox.nix
+    ./firefox.nix
     ./fish.nix
     ./git.nix
     ./htop.nix
