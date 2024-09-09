@@ -1,4 +1,5 @@
 _: {
+
   programs.neovim.extraLuaConfig = # lua
     ''
       local o = vim.opt

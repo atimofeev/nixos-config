@@ -21,8 +21,8 @@ _: {
       map({'n','v'},'k','gk')
       map({'n','v'},'<S-g>','<S-g>10<C-e>') -- scrolloff 10 lines after going to EOF
       map('n','<Esc>','<Cmd>noh<CR>' ) -- clear highlight
-      map('v','>','>gv' ) -- indent lines
-      map('v','<','<gv' )
+      map('v','>','>gv' ) -- horizontally move lines; get back to `v` selection
+      map('v','<','<gv' ) -- redundant with mini.move?
 
       -- buffers & tabs
       map('n','<leader>b','<Cmd>enew<CR>',{desc = "New buffer"})

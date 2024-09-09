@@ -7,6 +7,7 @@ _: {
     ./harpoon.nix
     ./kitty-scrollback.nix
     ./lualine.nix
+    ./mini-move.nix
     ./mini-surround.nix
     ./nvim-autopairs.nix
     ./nvim-comment.nix
@@ -16,7 +17,6 @@ _: {
     # ./telescope.nix
     # ./toggleterm.nix
     # ./treesitter.nix
-    ./vim-move.nix
     ./which-key.nix
   ];
 
