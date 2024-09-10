@@ -34,6 +34,8 @@
       "ctrl+backspace" = "send_text all \\x17";
       "ctrl+delete" = "send_text all \\ed";
       "ctrl+v" = "paste_from_clipboard";
+      "ctrl+shift+left" = "none"; # conflicts with nvim KBs
+      "ctrl+shift+right" = "none";
     };
 
     theme = "Catppuccin-Macchiato";
