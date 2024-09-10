@@ -41,9 +41,9 @@ _: {
       o.inccommand = 'split' -- show `:s` preview in split window
 
       -- indenting
-      o.smartindent = true
+      -- o.smartindent = true
       o.autoindent = true
-      o.breakindent = true
+      o.breakindent = true -- keep indent for wrapped parts of lines
 
       -- tab
       o.expandtab = true
