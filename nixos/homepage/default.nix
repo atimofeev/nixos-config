@@ -1,9 +1,10 @@
-{ vars, ... }: {
+{ pkgs, vars, ... }: {
 
   imports = [ ./bookmarks.nix ./widgets.nix ];
 
   services.homepage-dashboard = {
     enable = true;
+    package = pkgs.unstable.homepage-dashboard;
     listenPort = 8888;
 
     settings = {
@@ -28,4 +29,15 @@
     };
 
   };
+
+  # use instead of unstable options
+  # fix cache issue
+  # https://github.com/NixOS/nixpkgs/issues/328621
+  # https://github.com/NixOS/nixpkgs/issues/297168
+  systemd.services.homepage-dashboard = {
+    environment = { HOMEPAGE_CACHE_DIR = "/var/cache/homepage-dashboard"; };
+
+    serviceConfig = { CacheDirectory = "homepage-dashboard"; };
+  };
+
 }
