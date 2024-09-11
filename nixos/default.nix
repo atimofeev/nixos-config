@@ -70,4 +70,9 @@
     };
   };
 
+  # fix spotify API bug
+  networking.extraHosts = ''
+    0.0.0.0 apresolve.spotify.com
+  '';
+
 }
