@@ -116,77 +116,77 @@
               toString osConfig.services.homepage-dashboard.listenPort
             }";
         }
-        {
-          "browser.uiCustomization.state" = # json
-            ''
-              {
-                "placements": {
-                  "widget-overflow-fixed-list": [],
-                  "unified-extensions-area": [
-                    "dearrow_ajay_app-browser-action",
-                    "ublock0_raymondhill_net-browser-action",
-                    "sponsorblocker_ajay_app-browser-action",
-                    "_2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c_-browser-action",
-                    "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action",
-                    "languagetool-webextension_languagetool_org-browser-action",
-                    "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
-                    "juraj_masiar_gmail_com_scrollanywhere-browser-action",
-                    "_d07ccf11-c0cd-4938-a265-2a4d6ad01189_-browser-action",
-                    "_036a55b4-5e72-4d05-a06c-cba2dfcc134a_-browser-action"
-                  ],
-                  "nav-bar": [
-                    "back-button",
-                    "forward-button",
-                    "stop-reload-button",
-                    "home-button",
-                    "customizableui-special-spring1",
-                    "urlbar-container",
-                    "customizableui-special-spring2",
-                    "save-to-pocket-button",
-                    "downloads-button",
-                    "fxa-toolbar-menu-button",
-                    "unified-extensions-button",
-                    "addon_darkreader_org-browser-action"
-                  ],
-                  "toolbar-menubar": [
-                    "menubar-items"
-                  ],
-                  "TabsToolbar": [
-                    "tabbrowser-tabs",
-                    "new-tab-button",
-                    "alltabs-button"
-                  ],
-                  "PersonalToolbar": [
-                    "import-button",
-                    "personal-bookmarks"
-                  ]
-                },
-                "seen": [
-                  "developer-button",
-                  "sponsorblocker_ajay_app-browser-action",
-                  "addon_darkreader_org-browser-action",
-                  "_2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c_-browser-action",
-                  "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action",
-                  "languagetool-webextension_languagetool_org-browser-action",
-                  "ublock0_raymondhill_net-browser-action",
-                  "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
-                  "dearrow_ajay_app-browser-action",
-                  "juraj_masiar_gmail_com_scrollanywhere-browser-action",
-                  "_d07ccf11-c0cd-4938-a265-2a4d6ad01189_-browser-action",
-                  "_036a55b4-5e72-4d05-a06c-cba2dfcc134a_-browser-action"
-                ],
-                "dirtyAreaCache": [
-                  "nav-bar",
-                  "PersonalToolbar",
-                  "unified-extensions-area",
-                  "TabsToolbar",
-                  "toolbar-menubar"
-                ],
-                "currentVersion": 20,
-                "newElementCount": 2
-              }         
-            '';
-        }
+        # {
+        #   "browser.uiCustomization.state" = # json
+        #     ''
+        #       {
+        #         "placements": {
+        #           "widget-overflow-fixed-list": [],
+        #           "unified-extensions-area": [
+        #             "dearrow_ajay_app-browser-action",
+        #             "ublock0_raymondhill_net-browser-action",
+        #             "sponsorblocker_ajay_app-browser-action",
+        #             "_2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c_-browser-action",
+        #             "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action",
+        #             "languagetool-webextension_languagetool_org-browser-action",
+        #             "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
+        #             "juraj_masiar_gmail_com_scrollanywhere-browser-action",
+        #             "_d07ccf11-c0cd-4938-a265-2a4d6ad01189_-browser-action",
+        #             "_036a55b4-5e72-4d05-a06c-cba2dfcc134a_-browser-action"
+        #           ],
+        #           "nav-bar": [
+        #             "back-button",
+        #             "forward-button",
+        #             "stop-reload-button",
+        #             "home-button",
+        #             "customizableui-special-spring1",
+        #             "urlbar-container",
+        #             "customizableui-special-spring2",
+        #             "save-to-pocket-button",
+        #             "downloads-button",
+        #             "fxa-toolbar-menu-button",
+        #             "unified-extensions-button",
+        #             "addon_darkreader_org-browser-action"
+        #           ],
+        #           "toolbar-menubar": [
+        #             "menubar-items"
+        #           ],
+        #           "TabsToolbar": [
+        #             "tabbrowser-tabs",
+        #             "new-tab-button",
+        #             "alltabs-button"
+        #           ],
+        #           "PersonalToolbar": [
+        #             "import-button",
+        #             "personal-bookmarks"
+        #           ]
+        #         },
+        #         "seen": [
+        #           "developer-button",
+        #           "sponsorblocker_ajay_app-browser-action",
+        #           "addon_darkreader_org-browser-action",
+        #           "_2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c_-browser-action",
+        #           "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action",
+        #           "languagetool-webextension_languagetool_org-browser-action",
+        #           "ublock0_raymondhill_net-browser-action",
+        #           "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
+        #           "dearrow_ajay_app-browser-action",
+        #           "juraj_masiar_gmail_com_scrollanywhere-browser-action",
+        #           "_d07ccf11-c0cd-4938-a265-2a4d6ad01189_-browser-action",
+        #           "_036a55b4-5e72-4d05-a06c-cba2dfcc134a_-browser-action"
+        #         ],
+        #         "dirtyAreaCache": [
+        #           "nav-bar",
+        #           "PersonalToolbar",
+        #           "unified-extensions-area",
+        #           "TabsToolbar",
+        #           "toolbar-menubar"
+        #         ],
+        #         "currentVersion": 20,
+        #         "newElementCount": 2
+        #       }         
+        #     '';
+        # }
 
       ];
     };
