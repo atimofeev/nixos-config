@@ -18,6 +18,7 @@
     ./sound.nix
     ./ssd.nix
     ./sudo.nix
+    ./syncthing.nix
     ./user.nix
     ./utils.nix # various CLI utils
     ./xremap.nix
