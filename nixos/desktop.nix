@@ -9,6 +9,7 @@
     gnomeExtensions.appindicator
     unstable.letterpress
     unstable.gnomeExtensions.pip-on-top # update to v8 for compatibility with Gnome 46
+    unstable.gnomeExtensions.gamemode-shell-extension
   ];
 
   services.xserver = {
