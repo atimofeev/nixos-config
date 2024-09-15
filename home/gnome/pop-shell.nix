@@ -133,10 +133,16 @@ in {
   #     {
   #       "float": [
   #         {
-  #           "class": "pop-shell-exceptions"
+  #           "class": "org.gnome.Settings"
   #         },
   #         {
-  #           "class": "org.gnome.Settings"
+  #           "class": "org.gnome.Loupe"
+  #         },
+  #         {
+  #           "class": "com.github.finefindus.eyedropper"
+  #         },
+  #         {
+  #           "class": "org.gnome.Calculator"
   #         },
   #         {
   #           "class": "org.gnome.Extensions"
@@ -145,25 +151,58 @@ in {
   #           "class": "org.gnome.tweaks"
   #         },
   #         {
-  #           "class": "org.gnome.Loupe"
-  #         },
-  #         {
-  #           "class": "org.gnome.Calculator"
-  #         },
-  #         {
-  #           "class": "org.gnome.Snapshot"
-  #         },
-  #         {
-  #           "class": "com.github.finefindus.eyedropper"
-  #         },
-  #         {
-  #           "class": "gcolor3"
+  #           "class": "pop-shell-exceptions"
   #         },
   #         {
   #           "class": "pavucontrol"
   #         },
   #         {
   #           "class": "nvidia-settings"
+  #         },
+  #         {
+  #           "class": "gcolor3"
+  #         },
+  #         {
+  #           "class": "org.gnome.clocks"
+  #         },
+  #         {
+  #           "class": "org.gnome.Snapshot"
+  #         },
+  #         {
+  #           "class": "steam",
+  #           "title": "Steam Settings"
+  #         },
+  #         {
+  #           "class": "org.telegram.desktop",
+  #           "title": "TelegramDesktop"
+  #         },
+  #         {
+  #           "class": "msiexec.exe"
+  #         },
+  #         {
+  #           "class": "CrittersForSale.x86_64"
+  #         },
+  #         {
+  #           "class": "lutris",
+  #           "title": "Log for nfs-ps (wine)"
+  #         },
+  #         {
+  #           "class": "steam",
+  #           "title": "Steam - Browser"
+  #         },
+  #         {
+  #           "class": "mpv"
+  #         },
+  #         {
+  #           "class": "Vncviewer",
+  #           "title": "TigerVNC Viewer"
+  #         },
+  #         {
+  #           "class": "Imager"
+  #         },
+  #         {
+  #           "class": "steam",
+  #           "title": "Sign in to Steam"
   #         }
   #       ],
   #       "skiptaskbarhidden": [],
