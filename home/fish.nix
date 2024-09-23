@@ -54,6 +54,7 @@
         ip = "ip -4 a";
 
         # WORK
+        vpn-stop = "sudo systemctl stop openvpn-officeVPN.service";
         vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
         vpn-status = "sudo systemctl status openvpn-officeVPN.service";
         d = "docker";
