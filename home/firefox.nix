@@ -116,6 +116,10 @@
               toString osConfig.services.homepage-dashboard.listenPort
             }";
         }
+
+        {
+          "ui.key.menuAccessKeyFocuses" = false;
+        }
         # {
         #   "browser.uiCustomization.state" = # json
         #     ''
