@@ -37,8 +37,6 @@
     ];
   };
 
-  zramSwap.enable = true;
-
   time.timeZone = vars.tz_name;
 
   fonts.packages =
