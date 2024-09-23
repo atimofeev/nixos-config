@@ -1,10 +1,16 @@
-{ pkgs, vars, ... }: {
+{ pkgs, config, vars, ... }: {
 
   imports = [ ./bookmarks.nix ./widgets.nix ];
+
+  sops.secrets."work/homepage-env" = {
+    owner = vars.username;
+    restartUnits = [ "homepage-dashboard.service" ];
+  };
 
   services.homepage-dashboard = {
     enable = true;
     package = pkgs.unstable.homepage-dashboard;
+    environmentFile = config.sops.secrets."work/homepage-env".path;
     listenPort = 8888;
 
     settings = {
