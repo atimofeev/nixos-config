@@ -59,9 +59,6 @@ List of configured apps and features of this config.
 - [ ] Gnome
   - Tiling:
     - [x] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
-    - [ ] [gnomeExtensions.forge](https://github.com/forge-ext/forge)
-    - [ ] [gnomeExtensions.paperwm](https://github.com/paperwm/PaperWM)
-    - [ ] [gnomeExtensions.material-shell](https://github.com/material-shell/material-shell)
   - Misc:
     - [x] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
     - [ ] Remove unused apps. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L11)
@@ -78,7 +75,7 @@ List of configured apps and features of this config.
   - [ ] Hardware control (brightness, volume, bluetooth, wireless, camera)
   - [ ] Wallpaper tool (hyprpaper)
   - [ ] Screenshot tool
-  - [ ] Drop-down terminal (?) [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop)
+  - [ ] Drop-down terminal [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop), [2](https://github.com/Schweber/hdrop)
 
 ### Apps
 
@@ -106,8 +103,6 @@ List of configured apps and features of this config.
 
 - `2.4 wireless mouse` on boot won't work properly unless dongle is reconnected\
   Not reproducible with clean Nix Gnome setup
-- `Firefox`
-  - HTML5 embedded video playback is broken. [example](http://www.quirksmode.org/html5/tests/video.html)
 - `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
   Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076) \
   Or move to Hyprland: [1](https://github.com/Maticzpl/nix-config/blob/1d84bb79d5e3f0e0b7996e914653c1cfc89e7844/nix-modules/hyprland/xremap.nix)
