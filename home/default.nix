@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ inputs, vars, ... }: {
   imports = [
     ./gnome
     # ./hyprland
@@ -19,8 +19,8 @@
     ./vcv-rack.nix
     ./zathura.nix
     ./zoxide.nix
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
+
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -35,4 +35,11 @@
   };
 
   manual.json.enable = true; # required for manix
+
+  sops = {
+    age.sshKeyPaths = [ "/home/${vars.username}/.ssh/id_ed25519" ];
+    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
+
 }
