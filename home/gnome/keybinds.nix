@@ -59,11 +59,15 @@
       };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
-      {
-        binding = "<Shift><Super>s";
+      let
         # show images in kitty
-        command = "kitty -o term=xterm-kitty -e spotify_player";
-        # command = "${vars.terminal.name} -e spotify_player";
+        spotifyPlayerCMD = if vars.terminal.name == "kitty" then
+          "kitty -o term=xterm-kitty -e spotify_player"
+        else
+          "${vars.terminal.name} -e spotify_player";
+      in {
+        binding = "<Shift><Super>s";
+        command = spotifyPlayerCMD;
         name = "spotify-player";
       };
 
