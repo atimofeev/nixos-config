@@ -22,6 +22,7 @@ _: {
         'ЁХЪЖЭБЮ;~{}:\\"<>'
       }, ',')
       o.foldcolumn = "auto"
+      o.confirm = true -- get confirmation prompt on exit
 
       -- cursor / line
       o.cursorline = true
