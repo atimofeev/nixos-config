@@ -23,6 +23,10 @@ in {
     "work/env/TF_HTTP_PASSWORD".owner = vars.username;
     "work/env/AWS_ACCESS_KEY_ID".owner = vars.username;
     "work/env/AWS_SECRET_ACCESS_KEY".owner = vars.username;
+    "work/env/GAMBITE_AWS_ACCESS_KEY_ID".owner = vars.username;
+    "work/env/GAMBITE_AWS_SECRET_ACCESS_KEY".owner = vars.username;
+    "work/env/CLOUDFLARE_API_TOKEN".owner = vars.username;
+    "work/env/GITLAB_TOKEN".owner = vars.username;
   };
 
   environment.shellInit = ''
@@ -34,6 +38,18 @@ in {
     })"
     export AWS_SECRET_ACCESS_KEY="$(cat ${
       config.sops.secrets."work/env/AWS_SECRET_ACCESS_KEY".path
+    })"
+    export TF_VAR_gambite_access_key="$(cat ${
+      config.sops.secrets."work/env/GAMBITE_AWS_ACCESS_KEY_ID".path
+    })"
+    export TF_VAR_gambite_secret_key="$(cat ${
+      config.sops.secrets."work/env/GAMBITE_AWS_SECRET_ACCESS_KEY".path
+    })"
+    export CLOUDFLARE_API_TOKEN="$(cat ${
+      config.sops.secrets."work/env/CLOUDFLARE_API_TOKEN".path
+    })"
+    export GITLAB_TOKEN="$(cat ${
+      config.sops.secrets."work/env/GITLAB_TOKEN".path
     })"
   '';
 
