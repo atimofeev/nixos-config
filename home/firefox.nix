@@ -61,7 +61,7 @@
         "media.ffmpeg.vaapi.enabled" = true;
         "media.hardware-video-decoding.force-enabled" = true;
         "media.hls.enabled" = true;
-        "media.videocontrols.picture-in-picture.enabled" = false;
+        "media.videocontrols.picture-in-picture.enabled" = true;
         "privacy.donottrackheader.enabled" = true;
         "security.insecure_connection_text.enabled" = true;
         "security.insecure_connection_text.pbmode.enabled" = true;
