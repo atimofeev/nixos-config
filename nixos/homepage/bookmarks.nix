@@ -1,5 +1,5 @@
 _: {
-  # NOTE: icons: https://gethomepage.dev/main/configs/services/#icons
+  # NOTE: icons: https://gethomepage.dev/configs/services/#icons
 
   services.homepage-dashboard.bookmarks = [
 
@@ -89,7 +89,38 @@ _: {
         }
       ];
     }
-
+    {
+      work-pve = [
+        {
+          prod-ah = [{
+            abbr = "PM";
+            href = "{{HOMEPAGE_VAR_PVE_PROD_AH_URL}}";
+            icon = "proxmox.svg";
+          }];
+        }
+        {
+          beta-ah = [{
+            abbr = "PM";
+            href = "{{HOMEPAGE_VAR_PVE_BETA_AH_URL}}";
+            icon = "proxmox.svg";
+          }];
+        }
+        {
+          prod-htz = [{
+            abbr = "PM";
+            href = "{{HOMEPAGE_VAR_PVE_PROD_HTZ_URL}}";
+            icon = "proxmox.svg";
+          }];
+        }
+        {
+          beta-htz = [{
+            abbr = "PM";
+            href = "{{HOMEPAGE_VAR_PVE_BETA_HTZ_URL}}";
+            icon = "proxmox.svg";
+          }];
+        }
+      ];
+    }
     {
       work-monitor = [
         {
