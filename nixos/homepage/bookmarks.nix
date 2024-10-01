@@ -87,8 +87,23 @@ _: {
             icon = "nextcloud.svg";
           }];
         }
+        {
+          hetzner-cloud = [{
+            abbr = "HZ";
+            href = "{{HOMEPAGE_VAR_HETZNER_CLOUD_URL}}";
+            icon = "hetzner.svg";
+          }];
+        }
+        {
+          hetzner-robot = [{
+            abbr = "HZ";
+            href = "{{HOMEPAGE_VAR_HETZNER_ROBOT_URL}}";
+            icon = "hetzner.svg";
+          }];
+        }
       ];
     }
+
     {
       work-pve = [
         {
@@ -121,6 +136,7 @@ _: {
         }
       ];
     }
+
     {
       work-monitor = [
         {
