@@ -4,23 +4,16 @@
     sshpass # ssh auth with password
   ];
 
-  # Pin version
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      ansible = pkgs.ansible.overrideAttrs (oldAttrs: {
-        # NOTE: broke with NixOS 24.05
-        # version = "2.11.6";
-        # src = pkgs.fetchFromGitHub {
-        #   owner = "ansible";
-        #   repo = "ansible";
-        #   rev = "v2.11.6";
-        #   sha256 = "sha256-+ljma9q1tDo0/0YQmjKO2R756BRydFgAu+2wDu+ARto=";
-        # };
+  # NOTE: waiting for paramiko 3.4.1 to remove warnings
+  # https://nixpk.gs/pr-tracker.html?pr=336708
+  nixpkgs.overlays = [
+    (final: prev: {
+      ansible = pkgs.unstable.ansible.overrideAttrs (oldAttrs: {
         propagatedBuildInputs = oldAttrs.propagatedBuildInputs
-          ++ [ pkgs.python311Packages.hvac ];
+          ++ [ pkgs.unstable.python3Packages.hvac ];
       });
-    };
-  };
+    })
+  ];
 
   sops.secrets = {
     "work/env/VAULT_ADDR".owner = vars.username;
