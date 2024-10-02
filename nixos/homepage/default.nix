@@ -41,7 +41,10 @@
   # https://github.com/NixOS/nixpkgs/issues/328621
   # https://github.com/NixOS/nixpkgs/issues/297168
   systemd.services.homepage-dashboard = {
-    environment = { HOMEPAGE_CACHE_DIR = "/var/cache/homepage-dashboard"; };
+    environment = {
+      HOMEPAGE_CACHE_DIR = "/var/cache/homepage-dashboard";
+      # LOG_LEVEL = "debug";
+    };
 
     serviceConfig = { CacheDirectory = "homepage-dashboard"; };
   };
