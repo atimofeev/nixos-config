@@ -1,4 +1,4 @@
-_: {
+{ vars, ... }: {
 
   services.homepage-dashboard.widgets = [
 
@@ -31,10 +31,10 @@ _: {
 
     {
       openmeteo = {
-        label = "Tbilisi";
-        timezone = "Asia/Tbilisi";
-        latitude = "41.697006";
-        longitude = "44.798851";
+        label = "Budva";
+        timezone = vars.tz_name;
+        latitude = "42.291070";
+        longitude = "18.840169";
         units = "metric";
       };
     }

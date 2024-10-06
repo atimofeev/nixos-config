@@ -3,7 +3,7 @@
   username = "atimofeev";
   hostname = "milaptop";
   kb_layouts = "us,ru";
-  tz_name = "Asia/Tbilisi";
+  tz_name = "Europe/Podgorica";
   shell = "fish";
 
   terminal = {
