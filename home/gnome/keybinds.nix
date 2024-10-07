@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ pkgs, vars, ... }: {
   dconf.settings = {
     "org/gnome/TextEditor".keybindings = "vim";
 
@@ -41,6 +41,7 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/"
       ];
     };
 
@@ -84,5 +85,14 @@
         command = "${vars.terminal.name} -e nvtop";
         name = "nvtop";
       };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" =
+      {
+        binding = "<Super>Print";
+        command =
+          "${pkgs.bash}/bin/bash -c '${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -'";
+        name = "Edit clipboard image";
+      };
+
   };
 }
