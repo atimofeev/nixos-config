@@ -14,5 +14,11 @@ in {
       delay = i 275;
       repeat-interval = i 35;
     };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      click-method = "areas";
+      tap-to-click = true;
+      two-finger-scrolling-enabled = true;
+    };
   };
 }
