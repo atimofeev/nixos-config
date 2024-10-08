@@ -9,7 +9,8 @@
     extraPackages = with pkgs; [
       # soft deps
       gcc
-      xclip
+      # xclip
+      wl-clipboard
     ];
 
     extraLuaConfig = # lua

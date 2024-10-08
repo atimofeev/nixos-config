@@ -44,7 +44,8 @@
         default_device = "spotify-player"
 
         [copy_command]
-        command = "xclip"
+        # command = "xclip"
+        command = "wl-copy"
         args = [
             "-sel",
             "c",
