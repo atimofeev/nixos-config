@@ -21,7 +21,7 @@ let
 in {
 
   imports =
-    [ ./keybinds.nix ./window-rules.nix ./settings.nix ./apps ./rofi ./waybar ];
+    [ ./keybinds.nix ./window-rules.nix ./settings.nix ./rofi ./waybar ];
 
   home.packages = with pkgs; [
     sddm # display manager
