@@ -17,6 +17,7 @@
     ./ssh.nix
     ./starship.nix
     ./vcv-rack.nix
+    ./yazi.nix
     ./zathura.nix
     ./zoxide.nix
 
