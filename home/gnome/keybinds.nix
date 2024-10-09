@@ -84,7 +84,7 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
       {
         binding = "<Super>e";
-        command = "/usr/bin/env nautilus";
+        command = "${vars.terminal.name} -e yazi";
         name = "File Manager";
       };
 
