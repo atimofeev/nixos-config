@@ -1,28 +1,32 @@
-{ vars, ... }: {
+{ pkgs, vars, ... }: {
 
+  #TODO:
+  # ags config on volume/brighness change
+  # https://github.com/A7R7/hypr-config/blob/64da4c050740798bc890552f4fbb48cd4f2d7a30/hyprland.org?plain=1#L303
   wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
 
     bind = [
       # apps
-      "$mod, Return, exec, ${vars.terminal.name}"
-      "$mod SHIFT, Return, exec, ${vars.terminal.name} -e ${vars.terminal.editor}"
-      "$mod SHIFT, H, exec, ${vars.terminal.name} -e htop"
+      "SUPER, Return, exec, ${vars.terminal.name}"
+      "SUPER SHIFT, Return, exec, ${vars.terminal.name} -e ${vars.terminal.editor}"
+      "SUPER, E, exec, ${vars.terminal.name} -e yazi"
+      "SUPER SHIFT, H, exec, ${vars.terminal.name} -e htop"
+      "SUPER SHIFT, N, exec, ${vars.terminal.name} -e nvtop"
+      "SUPER SHIFT, B, exec, firefox --new-window"
 
-      # laptop fn keys
-      # ", xf86audiomute, exec, $scriptsDir/Volume.sh --toggle"
-      # ", xf86audiolowervolume, exec, $scriptsDir/Volume.sh --dec" # volume down
-      # ", xf86audioraisevolume, exec, $scriptsDir/Volume.sh --inc" # volume up
-      # ", xf86KbdBrightnessDown, exec, $scriptsDir/BrightnessKbd.sh --dec" # Keyboard brightness Down
-      # ", xf86KbdBrightnessUp, exec, $scriptsDir/BrightnessKbd.sh --inc" # Keyboard brightness up
+      # laptop special keys
+      ", xf86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", xf86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ", xf86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+      ", xf86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- -q"
+      ", xf86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ -q"
 
       # Make screenshots!
-      # https://www.youtube.com/watch?v=J1L1qi-5dr0
-      # depends on: grim, slurp, wl-clipboard, swappy
-      # "scissorsLaptopButtonF7, exec, grim -t png -g "$(slurp)" - | wl-copy"
-      # "printScreenLaptopButtonF11, exec, grim -t png - | wl-copy"
-      # "SHIFT, scissorsLaptopButtonF7, exec, grim -t png -g "$(slurp)" - | swappy -f -"
-      # "SOMEKEY, exec, wl-paste | swappy -f -" # edit clipboard image
+      ", Print, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
+      "ALT, Print, exec, ${pkgs.hyprshot}/bin/hyprshot -m window --clipboard-only"
+      "SHIFT, Print, exec, ${pkgs.hyprshot}/bin/hyprshot -m output --clipboard-only"
+      ", Cut, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --raw | ${pkgs.swappy}/bin/swappy -f -" # region -> edit
+      "SUPER, Print, exec, ${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -" # clipboard -> edit
 
       # Record screen!
       # wf-recorder
@@ -30,64 +34,59 @@
       # wf-recorder --audio
       # wf-recorder -f "name.mp4"
 
-      ", xf86Sleep, exec, systemctl suspend" # sleep button
-
       # main
-      "$mod, Q, killactive" # or closewindow?
-      "$mod SHIFT, F, fullscreen"
-      "$mod, F, togglefloating"
-      "$mod ALT, F, exec, hyprctl dispatch workspaceopt allfloat"
+      "SUPER, Q, killactive" # or closewindow?
+      "SUPER, F, fullscreen"
+      "SUPER SHIFT, F, togglefloating"
+      "SUPER ALT, F, exec, hyprctl dispatch workspaceopt allfloat"
 
       # group
-      "$mod, G, togglegroup"
+      "SUPER, G, togglegroup"
       "ALT, tab, changegroupactive"
 
       # move focus
-      "$mod, left, movefocus, l"
-      "$mod, right, movefocus, r"
-      "$mod, up, movefocus, u"
-      "$mod, down, movefocus, d"
+      "SUPER, left, movefocus, l"
+      "SUPER, right, movefocus, r"
+      "SUPER, up, movefocus, u"
+      "SUPER, down, movefocus, d"
 
       # move windows
-      "$mod CTRL, left, movewindow, l"
-      "$mod CTRL, right, movewindow, r"
-      "$mod CTRL, up, movewindow, u"
-      "$mod CTRL, down, movewindow, d"
+      "SUPER CTRL, left, movewindow, l"
+      "SUPER CTRL, right, movewindow, r"
+      "SUPER CTRL, up, movewindow, u"
+      "SUPER CTRL, down, movewindow, d"
 
       # bar
-      "$mod, B, exec, killall -SIGUSR1 waybar" # toggle waybar
+      "SUPER, B, exec, killall -SIGUSR1 waybar" # toggle waybar
 
       # workspaces
-      "$mod, tab, workspace, m+1"
-      "$mod SHIFT, tab, workspace, m-1"
-      "$mod SHIFT, U, movetoworkspace, special"
-      "$mod, U, togglespecialworkspace,"
-      "$mod SHIFT, bracketleft, movetoworkspace, -1"
-      "$mod SHIFT, bracketright, movetoworkspace, +1"
-      "$mod CTRL, bracketleft, movetoworkspacesilent, -1"
-      "$mod CTRL, bracketright, movetoworkspacesilent, +1"
+      "SUPER, tab, workspace, m+1"
+      "SUPER SHIFT, tab, workspace, m-1"
+      "SUPER SHIFT, U, movetoworkspace, special"
+      "SUPER, U, togglespecialworkspace,"
+      "SUPER SHIFT, bracketleft, movetoworkspace, -1"
+      "SUPER SHIFT, bracketright, movetoworkspace, +1"
+      "SUPER CTRL, bracketleft, movetoworkspacesilent, -1"
+      "SUPER CTRL, bracketright, movetoworkspacesilent, +1"
 
       # 1..10 workspaces
-    ] ++ (builtins.concatLists (builtins.genList
-      (x:
-        let
-          ws =
-            let c = builtins.div (x + 1) 10;
-            in builtins.toString (x + 1 - (c * 10));
-        in
-        [
-          "$mod, ${ws}, workspace, ${toString (x + 1)}"
-          "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-          "$mod CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-        ]) 10));
+    ] ++ (builtins.concatLists (builtins.genList (x:
+      let
+        ws = let c = builtins.div (x + 1) 10;
+        in builtins.toString (x + 1 - (c * 10));
+      in [
+        "SUPER, ${ws}, workspace, ${toString (x + 1)}"
+        "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        "SUPER CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+      ]) 10));
 
     # these KB will repeat on hold
     binde = [
       # resize windows
-      "$mod SHIFT, left, resizeactive,-50 0"
-      "$mod SHIFT, right, resizeactive,50 0"
-      "$mod SHIFT, up, resizeactive,0 -50"
-      "$mod SHIFT, down, resizeactive,0 50"
+      "SUPER SHIFT, left, resizeactive,-50 0"
+      "SUPER SHIFT, right, resizeactive,50 0"
+      "SUPER SHIFT, up, resizeactive,0 -50"
+      "SUPER SHIFT, down, resizeactive,0 50"
     ];
 
   };
