@@ -50,6 +50,7 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/"
       ];
     };
 
@@ -107,6 +108,13 @@
         binding = "<Super><Shift>Return";
         command = "${vars.terminal.name} -e ${vars.terminal.editor}";
         name = vars.terminal.editor;
+      };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" =
+      {
+        binding = "<Super><Shift>B";
+        command = "firefox --new-window";
+        name = "Firefox new window";
       };
 
   };
