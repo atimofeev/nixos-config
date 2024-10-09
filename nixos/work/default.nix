@@ -1,10 +1,11 @@
-{ pkgs, config, vars, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./ansible.nix
     ./docker.nix
     # ./gns3.nix # NOTE: probably still broken
     ./tofu.nix
     # ./vm.nix
+    ./vpn.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -29,25 +30,5 @@
     slack
     zoom-us
   ];
-
-  sops.secrets."work/officeVPNcreds".restartUnits =
-    [ "openvpn-officeVPN.service" ];
-
-  services.openvpn.servers = {
-
-    officeVPN = {
-      updateResolvConf = true;
-      config = ''
-        config /home/${vars.username}/secrets/officeVPN.conf
-        auth-user-pass ${config.sops.secrets."work/officeVPNcreds".path}
-      '';
-    };
-
-    AH-VPN = {
-      # https://ipmilist.advancedhosters.com/
-      config = "config /home/${vars.username}/secrets/AH-VPN.conf";
-    };
-
-  };
 
 }
