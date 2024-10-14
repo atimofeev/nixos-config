@@ -3,6 +3,8 @@
     enable = true;
 
     policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = true;
       DisableAppUpdate = true;
       DisableFirefoxScreenshots = true;
       DisableFirefoxStudies = true;
@@ -54,6 +56,25 @@
 
       settings = {
         "browser.aboutConfig.showWarning" = false;
+        "browser.aboutwelcome.enabled" = false;
+        "browser.tabs.unloadOnLowMemory" = true;
+        "browser.urlbar.suggest.calculator" = true;
+        "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+        "browser.urlbar.trimHttps" = true;
+        "browser.urlbar.unitConversion.enabled" = true;
+        "browser.urlbar.untrimOnUserInteraction.featureGate" = true;
+        "cookiebanners.service.mode" = 1;
+        "cookiebanners.service.mode.privateBrowsing" = 1;
+        "extensions.htmlaboutaddons.recommendations.enabled" = false;
+        "findbar.highlightAll" = true;
+
+        # diable fullscreen notification
+        "full-screen-api.transition-duration.enter" = "0 0";
+        "full-screen-api.transition-duration.leave" = "0 0";
+        "full-screen-api.warning.delay" = -1;
+        "full-screen-api.warning.timeout" = 0;
+
+        # gpu-accelerated stuff
         "gfx.webrender.all" = true;
         "gfx.webrender.compositor.force-enabled" = true;
         "gfx.x11-egl.force-enabled" = true;
@@ -61,7 +82,9 @@
         "media.ffmpeg.vaapi.enabled" = true;
         "media.hardware-video-decoding.force-enabled" = true;
         "media.hls.enabled" = true;
+
         "media.videocontrols.picture-in-picture.enabled" = true;
+        "permissions.default.desktop-notification" = 2;
         "privacy.donottrackheader.enabled" = true;
         "security.insecure_connection_text.enabled" = true;
         "security.insecure_connection_text.pbmode.enabled" = true;
