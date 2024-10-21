@@ -86,7 +86,7 @@ in {
 
       username = {
         disabled = false;
-        format = "[!]($style)";
+        format = "[! ]($style)";
         style_root = "fg:${section1.fg} bg:${section1.bg}";
       };
 
