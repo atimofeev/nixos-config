@@ -72,10 +72,16 @@ List of configured apps and features of this config.
   - [ ] Display manager (sddm)
   - [ ] Bar, notifications and widgets (ags)
   - [ ] App runner (rofi-wayland)
-  - [ ] Hardware control (brightness, volume, bluetooth, wireless, camera)
+  - [ ] Hardware control
+    - [x] brightness
+    - [x] volume
+    - [ ] bluetooth
+    - [ ] wifi
+    - [ ] camera
   - [ ] Wallpaper tool (hyprpaper)
   - [ ] Screenshot tool
   - [ ] Drop-down terminal [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop), [2](https://github.com/Schweber/hdrop)
+  - [ ] Night Light with schedule (wlsunset or wl-gammarelay [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/))
 
 ### Apps
 

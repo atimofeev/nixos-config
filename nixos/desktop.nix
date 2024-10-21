@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }: {
+{ inputs, pkgs, vars, ... }: {
 
   environment.systemPackages = with pkgs; [
     switcheroo
@@ -29,11 +29,11 @@
       terminal = vars.terminal.name;
     };
 
-    # hyprland = {
-    #   enable = true;
-    #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    #   #xwayland.enable = true;
-    # };
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+      #xwayland.enable = true;
+    };
 
   };
 

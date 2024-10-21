@@ -9,53 +9,33 @@
 # https://github.com/catppuccin/gtk
 # https://github.com/catppuccin/cursors
 
-let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    # ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init &
+{
 
-    sleep 1
-
-    ${pkgs.swww}/bin/swww img ${../../assets/dark-shore.png} &
-  '';
-in {
-
-  imports =
-    [ ./keybinds.nix ./window-rules.nix ./settings.nix ./rofi ./waybar ];
-
-  home.packages = with pkgs; [
-    sddm # display manager
-    dunst # notifications
-    libnotify
-    #hyprpaper # wallpaperd. others: swaybg, wpaperd, mpvpaper, swww
-    swww
+  imports = [
+    ./animations.nix
+    ./hyprcursor.nix
+    ./hyprpaper.nix
+    ./input.nix
+    ./keybinds.nix
+    ./settings.nix
+    ./window-rules.nix
+    ./workspaces.nix
   ];
+
+  # home.packages = with pkgs; [
+  #   sddm # display manager
+  #   dunst # notifications
+  #   libnotify
+  # ];
 
   wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
-      exec-once = "${startupScript}/bin/start";
 
-      "plugin:borders-plus-plus" = {
-        add_borders = 1; # 0 - 9
+      exec-once = [ "${pkgs.hyprpanel}/bin/hyprpanel" ];
 
-        # you can add up to 9 borders
-        "col.border_1" = "rgb(ffffff)";
-        "col.border_2" = "rgb(2222ff)";
-
-        # -1 means "default" as in the one defined in general:border_size
-        border_size_1 = 10;
-        border_size_2 = -1;
-
-        # makes outer edges match rounding of the parent. Turn on / off to better understand. Default = on.
-        natural_rounding = "yes";
-      };
     };
   };
 
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
 }

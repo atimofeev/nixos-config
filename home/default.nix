@@ -1,9 +1,10 @@
 { inputs, vars, ... }: {
   imports = [
     ./gnome
-    # ./hyprland
+    ./hyprland
     ./k9s
     ./nvim
+    ./rofi
 
     ./bat.nix
     ./firefox.nix

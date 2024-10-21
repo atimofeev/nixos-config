@@ -1,4 +1,4 @@
-{ inputs, pkgs, libx, vars, ... }: {
+{ inputs, pkgs, config, libx, vars, ... }: {
   imports = [
     ./games
     ./homepage
@@ -30,6 +30,7 @@
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
+      inputs.hyprpanel.overlay
       (import ../overlays/unstable.nix { inherit inputs; })
       (import ../overlays/terraformer.nix)
       (import ../overlays/neovim-unwrapped.nix)
