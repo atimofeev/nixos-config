@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
     ./intel.nix
     ./locale.nix
+    # ./nbfc.nix
     ./network.nix
     ./nvidia.nix
     ./power.nix
