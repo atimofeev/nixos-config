@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ config, ... }: {
   programs.git = {
     enable = true;
     userName = "Artem Timofeev";
@@ -12,7 +12,7 @@
   };
 
   sops.secrets."work/gitlab-config" = {
-    path = "/home/${vars.username}/repos/betby/.gitconfig";
+    path = "${config.home.homeDirectory}/repos/betby/.gitconfig";
   };
 
 }

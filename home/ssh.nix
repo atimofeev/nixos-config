@@ -1,7 +1,7 @@
-{ config, vars, ... }: {
+{ config, ... }: {
 
   sops.secrets."work/ssh-config".path =
-    "/home/${vars.username}/.ssh/work_config";
+    "${config.home.homeDirectory}/.ssh/work_config";
 
   programs.ssh = {
     enable = true;

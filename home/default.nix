@@ -1,4 +1,4 @@
-{ inputs, vars, ... }: {
+{ inputs, config, vars, ... }: {
   imports = [
     ./gnome
     ./hyprland
@@ -39,7 +39,7 @@
   manual.json.enable = true; # required for manix
 
   sops = {
-    age.sshKeyPaths = [ "/home/${vars.username}/.ssh/id_ed25519" ];
+    age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
   };

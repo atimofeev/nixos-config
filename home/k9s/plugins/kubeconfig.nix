@@ -1,4 +1,4 @@
-_: {
+{ config, ... }: {
   programs.k9s.plugin.plugins = {
 
     generate-kubeconfig = {
@@ -34,7 +34,7 @@ _: {
               cluster: $CONTEXT
               namespace: $NAMESPACE
           current-context: $CONTEXT
-          " > /home/atimofeev/$NAME_$CONTEXT.yaml
+          " > ${config.home.homeDirectory}/$NAME_$CONTEXT.yaml
         ''
       ];
     };
