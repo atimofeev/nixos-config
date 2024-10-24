@@ -4,7 +4,7 @@
     generate-kubeconfig = {
       shortCut = "Shift-K";
       description = "Get config";
-      # background = true;
+      background = true;
       scopes = [ "serviceaccount" ];
       command = "bash";
       args = [
