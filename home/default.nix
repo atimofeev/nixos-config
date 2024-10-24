@@ -14,6 +14,7 @@
     ./kitty.nix
     ./mpv.nix
     ./qbittorrent.nix
+    ./ripgrep.nix
     ./spotify-player.nix
     ./ssh.nix
     ./starship.nix
