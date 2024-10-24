@@ -27,4 +27,19 @@
     })"
   '';
 
+  home-manager.users.${vars.username} = {
+    programs.fish.shellAliases = let
+      extra-vars =
+        "ansible_ssh_private_key_file=/home/${vars.username}/.ssh/id_ed25519 ansible_ssh_extra_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'";
+    in {
+      ansible =
+        ''ansible --extra-vars "ansible_user=${vars.username} ${extra-vars}"'';
+      ansible-root = ''ansible --extra-vars "ansible_user=root ${extra-vars}"'';
+      ansible-playbook = ''
+        ansible-playbook --extra-vars "ansible_user=${vars.username} ${extra-vars}"'';
+      ansible-playbook-root =
+        ''ansible-playbook --extra-vars "ansible_user=root ${extra-vars}"'';
+    };
+  };
+
 }

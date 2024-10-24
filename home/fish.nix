@@ -61,7 +61,6 @@
         d-stop-all = "docker stop $(docker ps -q)";
         d-img-del-all = "docker rmi $(docker images -aq) --force";
         dc = "docker-compose";
-        a = "ansible";
         t = "tofu";
         k = "kubectl";
         mk = "minikube";
