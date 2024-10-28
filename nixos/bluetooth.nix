@@ -22,7 +22,12 @@
 
       Policy.AutoEnable = true;
 
-      General.ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
+      General = {
+        ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
+        FastConnectable = true;
+        Experimental = true;
+        KernelExperimental = true;
+      };
 
     };
   };
