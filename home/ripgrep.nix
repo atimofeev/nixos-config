@@ -3,7 +3,7 @@ _: {
   programs.ripgrep = {
     enable = true;
     arguments = [
-      "--color-always"
+      # "--color=always" # conflict with telescope.nvim
       "--smart-case"
       "--no-line-number"
       "--hidden"
