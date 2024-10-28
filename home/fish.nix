@@ -47,6 +47,7 @@
         pipewire-restart = ''
           systemctl --user restart pipewire.service && \
           systemctl --user restart pipewire-pulse.service'';
+        fd = "fd --hidden";
         tb = "nc termbin.com 9999"; # [command] | tb
         nf = "neofetch --backend off --color_blocks off";
         chx = "chmod +x";
