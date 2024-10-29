@@ -20,17 +20,6 @@ _: {
     #   allow_workspace_cycles = 0;
     # };
 
-    gestures = {
-      workspace_swipe = 1;
-      # workspace_swipe_fingers = 3;
-      # workspace_swipe_distance = 900;
-      # workspace_swipe_invert = 1;
-      # workspace_swipe_min_speed_to_force = 30;
-      # workspace_swipe_cancel_ratio = 0.5;
-      # workspace_swipe_create_new = true;
-      # workspace_swipe_forever = false;
-    };
-
   };
 
 }

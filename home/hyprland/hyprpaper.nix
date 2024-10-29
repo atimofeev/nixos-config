@@ -1,4 +1,5 @@
 _: {
+
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -7,4 +8,5 @@ _: {
       wallpaper = [ ",${../../assets/dark-shore.png}" ];
     };
   };
+
 }

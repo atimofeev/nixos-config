@@ -2,7 +2,9 @@
 
   wayland.windowManager.hyprland.settings = {
 
-    monitor = [ "eDP-1,1920x1080@60,0x0,1" "DP-1,1920x1080@60,1920x0,1.2" ];
+    monitor = [ "eDP-1,1920x1080@60,0x0,1" "HDMI-A-1,1920x1080@60,1920x0,1" ];
+
+    # monitor = [ "eDP-1,1920x1080@60,0x0,1" "DP-1,1920x1080@60,1920x0,1.2" ];
 
     dwindle = {
       pseudotile = "yes";
@@ -24,8 +26,8 @@
       border_size = 2;
       resize_on_border = true;
 
-      # col.active_border = "#c6a0f6";
-      # col.inactive_border = "$backgroundCol";
+      # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+      "col.active_border" = "rgb(c6a0f6)"; # hex color #c6a0f6
 
       # layout = "master";
       layout = "dwindle";
@@ -41,16 +43,16 @@
       # dim_inactive = true;
       # dim_strength = 0.1;
 
-      drop_shadow = true;
-      shadow_range = 6;
-      shadow_render_power = 1;
+      drop_shadow = false;
+      # shadow_range = 6;
+      # shadow_render_power = 1;
 
       blur = {
-        enabled = true;
-        size = 5;
-        passes = 2;
-        ignore_opacity = true;
-        new_optimizations = true;
+        enabled = false;
+        # size = 5;
+        # passes = 2;
+        # ignore_opacity = true;
+        # new_optimizations = true;
       };
     };
 

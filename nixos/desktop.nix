@@ -37,4 +37,14 @@
 
   };
 
+  xdg.portal = {
+    enable = true;
+    configPackages =
+      [ inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
+    # extraPortals = [
+    #   inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+    #   pkgs.xdg-desktop-portal-gtk
+    # ];
+  };
+
 }

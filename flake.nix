@@ -21,6 +21,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    hyprsunset = {
+      url = "github:hyprwm/hyprsunset";
+      # inputs.nixpkgs.follows = "hyprland";
+    };
+
     hyprpanel = {
       url =
         "github:Jas-SinghFSU/HyprPanel?ref=f21d70949f9f4426f39d12f542ec788d47330763";

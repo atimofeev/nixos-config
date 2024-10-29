@@ -10,10 +10,23 @@
       "SUPER, mouse:272, movewindow" # move floating windows with LMK
     ];
 
-    # lock + repeat
-    bindle = [
+    # lock
+    bindl = [
       ", xf86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
       ", xf86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+    ];
+
+    # repeat
+    binde = [
+      # resize windows
+      "SUPER SHIFT, left, resizeactive,-50 0"
+      "SUPER SHIFT, right, resizeactive,50 0"
+      "SUPER SHIFT, up, resizeactive,0 -50"
+      "SUPER SHIFT, down, resizeactive,0 50"
+    ];
+
+    # lock + repeat
+    bindle = [
       ", xf86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- -q"
       ", xf86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ -q"
     ];
@@ -52,7 +65,7 @@
       "SUPER, Q, killactive" # or closewindow?
       "SUPER, F, fullscreen"
       "SUPER SHIFT, F, togglefloating"
-      "SUPER, \\, pkill rofi || rofi -show run"
+      # "SUPER, \\, pkill rofi || rofi -show run"
 
       # group
       "SUPER, G, togglegroup"
@@ -93,15 +106,6 @@
         "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
         "SUPER CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
       ]) 10));
-
-    # repeat on hold
-    binde = [
-      # resize windows
-      "SUPER SHIFT, left, resizeactive,-50 0"
-      "SUPER SHIFT, right, resizeactive,50 0"
-      "SUPER SHIFT, up, resizeactive,0 -50"
-      "SUPER SHIFT, down, resizeactive,0 50"
-    ];
 
   };
 }

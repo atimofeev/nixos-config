@@ -1,4 +1,4 @@
-{ inputs, pkgs, vars, ... }:
+{ pkgs, ... }:
 # TODO: apply colors:
 # https://github.com/catppuccin/hyprland
 # https://github.com/catppuccin/waybar
@@ -13,28 +13,32 @@
 
   imports = [
     ./animations.nix
+    ./gtk.nix
     ./hyprcursor.nix
     ./hyprpaper.nix
+    ./hyprsunset.nix
     ./input.nix
     ./keybinds.nix
+    ./qt.nix
     ./settings.nix
     ./window-rules.nix
     ./workspaces.nix
   ];
 
-  # home.packages = with pkgs; [
-  #   sddm # display manager
-  #   dunst # notifications
-  #   libnotify
-  # ];
+  home.packages = with pkgs; [
+    # sddm # display manager
+    # dunst # notifications
+    libnotify
+    hyprpicker
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-
     settings = {
-
-      exec-once = [ "${pkgs.hyprpanel}/bin/hyprpanel" ];
-
+      exec-once = [
+        "${pkgs.hyprpanel}/bin/hyprpanel"
+        "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
+      ];
     };
   };
 

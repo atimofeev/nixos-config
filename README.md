@@ -78,10 +78,18 @@ List of configured apps and features of this config.
     - [ ] bluetooth
     - [ ] wifi
     - [ ] camera
-  - [ ] Wallpaper tool (hyprpaper)
-  - [ ] Screenshot tool
+  - [x] Wallpaper tool (hyprpaper)
+  - [x] Screenshot tool
   - [ ] Drop-down terminal [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop), [2](https://github.com/Schweber/hdrop)
+  - [ ] Cursors, icons & themes
+    - [x] Hyprcursor
+    - [x] GTK
+    - [ ] QT (telegram?)
+  - [ ] Hyprlock
+  - [ ] Hypridle
   - [ ] Night Light with schedule (wlsunset or wl-gammarelay [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/))
+    - [ ] Or Hyprsunset
+  - [ ] Dynamic workspace rules based on monitor id (0,1,2)
 
 ### Apps
 
@@ -103,7 +111,7 @@ List of configured apps and features of this config.
   - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
   - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
 - [ ] Kitty: setup layouts. [gh examples](https://github.com/search?q=enabled_layouts+path%3A**%2Fkitty.conf&type=code), [docs](https://sw.kovidgoyal.net/kitty/layouts/)
-- [ ] Terminal FM: `yazi` or `lf`
+- [x] Terminal FM: `yazi`
 
 ## Issues
 

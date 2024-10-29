@@ -14,6 +14,12 @@
   home.packages = with pkgs; [ hyprcursor ];
 
   wayland.windowManager.hyprland.settings = {
-    env = [ "HYPRCURSOR_THEME,adwaita-hyprcursor" "HYPRCURSOR_SIZE,24" ];
+    env = [
+      "HYPRCURSOR_THEME,adwaita-hyprcursor"
+      "HYPRCURSOR_SIZE,24"
+      "XCURSOR_THEME,adwaita"
+      "XCURSOR_SIZE,24"
+    ];
   };
+
 }

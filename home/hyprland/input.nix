@@ -1,25 +1,31 @@
 { vars, ... }: {
 
-  wayland.windowManager.hyprland.settings.input = {
+  wayland.windowManager.hyprland.settings = {
 
-    kb_layout = vars.kb_layouts;
-    kb_options = "grp:win_space_toggle";
-    repeat_rate = 35;
-    repeat_delay = 275;
-    numlock_by_default = 1;
-    left_handed = 0;
-    follow_mouse = 1;
-    float_switch_override_focus = 0;
+    input = {
 
-    touchpad = {
-      disable_while_typing = 1;
-      natural_scroll = 1;
-      clickfinger_behavior = 0;
-      middle_button_emulation = 1;
-      tap-to-click = 1;
-      drag_lock = 0;
+      kb_layout = vars.kb_layouts;
+      kb_options = "grp:win_space_toggle";
+      repeat_rate = 35;
+      repeat_delay = 275;
+      numlock_by_default = true;
+      sensitivity = -0.1;
+      accel_profile = "adaptive";
+
+      touchpad = { natural_scroll = 1; };
+
+    };
+
+    gestures = {
+      workspace_swipe = 1;
+      workspace_swipe_create_new = false;
+      # workspace_swipe_fingers = 3;
+      # workspace_swipe_distance = 900;
+      # workspace_swipe_invert = 1;
+      # workspace_swipe_min_speed_to_force = 30;
+      # workspace_swipe_cancel_ratio = 0.5;
+      # workspace_swipe_forever = false;
     };
 
   };
-
 }
