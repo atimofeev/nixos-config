@@ -2,13 +2,6 @@
 let f = lib.mkForce;
 in {
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
-    size = 24;
-  };
-
   gtk = {
     enable = true;
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;

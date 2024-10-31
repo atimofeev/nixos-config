@@ -14,7 +14,7 @@
   imports = [
     ./animations.nix
     ./gtk.nix
-    ./hyprcursor.nix
+    ./cursor.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
     ./input.nix

@@ -14,6 +14,10 @@
     bindl = [
       ", xf86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
       ", xf86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+      ", XF86AudioPause, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+      ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+      ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
     ];
 
     # repeat
@@ -65,7 +69,7 @@
       "SUPER, Q, killactive" # or closewindow?
       "SUPER, F, fullscreen"
       "SUPER SHIFT, F, togglefloating"
-      # "SUPER, \\, pkill rofi || rofi -show run"
+      # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
 
       # group
       "SUPER, G, togglegroup"
@@ -84,17 +88,23 @@
       "SUPER CTRL, l, movewindow, r"
 
       # workspaces
-      "SUPER, page_up, workspace, -1"
-      "SUPER, page_down, workspace, +1"
-      "SUPER, mouse_up, workspace, +1"
-      "SUPER, mouse_down, workspace, -1"
-      "SUPER, tab, workspace, m+1"
+      "SUPER, page_up, workspace, m-1"
+      "SUPER, page_down, workspace, m+1"
+      "SUPER, bracketleft, workspace, -1"
+      "SUPER, bracketright, workspace, +1"
+      "SUPER, mouse_up, workspace, m+1"
+      "SUPER, mouse_down, workspace, m-1"
+      "SUPER, tab, workspace, previous"
       "SUPER SHIFT, U, movetoworkspace, special"
       "SUPER, U, togglespecialworkspace,"
       "SUPER SHIFT, page_up, movetoworkspace, -1"
       "SUPER SHIFT, page_down, movetoworkspace, +1"
       "SUPER CTRL, page_up, movetoworkspacesilent, -1"
       "SUPER CTRL, page_down, movetoworkspacesilent, +1"
+      "SUPER SHIFT, bracketleft, movetoworkspace, -1"
+      "SUPER SHIFT, bracketright, movetoworkspace, +1"
+      "SUPER CTRL, bracketleft, movetoworkspacesilent, -1"
+      "SUPER CTRL, bracketright, movetoworkspacesilent, +1"
 
       # 1..10 workspaces
     ] ++ (builtins.concatLists (builtins.genList (x:

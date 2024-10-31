@@ -1,10 +1,20 @@
-{ vars, ... }: {
+{ vars, ... }:
+let
+  acolor1 = "rgb(c6a0f6)"; # #c6a0f6
+  acolor2 = "rgb(8aadf4)"; # #8aadf4
+  icolor1 = "rgb(5b6078)"; # #5b6078
+  active_border = "${acolor1} ${acolor2} 45deg";
+  inactive_border = "${icolor1}";
+in {
 
   wayland.windowManager.hyprland.settings = {
 
-    monitor = [ "eDP-1,1920x1080@60,0x0,1" "HDMI-A-1,1920x1080@60,1920x0,1" ];
-
-    # monitor = [ "eDP-1,1920x1080@60,0x0,1" "DP-1,1920x1080@60,1920x0,1.2" ];
+    monitor = [
+      "desc:BOE 0x0747, preferred, 0x0, 1"
+      "desc:Dell Inc. DELL P2422H 8WRR0V3, preferred, 1920x0, 1"
+      "desc:Dell Inc. DELL P2422H 6FZG7N3, preferred, auto, 1"
+      "desc:Lenovo Group Limited M14t V309WMZ3, preferred, auto, 1.2"
+    ];
 
     dwindle = {
       pseudotile = "yes";
@@ -26,11 +36,24 @@
       border_size = 2;
       resize_on_border = true;
 
-      # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-      "col.active_border" = "rgb(c6a0f6)"; # hex color #c6a0f6
+      "col.active_border" = active_border;
+      "col.inactive_border" = inactive_border;
 
       # layout = "master";
       layout = "dwindle";
+    };
+
+    group = {
+
+      "col.border_active" = active_border;
+      "col.border_inactive" = inactive_border;
+
+      groupbar = {
+        text_color = "rgb(000000)";
+        "col.active" = acolor1;
+        "col.inactive" = icolor1;
+      };
+
     };
 
     decoration = {

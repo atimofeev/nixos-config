@@ -84,12 +84,13 @@ List of configured apps and features of this config.
   - [ ] Cursors, icons & themes
     - [x] Hyprcursor
     - [x] GTK
-    - [ ] QT (telegram?)
+    - [x] QT (telegram?)
+    - [x] Kitty??
   - [ ] Hyprlock
   - [ ] Hypridle
   - [ ] Night Light with schedule (wlsunset or wl-gammarelay [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/))
     - [ ] Or Hyprsunset
-  - [ ] Dynamic workspace rules based on monitor id (0,1,2)
+  - [x] Dynamic workspace rules based on monitor id (0,1,2)
 
 ### Apps
 
