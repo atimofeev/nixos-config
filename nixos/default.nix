@@ -11,7 +11,7 @@
     ./hardware-configuration.nix
     ./intel.nix
     ./locale.nix
-    # ./nbfc.nix
+    # ./nbfc.nix # breaks bluetooth
     ./network.nix
     ./nvidia.nix
     ./power.nix
@@ -26,7 +26,11 @@
   ];
 
   system.stateVersion = vars.nix.stateVersion;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  };
 
   nixpkgs = {
     config.allowUnfree = true;
