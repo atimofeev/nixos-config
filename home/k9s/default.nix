@@ -17,7 +17,10 @@ in {
     settings.k9s.ui.skin = "skin";
     skins.skin = libx.formats.fromYAML themeSource;
 
-    aliases.aliases.de = "deployment";
+    aliases.aliases = {
+      de = "deployment";
+      dp = "deployment";
+    };
   };
 
 }
