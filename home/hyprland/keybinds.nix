@@ -40,9 +40,9 @@
       "SUPER, Return, exec, ${vars.terminal.name}"
       "SUPER SHIFT, Return, exec, ${vars.terminal.name} -e ${vars.terminal.editor}"
       "SUPER, E, exec, ${vars.terminal.name} -e yazi"
-      "SUPER SHIFT, H, exec, ${vars.terminal.name} -e htop"
+      "SUPER SHIFT, H, exec, ${vars.terminal.name} -e btop"
       "SUPER SHIFT, N, exec, ${vars.terminal.name} -e nvtop"
-      "SUPER SHIFT, S, exec, ${vars.terminal.name} -o term=xterm-kitty -e spotify_player"
+      "SUPER SHIFT, S, exec, ${vars.terminal.name} -o term=xterm-kitty --class spotify_player -e spotify_player"
       "SUPER SHIFT, B, exec, firefox --new-window"
 
       ", xf86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
