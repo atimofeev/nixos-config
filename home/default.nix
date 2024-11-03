@@ -14,6 +14,7 @@
     ./htop.nix
     ./kitty.nix
     ./mpv.nix
+    ./nushell.nix
     ./qbittorrent.nix
     ./ripgrep.nix
     ./spotify-player.nix
