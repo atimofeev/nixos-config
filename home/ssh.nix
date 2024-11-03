@@ -5,6 +5,10 @@
 
   programs.ssh = {
     enable = true;
+    addKeysToAgent = "yes";
     includes = [ config.sops.secrets."work/ssh-config".path ];
   };
+
+  services.ssh-agent.enable = true;
+
 }
