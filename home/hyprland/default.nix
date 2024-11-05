@@ -1,20 +1,10 @@
-{ pkgs, ... }:
-# TODO: apply colors:
-# https://github.com/catppuccin/hyprland
-# https://github.com/catppuccin/waybar
-# https://github.com/catppuccin/rofi
-# https://github.com/catppuccin/dunst
-# https://github.com/catppuccin/sddm
-# https://github.com/catppuccin/swaylock
-# https://github.com/catppuccin/gtk
-# https://github.com/catppuccin/cursors
-
-{
+{ pkgs, inputs, ... }: {
 
   imports = [
     ./animations.nix
     ./cursor.nix
     ./gtk.nix
+    ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
