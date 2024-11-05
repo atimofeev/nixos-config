@@ -15,15 +15,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    hyprpolkitagent = {
+      url = "github:hyprwm/hyprpolkitagent";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     hyprsunset = {
       url = "github:hyprwm/hyprsunset";
-      # inputs.nixpkgs.follows = "hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     hyprpanel = {
