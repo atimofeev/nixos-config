@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
     ./intel.nix
     ./locale.nix
+    ./logind.nix
     # ./nbfc.nix # breaks bluetooth
     ./network.nix
     ./nvidia.nix
@@ -55,6 +56,7 @@
   };
 
   # (?)fix connection issues with Razer Basilisk X Hyperspeed
+  # needs gnome-session.target?
   hardware.openrazer = {
     enable = true;
     users = [ "${vars.username}" ];
