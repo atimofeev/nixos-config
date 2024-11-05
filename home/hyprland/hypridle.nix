@@ -1,18 +1,12 @@
-{ pkgs, inputs, ... }:
-
-let
-  inherit (inputs.hyprlock.packages.${pkgs.system}) hypridle;
-  hyprlock = "${inputs.hyprlock.packages.${pkgs.system}}/bin/hyprlock";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-in {
+{ pkgs, inputs, ... }: {
 
   services.hypridle = {
     enable = true;
-    package = hypridle;
+    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
     settings = {
 
       general = {
-        lock_cmd = "pidof hyprlock || ${hyprlock}";
+        lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd =
           "(kill $(pidof hypridle) || true) && (pidof hypridle || hypridle)";
@@ -22,8 +16,8 @@ in {
 
         {
           timeout = 150; # 2.5min.
-          on-timeout = "${brightnessctl} -s set 1000";
-          on-resume = "${brightnessctl} -r";
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 1000";
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
         }
 
         {
