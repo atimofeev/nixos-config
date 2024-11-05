@@ -1,11 +1,14 @@
-_: {
+{ pkgs, inputs, ... }: {
   # TODO: setup
   # https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
   # dots: https://github.com/anotherhadi/nixy/blob/9ffeb42e142b8367d077bd1c022cac9a04cdd19d/home/scripts/system/default.nix#L48
-  # NOTE: example config
+
   programs.hyprlock = {
     enable = true;
+    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+
     settings = {
+
       general = {
         disable_loading_bar = true;
         grace = 300;
@@ -50,11 +53,6 @@ _: {
         {
           monitor = "eDP-1";
           text = "    $USER";
-          # color = foreground;
-          outline_thickness = 2;
-          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-          dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
-          dots_center = true;
           font_size = 18;
           # font_family = font + " Bold";
           position = "0, 0";
@@ -72,7 +70,7 @@ _: {
         dots_center = true;
         outer_color = "rgba(255, 255, 255, 0)";
         inner_color = "rgba(255, 255, 255, 0.1)";
-        # font_color = foreground;
+        font_color = "rgb(255,255,255)";
         fade_on_empty = false;
         # font_family = font + " Bold";
         placeholder_text = "<i>...</i>";
@@ -82,20 +80,8 @@ _: {
         valign = "center";
       }];
 
-      # input-field = [{
-      #   size = "200, 50";
-      #   position = "0, -80";
-      #   monitor = "";
-      #   dots_center = true;
-      #   fade_on_empty = false;
-      #   font_color = "rgb(202, 211, 245)";
-      #   inner_color = "rgb(91, 96, 120)";
-      #   outer_color = "rgb(24, 25, 38)";
-      #   outline_thickness = 5;
-      #   placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-      #   shadow_passes = 2;
-      # }];
-
     };
+
   };
+
 }
