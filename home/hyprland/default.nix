@@ -21,14 +21,16 @@
     # dunst # notifications
     libnotify
     hyprpicker
+    inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       exec-once = [
-        "${pkgs.hyprpanel}/bin/hyprpanel"
         "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
+        "${pkgs.hyprpanel}/bin/hyprpanel"
+        "systemctl --user start hyprpolkitagent"
       ];
     };
   };
