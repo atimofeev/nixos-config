@@ -1,4 +1,16 @@
-{ pkgs, vars, ... }: {
+{ pkgs, inputs, vars, ... }:
+let
+  term = "${vars.terminal.name}";
+  editor = "${vars.terminal.editor}";
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  hyprlock = "${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
+  hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
+  hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  swappy = "${pkgs.swappy}/bin/swappy";
+  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+in {
 
   #TODO:
   # ags config on volume/brighness change
@@ -12,12 +24,12 @@
 
     # lock
     bindl = [
-      ", xf86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
-      ", xf86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-      ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
-      ", XF86AudioPause, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
-      ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
-      ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
+      ", xf86AudioLowerVolume, exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
+      ", xf86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioPlay, exec, ${playerctl} play-pause"
+      ", XF86AudioPause, exec, ${playerctl} play-pause"
+      ", XF86AudioPrev, exec, ${playerctl} previous"
+      ", XF86AudioNext, exec, ${playerctl} next"
     ];
 
     # repeat
@@ -31,28 +43,28 @@
 
     # lock + repeat
     bindle = [
-      ", xf86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- -q"
-      ", xf86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ -q"
+      ", xf86MonBrightnessDown, exec, ${brightnessctl} set 5%- -q"
+      ", xf86MonBrightnessUp, exec, ${brightnessctl} set 5%+ -q"
     ];
 
     bind = [
       # apps
-      "SUPER, Return, exec, ${vars.terminal.name}"
-      "SUPER SHIFT, Return, exec, ${vars.terminal.name} -e ${vars.terminal.editor}"
-      "SUPER, E, exec, ${vars.terminal.name} -e yazi"
-      "SUPER SHIFT, H, exec, ${vars.terminal.name} -e btop"
-      "SUPER SHIFT, N, exec, ${vars.terminal.name} -e nvtop"
-      "SUPER SHIFT, S, exec, ${vars.terminal.name} -o term=xterm-kitty --class spotify_player -e spotify_player"
+      "SUPER, Return, exec, ${term}"
+      "SUPER SHIFT, Return, exec, ${term} -e ${editor}"
+      "SUPER, E, exec, ${term} -e yazi"
+      "SUPER SHIFT, H, exec, ${term} -e btop"
+      "SUPER SHIFT, N, exec, ${term} -e nvtop"
+      "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e spotify_player"
       "SUPER SHIFT, B, exec, firefox --new-window"
 
-      ", xf86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", xf86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
       # Make screenshots!
-      ", Print, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
-      "ALT, Print, exec, ${pkgs.hyprshot}/bin/hyprshot -m window --clipboard-only"
-      "SHIFT, Print, exec, ${pkgs.hyprshot}/bin/hyprshot -m output --clipboard-only"
-      ", xf86Cut, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --raw | ${pkgs.swappy}/bin/swappy -f -" # region -> edit
-      "SUPER, Print, exec, ${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -" # clipboard -> edit
+      ", Print, exec, ${hyprshot} -m region --clipboard-only"
+      "ALT, Print, exec, ${hyprshot} -m window --clipboard-only"
+      "SHIFT, Print, exec, ${hyprshot} -m output --clipboard-only"
+      ", xf86Cut, exec, ${hyprshot} -m region --raw | ${swappy} -f -" # region -> edit
+      "SUPER, Print, exec, ${wl-paste} | ${swappy} -f -" # clipboard -> edit
 
       # Record screen!
       # wf-recorder
@@ -61,15 +73,17 @@
       # wf-recorder -f "name.mp4"
 
       # media keys
-      "CTRL SHIFT, N, exec, ${pkgs.playerctl}/bin/playerctl next"
-      "CTRL SHIFT, P, exec, ${pkgs.playerctl}/bin/playerctl previous"
-      "CTRL SHIFT, SPACE, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+      "CTRL SHIFT, N, exec, ${playerctl} next"
+      "CTRL SHIFT, P, exec, ${playerctl} previous"
+      "CTRL SHIFT, SPACE, exec, ${playerctl} play-pause"
 
       # main
       "SUPER, Q, killactive" # or closewindow?
       "SUPER, F, fullscreen"
       "SUPER SHIFT, F, togglefloating"
       # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
+      "SUPER, B, exec, pkill .ags-wrapped || ${hyprpanel}"
+      "SUPER SHIFT, L, exec, ${hyprlock}"
 
       # group
       "SUPER, G, togglegroup"
