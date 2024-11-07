@@ -28,7 +28,7 @@
     enable = true;
     settings = {
       exec-once = [
-        "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
+        "HPWX_PREFER_FIRST=true ${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
         "${pkgs.hyprpanel}/bin/hyprpanel"
       ];
     };
