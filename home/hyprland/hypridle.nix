@@ -1,4 +1,7 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+let
+  hyprlock = "${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
+in {
 
   services.hypridle = {
     enable = true;
@@ -6,10 +9,12 @@
     settings = {
 
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "pidof hyprlock || ${hyprlock}";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd =
-          "(kill $(pidof hypridle) || true) && (pidof hypridle || hypridle)";
+          "hyprctl dispatch dpms on && ${pkgs.brightnessctl}/bin/brightnessctl -s set 7500";
+        # "(kill $(pidof hypridle) || true) && (pidof hypridle || hypridle)";
+        # "pkill hypridle || hypridle";
       };
 
       listener = [
