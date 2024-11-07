@@ -10,6 +10,7 @@
     ./hyprsunset.nix
     ./input.nix
     ./keybinds.nix
+    ./polkit-agent.nix
     ./qt.nix
     ./settings.nix
     ./window-rules.nix
@@ -21,7 +22,6 @@
     # dunst # notifications
     libnotify
     hyprpicker
-    inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
   ];
 
   wayland.windowManager.hyprland = {
@@ -30,7 +30,6 @@
       exec-once = [
         "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
         "${pkgs.hyprpanel}/bin/hyprpanel"
-        "systemctl --user start hyprpolkitagent"
       ];
     };
   };
