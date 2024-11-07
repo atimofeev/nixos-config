@@ -19,7 +19,8 @@ in {
     dwindle = {
       pseudotile = "yes";
       preserve_split = "yes";
-      special_scale_factor = 0.8;
+      special_scale_factor = 0.85;
+      force_split = 2;
     };
 
     master = {
