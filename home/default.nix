@@ -20,6 +20,7 @@
     ./spotify-player.nix
     ./ssh.nix
     ./starship.nix
+    ./swappy.nix
     ./vcv-rack.nix
     ./yazi.nix
     ./zathura.nix
