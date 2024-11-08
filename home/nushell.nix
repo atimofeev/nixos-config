@@ -17,7 +17,10 @@ _: {
     zoxide.enableNushellIntegration = true;
     yazi.enableNushellIntegration = true;
     eza.enableNushellIntegration = true;
-    carapace.enableNushellIntegration = true;
+    carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
     starship = {
       enableNushellIntegration = true;
       enableTransience = true;
