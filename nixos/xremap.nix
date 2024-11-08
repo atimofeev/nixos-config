@@ -1,6 +1,7 @@
 { vars, ... }: {
   services.xremap = {
     userName = vars.username;
+    watch = true;
     config = {
       virtual_modifiers = [ "capslock" ];
       modmap = [{
