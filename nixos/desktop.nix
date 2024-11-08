@@ -1,16 +1,23 @@
 { inputs, pkgs, vars, ... }: {
 
-  environment.systemPackages = with pkgs; [
-    switcheroo
-    gnome-graphs
-    gnome.gnome-tweaks
-    gnome.dconf-editor
-    gnomeExtensions.pop-shell
-    gnomeExtensions.appindicator
-    unstable.letterpress
-    unstable.gnomeExtensions.pip-on-top # update to v8 for compatibility with Gnome 46
-    unstable.gnomeExtensions.gamemode-shell-extension
-  ];
+  environment = {
+
+    # use wayland for electron apps & chromium
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
+    systemPackages = with pkgs; [
+      switcheroo
+      gnome-graphs
+      gnome.gnome-tweaks
+      gnome.dconf-editor
+      gnomeExtensions.pop-shell
+      gnomeExtensions.appindicator
+      unstable.letterpress
+      unstable.gnomeExtensions.pip-on-top # update to v8 for compatibility with Gnome 46
+      unstable.gnomeExtensions.gamemode-shell-extension
+    ];
+
+  };
 
   services.xserver = {
     enable = true;
