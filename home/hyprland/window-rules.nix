@@ -24,6 +24,7 @@
 
       "opacity 1.0 override, onworkspace:s[true]"
 
+      "workspace 10, class:^(Slack)$"
       "workspace special, class:^(spotify_player)$"
       "workspace special, class:^(org.telegram.desktop)$"
       # FIX: telegram media is half-broken in special
