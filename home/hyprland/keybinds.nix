@@ -81,6 +81,8 @@ in {
       "SUPER, Q, killactive" # or closewindow?
       "SUPER, F, fullscreen"
       "SUPER SHIFT, F, togglefloating"
+      "SUPER, P, pseudo" # dwindle
+      "SUPER, S, togglesplit" # dwindle
       # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
       "SUPER, B, exec, pkill .ags-wrapped || ${hyprpanel}"
       "SUPER SHIFT, L, exec, ${hyprlock}"
