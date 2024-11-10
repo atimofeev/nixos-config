@@ -4,6 +4,7 @@
 
     pointerCursor = {
       gtk.enable = true;
+      x11.enable = true;
       name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
       size = 24;
@@ -26,7 +27,7 @@
     sessionVariables = {
       HYPRCURSOR_THEME = "adwaita-hyprcursor";
       HYPRCURSOR_SIZE = "24";
-      XCURSOR_THEME = "adwaita";
+      XCURSOR_THEME = "Adwaita";
       XCURSOR_SIZE = "24";
     };
 
