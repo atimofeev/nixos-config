@@ -10,6 +10,7 @@
     ./hyprsunset.nix
     ./input.nix
     ./keybinds.nix
+    ./per-window-layout.nix
     ./polkit-agent.nix
     ./qt.nix
     ./settings.nix
@@ -28,7 +29,6 @@
     enable = true;
     settings = {
       exec-once = [
-        "HPWX_PREFER_FIRST=true ${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
         "${pkgs.hyprpanel}/bin/hyprpanel"
       ];
     };
