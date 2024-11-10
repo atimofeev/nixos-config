@@ -1,14 +1,9 @@
-{ pkgs, lib, ... }:
-let f = lib.mkForce;
-in {
+_: {
 
   qt = {
     enable = true;
-    platformTheme.name = "adwaita";
-    style = {
-      # package = pkgs.adwaita-qt;
-      name = f "adwaita-dark";
-    };
+    platformTheme.name = "Adwaita";
+    style.name = "Adwaita-dark";
   };
 
 }
