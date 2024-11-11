@@ -12,7 +12,7 @@ let
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
 in {
 
-  #TODO:
+  # TODO:
   # ags config on volume/brighness change
   # https://github.com/A7R7/hypr-config/blob/64da4c050740798bc890552f4fbb48cd4f2d7a30/hyprland.org?plain=1#L303
   wayland.windowManager.hyprland.settings = {
@@ -84,6 +84,7 @@ in {
       "SUPER, P, pseudo" # dwindle
       "SUPER, S, togglesplit" # dwindle
       # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
+      "SUPER, A, exec, pkill hyprlauncher || ${pkgs.hyprlauncher}/bin/hyprlauncher"
       "SUPER, B, exec, pkill .ags-wrapped || ${hyprpanel}"
       "SUPER SHIFT, L, exec, ${hyprlock}"
 

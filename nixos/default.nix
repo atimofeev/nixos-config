@@ -42,6 +42,13 @@
       (import ../overlays/neovim-unwrapped.nix)
       (import ../overlays/manix.nix)
       # (import ../overlays/xone.nix { inherit pkgs; })
+      (self: super: {
+        hyprlauncher = import ../pkgs/hyprlauncher.nix {
+          inherit (super)
+            lib fetchFromGitHub rustPlatform pkg-config glib gdk-pixbuf pango
+            graphene gtk4;
+        };
+      })
     ];
   };
 
