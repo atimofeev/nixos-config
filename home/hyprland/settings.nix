@@ -67,6 +67,8 @@ in {
       # dim_inactive = true;
       # dim_strength = 0.1;
 
+      dim_special = 0.35;
+
       drop_shadow = false;
       # shadow_range = 6;
       # shadow_render_power = 1;
