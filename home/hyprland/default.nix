@@ -23,6 +23,7 @@
     # dunst # notifications
     libnotify
     hyprpicker
+    hyprlauncher
   ];
 
   wayland.windowManager.hyprland = {
