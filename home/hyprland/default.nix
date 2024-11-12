@@ -21,9 +21,14 @@
   home.packages = with pkgs; [
     # sddm # display manager
     # dunst # notifications
-    libnotify
     hyprpicker
     hyprlauncher
+    libnotify
+    # FIX: some icons are missing
+    networkmanagerapplet # bin: nm-connection-editor
+    blueman # bin: blueman-manager
+    pwvucontrol
+    snapshot
   ];
 
   wayland.windowManager.hyprland = {

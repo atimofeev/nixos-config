@@ -13,7 +13,7 @@
       "float, yad"
       "center, ^(pavucontrol) "
 
-      "float, pavucontrol"
+      "float, pavucontrol|pwvucontrol"
       "float, nvidia-settings"
     ];
 
