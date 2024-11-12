@@ -2,10 +2,8 @@
   wayland.windowManager.hyprland.settings = {
 
     windowrule = [
-      "float, org.kde.polkit-kde-authentication-agent-1"
       "float, nm-connection-editor|blueman-manager"
       "float, nwg-look|qt5ct|mpv"
-      "float, onedriver|onedriver-launcher"
       "float, eog"
       "float, zoom"
       "float, rofi"
