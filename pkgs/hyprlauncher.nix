@@ -1,5 +1,5 @@
-{ lib, fetchFromGitHub, rustPlatform, pkg-config, glib, gdk-pixbuf, pango
-, graphene, gtk4 }:
+{ lib, fetchFromGitHub, rustPlatform, pkg-config, glib, pango, gtk4
+, wrapGAppsHook4 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "hyprlauncher";
@@ -14,15 +14,15 @@ rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-hS6Ff+tcDAcibbsNQawFMGyEQOS3tJmO3SM9HOBkERA=";
 
-  nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ glib gdk-pixbuf pango graphene gtk4 ];
+  nativeBuildInputs = [ pkg-config wrapGAppsHook4 ];
+  buildInputs = [ glib pango gtk4 ];
 
   meta = with lib; {
     description =
-      "GUI for launching applications, written in blazingly fast Rust!";
+      "GUI for launching applications, written in blazingly fast Rust";
     homepage = "https://github.com/hyprutils/hyprlauncher";
-    # license = licenses.mit; # NOTE: GPL-2.0
-    # maintainers = [ maintainers.azazak123 ];
+    license = lib.licenses.gpl2Only;
+    # maintainers = [ ];
     platforms = platforms.linux;
     mainProgram = "hyprlauncher";
   };

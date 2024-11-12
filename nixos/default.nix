@@ -1,8 +1,10 @@
 { inputs, pkgs, config, libx, vars, ... }: {
   imports = [
+    ../overlays
     ./games
     ./homepage
     ./work
+
     ./apps.nix # various GUI or TUI apps
     ./bluetooth.nix
     ./boot.nix
@@ -33,24 +35,7 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      inputs.hyprpanel.overlay
-      (import ../overlays/unstable.nix { inherit inputs; })
-      (import ../overlays/terraformer.nix)
-      (import ../overlays/neovim-unwrapped.nix)
-      (import ../overlays/manix.nix)
-      # (import ../overlays/xone.nix { inherit pkgs; })
-      (self: super: {
-        hyprlauncher = import ../pkgs/hyprlauncher.nix {
-          inherit (super)
-            lib fetchFromGitHub rustPlatform pkg-config glib gdk-pixbuf pango
-            graphene gtk4;
-        };
-      })
-    ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = vars.tz_name;
 
