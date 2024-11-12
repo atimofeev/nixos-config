@@ -22,6 +22,7 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true; # gamescope %command% (?)
+      platformOptimizations.enable = true; # nix-gaming
     };
   };
 

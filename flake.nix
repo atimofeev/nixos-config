@@ -47,6 +47,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
   };
@@ -65,6 +67,7 @@
           inputs.home-manager.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           inputs.xremap.nixosModules.default
+          inputs.nix-gaming.nixosModules.platformOptimizations
           inputs.nix-flatpak.nixosModules.nix-flatpak
         ];
       };
