@@ -19,17 +19,21 @@ in {
 
     # mouse
     bindm = [
-      "SUPER, mouse:272, movewindow" # move floating windows with LMK
+      "SUPER, mouse:272, movewindow" # move floating windows with SUPER+LMK
     ];
 
     # lock
     bindl = [
       ", xf86AudioLowerVolume, exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
       ", xf86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", xf86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ", XF86AudioPlay, exec, ${playerctl} play-pause"
       ", XF86AudioPause, exec, ${playerctl} play-pause"
       ", XF86AudioPrev, exec, ${playerctl} previous"
       ", XF86AudioNext, exec, ${playerctl} next"
+      "CTRL SHIFT, N, exec, ${playerctl} next"
+      "CTRL SHIFT, P, exec, ${playerctl} previous"
+      "CTRL SHIFT, SPACE, exec, ${playerctl} play-pause"
     ];
 
     # repeat
@@ -57,8 +61,6 @@ in {
       "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e spotify_player"
       "SUPER SHIFT, B, exec, firefox --new-window"
 
-      ", xf86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
-
       # Make screenshots!
       ", Print, exec, ${hyprshot} -m region --clipboard-only"
       "ALT, Print, exec, ${hyprshot} -m window --clipboard-only"
@@ -71,11 +73,6 @@ in {
       # wf-recorder -g "$(slurp)"
       # wf-recorder --audio
       # wf-recorder -f "name.mp4"
-
-      # media keys
-      "CTRL SHIFT, N, exec, ${playerctl} next"
-      "CTRL SHIFT, P, exec, ${playerctl} previous"
-      "CTRL SHIFT, SPACE, exec, ${playerctl} play-pause"
 
       # main
       "SUPER, Q, killactive" # or closewindow?
