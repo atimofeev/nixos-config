@@ -16,6 +16,7 @@
     ./settings.nix
     ./window-rules.nix
     ./workspaces.nix
+    ./xdg-mime.nix
   ];
 
   home.packages = with pkgs; [
