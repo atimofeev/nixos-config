@@ -1,96 +1,98 @@
 # NixOS configuration with dotfiles
 
-NixOS configuration with Gnome DE, utilizing catppuccin-macchiato color theme for most apps.
+NixOS configuration based on Hyprland compositor and it's ecosystem of apps, utilizing catppuccin-macchiato color theme.
 
-## Apps & Features
-
-List of configured apps and features of this config.
+## Apps & Utils
 
 ### Hardware
 
-- [ ] auto-cpufreq -> tlp
-- [x] Nvidia support
+| Type             | App          |
+| ---------------- | ------------ |
+| CPU + iGPU       | Intel        |
+| dGPU             | Nvidia       |
+| Power management | auto-cpufreq |
 
 ### Desktop Environment
 
-- [x] Gnome
-- [ ] Hyprland (currently abandoned)
+| Type              | App               |
+| ----------------- | ----------------- |
+| Display manager   | gdm               |
+| Compositor        | Hyprland          |
+| Wallpaper         | Hyprpaper         |
+| Bar               | Hyprpanel         |
+| Notifications     | Hyprpanel         |
+| OSD               | Hyprpanel         |
+| Launcher          | Hyprlauncher      |
+| Idle daemon       | Hypridle          |
+| Lockscreen        | Hyprlock          |
+| Screenshots       | Hyprshot + Swappy |
+| Clipboard manager | wl-clipboard      |
 
 ### Terminal
 
-- [x] Kitty
-- [x] Fish
-- [x] Starship
-- [x] Core & misc utils
+| Type              | App                                                           |
+| ----------------- | ------------------------------------------------------------- |
+| Terminal emulator | Kitty                                                         |
+| Shell             | Fish + Nushell                                                |
+| Prompt            | Starship                                                      |
+| Editor            | Neovim + [NixVim](https://github.com/atimofeev/nixvim-config) |
+| File browser      | Yazi                                                          |
+| Audio player      | spotify-player                                                |
+| Process monitor   | btop                                                          |
+| GPU monitor       | nvtop                                                         |
 
-### GUI/TUI Apps
+### GUI apps
 
-- [x] NeoVim (i also use [NixVim](https://github.com/atimofeev/nixvim-config) btw)
-- [ ] Firefox -> Zen-browser?
-- [x] mpv
-- [x] spotify-player
-- [x] qbittorrent
-- [ ] VCV Rack 2
-- [x] k9s
+| Type         | App         |
+| ------------ | ----------- |
+| Browser      | Firefox     |
+| Video player | mpv         |
+| Torrent      | qbittorrent |
+| Music making | vcv-rack    |
 
-### Work
+### Services
 
-- [x] Ansible
-- [x] OpenTofu
-- [ ] Docker -> Podman
-- [x] Kubernetes
-- [x] GNS3
-- [x] VM utils
+| Type           | App       |
+| -------------- | --------- |
+| Virtualization | Docker    |
+| Key remapper   | xremap    |
+| File sync      | Syncthing |
+
+### Additional Features
+
+| Type                 | App                                                   |
+| -------------------- | ----------------------------------------------------- |
+| Secret managemet     | [sops-nix](https://github.com/Mic92/sops-nix)         |
+| Gaming optimizations | [nix-gaming](https://github.com/fufexan/nix-gaming)   |
+| Flatpak              | [nix-flatpak](https://github.com/gmodena/nix-flatpak) |
 
 ## TODOs
 
-### OS
+### HW
 
-- [ ] Gaming
-  - [ ] gamemode
-  - [ ] gamescope
-  - [ ] Emulators (retroarch, etc...)
-  - [ ] [nix-gaming](https://github.com/fufexan/nix-gaming) to use steam platformOptimizations
-  - [ ] Launch options: pure iGPU & dGPU-offload
+- [ ] Fan control: fix nbfc
+- [ ] GPU: Latest nvidia drivers
 - [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
 
-### Desktop
+### OS
 
-- [ ] Gnome
-  - Tiling:
-    - [x] [gnomeExtensions.pop-shell](https://github.com/pop-os/shell)
-  - Misc:
-    - [x] Default terminal: kitty. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L45)
-    - [ ] Remove unused apps. [example](https://github.com/Konecho/nixos-config/blob/b1caefe45c071aad97726ab0d0f87895ef455a9e/system/desktop/gnome.nix#L11)
-    - [ ] Drop-down terminal extension: [gnomeExtensions.drop-down-terminal](https://github.com/zzrough/gs-extensions-drop-down-terminal) or [gnomeExtensions.quake-terminal](https://github.com/diegodario88/quake-terminal) or [gnomeExtensions.quake-mode](https://github.com/repsac-by/gnome-shell-extension-quake-mode)
-    - [ ] Configure file associations. Example: [1](https://github.com/zoriya/flake/blob/cc58c927b06f687ad524770371a9ac28edb4ea15/modules/common/apps.nix)
+- [ ] Display manager: sddm or ly?
+- [ ] Gaming
+  - [ ] Emulators (retroarch, etc...)
+  - [ ] NixOS specializations: pure iGPU & dGPU-offload
+
+### DE
+
 - [ ] Hyprland
-  - [x] Hotkeys
-  - [x] Window rules
-  - [ ] Clipboard manager
-  - [ ] Nvidia support
-  - [ ] Display manager (sddm)
-  - [ ] Bar, notifications and widgets (ags)
-  - [ ] App runner (rofi-wayland)
-  - [ ] Hardware control
-    - [x] brightness
-    - [x] volume
-    - [ ] bluetooth
-    - [ ] wifi
-    - [ ] camera
-  - [x] Wallpaper tool (hyprpaper)
-  - [x] Screenshot tool
-  - [ ] Drop-down terminal [hdrop](https://github.com/hyprwm/contrib/blob/2d4ece4a008feefddc194bde785b1d39f987b5a7/hdrop/hdrop), [2](https://github.com/Schweber/hdrop)
   - [ ] Cursors, icons & themes
     - [x] Hyprcursor
     - [x] GTK
-    - [x] QT (telegram?)
-    - [x] Kitty??
-  - [ ] Hyprlock
-  - [ ] Hypridle
-  - [ ] Night Light with schedule (wlsunset or wl-gammarelay [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/))
-    - [ ] Or Hyprsunset
-  - [x] Dynamic workspace rules based on monitor id (0,1,2)
+    - [x] QT
+    - [ ] App icons
+  - [ ] Night Light with schedule (wlsunset, wl-gammarelay: [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/), or hyprsunset)
+- [ ] Launcher: rofi?
+- [ ] Clipboard manager: try something with interactive history (wl-clipboard + rofi?)
+- [ ] Screen recorder: wf-recorder?
 
 ### Apps
 
@@ -101,8 +103,6 @@ List of configured apps and features of this config.
     - [ ] [tridactyl](https://github.com/tridactyl/tridactyl)
     - [ ] [Surgingkeys](https://github.com/brookhong/Surfingkeys)
     - [ ] [firenvim](https://github.com/glacambre/firenvim)
-  - [x] Search engines with aliases
-  - [ ] Themes: [1](https://addons.mozilla.org/en-US/firefox/addon/catppuccin-macchiato-lavender2) or [2](https://github.com/catppuccin/firefox)
   - [ ] [Extensions example with NUR](https://github.com/chadcat7/crystal/blob/d412b11824f13e251186afec31714abda29e323c/home/namish/conf/browsers/firefox/default.nix)
   - [ ] [Userstyles](https://github.com/catppuccin/userstyles)
 - [ ] Fish: preserve history `~/.local/share/fish/fish_history`
@@ -111,16 +111,19 @@ List of configured apps and features of this config.
   - [ ] try out [mpvScripts.simple-mpv-webui](https://github.com/open-dynaMIX/simple-mpv-webui) plugin
   - [ ] import [auto-save-state](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/auto-save-state.lua) script
   - [ ] import [select-subtitle](https://github.com/atimofeev/dotfiles/blob/main/mpv/files/scripts/select-subtitle.lua) script
-- [ ] Kitty: setup layouts. [gh examples](https://github.com/search?q=enabled_layouts+path%3A**%2Fkitty.conf&type=code), [docs](https://sw.kovidgoyal.net/kitty/layouts/)
-- [x] Terminal FM: `yazi`
+  - [ ] try out [mpv-manga-reader](https://github.com/Dudemanguy/mpv-manga-reader). Example: [1](https://github.com/azuwis/nix-config/blob/304360532bd517e5c8fff81a153e8c654f66a64c/common/mpv/manga-reader.nix#L24)
+  - [ ] build custom script. Example: [1](https://github.com/DarkKronicle/nazarick/blob/ace0c35332dbab25bde4502e7d3dc64dc38c996d/modules/home/app/mpv/leader.nix#L9)
+- [ ] Kitty: setup layouts. Example: [gh](https://github.com/search?q=enabled_layouts+path%3A**%2Fkitty.conf&type=code), [docs](https://sw.kovidgoyal.net/kitty/layouts/)
 
 ## Issues
 
-- `2.4 wireless mouse` on boot won't work properly unless dongle is reconnected\
-  Not reproducible with clean Nix Gnome setup
-- `xremap` KBs to launch apps causes very weird behavior in Gnome with user mode
-  Probably should wait until proper [nixos implementation](https://github.com/NixOS/nixpkgs/issues/234076) \
-  Or move to Hyprland: [1](https://github.com/Maticzpl/nix-config/blob/1d84bb79d5e3f0e0b7996e914653c1cfc89e7844/nix-modules/hyprland/xremap.nix)
+- `hyprland`
+  - Moving windows into active special workspace will break the current view
+  - xwayland apps (e.g. slack) causes stutters & instability over time (nvidia + wayland issue?)
+- `hyprlock`
+  - Random RSODs on wake
+  - No password prompt on manual lock
+  - Random issues on wake after manual suspend (e.g. close lid)
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
 - `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
