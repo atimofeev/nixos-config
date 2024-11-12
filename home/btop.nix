@@ -6,6 +6,8 @@
     settings = {
       color_theme = "catppuccin_macchiato";
       vim_keys = true;
+      proc_gradient = false;
+      proc_per_core = true;
     };
   };
 
