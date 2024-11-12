@@ -4,9 +4,8 @@
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = true;
     graphics = {
-      enable32Bit = true;
-      extraPackages32 = [ pkgs.intel-vaapi-driver pkgs.intel-media-driver ];
-      extraPackages = [ pkgs.intel-vaapi-driver pkgs.intel-media-driver ];
+      enable = true;
+      extraPackages = [ pkgs.intel-media-driver ];
     };
   };
 
