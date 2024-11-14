@@ -42,8 +42,10 @@
 
   time.timeZone = vars.tz_name;
 
-  fonts.packages =
-    [ (pkgs.nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; }) ];
+  fonts.packages = [
+    (pkgs.nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) # for Hyprpanel
+  ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs pkgs libx vars; };
