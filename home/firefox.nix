@@ -55,6 +55,7 @@
       isDefault = true;
 
       settings = {
+
         "browser.aboutConfig.showWarning" = false;
         "browser.aboutwelcome.enabled" = false;
         "browser.tabs.unloadOnLowMemory" = true;
@@ -65,6 +66,7 @@
         "browser.urlbar.untrimOnUserInteraction.featureGate" = true;
         "cookiebanners.service.mode" = 1;
         "cookiebanners.service.mode.privateBrowsing" = 1;
+        "extensions.getAddons.showPane" = false;
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
         "findbar.highlightAll" = true;
 
@@ -89,6 +91,7 @@
         "security.insecure_connection_text.enabled" = true;
         "security.insecure_connection_text.pbmode.enabled" = true;
         "security.osclientcerts.autoload" = true;
+
       };
 
       search = {
