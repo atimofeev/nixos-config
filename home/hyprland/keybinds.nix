@@ -111,14 +111,14 @@ in {
       "SUPER, tab, workspace, previous"
       "SUPER SHIFT, U, movetoworkspace, special"
       "SUPER, U, togglespecialworkspace,"
-      "SUPER SHIFT, page_up, movetoworkspace, -1"
-      "SUPER SHIFT, page_down, movetoworkspace, +1"
-      "SUPER CTRL, page_up, movetoworkspacesilent, -1"
-      "SUPER CTRL, page_down, movetoworkspacesilent, +1"
-      "SUPER SHIFT, bracketleft, movetoworkspace, -1"
-      "SUPER SHIFT, bracketright, movetoworkspace, +1"
-      "SUPER CTRL, bracketleft, movetoworkspacesilent, -1"
-      "SUPER CTRL, bracketright, movetoworkspacesilent, +1"
+      "SUPER CTRL, page_up, movetoworkspace, -1"
+      "SUPER CTRL, page_down, movetoworkspace, +1"
+      "SUPER SHIFT, page_up, movetoworkspacesilent, -1"
+      "SUPER SHIFT, page_down, movetoworkspacesilent, +1"
+      "SUPER CTRL, bracketleft, movetoworkspace, -1"
+      "SUPER CTRL, bracketright, movetoworkspace, +1"
+      "SUPER SHIFT, bracketleft, movetoworkspacesilent, -1"
+      "SUPER SHIFT, bracketright, movetoworkspacesilent, +1"
 
       # 1..10 workspaces
     ] ++ (builtins.concatLists (builtins.genList (x:
