@@ -10,6 +10,7 @@
     ./btop.nix
     ./firefox.nix
     ./fish.nix
+    ./playerctl.nix
     ./git.nix
     ./htop.nix
     ./kitty.nix
