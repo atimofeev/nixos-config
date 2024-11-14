@@ -21,6 +21,7 @@
     openscad
     upscayl
     eyedropper # pick colors
+    parabolic # download video & audio
   ];
 
 }
