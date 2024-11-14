@@ -141,6 +141,17 @@ in {
         style = "fg:${section5.fg} bg:${section5.bg}";
         format = "[!$int]($style)";
       };
+
+      # NOTE: trying to utilize vim keybinds and show current mode in prompt
+      character = {
+        success_symbol = "[I](fg:${section5.fg} bg:${section5.bg})";
+        error_symbol = "[E](fg:${section5.fg} bg:${section5.bg})";
+        vicmd_symbol = "[N](fg:${section5.fg} bg:${section5.bg})";
+        vimcmd_replace_one_symbol = "[r](fg:${section5.fg} bg:${section5.bg})";
+        vimcmd_replace_symbol = "[R](fg:${section5.fg} bg:${section5.bg})";
+        vimcmd_visual_symbol = "[V](fg:${section5.fg} bg:${section5.bg})";
+      };
+
     };
   };
 }
