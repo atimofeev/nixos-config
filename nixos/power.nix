@@ -1,4 +1,5 @@
 _: {
+
   powerManagement = {
     enable = true;
     powertop.enable = true;
@@ -6,21 +7,34 @@ _: {
 
   services = {
     power-profiles-daemon.enable = false; # to avoid collision with auto-cpufreq
-    auto-cpufreq.enable = true;
-    auto-cpufreq.settings = {
 
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-        scaling_max_freq = 1500000;
-      };
+    upower = {
+      enable = true;
+      percentageLow = 15;
+      percentageCritical = 7;
+      percentageAction = 3;
+      criticalPowerAction = "Hibernate";
+    };
 
-      charger = {
-        governor = "performance";
-        turbo = "auto";
-        # scaling_max_freq = 2000000;
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+          scaling_max_freq = 1500 * 1000;
+        };
+
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+          # scaling_max_freq = 2000000;
+        };
+
       };
     };
+
   };
 
   # services.tlp = {
