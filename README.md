@@ -77,6 +77,8 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 ### OS
 
 - [ ] Display manager: sddm or ly?
+- [ ] Low battery notifications (from upower)\
+      Hyprpanel issue: [1](https://github.com/Jas-SinghFSU/HyprPanel/issues/341)
 - [ ] Gaming
   - [ ] Emulators (retroarch, etc...)
   - [ ] NixOS specializations: pure iGPU & dGPU-offload
@@ -124,6 +126,9 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
   - Random RSODs on wake
   - No password prompt on manual lock
   - Random issues on wake after manual suspend (e.g. close lid)
+- `Marshall Motiff II ANC` glitchy A2DP sink, becoming unavailable. Fixed with either pipewire restart or reboot\
+  Issue somewhere in between `pipewire` and `bluez`\
+  The solution? [1](https://github.com/bluez/bluez/issues/419)
 - `xone` dongle does not enter pairing mode\
   Probably can be fixed by [overlay](https://github.com/search?q=repo%3Agiovannilucasmoura%2Fdotfiles%20xone&type=code) or patch including [pull request](https://github.com/medusalix/xone/pull/35) code
 - `analog-input-internal-mic` had +30db gain on `Internal Mic Boost Volume`, alsa state config asset is not working\
