@@ -18,10 +18,10 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 | ----------------- | ----------------- |
 | Display manager   | gdm               |
 | Compositor        | Hyprland          |
-| Wallpaper         | Hyprpaper         |
-| Bar               | Hyprpanel         |
-| Notifications     | Hyprpanel         |
-| OSD               | Hyprpanel         |
+| Wallpaper         | HyprPaper         |
+| Bar               | HyprPanel         |
+| Notifications     | HyprPanel         |
+| OSD               | HyprPanel         |
 | Launcher          | Hyprlauncher      |
 | Idle daemon       | Hypridle          |
 | Lockscreen        | Hyprlock          |
@@ -78,7 +78,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 - [ ] Display manager: sddm or ly?
 - [ ] Low battery notifications (from upower)\
-      Hyprpanel issue: [1](https://github.com/Jas-SinghFSU/HyprPanel/issues/341)
+       Hyprpanel issue: [1](https://github.com/Jas-SinghFSU/HyprPanel/issues/341)
 - [ ] Gaming
   - [ ] Emulators (retroarch, etc...)
   - [ ] NixOS specializations: pure iGPU & dGPU-offload
@@ -95,6 +95,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 - [ ] Launcher: rofi?
 - [ ] Clipboard manager: try something with interactive history (wl-clipboard + rofi?)
 - [ ] Screen recorder: wf-recorder?
+- [ ] Swaylock: fork & implement blur based on latest version (most swaylock-effects forks are not maintained)
 
 ### Apps
 
@@ -122,10 +123,6 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 - `hyprland`
   - Moving windows into active special workspace will break the current view
   - xwayland apps (e.g. slack) causes stutters & instability over time (nvidia + wayland issue?)
-- `hyprlock`
-  - Random RSODs on wake
-  - No password prompt on manual lock
-  - Random issues on wake after manual suspend (e.g. close lid)
 - `Marshall Motiff II ANC` glitchy A2DP sink, becoming unavailable. Fixed with either pipewire restart or reboot\
   Issue somewhere in between `pipewire` and `bluez`\
   The solution? [1](https://github.com/bluez/bluez/issues/419)
