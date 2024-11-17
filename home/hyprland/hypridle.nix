@@ -1,20 +1,22 @@
 { pkgs, inputs, ... }:
 let
   hyprlock = "${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
+  hypridle = "${inputs.hypridle.packages.${pkgs.system}.hypridle}/bin/hypridle";
 in {
 
   services.hypridle = {
-    enable = true;
+    # enable = true;
+    enable = false;
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
     settings = {
 
       general = {
-        lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${hyprlock}";
-        before_sleep_cmd = "loginctl lock-session";
+        lock_cmd = "pidof hyprlock || ${hyprlock}";
+        before_sleep_cmd = "loginctl lock-session && sleep 2";
         after_sleep_cmd =
-          "hyprctl dispatch dpms on && ${pkgs.brightnessctl}/bin/brightnessctl -s set 7500";
-        # "(kill $(pidof hypridle) || true) && (pidof hypridle || hypridle)";
-        # "pkill hypridle || hypridle";
+          # "hyprctl dispatch dpms on && ${pkgs.brightnessctl}/bin/brightnessctl -s set 7500";
+          # "systemctl --user restart hypridle.service && hyprctl dispatch dpms on";
+          "(pkill hypridle || true) && (pidof hypridle || ${hypridle}) && hyprctl dispatch dpms on";
       };
 
       listener = [
@@ -44,16 +46,6 @@ in {
       ];
 
     };
-  };
-
-  wayland.windowManager.hyprland.settings = {
-    windowrulev2 = [
-      "idleinhibit always, fullscreen:1"
-      "idleinhibit, class:^(Slack)$ title:^(.*Huddle.*)$"
-      "idleinhibit, class:^(firefox)$ title:^(Meet.*)$"
-      "idleinhibit, class:^(firefox)$ title:^(.*Miro.*)$"
-      # "idleinhibit, class:^(firefox)$ title:^(.*YouTube.*)$"
-    ];
   };
 
 }

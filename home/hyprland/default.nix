@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
 
   imports = [
     ./animations.nix
@@ -14,6 +14,7 @@
     ./polkit-agent.nix
     ./qt.nix
     ./settings.nix
+    ./swayidle-swaylock.nix
     ./window-rules.nix
     ./workspaces.nix
     ./xdg-mime.nix

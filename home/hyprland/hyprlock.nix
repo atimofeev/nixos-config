@@ -1,4 +1,6 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+let date = "${pkgs.coreutils}/bin/date";
+in {
   # TODO: setup
   # https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
   # dots: https://github.com/anotherhadi/nixy/blob/9ffeb42e142b8367d077bd1c022cac9a04cdd19d/home/scripts/system/default.nix#L48
@@ -30,7 +32,7 @@
         {
           # Day-Month-Date
           monitor = "";
-          text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+          text = ''cmd[update:1000] echo -e "$(${date} +"%A, %B %d")"'';
           # color = foreground;
           font_size = 28;
           # font_family = font + " Bold";
@@ -41,7 +43,7 @@
         # Time
         {
           monitor = "";
-          text = ''cmd[update:1000] echo "<span>$(date +"%H:%M")</span>"'';
+          text = ''cmd[update:1000] echo "<span>$(${date} +"%H:%M")</span>"'';
           # color = foreground;
           font_size = 80;
           font_family = "steelfish outline regular";

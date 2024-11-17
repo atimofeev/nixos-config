@@ -3,7 +3,6 @@ let
   term = "${vars.terminal.name}";
   editor = "${vars.terminal.editor}";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  hyprlock = "${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
   hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
   hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -83,7 +82,7 @@ in {
       # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
       "SUPER, A, exec, pkill hyprlauncher || ${pkgs.hyprlauncher}/bin/hyprlauncher"
       "SUPER, B, exec, pkill .ags-wrapped || ${hyprpanel}"
-      "SUPER SHIFT, L, exec, ${hyprlock}"
+      "SUPER SHIFT, L, exec, ${pkgs.elogind}/bin/loginctl lock-session"
 
       # group
       "SUPER, G, togglegroup"
