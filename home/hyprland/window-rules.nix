@@ -19,11 +19,10 @@ _: {
       "workspace 10, class:^(Slack)$"
       "workspace special silent, class:^(spotify_player)$"
       "workspace special silent, class:^(org.telegram.desktop)$"
-      # FIX: telegram media is half-broken in special
-      # "workspace 1, class:^(org.telegram.desktop)$ title:^(Media viever)$"
-      # "fullscreen, class:^(org.telegram.desktop)$ title:^(Media viever)$"
-      # "workspace unset, class:^(org.telegram.desktop)$ title:^(Media viever)$"
-      # "float, class:^(org.telegram.desktop)$ title:^(Media viever)$"
+
+      "stayfocused, class:^(polkit-gnome-authentication-agent-1)$"
+      "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
+      "noanim, class:^(polkit-gnome-authentication-agent-1)$"
 
       # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication.  This is because the window for
       # PIP changes after on first launch, and will not inherit the rules...
