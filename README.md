@@ -91,7 +91,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
     - [x] GTK
     - [x] QT
     - [ ] App icons
-  - [ ] Night Light with schedule (wlsunset, wl-gammarelay: [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/), or hyprsunset)
+  - [ ] Night Light with schedule (wlsunset, wl-gammarelay: [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/), hyprsunset, gammastep, wl-gammarelay-rs)
 - [ ] Launcher: rofi?
 - [ ] Clipboard manager: try something with interactive history (wl-clipboard + rofi?)
 - [ ] Screen recorder: wf-recorder?
