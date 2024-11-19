@@ -59,6 +59,11 @@ in {
         event = "before-sleep";
         command = lockCommand;
       }
+
+      {
+        event = "after-resume";
+        command = "${hyprctl} dispatch dpms on";
+      }
     ];
   };
 
