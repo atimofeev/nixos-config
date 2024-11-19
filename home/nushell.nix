@@ -1,4 +1,4 @@
-_: {
+{ pkgs, ... }: {
 
   # TODO: learn nu https://www.nushell.sh/book/getting_started.html
   # TODO: configure https://www.nushell.sh/book/configuration.html
@@ -37,6 +37,8 @@ _: {
             # completion_mode: "list",
             # completion_algorithm: fuzzy,
           }
+
+          plugin add ${pkgs.nushellPlugins.query}/bin/nu_plugin_query
         '';
     };
   };
