@@ -77,13 +77,13 @@
         "full-screen-api.warning.timeout" = 0;
 
         # gpu-accelerated stuff
-        "gfx.webrender.all" = true;
-        "gfx.webrender.compositor.force-enabled" = true;
-        "gfx.x11-egl.force-enabled" = true;
-        "media.av1.enabled" = true;
-        "media.ffmpeg.vaapi.enabled" = true;
-        "media.hardware-video-decoding.force-enabled" = true;
-        "media.hls.enabled" = true;
+        "gfx.webrender.all" = false;
+        "gfx.webrender.compositor.force-enabled" = false;
+        "gfx.x11-egl.force-enabled" = false;
+        "media.av1.enabled" = false;
+        "media.ffmpeg.vaapi.enabled" = false;
+        "media.hardware-video-decoding.force-enabled" = false;
+        "media.hls.enabled" = false;
 
         "media.videocontrols.picture-in-picture.enabled" = true;
         "permissions.default.desktop-notification" = 2;
