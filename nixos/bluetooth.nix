@@ -17,7 +17,8 @@
 
   hardware.bluetooth = {
     enable = true;
-    package = pkgs.bluez566.bluez;
+    # package = pkgs.bluez566.bluez;
+    package = pkgs.unstable.bluez;
     settings = {
 
       Policy.AutoEnable = true;
