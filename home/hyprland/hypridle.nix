@@ -5,8 +5,7 @@ let
 in {
 
   services.hypridle = {
-    # enable = true;
-    enable = false;
+    enable = true;
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
     settings = {
 

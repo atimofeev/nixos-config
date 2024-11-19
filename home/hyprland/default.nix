@@ -4,8 +4,8 @@
     ./animations.nix
     ./cursor.nix
     ./gtk.nix
-    ./hypridle.nix
-    ./hyprlock.nix
+    # ./hypridle.nix
+    # ./hyprlock.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
     ./input.nix
