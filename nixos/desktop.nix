@@ -26,7 +26,27 @@
 
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
+      displayManager = {
+        lightdm.enable = false;
+        # gdm.enable = true;
+
+        # ly = {
+        #   enable = false;
+        #   settings = {
+        #     animation = "none";
+        #     asterisk = "*";
+        #     # bg = "";
+        #     # border_fg = "";
+        #     clock = "%a %d %b %Y - %H:%M";
+        #     default_input = "password";
+        #     # error_bg = "";
+        #     # error_fg = "";
+        #     load = true;
+        #     save = true;
+        #   };
+        # };
+
+      };
       # desktopManager.gnome.enable = true;
       xkb = {
         layout = vars.kb_layouts;
