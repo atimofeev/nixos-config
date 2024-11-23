@@ -2,7 +2,6 @@
   imports = [
     ./gnome
     ./hyprland
-    ./rofi
     ./terminal
 
     ./firefox.nix
