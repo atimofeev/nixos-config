@@ -1,4 +1,4 @@
-{ pkgs, config, vars, ... }: {
+{ lib, pkgs, config, vars, ... }: {
   environment.systemPackages = with pkgs; [
     ansible
     sshpass # ssh auth with password
@@ -29,8 +29,11 @@
 
   home-manager.users.${vars.username} = {
     programs.fish.shellAliases = let
-      extra-vars =
-        "ansible_ssh_private_key_file=/home/${vars.username}/.ssh/id_ed25519 ansible_ssh_extra_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'";
+      extra-vars = lib.concatStringsSep " " [
+        "ansible_ssh_private_key_file=/home/${vars.username}/.ssh/id_ed25519"
+        "ansible_ssh_extra_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'"
+        "ansible_python_interpreter=auto_silent"
+      ];
     in {
       ansible =
         ''ansible --extra-vars "ansible_user=${vars.username} ${extra-vars}"'';
