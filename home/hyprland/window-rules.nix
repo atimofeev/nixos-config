@@ -17,7 +17,9 @@ _: {
       "opacity 1.0 override, onworkspace:s[true]"
 
       "workspace 10, class:^(Slack)$"
-      "noanim, class:^(Slack)$"
+
+      # NOTE: trying to fix electron-wayland-intel issues
+      "noanim, class:^(Slack|steam)$"
 
       "workspace special silent, class:^(spotify_player)$"
       "workspace special silent, class:^(org.telegram.desktop)$"
