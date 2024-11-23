@@ -2,30 +2,15 @@
   imports = [
     ./gnome
     ./hyprland
-    ./k9s
-    ./nvim
     ./rofi
+    ./terminal
 
-    ./bat.nix
-    ./btop.nix
     ./firefox.nix
-    ./fish.nix
-    ./playerctl.nix
-    ./git.nix
-    ./htop.nix
-    ./kitty.nix
     ./mpv.nix
-    ./nushell.nix
     ./qbittorrent.nix
-    ./ripgrep.nix
-    ./spotify-player.nix
-    ./ssh.nix
-    ./starship.nix
     ./swappy.nix
     ./vcv-rack.nix
-    ./yazi.nix
     ./zathura.nix
-    ./zoxide.nix
 
     inputs.sops-nix.homeManagerModules.sops
   ];

@@ -114,6 +114,7 @@ in {
       };
 
       git_status = {
+        disabled = true;
         format = "[$all_status$ahead_behind ]($style)";
         style = "fg:${section3.fg} bg:${section3.bg}";
       };
