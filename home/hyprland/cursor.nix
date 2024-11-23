@@ -1,5 +1,9 @@
 { pkgs, ... }: {
 
+  # wayland.windowManager.hyprland.settings = {
+  #   cursor = { no_hardware_cursors = true; };
+  # };
+
   home = {
 
     pointerCursor = {
@@ -25,10 +29,11 @@
     packages = with pkgs; [ hyprcursor ];
 
     sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = 1;
       HYPRCURSOR_THEME = "adwaita-hyprcursor";
-      HYPRCURSOR_SIZE = "24";
+      HYPRCURSOR_SIZE = 24;
       XCURSOR_THEME = "Adwaita";
-      XCURSOR_SIZE = "24";
+      XCURSOR_SIZE = 24;
     };
 
   };
