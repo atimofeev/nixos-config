@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, vars, ... }:
 let date = "${pkgs.coreutils}/bin/date";
 in {
   # TODO: setup
@@ -19,7 +19,7 @@ in {
       };
 
       background = [{
-        path = "${../../assets/dark-shore.png}";
+        path = vars.wallpaper;
         blur_passes = 3;
         blur_size = 8;
         contrast = 0.8916;

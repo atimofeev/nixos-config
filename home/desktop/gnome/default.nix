@@ -1,5 +1,5 @@
-_:
-let wallpaper-uri = "file://${../../assets/dark-shore-upscaled.png}";
+{ vars, ... }:
+let wallpaper-uri = "file://${vars.wallpaper}";
 in {
   imports = [
     ./dark-mode.nix

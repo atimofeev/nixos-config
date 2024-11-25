@@ -79,7 +79,7 @@ in {
       # timestr = "%H:%M";
       # datestr = "%d %B, %a";
 
-      # image = "${../../assets/dark-shore.png}";
+      # image = vars.wallpaper;
       # effect-blur = "20x3";
       # effect-greyscale = true;
 
