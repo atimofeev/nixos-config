@@ -9,8 +9,11 @@
   nixpkgs.overlays = [
     (final: prev: {
       ansible = pkgs.unstable.ansible.overrideAttrs (oldAttrs: {
-        propagatedBuildInputs = oldAttrs.propagatedBuildInputs
-          ++ [ pkgs.unstable.python3Packages.hvac ];
+        propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+          pkgs.unstable.python3Packages.hvac
+          pkgs.unstable.python3Packages.botocore
+          pkgs.unstable.python3Packages.boto3
+        ];
       });
     })
   ];
@@ -28,11 +31,25 @@
   '';
 
   home-manager.users.${vars.username} = {
+
+    home.file.".ansible.cfg" = {
+      text = # conf
+        ''
+          [defaults]
+          # enable_plugins = aws_ec2, aws_ssm
+          inventory = /home/${vars.username}/repos/betby/ansible/playbooks/inventories/prod/
+          interpreter_python = auto_silent
+          max_diff_size = 0
+          # [inventory]
+          # enable_plugins = ini, aws_ec2
+        '';
+      target = ".ansible.cfg";
+    };
+
     programs.fish.shellAliases = let
       extra-vars = lib.concatStringsSep " " [
         "ansible_ssh_private_key_file=/home/${vars.username}/.ssh/id_ed25519"
         "ansible_ssh_extra_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'"
-        "ansible_python_interpreter=auto_silent"
       ];
     in {
       ansible =
