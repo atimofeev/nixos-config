@@ -10,9 +10,10 @@ _: {
     ];
 
     windowrulev2 = [
-      "float, class:steam, title:^(Steam Settings|Sign in to Steam)$"
+      "float, class:steam, title:^(Steam Settings|Sign in to Steam|Friends List)$"
       "float, class:firefox, title:^(About Mozilla Firefox)$"
-      "float, title:^(.*Huddle.*)$"
+      "float, class:Slack title:^(.*Huddle.*)$"
+      "float, class:Slack title:^(.*Canvas.*)$"
 
       "opacity 1.0 override, onworkspace:s[true]"
 
