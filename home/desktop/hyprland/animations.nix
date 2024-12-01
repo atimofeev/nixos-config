@@ -22,9 +22,9 @@ _: {
       "windowsOut, 1, 2, winOut, popin"
       "windowsMove, 1, 1, wind, slide"
       "border, 1, 1, linear"
-      "fade, 1, 5, overshot"
-      "workspaces, 1, 5, wind"
-      "windows, 1, 5, bounce, popin"
+      "fade, 1, 3, overshot"
+      "workspaces, 1, 3, wind"
+      "windows, 1, 3, bounce, popin"
     ];
 
   };
