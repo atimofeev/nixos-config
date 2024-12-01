@@ -4,7 +4,7 @@ let
   editor = "${vars.terminal.editor}";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
-  hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+  hyprshot = "${pkgs.unstable.hyprshot}/bin/hyprshot";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   swappy = "${pkgs.swappy}/bin/swappy";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
@@ -61,10 +61,10 @@ in {
       "SUPER SHIFT, B, exec, firefox --new-window"
 
       # Make screenshots!
-      ", Print, exec, ${hyprshot} -m region --clipboard-only"
-      "ALT, Print, exec, ${hyprshot} -m window --clipboard-only"
-      "SHIFT, Print, exec, ${hyprshot} -m output --clipboard-only"
-      ", xf86Cut, exec, ${hyprshot} -m region --raw | ${swappy} -f -" # region -> edit
+      ", Print, exec, ${hyprshot} -m region --clipboard-only --freeze"
+      "ALT, Print, exec, ${hyprshot} -m window --clipboard-only --freeze"
+      "SHIFT, Print, exec, ${hyprshot} -m output --clipboard-only --freeze"
+      ", xf86Cut, exec, ${hyprshot} -m region --raw --freeze | ${swappy} -f -" # region -> edit
       "SUPER, Print, exec, ${wl-paste} | ${swappy} -f -" # clipboard -> edit
 
       # Record screen!
