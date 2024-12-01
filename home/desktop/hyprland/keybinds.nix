@@ -1,4 +1,4 @@
-{ pkgs, inputs, vars, ... }:
+{ pkgs, vars, ... }:
 let
   term = "${vars.terminal.name}";
   editor = "${vars.terminal.editor}";
@@ -126,8 +126,8 @@ in {
         in builtins.toString (x + 1 - (c * 10));
       in [
         "SUPER, ${ws}, workspace, ${toString (x + 1)}"
-        "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-        "SUPER CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+        "SUPER CTRL, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        "SUPER SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
       ]) 10));
 
   };
