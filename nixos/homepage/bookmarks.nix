@@ -194,6 +194,13 @@ _: {
           }];
         }
         {
+          claude = [{
+            abbr = "CL";
+            href = "https://claude.ai/new";
+            icon = "si-anthropic-#191919";
+          }];
+        }
+        {
           translate = [{
             abbr = "GT";
             href = "https://translate.google.com/";
