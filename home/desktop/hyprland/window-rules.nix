@@ -10,7 +10,7 @@ _: {
     ];
 
     windowrulev2 = [
-      "float, class:steam, title:^(Steam Settings|Sign in to Steam|Friends List)$"
+      "float, class:steam, title:^(Steam Settings|Sign in to Steam|Friends List|Steam - Browser)$"
       "float, class:firefox, title:^(About Mozilla Firefox)$"
       "float, class:Slack title:^(.*Huddle.*)$"
       "float, class:Slack title:^(.*Canvas.*)$"
