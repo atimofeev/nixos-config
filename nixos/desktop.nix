@@ -22,6 +22,8 @@
   };
 
   services = {
+    dbus.implementation = "broker";
+
     gvfs.enable = true;
 
     xserver = {
