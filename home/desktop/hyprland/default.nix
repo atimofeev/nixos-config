@@ -1,11 +1,12 @@
 { pkgs, ... }: {
 
   imports = [
-    ./animations.nix
-    ./cursor.nix
-    ./gtk.nix
     # ./hypridle.nix
     # ./hyprlock.nix
+    ./animations.nix
+    ./cursor.nix
+    ./fuzzel.nix
+    ./gtk.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
     ./input.nix

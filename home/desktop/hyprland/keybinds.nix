@@ -80,9 +80,10 @@ in {
       "SUPER, P, pseudo" # dwindle
       "SUPER, S, togglesplit" # dwindle
       # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
-      "SUPER, A, exec, pkill hyprlauncher || ${pkgs.hyprlauncher}/bin/hyprlauncher"
       "SUPER, B, exec, pkill .ags-wrapped || ${hyprpanel}"
       "SUPER SHIFT, L, exec, ${pkgs.elogind}/bin/loginctl lock-session"
+      # "SUPER, A, exec, pkill hyprlauncher || ${prefix} ${pkgs.hyprlauncher}/bin/hyprlauncher"
+      "SUPER, A, exec, pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel"
 
       # group
       "SUPER, G, togglegroup"
