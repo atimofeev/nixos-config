@@ -20,6 +20,8 @@ in {
     aliases.aliases = {
       de = "deployment";
       dp = "deployment";
+      cr = "clusterrole";
+      crb = "clusterrolebinding";
     };
   };
 
