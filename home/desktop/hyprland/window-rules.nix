@@ -37,5 +37,6 @@ _: {
       "size 25% 25%, title:^(Firefox|Picture-in-Picture)$"
       "move 72% 7%, title:^(Firefox|Picture-in-Picture)$"
     ];
+
   };
 }

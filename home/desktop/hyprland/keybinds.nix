@@ -1,6 +1,8 @@
 { pkgs, vars, ... }:
 let
-  term = "${vars.terminal.name}";
+  # prefix = "uwsm app --";
+  prefix = "";
+  term = "${prefix} ${vars.terminal.name}";
   editor = "${vars.terminal.editor}";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
@@ -10,10 +12,6 @@ let
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
 in {
-
-  # TODO:
-  # ags config on volume/brighness change
-  # https://github.com/A7R7/hypr-config/blob/64da4c050740798bc890552f4fbb48cd4f2d7a30/hyprland.org?plain=1#L303
   wayland.windowManager.hyprland.settings = {
 
     # mouse
@@ -58,7 +56,7 @@ in {
       "SUPER SHIFT, H, exec, ${term} -e btop"
       "SUPER SHIFT, N, exec, ${term} -e nvtop"
       "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e spotify_player"
-      "SUPER SHIFT, B, exec, firefox --new-window"
+      "SUPER SHIFT, B, exec, ${prefix} firefox --new-window"
 
       # Make screenshots!
       ", Print, exec, ${hyprshot} -m region --clipboard-only --freeze"
@@ -80,10 +78,10 @@ in {
       "SUPER, P, pseudo" # dwindle
       "SUPER, S, togglesplit" # dwindle
       # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
-      "SUPER, B, exec, pkill .ags-wrapped || ${hyprpanel}"
-      "SUPER SHIFT, L, exec, ${pkgs.elogind}/bin/loginctl lock-session"
       # "SUPER, A, exec, pkill hyprlauncher || ${prefix} ${pkgs.hyprlauncher}/bin/hyprlauncher"
       "SUPER, A, exec, pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel"
+      "SUPER, B, exec, pkill .ags-wrapped || ${prefix} ${hyprpanel}"
+      "SUPER SHIFT, L, exec, ${prefix} ${pkgs.elogind}/bin/loginctl lock-session"
 
       # group
       "SUPER, G, togglegroup"
@@ -102,10 +100,10 @@ in {
       "SUPER CTRL, l, movewindow, r"
 
       # workspaces
-      "SUPER, page_up, workspace, m-1"
-      "SUPER, page_down, workspace, m+1"
-      "SUPER, bracketleft, workspace, -1"
-      "SUPER, bracketright, workspace, +1"
+      "SUPER, page_up, workspace, -1"
+      "SUPER, page_down, workspace, +1"
+      "SUPER, bracketleft, workspace, m-1"
+      "SUPER, bracketright, workspace, m+1"
       "SUPER, mouse_up, workspace, m+1"
       "SUPER, mouse_down, workspace, m-1"
       "SUPER, tab, workspace, previous"

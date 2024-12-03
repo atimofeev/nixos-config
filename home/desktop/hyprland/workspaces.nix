@@ -1,5 +1,4 @@
 _: {
-
   wayland.windowManager.hyprland.settings = {
 
     workspace = [
@@ -20,11 +19,11 @@ _: {
     ];
 
     binds = {
-      workspace_back_and_forth = false;
-      allow_workspace_cycles = false;
+      # NOTE: no effect
+      # workspace_back_and_forth = false;
+      # allow_workspace_cycles = false;
       movefocus_cycles_fullscreen = false;
     };
 
   };
-
 }

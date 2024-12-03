@@ -20,6 +20,12 @@ in {
       "idleinhibit always, class:^(Slack)$ title:^(.*Huddle.*)$"
       "idleinhibit always, class:^(firefox)$ title:^(Meet.*)$"
     ];
+
+    misc = {
+      key_press_enables_dpms = true;
+      mouse_move_enables_dpms = true;
+    };
+
   };
 
   services.swayidle = {

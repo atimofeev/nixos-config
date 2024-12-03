@@ -5,7 +5,6 @@
   # };
 
   home = {
-
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
@@ -35,7 +34,6 @@
       XCURSOR_THEME = "Adwaita";
       XCURSOR_SIZE = 24;
     };
-
   };
 
 }
