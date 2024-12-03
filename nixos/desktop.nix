@@ -3,8 +3,7 @@
   environment = {
 
     # use wayland for electron apps & chromium
-    # disabled, as slack makes whole DE stutter
-    # sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables.NIXOS_OZONE_WL = "1";
 
     # systemPackages = with pkgs;
     #   [
