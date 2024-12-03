@@ -11,6 +11,7 @@ in {
   programs.fuzzel = {
     enable = true;
     settings.main = {
+      dpi-aware = false;
       terminal = "${vars.terminal.name} -e";
       include = "${themeSource}";
       # launch-prefix = "uwsm app --";
