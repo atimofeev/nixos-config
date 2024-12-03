@@ -23,6 +23,7 @@
     # k8s 
     minikube
     kubectl
+    krew
     kubernetes-helm
     kubie # context & ns switching sub-shell
     popeye # cluster resource sanitizer
