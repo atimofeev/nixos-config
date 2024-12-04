@@ -2,7 +2,7 @@
 # GPU: Nvidia MX150 (Pascal)
 # steam game launch options: nvidia-offload %command%
 {
-  environment.systemPackages = with pkgs; [ nvtopPackages.full gwe glxinfo ];
+  environment.systemPackages = with pkgs; [ nvtopPackages.full glxinfo ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = false;
