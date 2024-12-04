@@ -22,8 +22,8 @@
     upscayl
     eyedropper # pick colors
     parabolic # download video & audio
-    unstable.keypunch
-    unstable.alpaca
+    keypunch
+    alpaca
   ];
 
 }

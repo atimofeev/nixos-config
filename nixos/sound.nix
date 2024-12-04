@@ -8,7 +8,7 @@ let
   # Patch out microphone boost. Done when boost defaults to on and breaks microphone.
   # See: https://community.frame.work/t/microphone-extremely-staticy/15533/12
   pipewire-no-mic-boost = let volumeLevel = 50;
-  in pkgs.unstable.pipewire.overrideAttrs (og-pkg: {
+  in pkgs.pipewire.overrideAttrs (og-pkg: {
     name = "${og-pkg.pname}-no-mic-boost";
     buildCommand = # bash
       ''
@@ -20,7 +20,7 @@ let
         ${lib.concatStringsSep "\n" (map (outputName: ''
           echo "Copying output ${outputName}"
           set -x
-          cp -a ${pkgs.unstable.pipewire.${outputName}} ''$${outputName}
+          cp -a ${pkgs.pipewire.${outputName}} ''$${outputName}
           set +x
         '') og-pkg.outputs)}
 
@@ -50,7 +50,6 @@ let
       '';
   });
 in {
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 

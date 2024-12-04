@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [ nvtopPackages.full gwe glxinfo ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
+    open = false;
     nvidiaSettings = true;
     modesetting.enable = true;
     prime = {

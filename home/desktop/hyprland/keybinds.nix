@@ -6,7 +6,7 @@ let
   editor = "${vars.terminal.editor}";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
-  hyprshot = "${pkgs.unstable.hyprshot}/bin/hyprshot";
+  hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   swappy = "${pkgs.swappy}/bin/swappy";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";

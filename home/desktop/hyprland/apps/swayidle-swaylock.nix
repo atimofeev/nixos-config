@@ -31,6 +31,7 @@ in {
   services.swayidle = {
     enable = true;
     systemdTarget = "graphical-session.target";
+    extraArgs = [ "-w" ];
 
     timeouts = [
       {

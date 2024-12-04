@@ -5,12 +5,12 @@ in {
   gtk = {
     enable = true;
     theme = {
-      package = f pkgs.gnome.gnome-themes-extra;
+      package = f pkgs.gnome-themes-extra;
       name = "Adwaita-dark";
     };
 
     iconTheme = {
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
     };
 

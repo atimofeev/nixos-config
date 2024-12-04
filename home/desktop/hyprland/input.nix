@@ -1,8 +1,6 @@
 { vars, ... }: {
   wayland.windowManager.hyprland.settings = {
 
-    general.sensitivity = 1.0;
-
     input = {
       accel_profile = "adaptive";
       kb_layout = vars.kb_layouts;

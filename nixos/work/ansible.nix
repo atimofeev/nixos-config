@@ -4,19 +4,17 @@
     sshpass # ssh auth with password
   ];
 
-  # NOTE: waiting for paramiko 3.4.1 to remove warnings
-  # https://nixpk.gs/pr-tracker.html?pr=336708
-  nixpkgs.overlays = [
-    (final: prev: {
-      ansible = pkgs.unstable.ansible.overrideAttrs (oldAttrs: {
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      ansible = pkgs.ansible.overrideAttrs (oldAttrs: {
         propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-          pkgs.unstable.python3Packages.hvac
-          pkgs.unstable.python3Packages.botocore
-          pkgs.unstable.python3Packages.boto3
+          pkgs.python3Packages.hvac
+          pkgs.python3Packages.botocore
+          pkgs.python3Packages.boto3
         ];
       });
-    })
-  ];
+    };
+  };
 
   sops.secrets = {
     "work/env/VAULT_ADDR".owner = vars.username;

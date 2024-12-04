@@ -38,7 +38,7 @@
       "ctrl+shift+right" = "none";
     };
 
-    theme = "Catppuccin-Macchiato";
+    themeFile = "Catppuccin-Macchiato";
   };
 
   xdg.configFile."kitty/diff.conf" = let

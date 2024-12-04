@@ -32,7 +32,7 @@ in {
       rounding = 3;
       inactive_opacity = 0.9;
       dim_special = 0.35;
-      drop_shadow = false;
+      shadow.enabled = false;
       blur.enabled = false;
     };
 

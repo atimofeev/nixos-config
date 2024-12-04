@@ -1,4 +1,4 @@
-{ pkgs, config, vars, ... }: {
+{ config, vars, ... }: {
 
   imports = [ ./bookmarks.nix ./widgets.nix ];
 
@@ -9,7 +9,6 @@
 
   services.homepage-dashboard = {
     enable = true;
-    package = pkgs.unstable.homepage-dashboard;
     environmentFile = config.sops.secrets."work/homepage-env".path;
     listenPort = 8888;
 
@@ -33,20 +32,6 @@
 
       hideVersion = true;
     };
-
-  };
-
-  # use instead of unstable options
-  # fix cache issue
-  # https://github.com/NixOS/nixpkgs/issues/328621
-  # https://github.com/NixOS/nixpkgs/issues/297168
-  systemd.services.homepage-dashboard = {
-    environment = {
-      HOMEPAGE_CACHE_DIR = "/var/cache/homepage-dashboard";
-      # LOG_LEVEL = "debug";
-    };
-
-    serviceConfig = { CacheDirectory = "homepage-dashboard"; };
   };
 
 }

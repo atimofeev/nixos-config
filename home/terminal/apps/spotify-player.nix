@@ -2,7 +2,7 @@
 
   programs.spotify-player = {
     enable = true;
-    package = pkgs.unstable.spotify-player;
+    package = pkgs.spotify-player;
     settings = {
       liked_icon = "";
       device = {
