@@ -28,7 +28,7 @@
       theme = "dark";
       color = "slate";
 
-      target = "_blank"; # open links in new tabs
+      target = "_self";
 
       hideVersion = true;
     };
