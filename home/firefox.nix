@@ -92,6 +92,9 @@
         "security.insecure_connection_text.pbmode.enabled" = true;
         "security.osclientcerts.autoload" = true;
 
+        # translation
+        "browser.translations.alwaysTranslateLanguages" = "bs,de,lv,sr,uk";
+        "browser.translations.neverTranslateLanguages" = "en,ru";
       };
 
       search = {
