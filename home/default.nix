@@ -15,13 +15,12 @@
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = vars.nix.stateVersion;
   programs.home-manager.enable = true;
   systemd.user.startServices =
     "sd-switch"; # reload system units on config update
 
   home = {
+    inherit (vars.nix) stateVersion;
     inherit (vars) username;
     homeDirectory = "/home/${vars.username}";
   };
