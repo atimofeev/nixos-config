@@ -25,44 +25,46 @@
 
     gvfs.enable = true;
 
-    xserver = {
-      enable = true;
-      displayManager = {
-        lightdm.enable = false;
-        # gdm.enable = true;
+    # displayManager = {
+    #   enable = true;
+    #   ly = {
+    #     enable = true;
+    #     settings = {
+    #       animation = "none";
+    #       asterisk = "*";
+    #       # bg = "";
+    #       # border_fg = "";
+    #       clock = "%a %d %b %Y - %H:%M";
+    #       default_input = "password";
+    #       # error_bg = "";
+    #       # error_fg = "";
+    #       load = true;
+    #       save = true;
+    #     };
+    #   };
+    # };
 
-        # ly = {
-        #   enable = false;
-        #   settings = {
-        #     animation = "none";
-        #     asterisk = "*";
-        #     # bg = "";
-        #     # border_fg = "";
-        #     clock = "%a %d %b %Y - %H:%M";
-        #     default_input = "password";
-        #     # error_bg = "";
-        #     # error_fg = "";
-        #     load = true;
-        #     save = true;
-        #   };
-        # };
-
-      };
-      # desktopManager.gnome.enable = true;
-      xkb = {
-        layout = vars.kb_layouts;
-        options = "grp:win_space_toggle";
-      };
-    };
+    # xserver = {
+    #   enable = true;
+    #   displayManager = {
+    #     lightdm.enable = false;
+    #     # gdm.enable = true;
+    #   };
+    #   # desktopManager.gnome.enable = true;
+    #   # xkb = {
+    #   #   layout = vars.kb_layouts;
+    #   #   options = "grp:win_space_toggle";
+    #   # };
+    # };
 
   };
 
   programs = {
 
-    nautilus-open-any-terminal = {
-      enable = true;
-      terminal = vars.terminal.name;
-    };
+    # nautilus-open-any-terminal = {
+    #   enable = true;
+    #   terminal = vars.terminal.name;
+    # };
 
     hyprland = {
       enable = true;
