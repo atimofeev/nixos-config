@@ -7,8 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "mikesmithgh";
       repo = "kitty-scrollback.nvim";
-      rev = "dc101d0a8356db9c7290dfbfa82c27ec35e3b55a";
-      hash = "sha256-TV++v8aH0Vi9UZEdTT+rUpu6HKAfhu04EwAgGbfk614=";
+      rev = "d52825b2a076586d1af156a066db2d18cd1fd8cb";
+      hash = "sha256-PpBaVuZqlU5A9a7ryEvs5TcsM/uz3dzx7KGjA3tt3NU=";
     };
   };
 in {
