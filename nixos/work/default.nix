@@ -16,6 +16,7 @@
 
     # cli tools
     awscli2
+    vault
     nettools
     dig
     pwgen
