@@ -9,7 +9,8 @@ let
   systemctl = "${pkgs.systemd}/bin/systemctl";
 
   lockCommand =
-    "${playerctl} -a pause || true && (${pidof} swaylock || ${swaylock})";
+    # "${playerctl} -a pause || true && (${pidof} swaylock || ${swaylock})";
+    "(${pidof} swaylock || ${swaylock})";
 in {
 
   wayland.windowManager.hyprland.settings = {
