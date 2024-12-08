@@ -23,6 +23,8 @@
       enable = true;
       gamescopeSession.enable = true; # gamescope %command% (?)
       platformOptimizations.enable = true; # nix-gaming
+      protontricks.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
   };
 
