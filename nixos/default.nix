@@ -9,7 +9,7 @@
     ./bluetooth.nix
     ./boot.nix
     ./desktop.nix # desktop environment setup
-    ./flatpak.nix
+    # ./flatpak.nix
     ./hardware-configuration.nix
     ./intel.nix
     ./locale.nix
