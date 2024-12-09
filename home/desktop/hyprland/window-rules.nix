@@ -12,15 +12,14 @@ _: {
     windowrulev2 = [
       "float, class:steam, title:^(Steam Settings|Sign in to Steam|Friends List|Steam - Browser)$"
       "float, class:firefox, title:^(About Mozilla Firefox)$"
-      "float, class:Slack title:^(.*Huddle.*)$"
-      "float, class:Slack title:^(.*Canvas.*)$"
+      "float, class:^(Slack|slack)$ title:^(.*Huddle.*|.*Canvas.*|Open File.*)$"
 
       "opacity 1.0 override, onworkspace:s[true]"
 
       "workspace 10, class:^(Slack)$"
 
       # NOTE: trying to fix electron-wayland-intel issues
-      "noanim, class:^(Slack|steam)$"
+      "noanim, class:^(Slack|slack|steam)$"
 
       "workspace special silent, class:^(spotify_player)$"
       "workspace special silent, class:^(org.telegram.desktop)$"
