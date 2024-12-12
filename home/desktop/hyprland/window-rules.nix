@@ -18,9 +18,6 @@ _: {
 
       "workspace 10, class:^(Slack)$"
 
-      # NOTE: trying to fix electron-wayland-intel issues
-      "noanim, class:^(Slack|slack|steam)$"
-
       "workspace special, class:^(spotify_player)$"
       "workspace special, class:^(org.telegram.desktop)$"
 
