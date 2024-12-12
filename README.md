@@ -76,6 +76,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 ### OS
 
+- [ ] Configuration for several hosts. Example: [1](https://github.com/hlissner/dotfiles/blob/master/hosts/ramen/default.nix)
 - [ ] Display manager: sddm or ly?
 - [ ] Low battery notifications (from upower)\
        Hyprpanel issue: [1](https://github.com/Jas-SinghFSU/HyprPanel/issues/341)
