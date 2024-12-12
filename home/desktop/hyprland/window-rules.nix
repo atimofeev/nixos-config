@@ -21,8 +21,8 @@ _: {
       # NOTE: trying to fix electron-wayland-intel issues
       "noanim, class:^(Slack|slack|steam)$"
 
-      "workspace special silent, class:^(spotify_player)$"
-      "workspace special silent, class:^(org.telegram.desktop)$"
+      "workspace special, class:^(spotify_player)$"
+      "workspace special, class:^(org.telegram.desktop)$"
 
       "stayfocused, class:^(polkit-gnome-authentication-agent-1)$"
       "dimaround, class:^(polkit-gnome-authentication-agent-1)$"

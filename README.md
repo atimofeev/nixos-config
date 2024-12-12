@@ -121,7 +121,6 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 ## Issues
 
 - `hyprland`
-  - Moving windows into active special workspace will break the current view
   - xwayland apps (e.g. slack) causes stutters & instability over time (nvidia + wayland issue?)
 - `Marshall Motiff II ANC` glitchy A2DP sink, becoming unavailable. Fixed with either pipewire restart or reboot\
   Issue somewhere in between `pipewire` and `bluez`\
