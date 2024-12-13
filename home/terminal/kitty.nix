@@ -27,7 +27,7 @@
       # Fix issues related to SSH (may break kitty functionality):
       term = "xterm-256color";
 
-      scrollback_lines = "10000";
+      scrollback_lines = "20000";
     };
 
     keybindings = {
