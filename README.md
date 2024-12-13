@@ -87,11 +87,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 ### DE
 
 - [ ] Hyprland
-  - [ ] Cursors, icons & themes
-    - [x] Hyprcursor
-    - [x] GTK
-    - [x] QT
-    - [ ] App icons
+  - [ ] Utilize [uwsm](https://github.com/Vladimir-csp/uwsm). I: [1](https://github.com/hyprwm/Hyprland/issues/8424), [2](https://wiki.hyprland.org/Useful-Utilities/Systemd-start/), [3](https://github.com/fufexan/dotfiles/commit/b946c18a1232e9529b28348a131faeb7f85668a3)
   - [ ] Night Light with schedule (wlsunset, wl-gammarelay: [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/), hyprsunset, gammastep, wl-gammarelay-rs)
 - [ ] Launcher: rofi?
 - [ ] Clipboard manager: try something with interactive history (wl-clipboard + rofi?)
