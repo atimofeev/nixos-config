@@ -1,15 +1,13 @@
 _: {
   wayland.windowManager.hyprland.settings = {
 
-    windowrule = [
-      "float, pavucontrol|pwvucontrol"
-      "float, nm-connection-editor|blueman-manager"
-      "float, mpv"
-      "float, zoom"
-      "float, nvidia-settings"
-    ];
-
     windowrulev2 = [
+      "float, class:^(pavucontrol|pwvucontrol)$"
+      "float, class:^(nm-connection-editor|blueman-manager)$"
+      "float, class:^(mpv)$"
+      "float, class:^(zoom)$"
+      "float, class:^(nvidia-settings)$"
+
       "float, class:steam, title:^(Steam Settings|Sign in to Steam|Friends List|Steam - Browser)$"
       "float, class:firefox, title:^(About Mozilla Firefox)$"
       "float, class:^(Slack|slack)$ title:^(.*Huddle.*|.*Canvas.*|Open File.*)$"
