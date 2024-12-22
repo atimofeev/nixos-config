@@ -1,11 +1,12 @@
 { pkgs, ... }: {
   imports = [
+    # ./gns3.nix # NOTE: probably still broken
+    # ./vm.nix
     ./ansible.nix
     ./docker.nix
-    # ./gns3.nix # NOTE: probably still broken
     ./jira.nix
+    ./nitrokey.nix
     ./tofu.nix
-    # ./vm.nix
     ./vpn.nix
   ];
 
