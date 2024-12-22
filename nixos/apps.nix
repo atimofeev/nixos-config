@@ -6,7 +6,6 @@
     vscode
     firefox
     telegram-desktop
-    obsidian
     spotify
 
     # fun

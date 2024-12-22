@@ -15,7 +15,7 @@
 
       folders = {
         obsidian-vault = {
-          path = "/home/${vars.username}/obsidian-vault";
+          path = "/home/${vars.username}/repos/obsidian-vault";
           devices = [ "milaptop" "Pixel 5a" ];
           ignorePerms = true;
           # copyOwnershipFromParent = true;

@@ -7,6 +7,7 @@
 
     ./firefox.nix
     ./mpv.nix
+    ./obsidian.nix
     ./qbittorrent.nix
     ./swappy.nix
     ./vcv-rack.nix
