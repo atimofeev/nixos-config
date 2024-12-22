@@ -11,6 +11,7 @@ _: {
       "float, class:steam, title:^(Steam Settings|Sign in to Steam|Friends List|Steam - Browser)$"
       "float, class:firefox, title:^(About Mozilla Firefox)$"
       "float, class:^(Slack|slack)$ title:^(.*Huddle.*|.*Canvas.*|Open File.*)$"
+      "float, class:electron, title:^(Open.*)$"
 
       "opacity 1.0 override, onworkspace:s[true]"
 
