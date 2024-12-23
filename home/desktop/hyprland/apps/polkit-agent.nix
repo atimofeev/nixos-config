@@ -13,4 +13,10 @@
     };
   };
 
+  wayland.windowManager.hyprland.settings.windowrulev2 = [
+    "stayfocused, class:polkit-gnome-authentication-agent-1"
+    "dimaround, class:polkit-gnome-authentication-agent-1"
+    "noanim, class:polkit-gnome-authentication-agent-1"
+  ];
+
 }
