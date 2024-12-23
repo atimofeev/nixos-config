@@ -2,10 +2,10 @@
   imports = [ ./xone.nix ];
 
   environment.systemPackages = with pkgs; [
-    # virt
     lutris
     wine
     winetricks
+    protonup-qt
 
     # tools
     mangohud # mangohud %command%
