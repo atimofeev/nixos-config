@@ -8,6 +8,12 @@
       (import ./neovim-unwrapped.nix)
       (import ./manix.nix)
 
+      (self: super: {
+        hyprlauncher = import ../pkgs/vault-kv-mv.nix {
+          inherit (super) lib fetchFromGitHub buildGoModule;
+        };
+      })
+
       # (import ../overlays/xone.nix { inherit pkgs; })
 
       # (self: super: {
