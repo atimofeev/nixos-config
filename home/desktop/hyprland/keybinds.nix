@@ -86,6 +86,7 @@ in {
       # group
       "SUPER, G, togglegroup"
       "ALT, tab, changegroupactive"
+      "SUPER, tab, changegroupactive"
 
       # move focus
       "SUPER, h, movefocus, l"
@@ -106,7 +107,6 @@ in {
       "SUPER, bracketright, workspace, +1"
       "SUPER, mouse_up, workspace, m+1"
       "SUPER, mouse_down, workspace, m-1"
-      "SUPER, tab, workspace, previous"
       "SUPER SHIFT, U, movetoworkspace, special"
       "SUPER, U, togglespecialworkspace,"
       "SUPER CTRL, page_up, movetoworkspace, -1"
