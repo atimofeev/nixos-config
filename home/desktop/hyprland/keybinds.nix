@@ -75,11 +75,9 @@ in {
       "SUPER, Q, killactive" # or closewindow?
       "SUPER, F, fullscreen"
       "SUPER SHIFT, F, togglefloating"
-      "SUPER, P, pseudo" # dwindle
-      "SUPER, S, togglesplit" # dwindle
-      # "SUPER, `, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show run"
-      # "SUPER, A, exec, pkill hyprlauncher || ${prefix} ${pkgs.hyprlauncher}/bin/hyprlauncher"
-      "SUPER, A, exec, pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel"
+      "SUPER, P, pseudo" # dwindle layout
+      "SUPER, S, togglesplit" # dwindle layout
+      "SUPER, A, exec, pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel" # app launcher
       "SUPER, B, exec, pkill .ags-wrapped || ${prefix} ${hyprpanel}"
       "SUPER SHIFT, L, exec, ${prefix} ${pkgs.elogind}/bin/loginctl lock-session"
 
