@@ -16,10 +16,10 @@ in {
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = [
       "idleinhibit focus, fullscreen:1"
-      "idleinhibit always, fullscreen:1 class:^(firefox)$ title:^(.*YouTube.*)$"
-      "idleinhibit focus, class:^(firefox)$ title:^(.*Miro.*)$"
-      "idleinhibit always, class:^(Slack)$ title:^(.*Huddle.*)$"
-      "idleinhibit always, class:^(firefox)$ title:^(Meet.*)$"
+      "idleinhibit always, fullscreen:1 class:firefox title:^(.*YouTube.*)$"
+      "idleinhibit focus, class:firefox title:^(.*Miro.*)$"
+      "idleinhibit always, class:Slack title:^(.*Huddle.*)$"
+      "idleinhibit always, class:firefox title:^(Meet.*)$"
     ];
 
     misc = {
