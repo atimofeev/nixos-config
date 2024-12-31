@@ -13,6 +13,9 @@
     pipes
     cmatrix
     tmatrix
+    neo
+    cbonsai
+    lavat
 
     # misc
     prusa-slicer
