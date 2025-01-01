@@ -21,6 +21,7 @@
     nettools
     dig
     pwgen
+    vault-kv-mv
 
     # k8s 
     minikube

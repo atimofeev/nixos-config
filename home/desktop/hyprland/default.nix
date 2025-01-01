@@ -26,7 +26,6 @@
 
   home.packages = with pkgs; [
     hyprpicker
-    hyprlauncher
     libnotify
     networkmanagerapplet # bin: nm-connection-editor
     blueman # bin: blueman-manager

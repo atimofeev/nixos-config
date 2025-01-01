@@ -9,7 +9,7 @@
       (import ./manix.nix)
 
       (self: super: {
-        hyprlauncher = import ../pkgs/vault-kv-mv.nix {
+        vault-kv-mv = import ../pkgs/vault-kv-mv.nix {
           inherit (super) lib fetchFromGitHub buildGoModule;
         };
       })
@@ -25,7 +25,7 @@
       # })
 
       # (self: super: {
-      #   hyprlauncher = import ../pkgs/monokle.nix {
+      #   monokle = import ../pkgs/monokle.nix {
       #     inherit (super)
       #       lib buildNpmPackage fetchFromGitHub electron nix-update-script
       #       makeBinaryWrapper;
