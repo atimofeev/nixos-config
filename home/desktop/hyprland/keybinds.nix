@@ -2,15 +2,21 @@
 let
   # prefix = "uwsm app --";
   prefix = "";
+
   term = "${prefix} ${vars.terminal.name}";
   editor = "${vars.terminal.editor}";
+
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
   hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
   hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+  loginctl = "${pkgs.elogind}/bin/loginctl";
+  pkill = "${pkgs.procps}/bin/pkill";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   swappy = "${pkgs.swappy}/bin/swappy";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
+
 in {
   wayland.windowManager.hyprland.settings = {
 
@@ -77,9 +83,9 @@ in {
       "SUPER SHIFT, F, togglefloating"
       "SUPER, P, pseudo" # dwindle layout
       "SUPER, S, togglesplit" # dwindle layout
-      "SUPER, A, exec, pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel" # app launcher
-      "SUPER, B, exec, pkill hyprpanel || ${prefix} ${hyprpanel}"
-      "SUPER SHIFT, L, exec, ${prefix} ${pkgs.elogind}/bin/loginctl lock-session"
+      "SUPER, A, exec, ${pkill} fuzzel || ${fuzzel}" # app launcher
+      "SUPER, B, exec, ${pkill} hyprpanel || ${prefix} ${hyprpanel}"
+      "SUPER SHIFT, L, exec, ${prefix} ${loginctl}  lock-session"
 
       # group
       "SUPER, G, togglegroup"
