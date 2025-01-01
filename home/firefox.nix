@@ -163,6 +163,17 @@
               "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
 
+          "GitHub nixpkgs" = {
+            definedAliases = [ "ghnp" ];
+            urls = [{
+              template =
+                "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs {searchTerms}&type=code";
+            }];
+            iconUpdateURL =
+              "https://github.githubassets.com/favicons/favicon-dark.png";
+            updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
+          };
+
         };
       };
 
