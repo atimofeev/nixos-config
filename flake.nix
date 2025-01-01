@@ -30,6 +30,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    wayland-pipewire-idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     xremap = {
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";

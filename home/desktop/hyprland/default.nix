@@ -12,6 +12,7 @@
     ./apps/qt.nix
     ./apps/swayidle.nix
     ./apps/swaylock.nix
+    ./apps/wayland-pipewire-idle-inhibit.nix
     ./apps/xdg-mime.nix # file association
 
     ./animations.nix
