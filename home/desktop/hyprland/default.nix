@@ -10,7 +10,8 @@
     ./apps/per-window-layout.nix
     ./apps/polkit-agent.nix # sudo password prompt
     ./apps/qt.nix
-    ./apps/swayidle-swaylock.nix
+    ./apps/swayidle.nix
+    ./apps/swaylock.nix
     ./apps/xdg-mime.nix # file association
 
     ./animations.nix
