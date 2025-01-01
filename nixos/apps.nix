@@ -17,6 +17,10 @@
     cbonsai
     lavat
 
+    # typing
+    keypunch
+    gtypist
+
     # misc
     prusa-slicer
     freecad
@@ -24,7 +28,6 @@
     upscayl
     eyedropper # pick colors
     parabolic # download video & audio
-    keypunch
     alpaca
   ];
 
