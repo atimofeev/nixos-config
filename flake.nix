@@ -19,18 +19,7 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    # hypridle = {
-    #   url = "github:hyprwm/hypridle";
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # };
-    # hyprlock = {
-    #   url = "github:hyprwm/hyprlock";
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # };
-    # hyprpolkitagent = {
-    #   url = "github:hyprwm/hyprpolkitagent";
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # };
+
     hyprsunset = {
       url = "github:hyprwm/hyprsunset";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

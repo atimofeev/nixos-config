@@ -78,7 +78,7 @@ in {
       "SUPER, P, pseudo" # dwindle layout
       "SUPER, S, togglesplit" # dwindle layout
       "SUPER, A, exec, pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel" # app launcher
-      "SUPER, B, exec, pkill .ags-wrapped || ${prefix} ${hyprpanel}"
+      "SUPER, B, exec, pkill hyprpanel || ${prefix} ${hyprpanel}"
       "SUPER SHIFT, L, exec, ${prefix} ${pkgs.elogind}/bin/loginctl lock-session"
 
       # group
