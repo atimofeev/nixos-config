@@ -2,7 +2,7 @@
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";
-    Install.WantedBy = [ "hyprland-session.target" ];
+    Install.WantedBy = [ "graphical-session.target" ];
     Service = {
       Type = "simple";
       ExecStart =

@@ -2,7 +2,7 @@
 
   systemd.user.services.hyprland-per-window-layout = {
     Unit.Description = "hyprland-per-window-layout";
-    Install.WantedBy = [ "hyprland-session.target" ];
+    Install.WantedBy = [ "graphical-session.target" ];
     Service = {
       Type = "simple";
       ExecStart =
