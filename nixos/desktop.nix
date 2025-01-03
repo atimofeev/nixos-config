@@ -2,8 +2,12 @@
 
   environment = {
 
-    # use wayland for electron apps & chromium
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      # NOTE: use wayland for electron apps & chromium
+      NIXOS_OZONE_WL = "1";
+      # NOTE: https://github.com/NixOS/nixpkgs/issues/353990
+      GSK_RENDERER = "cairo";
+    };
 
     # systemPackages = with pkgs;
     #   [
