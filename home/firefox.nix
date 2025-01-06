@@ -174,6 +174,14 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
+          "Freedium.cfd" = {
+            definedAliases = [ "fd" ];
+            urls = [{ template = "https://freedium.cfd/{searchTerms}"; }];
+            iconUpdateURL =
+              "https://miro.medium.com/v2/5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19";
+            updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
+          };
+
         };
       };
 
