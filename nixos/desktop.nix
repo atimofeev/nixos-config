@@ -80,6 +80,8 @@
 
   };
 
+  # NOTE: may be redundant
+  # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/programs/wayland/hyprland.nix
   xdg.portal = {
     enable = true;
     configPackages = lib.mkDefault
