@@ -1,11 +1,11 @@
 { pkgs, ... }: {
-  # NOTE: configure: https://github.com/aristocratos/btop#configurability
 
   programs.btop = {
     enable = true;
     settings = {
       color_theme = "catppuccin_macchiato";
       vim_keys = true;
+      update_ms = 1500;
       proc_gradient = false;
       proc_per_core = true;
     };
