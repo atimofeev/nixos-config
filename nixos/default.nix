@@ -17,6 +17,7 @@
     # ./nbfc.nix # breaks bluetooth
     ./network.nix
     ./nvidia.nix
+    ./ollama.nix
     ./power.nix
     ./sops.nix
     ./sound.nix
