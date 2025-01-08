@@ -8,9 +8,10 @@ _: {
       "float, class:mpv"
       "float, class:zoom"
       "float, title:Protontricks"
+      "float, class:xdg-desktop-portal-gtk"
 
       "float, class:steam"
-      "tile, class:steam, title:Steam"
+      "tile, class:steam, title:^(Steam)$"
 
       "float, class:electron, title:^(Open.*)$"
 
