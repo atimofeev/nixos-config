@@ -57,6 +57,8 @@
         specialArgs = { inherit inputs libx vars; };
         modules = [
           ./nixos
+          ./pkgs
+          ./overlays
           inputs.home-manager.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           inputs.xremap.nixosModules.default

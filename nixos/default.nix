@@ -1,7 +1,5 @@
 { inputs, pkgs, config, libx, vars, ... }: {
   imports = [
-    ../overlays
-    ../pkgs
     ./games
     ./homepage
     ./work
