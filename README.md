@@ -16,15 +16,14 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 | Type              | App               |
 | ----------------- | ----------------- |
-| Display manager   | gdm               |
+| Display manager   | tty               |
 | Compositor        | Hyprland          |
+| Session Manager   | N/A               |
 | Wallpaper         | HyprPaper         |
-| Bar               | HyprPanel         |
-| Notifications     | HyprPanel         |
-| OSD               | HyprPanel         |
-| Launcher          | Hyprlauncher      |
-| Idle daemon       | Hypridle          |
-| Lockscreen        | Hyprlock          |
+| Bar, Notify, OSD  | HyprPanel         |
+| Launcher          | Fuzzel            |
+| Idle daemon       | Swayidle          |
+| Lockscreen        | Swaylock          |
 | Screenshots       | Hyprshot + Swappy |
 | Clipboard manager | wl-clipboard      |
 
