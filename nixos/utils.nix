@@ -10,6 +10,7 @@
     unzip
     file
     bc
+    usbutils
 
     # improved utils
     fd # find
