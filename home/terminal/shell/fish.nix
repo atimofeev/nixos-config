@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, hostname, ... }: {
   programs = {
 
     kitty.shellIntegration.enableFishIntegration = false;
@@ -37,8 +37,12 @@
 
       shellAliases = {
         # NIX
-        r = "sudo nixos-rebuild test --flake ~/repos/nixos-config#default";
-        rs = "sudo nixos-rebuild switch --flake ~/repos/nixos-config#default";
+        r = "sudo nixos-rebuild test --flake ~/repos/nixos-config#${hostname}";
+        rd =
+          "sudo nixos-rebuild dry-activate --flake ~/repos/nixos-config#${hostname}";
+        rs =
+          "sudo nixos-rebuild switch --flake ~/repos/nixos-config#${hostname}";
+        rb = "sudo nixos-rebuild boot --flake ~/repos/nixos-config#${hostname}";
         shell = "NIXPKGS_ALLOW_UNFREE=1 nix-shell --run $SHELL";
         v = "nix run ~/repos/nixvim-config/";
         sops-secrets = "sops ~/repos/nixos-config/secrets/secrets.yaml";
