@@ -1,9 +1,6 @@
 _: {
 
-  powerManagement = {
-    enable = true;
-    # powertop.enable = true;
-  };
+  powerManagement.enable = true;
 
   services = {
     power-profiles-daemon.enable = false; # to avoid collision with auto-cpufreq
