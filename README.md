@@ -14,9 +14,11 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 ### Desktop Environment
 
+#### Hyprland
+
 | Type              | App               |
 | ----------------- | ----------------- |
-| Display manager   | tty               |
+| Display manager   | tuigreet          |
 | Compositor        | Hyprland          |
 | Session Manager   | N/A               |
 | Wallpaper         | HyprPaper         |
@@ -26,6 +28,13 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 | Lockscreen        | Swaylock          |
 | Screenshots       | Hyprshot + Swappy |
 | Clipboard manager | wl-clipboard      |
+
+#### Gnome
+
+| Type            | App   |
+| --------------- | ----- |
+| Display manager | gdm   |
+| Everything else | Gnome |
 
 ### Terminal
 
@@ -70,12 +79,10 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 ### HW
 
 - [ ] Fan control: fix nbfc
-- [ ] GPU: Latest nvidia drivers
 - [ ] Update Embedded Controller configuration of temp-based cooling rules. [1](https://4pda.to/forum/index.php?showtopic=843452&view=findpost&p=76102206)
 
 ### OS
 
-- [ ] Configuration for several hosts. Example: [1](https://github.com/hlissner/dotfiles/blob/master/hosts/ramen/default.nix)
 - [ ] Display manager: sddm or ly?
 - [ ] Low battery notifications (from upower)\
        Hyprpanel issue: [1](https://github.com/Jas-SinghFSU/HyprPanel/issues/341)
@@ -88,7 +95,6 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 - [ ] Hyprland
   - [ ] Utilize [uwsm](https://github.com/Vladimir-csp/uwsm). I: [1](https://github.com/hyprwm/Hyprland/issues/8424), [2](https://wiki.hyprland.org/Useful-Utilities/Systemd-start/), [3](https://github.com/fufexan/dotfiles/commit/b946c18a1232e9529b28348a131faeb7f85668a3)
   - [ ] Night Light with schedule (wlsunset, wl-gammarelay: [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/), hyprsunset, gammastep, wl-gammarelay-rs)
-- [ ] Launcher: rofi?
 - [ ] Clipboard manager: try something with interactive history (wl-clipboard + rofi?)
 - [ ] Screen recorder: wf-recorder?
 - [ ] Swaylock: fork & implement blur based on latest version (most swaylock-effects forks are not maintained)
