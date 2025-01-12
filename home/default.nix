@@ -9,6 +9,7 @@
     ./mpv.nix
     ./obsidian.nix
     ./qbittorrent.nix
+    ./sops.nix
     ./swappy.nix
     ./vcv-rack.nix
     ./zathura.nix
@@ -26,12 +27,6 @@
     homeDirectory = "/home/${vars.username}";
   };
 
-  manual.json.enable = true; # required for manix
-
-  sops = {
-    age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
-    defaultSopsFile = ../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-  };
+  manual.json.enable = true; # manix
 
 }
