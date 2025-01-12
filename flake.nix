@@ -48,21 +48,19 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      libx = import ./lib { inherit pkgs; };
+      libx = import ./lib { inherit pkgs; }; # lib-extra
       vars = import ./variables.nix;
     in {
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs libx vars; };
-        modules = [
-          ./nixos
-          ./pkgs
-          ./overlays
-          inputs.home-manager.nixosModules.default
-          inputs.sops-nix.nixosModules.sops
-          inputs.xremap.nixosModules.default
-          inputs.nix-gaming.nixosModules.platformOptimizations
-          inputs.nix-flatpak.nixosModules.nix-flatpak
-        ];
+      nixosConfigurations = {
+
+        milaptop = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs libx vars;
+            hostname = "milaptop";
+          };
+          modules = [ ./hosts/milaptop ./pkgs ./overlays ];
+        };
+
       };
     };
 }

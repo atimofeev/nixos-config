@@ -1,8 +1,6 @@
-{ inputs, config, vars, ... }: {
-  imports = [
-    ./desktop/hyprland
-    # ./desktop/gnome
+{ inputs, vars, ... }: {
 
+  imports = [
     ./terminal
 
     ./firefox.nix

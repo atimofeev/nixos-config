@@ -1,7 +1,7 @@
 {
   nix.stateVersion = "24.11";
   username = "atimofeev";
-  hostname = "milaptop";
+  # hostname = "milaptop";
   kb_layouts = "us,ru";
   tz_name = "Europe/Podgorica";
   shell = "fish";
