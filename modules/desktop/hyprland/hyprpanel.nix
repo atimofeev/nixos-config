@@ -1,11 +1,12 @@
-{ inputs, pkgs, vars, ... }: {
+{ inputs, pkgs, lib, vars, ... }: {
 
   nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
 
+  # Dependencies
   services = {
-    gvfs.enable = true;
-    # power-profiles-daemon.enable = true;
-    upower.enable = true;
+    gvfs.enable = lib.mkDefault true;
+    power-profiles-daemon.enable = lib.mkDefault true;
+    upower.enable = lib.mkDefault true;
   };
 
   home-manager.users.${vars.username} = {
