@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 let
-  hyprctl = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
+  hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   swaylockPkg = pkgs.swaylock;
   swaylock = "${swaylockPkg}/bin/swaylock";
   playerctl = "${pkgs.playerctl}/bin/playerctl";

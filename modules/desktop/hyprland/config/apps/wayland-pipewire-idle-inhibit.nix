@@ -1,4 +1,5 @@
 { inputs, ... }: {
+
   imports = [ inputs.wayland-pipewire-idle-inhibit.homeModules.default ];
 
   services.wayland-pipewire-idle-inhibit = {
@@ -10,4 +11,5 @@
       idle_inhibitor = "wayland";
     };
   };
+
 }

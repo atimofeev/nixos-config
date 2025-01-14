@@ -37,26 +37,9 @@
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
 
-  # NOTE: may be redundant
-  # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/programs/wayland/hyprland.nix
-  xdg.portal = {
-    enable = true;
-    configPackages = lib.mkDefault
-      [ inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland ];
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
-    ];
-    config = {
-      common.default = [ "hyprland" ];
-      hyprland.default = [ "gtk" "hyprland" ];
-    };
-  };
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
 }

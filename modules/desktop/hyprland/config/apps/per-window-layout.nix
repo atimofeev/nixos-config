@@ -10,7 +10,6 @@
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
-      # environment = "HPWX_PREFER_FIRST=true";
     };
   };
 
