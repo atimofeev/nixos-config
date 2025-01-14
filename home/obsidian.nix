@@ -2,8 +2,8 @@
 let
   gitSyncObsidian = pkgs.writeShellScriptBin "git-sync-obsidian" ''
     git add .
-    git commit -m "$(date '+%Y-%m-%d %H:%M:%S')" || exit 0
-    git pull --rebase origin main || exit 0
+    git commit -m "$(date '+%Y-%m-%d %H:%M:%S')" || true
+    git pull --rebase origin main || true
     git push origin main
   '';
 in {
