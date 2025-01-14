@@ -1,5 +1,7 @@
 { inputs, pkgs, lib, vars, ... }: {
 
+  imports = [ ./hyprpanel.nix ];
+
   home-manager.users.${vars.username} = import ./config;
 
   environment.sessionVariables = {
@@ -10,7 +12,6 @@
 
   services = {
     dbus.implementation = "broker";
-    gvfs.enable = true; # hyprpanel
 
     greetd = {
       enable = true;

@@ -2,7 +2,6 @@
 
   nixpkgs = {
     overlays = [
-      inputs.hyprpanel.overlay
       (import ./unstable.nix { inherit inputs; })
       (import ./terraformer.nix)
       (import ./neovim-unwrapped.nix)

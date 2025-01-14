@@ -8,7 +8,6 @@ let
 
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
-  hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
   hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
   loginctl = "${pkgs.elogind}/bin/loginctl";
   pkill = "${pkgs.procps}/bin/pkill";
@@ -84,7 +83,6 @@ in {
       "SUPER, P, pseudo" # dwindle layout
       "SUPER, S, togglesplit" # dwindle layout
       "SUPER, A, exec, ${pkill} fuzzel || ${fuzzel}" # app launcher
-      "SUPER, B, exec, ${pkill} hyprpanel || ${prefix} ${hyprpanel}"
       "SUPER SHIFT, L, exec, ${prefix} ${loginctl}  lock-session"
 
       # group
