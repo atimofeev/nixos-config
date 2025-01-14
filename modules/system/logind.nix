@@ -1,11 +1,11 @@
 _: {
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=suspend
-    HandlePowerKeyLongPress=poweroff
-    HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=suspend
-    HandleLidSwitchDocked=suspend
-  '';
+  services.logind = {
+    powerKey = "suspend";
+    powerKeyLongPress = "poweroff";
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+    lidSwitchDocked = "suspend";
+  };
 
 }
