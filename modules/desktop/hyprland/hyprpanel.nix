@@ -10,17 +10,23 @@
   };
 
   home-manager.users.${vars.username} = {
-    wayland.windowManager.hyprland.settings = {
 
-      bind = let
-        # prefix = "uwsm app --";
-        prefix = "";
-        pkill = "${pkgs.procps}/bin/pkill";
-        hyprpanel = "${pkgs.hyprpanel}/bin/hyprpanel";
-      in [ "SUPER, B, exec, ${pkill} hyprpanel || ${prefix} ${hyprpanel}" ];
+    wayland.windowManager.hyprland.settings.bind =
+      let systemctl = "${pkgs.systemd}/bin/systemctl";
+      in [
+        "SUPER, B, exec, ${systemctl} --user is-active hyprpanel && ${systemctl} --user stop hyprpanel || ${systemctl} --user start hyprpanel"
+      ];
 
-      exec-once = [ "${pkgs.hyprpanel}/bin/hyprpanel" ];
-
+    systemd.user.services.hyprpanel = {
+      Unit.Description = "hyprpanel";
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service = {
+        Type = "simple";
+        ExecStart = "${pkgs.hyprpanel}/bin/hyprpanel";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
     };
 
   };
