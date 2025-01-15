@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, vars, ... }: {
+{ pkgs, lib, vars, ... }: {
 
   imports = [ ./hyprpanel.nix ];
 
