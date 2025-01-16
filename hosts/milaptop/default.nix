@@ -4,6 +4,7 @@ _: {
 
     ./hardware-configuration.nix
     ./sound.nix
+    ./hacks.nix
 
     ../../modules/system
 
