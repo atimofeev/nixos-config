@@ -28,7 +28,7 @@
     upscayl
     eyedropper # pick colors
     parabolic # download video & audio
-    alpaca
+    # alpaca # chat with local LLMs
   ];
 
 }
