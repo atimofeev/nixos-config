@@ -22,94 +22,51 @@ let
   ];
 in {
   environment.systemPackages = with pkgs;
-    [
-      ollama
-      ollama-cuda
-      # shell-gpt
-      # llm
-      aichat
-    ] ++ additionalPackages;
-  # # setup port forwarding
-  # networking.firewall.allowedTCPPorts = [ 8080 9000 ];
+    [ ollama ollama-cuda aichat ] ++ additionalPackages;
+
   users.users.${vars.username}.extraGroups = [ "ollama" ];
 
-  # hardware.nvidia-container-toolkit.enable = true;
+  services = {
 
-  # # ollama
-  # # docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-  # virtualisation.oci-containers.backend = "docker";
-
-  # NOTE: ollama models: https://ollama.com/library
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-    package = pkgs.ollama-cuda;
-    user = "ollama";
-    # group = "ollama";
-    port = 11434;
-    # home = "/var/lib/private/ollama";
-    # openFirewall = true;
-    environmentVariables = {
-      # STATE_DIRECTORY = "/var/lib/private/ollama";
-      # OLLAMA_STATE_DIRECTORY = "/var/lib/private/ollama";
-      HIP_VISIBLE_DEVICES = "0,1";
-      OLLAMA_INTEL_GPU = "1";
-      OLLAMA_SCHED_SPREAD = "1";
-      OLLAMA_MAX_LOADED_MODELS = "2";
-      OLLAMA_NUM_PARALLEL = "2";
-      OLLAMA_NUM_GPU = "999";
-      OLLAMA_GPU_OVERHEAD = "1";
-      OLLAMA_DEBUG = "1";
-      CUDA_PATH = "${pkgs.lib.makeLibraryPath [
-        pkgs.cudaPackages.cudatoolkit
-        pkgs.cudaPackages.cuda_cudart
-      ]}";
-      LD_LIBRARY_PATH =
-        "${pkgs.lib.makeLibraryPath additionalPackages}:$LD_LIBRARY_PATH";
+    # NOTE: ollama models: https://ollama.com/library
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+      package = pkgs.ollama-cuda;
+      user = "ollama";
+      environmentVariables = {
+        HIP_VISIBLE_DEVICES = "0,1";
+        OLLAMA_INTEL_GPU = "1";
+        OLLAMA_SCHED_SPREAD = "1";
+        OLLAMA_MAX_LOADED_MODELS = "2";
+        OLLAMA_NUM_PARALLEL = "2";
+        OLLAMA_NUM_GPU = "999";
+        OLLAMA_GPU_OVERHEAD = "1";
+        OLLAMA_DEBUG = "1";
+        CUDA_PATH = "${pkgs.lib.makeLibraryPath [
+          pkgs.cudaPackages.cudatoolkit
+          pkgs.cudaPackages.cuda_cudart
+        ]}";
+        LD_LIBRARY_PATH =
+          "${pkgs.lib.makeLibraryPath additionalPackages}:$LD_LIBRARY_PATH";
+      };
     };
-  };
 
-  # systemd.services.ollama = {
-  #   serviceConfig = {
-  #     ReadWritePaths = [ "/dev/dri" ];
-  #     # Use ReadOnlyPaths if only read access is needed
-  #     # ReadOnlyPaths = [ "/dev/dri" ];
-  #   };
-  # };
-
-  services.open-webui = {
-    enable = true;
-    # openFirewall = true;
-    # stateDir = "/var/lib/private/open-webui";
-    # host = "0.0.0.0";
-    environment = {
-      OLLAMA_API_BASE_URL =
-        "http://127.0.0.1:${toString config.services.ollama.port}";
-      # Disable authentication
-      WEBUI_AUTH = "False";
-      ANONYMIZED_TELEMETRY = "False";
-      DO_NOT_TRACK = "True";
-      SCARF_NO_ANALYTICS = "True";
-      LOCAL_FILES_ONLY = "False";
-      USER_AGENT = "${vars.username}";
+    open-webui = {
+      enable = true;
+      environment = {
+        OLLAMA_API_BASE_URL =
+          "http://127.0.0.1:${toString config.services.ollama.port}";
+        # Disable authentication
+        WEBUI_AUTH = "False";
+        ANONYMIZED_TELEMETRY = "False";
+        DO_NOT_TRACK = "True";
+        SCARF_NO_ANALYTICS = "True";
+        LOCAL_FILES_ONLY = "False";
+        USER_AGENT = "${vars.username}";
+      };
     };
+
   };
-
-  # open-webui
-  # pc:
-  #     docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-  # server:
-  #     docker run -d -p 3000:8080 -e OLLAMA_BASE_URL=https://example.com -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-  # example:
-  #     docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-
-  # custom.persist = {
-  #   home.directories = [ ".ollama" ".config/aichat" ];
-  #   root.directories = [
-  #     # "/var/lib/ollama"
-  #     "/var/lib/private/ollama"
-  #     "/var/lib/private/open-webui"
-  #   ];
-  # };
 
 }
