@@ -1,7 +1,11 @@
 { pkgs, vars, ... }: {
+
   users.users.${vars.username}.extraGroups = [ "docker" ];
 
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    oci-containers.backend = "docker";
+  };
 
   environment.systemPackages = with pkgs; [
     # TODO: move to root-less podman

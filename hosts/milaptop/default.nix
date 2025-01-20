@@ -24,12 +24,14 @@ _: {
     ../../modules/apps/utils
     ../../modules/apps/work
 
+    ../../modules/services/docker
     ../../modules/services/homepage
     ../../modules/services/logrotate
     # ../../modules/services/nbfc # TODO: fix
     ../../modules/services/ollama
     ../../modules/services/syncthing
     ../../modules/services/xremap
+
   ];
 
   hardware = {

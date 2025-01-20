@@ -3,7 +3,6 @@
     # ./gns3.nix # NOTE: probably still broken
     # ./vm.nix
     ./ansible.nix
-    ./docker.nix
     ./jira.nix
     ./nitrokey.nix
     ./tofu.nix
