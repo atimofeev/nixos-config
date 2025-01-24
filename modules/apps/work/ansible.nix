@@ -35,7 +35,7 @@
         ''
           [defaults]
           # enable_plugins = aws_ec2, aws_ssm
-          inventory = /home/${vars.username}/repos/betby/ansible/playbooks/inventories/prod/
+          inventory = /home/${vars.username}/repos/betby/ansible/playbooks/inventories/prod/hosts
           interpreter_python = auto_silent
           max_diff_size = 0
           # [inventory]
