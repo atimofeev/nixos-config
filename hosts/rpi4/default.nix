@@ -1,9 +1,11 @@
-_: {
+{ inputs, ... }: {
 
   # TODO: complete config
   # https://fzakaria.com/2024/08/13/nixos-raspberry-pi-me.html
 
   imports = [
+
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
 
     ./hardware-configuration.nix
 

@@ -27,6 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     nix-gaming.url = "github:fufexan/nix-gaming";
 
   };
