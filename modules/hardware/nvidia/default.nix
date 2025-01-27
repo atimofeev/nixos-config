@@ -1,14 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: {
 
   environment.systemPackages = with pkgs; [ nvtopPackages.full ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    nvidiaSettings = true;
-    modesetting.enable = true;
     prime = {
       offload = {
-        enable = true;
-        enableOffloadCmd = true;
+        enable = lib.mkOverride 990 true;
+        enableOffloadCmd =
+          lib.mkIf config.hardware.nvidia.prime.offload.enable true;
       };
     };
   };
