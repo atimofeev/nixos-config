@@ -22,7 +22,7 @@ _: {
       "workspace special, class:spotify_player"
       "workspace special, class:org.telegram.desktop"
 
-      "float, class:firefox, title:^(About Mozilla Firefox)$"
+      "float, class:firefox, title:^(About Mozilla Firefox|Page Info.*)$"
       # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication.  This is because the window for
       # PIP changes after on first launch, and will not inherit the rules...
       "opacity 1.0 override, title:^(Firefox|Picture-in-Picture)$"
