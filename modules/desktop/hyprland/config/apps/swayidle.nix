@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 let
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   swaylockPkg = pkgs.swaylock;
@@ -12,6 +12,8 @@ let
     # "${playerctl} -a pause || true && (${pidof} swaylock || ${swaylock})";
     "(${pidof} swaylock || ${swaylock})";
 in {
+
+  # TODO: implement diffent ac/battery timeouts based on `systemd-ac-power` command
 
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = [
