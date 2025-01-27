@@ -4,6 +4,7 @@ _:
 let
   editor = [ "nvim.desktop" ];
   browser = [ "firefox.desktop" ];
+  fileBrowser = [ "yazi.desktop" ];
   imageViewer = [ "org.gnome.Loupe.desktop" ]; # TODO: change to sxiv/feh
   # https://www.youtube.com/watch?v=GYW9i_u5PYs
   pdfViewer = [ "org.pwmt.zathura.desktop" ];
@@ -44,6 +45,8 @@ let
     "application/xhtml+xml" = browser;
     "application/x-extension-xhtml" = browser;
     "application/x-extension-xht" = browser;
+    # TODO: fix
+    # "inode/directory" = fileBrowser;
   };
 in {
   xdg.mimeApps = {
