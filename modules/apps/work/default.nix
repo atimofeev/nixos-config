@@ -1,13 +1,17 @@
 { pkgs, ... }: {
+
   imports = [
     # ./gns3.nix # NOTE: probably still broken
     # ./vm.nix
     ./ansible.nix
+    ./cato.nix
     ./jira.nix
     ./nitrokey.nix
     ./tofu.nix
     ./vpn.nix
   ];
+
+  # services.cato-client.enable = true;
 
   environment.systemPackages = with pkgs; [
     # langs

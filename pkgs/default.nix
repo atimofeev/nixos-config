@@ -9,6 +9,13 @@ _: {
         };
       })
 
+      (self: super: {
+        cato-client = import ./cato.nix {
+          inherit (super)
+            stdenv fetchurl writeScript autoPatchelfHook dpkg libz lib;
+        };
+      })
+
       # (self: super: {
       #   monokle = import ./monokle.nix {
       #     inherit (super)
