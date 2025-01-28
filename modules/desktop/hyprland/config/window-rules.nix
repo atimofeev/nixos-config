@@ -2,7 +2,7 @@ _: {
   wayland.windowManager.hyprland.settings = {
 
     windowrulev2 = [
-      "float, class:^(pavucontrol|pwvucontrol)$"
+      "float, class:^(pavucontrol|.*pwvucontrol.*)$"
       "float, class:^(nm-connection-editor|blueman-manager)$"
       "float, class:nvidia-settings"
       "float, class:mpv"
@@ -22,7 +22,8 @@ _: {
       "workspace special, class:spotify_player"
       "workspace special, class:org.telegram.desktop"
 
-      "float, class:firefox, title:^(About Mozilla Firefox|Page Info.*)$"
+      "float, class:firefox, title:^(About Mozilla Firefox|Library)$"
+      "float, class:firefox, title:^()$" # Page Info — .* initial title
       # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication.  This is because the window for
       # PIP changes after on first launch, and will not inherit the rules...
       "opacity 1.0 override, title:^(Firefox|Picture-in-Picture)$"
