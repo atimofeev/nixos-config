@@ -12,8 +12,7 @@
       systemctl --user restart pipewire-pulse.service && \
       systemctl --user restart hyprpanel && \
       systemctl --user restart wayland-pipewire-idle-inhibit.service && \
-      systemctl --user restart xdg-desktop-portal
-    '';
+      systemctl --user restart xdg-desktop-portal'';
 
   };
 }
