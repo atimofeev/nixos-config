@@ -13,6 +13,7 @@
     # podman-compose
     # podman-tui 
     docker-compose
+    lazydocker
     dive
   ];
 
