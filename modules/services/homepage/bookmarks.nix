@@ -1,4 +1,4 @@
-_: {
+{ config, ... }: {
   # NOTE: icons: https://gethomepage.dev/configs/services/#icons
 
   services.homepage-dashboard.bookmarks = [
@@ -172,6 +172,14 @@ _: {
 
     {
       personal = [
+        {
+          open-webui = [{
+            abbr = "WU";
+            href =
+              "http://127.0.0.1:${toString config.services.open-webui.port}";
+            icon = "sh-open-webui";
+          }];
+        }
         {
           syncthing = [{
             abbr = "ST";
