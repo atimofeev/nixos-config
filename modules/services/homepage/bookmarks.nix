@@ -183,7 +183,7 @@
         {
           syncthing = [{
             abbr = "ST";
-            href = "http://127.0.0.1:8384/";
+            href = "http://${toString config.services.syncthing.guiAddress}/";
             icon = "syncthing.svg";
           }];
         }
