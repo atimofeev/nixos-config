@@ -245,13 +245,6 @@
     {
       utils = [
         {
-          dashboard-icons = [{
-            abbr = "DI";
-            href = "https://github.com/walkxcode/dashboard-icons/";
-            icon = "si-github-#FFFFFF";
-          }];
-        }
-        {
           diffchecker = [{
             abbr = "DC";
             href = "https://diffchecker.com/text-compare/";
