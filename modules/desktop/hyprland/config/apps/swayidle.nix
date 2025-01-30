@@ -7,6 +7,7 @@ let
   pidof = "${pkgs.procps}/bin/pidof";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   systemctl = "${pkgs.systemd}/bin/systemctl";
+  systemd-ac-power = "${pkgs.systemd}/bin/systemd-ac-power";
 
   lockCommand =
     # "${playerctl} -a pause || true && (${pidof} swaylock || ${swaylock})";
@@ -37,27 +38,53 @@ in {
     extraArgs = [ "-w" ];
 
     timeouts = [
+
+      # ON AC
       {
-        timeout = 150; # 2.5min.
-        command = "${brightnessctl} -s set 1000";
-        resumeCommand = "${brightnessctl} -r";
+        timeout = 150; # 2.5min
+        command = "${systemd-ac-power} && ${brightnessctl} -s set 1000";
+        resumeCommand = "${systemd-ac-power} && ${brightnessctl} -r";
       }
 
       {
         timeout = 300; # 5min
-        command = lockCommand;
+        command = "${systemd-ac-power} && ${lockCommand}";
       }
 
       {
         timeout = 330; # 5.5min
-        command = "${hyprctl} dispatch dpms off";
-        resumeCommand = "${hyprctl} dispatch dpms on";
+        command = "${systemd-ac-power} && ${hyprctl} dispatch dpms off";
+        resumeCommand = "${systemd-ac-power} && ${hyprctl} dispatch dpms on";
       }
 
       {
         timeout = 1800; # 30min
-        command = "${systemctl} suspend";
+        command = "${systemd-ac-power} && ${systemctl} suspend";
       }
+
+      # ON BATTERY
+      {
+        timeout = 60; # 1min
+        command = "${systemd-ac-power} || ${brightnessctl} -s set 1000";
+        resumeCommand = "${systemd-ac-power} || ${brightnessctl} -r";
+      }
+
+      {
+        timeout = 130; # 2.5min
+        command = "${systemd-ac-power} || ${lockCommand}";
+      }
+
+      {
+        timeout = 160; # 3min
+        command = "${systemd-ac-power} || ${hyprctl} dispatch dpms off";
+        resumeCommand = "${systemd-ac-power} || ${hyprctl} dispatch dpms on";
+      }
+
+      {
+        timeout = 600; # 10min
+        command = "${systemd-ac-power} || ${systemctl} suspend";
+      }
+
     ];
 
     events = [
