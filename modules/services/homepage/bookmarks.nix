@@ -179,6 +179,13 @@
             icon = "syncthing.svg";
           }];
         })
+        (lib.mkIf (config.virtualisation.oci-containers.containers ? pihole) {
+          pihole = [{
+            abbr = "PH";
+            href = "http://127.0.0.1:80";
+            icon = "pi-hole.svg";
+          }];
+        })
         {
           github = [{
             abbr = "GH";
