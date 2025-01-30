@@ -173,14 +173,6 @@
     {
       personal = [
         {
-          open-webui = [{
-            abbr = "WU";
-            href =
-              "http://127.0.0.1:${toString config.services.open-webui.port}";
-            icon = "sh-open-webui";
-          }];
-        }
-        {
           syncthing = [{
             abbr = "ST";
             href = "http://${toString config.services.syncthing.guiAddress}/";
@@ -192,20 +184,6 @@
             abbr = "GH";
             href = "https://github.com/atimofeev";
             icon = "si-github-#FFFFFF";
-          }];
-        }
-        {
-          chatgpt = [{
-            abbr = "CG";
-            href = "https://chat.openai.com/";
-            icon = "chatgpt.svg";
-          }];
-        }
-        {
-          claude = [{
-            abbr = "CL";
-            href = "https://claude.ai/new";
-            icon = "si-anthropic-#191919";
           }];
         }
         {
@@ -232,6 +210,38 @@
       ];
     }
 
+    {
+      ai = [
+        {
+          open-webui = [{
+            abbr = "WU";
+            href =
+              "http://127.0.0.1:${toString config.services.open-webui.port}";
+            icon = "sh-open-webui";
+          }];
+        }
+        {
+          deepseek = [{
+            abbr = "DS";
+            href = "https://chat.deepseek.com/";
+          }];
+        }
+        {
+          chatgpt = [{
+            abbr = "CG";
+            href = "https://chat.openai.com/";
+            icon = "chatgpt.svg";
+          }];
+        }
+        {
+          claude = [{
+            abbr = "CL";
+            href = "https://claude.ai/new";
+            icon = "si-anthropic-#191919";
+          }];
+        }
+      ];
+    }
     {
       utils = [
         {
