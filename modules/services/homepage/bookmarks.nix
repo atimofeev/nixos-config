@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ lib, config, ... }: {
   # NOTE: icons: https://gethomepage.dev/configs/services/#icons
 
   services.homepage-dashboard.bookmarks = [
@@ -172,13 +172,13 @@
 
     {
       personal = [
-        {
+        (lib.mkIf config.services.syncthing.enable {
           syncthing = [{
             abbr = "ST";
             href = "http://${toString config.services.syncthing.guiAddress}/";
             icon = "syncthing.svg";
           }];
-        }
+        })
         {
           github = [{
             abbr = "GH";
@@ -212,14 +212,14 @@
 
     {
       ai = [
-        {
+        (lib.mkIf config.services.open-webui.enable {
           open-webui = [{
             abbr = "WU";
             href =
               "http://127.0.0.1:${toString config.services.open-webui.port}";
             icon = "sh-open-webui";
           }];
-        }
+        })
         {
           deepseek = [{
             abbr = "DS";
