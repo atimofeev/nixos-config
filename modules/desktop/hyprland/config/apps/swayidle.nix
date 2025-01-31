@@ -14,8 +14,6 @@ let
     "(${pidof} swaylock || ${swaylock})";
 in {
 
-  # TODO: implement diffent ac/battery timeouts based on `systemd-ac-power` command
-
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = [
       "idleinhibit focus, fullscreen:1"
