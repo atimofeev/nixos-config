@@ -18,6 +18,7 @@
     ripgrep # grep
     eza # ls
     du-dust # du
+    curlie # curl
 
     # misc
     fzf
