@@ -10,4 +10,8 @@
     defaultSopsFormat = "yaml";
   };
 
+  # HACK: too lazy to implement proper home-manager integration into sops
+  # ../../home/terminal/apps/spotify-player.nix
+  sops.secrets = { "personal/spotify-client-id".owner = vars.username; };
+
 }
