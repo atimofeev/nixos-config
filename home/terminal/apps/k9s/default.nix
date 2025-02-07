@@ -1,4 +1,4 @@
-{ pkgs, libx, ... }:
+{ pkgs, ... }:
 let
   themeName = "catppuccin-macchiato.yaml";
   themeSource = pkgs.fetchFromGitHub {
@@ -15,7 +15,7 @@ in {
     enable = true;
 
     settings.k9s.ui.skin = "skin";
-    skins.skin = libx.formats.fromYAML themeSource;
+    skins.skin = themeSource;
 
     aliases.aliases = {
       de = "deployment";

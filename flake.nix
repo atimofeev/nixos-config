@@ -34,17 +34,13 @@
   };
 
   outputs = { nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      libx = import ./lib { inherit pkgs; }; # lib-extra
-      vars = import ./variables.nix;
+    let vars = import ./variables.nix;
     in {
       nixosConfigurations = {
 
         milaptop = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs libx vars;
+            inherit inputs vars;
             hostname = "milaptop";
           };
           modules = [ ./hosts/milaptop ./pkgs ./overlays ];
