@@ -228,12 +228,6 @@
           }];
         })
         {
-          deepseek = [{
-            abbr = "DS";
-            href = "https://chat.deepseek.com/";
-          }];
-        }
-        {
           chatgpt = [{
             abbr = "CG";
             href = "https://chat.openai.com/";
@@ -245,6 +239,19 @@
             abbr = "CL";
             href = "https://claude.ai/new";
             icon = "si-anthropic-#191919";
+          }];
+        }
+        {
+          deepseek = [{
+            abbr = "DS";
+            href = "https://chat.deepseek.com/";
+          }];
+        }
+        {
+          gemini = [{
+            abbr = "GM";
+            href = "https://gemini.google.com/app";
+            icon = "google-gemini";
           }];
         }
       ];
