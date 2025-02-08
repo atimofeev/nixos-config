@@ -1,9 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
 let
+  uwsm = "${pkgs.uwsm}/bin/uwsm";
+  prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
+
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   swaylockPkg = pkgs.swaylock;
   swaylock = "${swaylockPkg}/bin/swaylock";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  # playerctl = "${pkgs.playerctl}/bin/playerctl";
   pidof = "${pkgs.procps}/bin/pidof";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -11,7 +14,7 @@ let
 
   lockCommand =
     # "${playerctl} -a pause || true && (${pidof} swaylock || ${swaylock})";
-    "(${pidof} swaylock || ${swaylock})";
+    "(${pidof} swaylock || ${prefix} ${swaylock})";
 in {
 
   wayland.windowManager.hyprland.settings = {

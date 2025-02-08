@@ -1,7 +1,7 @@
-{ pkgs, vars, ... }:
+{ pkgs, osConfig, vars, ... }:
 let
-  # prefix = "uwsm app --";
-  prefix = "";
+  uwsm = "${pkgs.uwsm}/bin/uwsm";
+  prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
 
   term = "${prefix} ${vars.terminal.name}";
   editor = "${vars.terminal.editor}";
@@ -83,7 +83,7 @@ in {
       "SUPER, P, pseudo" # dwindle layout
       "SUPER, S, togglesplit" # dwindle layout
       "SUPER, A, exec, ${pkill} fuzzel || ${fuzzel}" # app launcher
-      "SUPER SHIFT, L, exec, ${prefix} ${loginctl}  lock-session"
+      "SUPER SHIFT, L, exec, ${loginctl}  lock-session"
 
       # group
       "SUPER, G, togglegroup"

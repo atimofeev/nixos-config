@@ -1,5 +1,8 @@
-{ pkgs, vars, ... }:
+{ pkgs, osConfig, vars, ... }:
 let
+  uwsm = "${pkgs.uwsm}/bin/uwsm";
+  prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
+
   themeName = "catppuccin-macchiato/blue.ini";
   themeSource = pkgs.fetchFromGitHub {
     owner = "catppuccin";
@@ -14,7 +17,7 @@ in {
       include = "${themeSource}";
       dpi-aware = false;
       terminal = "${vars.terminal.name} -e";
-      # launch-prefix = "uwsm app --";
+      launch-prefix = prefix;
     };
   };
 }
