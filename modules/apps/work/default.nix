@@ -11,7 +11,7 @@
     ./vpn.nix
   ];
 
-  # services.cato-client.enable = true;
+  services.cato-client.enable = true;
 
   environment.systemPackages = with pkgs; [
     # langs
