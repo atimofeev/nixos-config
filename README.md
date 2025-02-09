@@ -1,16 +1,15 @@
 # NixOS configuration with dotfiles
 
-NixOS configuration based on Hyprland compositor and it's ecosystem of apps, utilizing catppuccin-macchiato color theme.
+NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato color scheme (mainly for TUI apps).
 
 ## Apps & Utils
 
 ### Hardware
 
-| Type             | App          |
-| ---------------- | ------------ |
-| CPU + iGPU       | Intel        |
-| dGPU             | Nvidia       |
-| Power management | auto-cpufreq |
+| Type       | App    |
+| ---------- | ------ |
+| CPU + iGPU | Intel  |
+| dGPU       | Nvidia |
 
 ### Desktop Environment
 
@@ -20,7 +19,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 | ----------------- | ----------------- |
 | Display manager   | tuigreet          |
 | Compositor        | Hyprland          |
-| Session Manager   | N/A               |
+| Session Manager   | uwsm              |
 | Wallpaper         | HyprPaper         |
 | Bar, Notify, OSD  | HyprPanel         |
 | Launcher          | Fuzzel            |
@@ -60,11 +59,14 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 ### Services
 
-| Type           | App       |
-| -------------- | --------- |
-| Virtualization | Docker    |
-| Key remapper   | xremap    |
-| File sync      | Syncthing |
+| Type             | App                 |
+| ---------------- | ------------------- |
+| File sync        | Syncthing           |
+| Homepage         | homepage-dashboard  |
+| Key remapper     | xremap              |
+| Local LLM        | Ollama + Open WebUI |
+| Power management | auto-cpufreq        |
+| Virtualization   | Docker              |
 
 ### Additional Features
 
@@ -83,7 +85,6 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 ### OS
 
-- [ ] Display manager: sddm or ly?
 - [ ] Low battery notifications (from upower)\
        Hyprpanel issue: [1](https://github.com/Jas-SinghFSU/HyprPanel/issues/341)
 - [ ] Gaming
@@ -93,7 +94,6 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 ### DE
 
 - [ ] Hyprland
-  - [ ] Utilize [uwsm](https://github.com/Vladimir-csp/uwsm). I: [1](https://github.com/hyprwm/Hyprland/issues/8424), [2](https://wiki.hyprland.org/Useful-Utilities/Systemd-start/), [3](https://github.com/fufexan/dotfiles/commit/b946c18a1232e9529b28348a131faeb7f85668a3)
   - [ ] Night Light with schedule (wlsunset, wl-gammarelay: [1](https://www.reddit.com/r/hyprland/comments/12qczxw/how_to_setup_blue_light_filter/), hyprsunset, gammastep, wl-gammarelay-rs)
 - [ ] Clipboard manager: try something with interactive history (wl-clipboard + rofi?)
 - [ ] Screen recorder: wf-recorder?
@@ -122,7 +122,7 @@ NixOS configuration based on Hyprland compositor and it's ecosystem of apps, uti
 
 ## Issues
 
-- `Marshall Motiff II ANC` glitchy A2DP sink, becoming unavailable. Fixed with either pipewire restart or reboot\
+- `Marshall Motiff II ANC` glitchy A2DP sink, sometimes becoming unavailable upon connection. Fixed with either pipewire restart or reboot\
   Issue somewhere in between `pipewire` and `bluez`\
   The solution? [1](https://github.com/bluez/bluez/issues/419)
 - `xone` dongle does not enter pairing mode\
