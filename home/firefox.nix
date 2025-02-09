@@ -182,6 +182,15 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
+          "ProtonDB" = {
+            definedAliases = [ "pd" ];
+            urls =
+              [{ template = "https://protondb.com/search?q={searchTerms}"; }];
+            iconUpdateURL =
+              "https://protondb.com/sites/protondb/images/favicon.ico";
+            updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
+          };
+
         };
       };
 
