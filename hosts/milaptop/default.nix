@@ -24,6 +24,7 @@ _: {
     ../../modules/apps/utils
     ../../modules/apps/work
 
+    ../../modules/services/auto-cpufreq
     ../../modules/services/docker
     ../../modules/services/homepage
     ../../modules/services/logrotate
