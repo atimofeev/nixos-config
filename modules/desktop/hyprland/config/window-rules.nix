@@ -3,7 +3,7 @@ _: {
 
     windowrulev2 = [
       "float, class:^(pavucontrol|.*pwvucontrol.*)$"
-      "float, class:^(nm-connection-editor|blueman-manager)$"
+      "float, class:^(nm-connection-editor|blueman-manager|.blueman-manager-wrapped)$"
       "float, class:nvidia-settings"
       "float, class:mpv"
       "float, class:zoom"
