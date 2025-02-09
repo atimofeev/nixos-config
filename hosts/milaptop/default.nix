@@ -9,7 +9,7 @@ _: {
     ../../modules/system
 
     ../../modules/hardware/bluetooth
-    ../../modules/hardware/intel
+    ../../modules/hardware/intel/kaby-lake.nix
     ../../modules/hardware/nvidia
     ../../modules/hardware/power
     ../../modules/hardware/razer
@@ -35,9 +35,14 @@ _: {
 
   ];
 
+  # CPU: i7-8550U (Kaby Lake)
+  # iGPU: UHD Graphics 620
+  # GPU: Nvidia MX150 (Pascal)
+
   hardware = {
 
-    # GPU: Nvidia MX150 (Pascal)
+    enableRedistributableFirmware = true;
+
     nvidia = {
       open = false;
       prime = {
