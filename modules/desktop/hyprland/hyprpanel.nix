@@ -18,7 +18,11 @@
       ];
 
     systemd.user.services.hyprpanel = {
-      Unit.Description = "hyprpanel";
+      Unit = {
+        Description = "hyprpanel";
+        After = "graphical-session.target";
+        PartOf = "graphical-session.target";
+      };
       Install.WantedBy = [ "graphical-session.target" ];
       Service = {
         Type = "simple";

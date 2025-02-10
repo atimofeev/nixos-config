@@ -33,9 +33,15 @@ in {
 
   };
 
+  # NOTE: fixes service ordering
+  # wait for https://github.com/nix-community/home-manager/pull/6423
+  systemd.user.services.swayidle.Unit = {
+    After = [ "graphical-session.target" ];
+    PartOf = [ "graphical-session.target" ];
+  };
+
   services.swayidle = {
     enable = true;
-    systemdTarget = "graphical-session.target";
     extraArgs = [ "-w" ];
 
     timeouts = [
