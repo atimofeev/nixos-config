@@ -28,7 +28,7 @@ _: {
     ../../modules/services/docker
     ../../modules/services/homepage
     ../../modules/services/logrotate
-    # ../../modules/services/nbfc # TODO: fix
+    # ../../modules/services/nbfc # FIX: breaks bluetooth for some reason
     ../../modules/services/ollama
     ../../modules/services/syncthing
     ../../modules/services/xremap
@@ -38,6 +38,8 @@ _: {
   # CPU: i7-8550U (Kaby Lake)
   # iGPU: UHD Graphics 620
   # GPU: Nvidia MX150 (Pascal)
+
+  networking.hostName = "milaptop";
 
   hardware = {
 
