@@ -14,7 +14,8 @@
     wayland.windowManager.hyprland.settings.bind =
       let systemctl = "${pkgs.systemd}/bin/systemctl";
       in [
-        "SUPER, B, exec, ${systemctl} --user is-active hyprpanel && ${systemctl} --user stop hyprpanel || ${systemctl} --user start hyprpanel"
+        # "SUPER, B, exec, ${systemctl} --user is-active hyprpanel && ${systemctl} --user stop hyprpanel || ${systemctl} --user start hyprpanel"
+        "SUPER, B, exec, ${systemctl} --user restart hyprpanel"
       ];
 
     systemd.user.services.hyprpanel = {
