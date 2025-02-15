@@ -38,11 +38,6 @@
     systemd.enable = false;
     settings = {
 
-      exec-once = [
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-      ];
-
       monitor = [
         "desc:BOE 0x0747, preferred, 0x0, 1"
         "desc:Dell Inc. DELL P2422H 8WRR0V3, preferred, 1920x0, 1"
