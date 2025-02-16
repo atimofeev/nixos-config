@@ -58,4 +58,7 @@ _: {
 
   };
 
+  services.auto-cpufreq.settings.battery.energy_performance_preference =
+    "balance_power";
+
 }
