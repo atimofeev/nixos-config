@@ -1,21 +1,28 @@
 _: {
   wayland.windowManager.hyprland.settings = {
 
-    workspace = [
-      "1, monitor:eDP-1, default:yes"
-      "2, monitor:eDP-1"
-      "3, monitor:eDP-1"
-      "4, monitor:eDP-1"
-      "5, monitor:HDMI-A-1, default:yes"
-      "6, monitor:HDMI-A-1"
-      "7, monitor:HDMI-A-1"
-      "8, monitor:HDMI-A-1"
-      "9, monitor:HDMI-A-1"
-      "10, monitor:DP-1, default:yes"
-      "11, monitor:DP-1"
-      "12, monitor:DP-1"
-      "13, monitor:DP-1"
-      "14, monitor:DP-1"
+    workspace = let
+      monitors = [
+        # order matters
+        "HDMI-A-1"
+        "eDP-1"
+        "DP-1"
+      ];
+    in [
+      "1, monitor:${builtins.elemAt monitors 0}, default:yes"
+      "2, monitor:${builtins.elemAt monitors 0}"
+      "3, monitor:${builtins.elemAt monitors 0}"
+      "4, monitor:${builtins.elemAt monitors 0}"
+      "5, monitor:${builtins.elemAt monitors 1}, default:yes"
+      "6, monitor:${builtins.elemAt monitors 1}"
+      "7, monitor:${builtins.elemAt monitors 1}"
+      "8, monitor:${builtins.elemAt monitors 1}"
+      "9, monitor:${builtins.elemAt monitors 1}"
+      "10, monitor:${builtins.elemAt monitors 2}, default:yes"
+      "11, monitor:${builtins.elemAt monitors 2}"
+      "12, monitor:${builtins.elemAt monitors 2}"
+      "13, monitor:${builtins.elemAt monitors 2}"
+      "14, monitor:${builtins.elemAt monitors 2}"
     ];
 
     binds = {
