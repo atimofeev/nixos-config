@@ -11,19 +11,6 @@
     ./vpn.nix
   ];
 
-  services.cato-client.enable = true;
-  home-manager.users.${vars.username}.programs.firefox.policies.Certificates =
-    let
-      catoCAPem = builtins.fetchurl {
-        url =
-          "https://clientdownload.catonetworks.com/public/certificates/CatoNetworksTrustedRootCA.pem";
-        sha256 = "19kgv6lvhs3i30sxj3f4x7z843jci5c902lp41ghsrsjmbsljzqx";
-      };
-    in {
-      ImportEnterpriseRoots = true;
-      Install = [ catoCAPem ];
-    };
-
   environment.systemPackages = with pkgs; [
     # langs
     nodejs_18
