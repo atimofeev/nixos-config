@@ -35,6 +35,7 @@
         SponsoredSuggestions = false;
         Locked = true;
       };
+      HardwareAcceleration = false;
       Homepage = {
         URL = "localhost:${
             toString osConfig.services.homepage-dashboard.listenPort
@@ -81,15 +82,6 @@
         "full-screen-api.transition-duration.leave" = "0 0";
         "full-screen-api.warning.delay" = -1;
         "full-screen-api.warning.timeout" = 0;
-
-        # gpu-accelerated stuff
-        "gfx.webrender.all" = false;
-        "gfx.webrender.compositor.force-enabled" = false;
-        "gfx.x11-egl.force-enabled" = false;
-        "media.av1.enabled" = true;
-        "media.ffmpeg.vaapi.enabled" = false;
-        "media.hardware-video-decoding.force-enabled" = false;
-        "media.hls.enabled" = false;
 
         "media.videocontrols.picture-in-picture.enabled" = true;
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" =
