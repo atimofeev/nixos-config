@@ -1,11 +1,8 @@
-{ vars, hostname, ... }: {
+{ vars, ... }: {
 
-  networking = {
-    hostName = hostname;
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-    };
+  networking.networkmanager = {
+    enable = true;
+    dns = "systemd-resolved";
   };
 
   users.users.${vars.username}.extraGroups = [ "networkmanager" ];
