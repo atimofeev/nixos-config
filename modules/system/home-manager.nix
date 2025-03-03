@@ -1,9 +1,9 @@
-{ inputs, pkgs, libx, vars, hostname, ... }: {
+{ inputs, pkgs, libx, vars, ... }: {
 
   imports = [ inputs.home-manager.nixosModules.default ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs pkgs libx vars hostname; };
+    extraSpecialArgs = { inherit inputs pkgs libx vars; };
     users.${vars.username} = import ../../home;
   };
 

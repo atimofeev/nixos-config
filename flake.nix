@@ -39,10 +39,7 @@
       nixosConfigurations = {
 
         milaptop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs vars;
-            hostname = "milaptop";
-          };
+          specialArgs = { inherit inputs vars; };
           modules = [ ./hosts/milaptop ./pkgs ./overlays ];
         };
 
