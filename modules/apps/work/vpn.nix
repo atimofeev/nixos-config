@@ -4,9 +4,9 @@
     "work/officeVPNcreds".restartUnits = [ "openvpn-officeVPN.service" ];
     "work/dnsmasq-config".restartUnits = [ "dnsmasq.service" ];
   };
+  home-manager.users.${vars.username}.programs.firefox.policies = {
 
-  home-manager.users.${vars.username}.programs.firefox.policies.Certificates =
-    let
+    Certificates = let
       catoCAPem = builtins.fetchurl {
         url =
           "https://clientdownload.catonetworks.com/public/certificates/CatoNetworksTrustedRootCA.pem";
@@ -16,6 +16,13 @@
       ImportEnterpriseRoots = true;
       Install = [ catoCAPem ];
     };
+
+    DNSOverHTTPS = {
+      Enabled = false;
+      Locked = true;
+    };
+
+  };
 
   services = {
 
