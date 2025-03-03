@@ -51,12 +51,14 @@
       OverridePostUpdatePage = "";
       ShowHomeButton = true;
       UserMessaging = {
-        WhatsNew = false;
         ExtensionRecommendations = false;
         FeatureRecommendations = false;
-        UrlbarInterventions = false;
-        SkipOnboarding = true;
+        FirefoxLabs = false;
+        Locked = true;
         MoreFromMozilla = false;
+        SkipOnboarding = true;
+        UrlbarInterventions = false;
+        WhatsNew = false;
       };
     };
 
