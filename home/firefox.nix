@@ -6,6 +6,10 @@
       # NOTE: Can't be enabled outside US and some other countries
       # AutofillAddressEnabled = true;
       # AutofillCreditCardEnabled = true;
+      DNSOverHTTPS = {
+        Enabled = false;
+        Locked = true;
+      };
       DisableAppUpdate = true;
       DisableFirefoxScreenshots = true;
       DisableFirefoxStudies = true;
