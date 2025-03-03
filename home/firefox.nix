@@ -3,8 +3,9 @@
     enable = true;
 
     policies = {
-      AutofillAddressEnabled = true;
-      AutofillCreditCardEnabled = true;
+      # NOTE: Can't be enabled outside US and some other countries
+      # AutofillAddressEnabled = true;
+      # AutofillCreditCardEnabled = true;
       DisableAppUpdate = true;
       DisableFirefoxScreenshots = true;
       DisableFirefoxStudies = true;
