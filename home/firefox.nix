@@ -35,6 +35,10 @@
         SponsoredTopSites = false;
         TopSites = false;
       };
+      FirefoxSuggest = {
+        SponsoredSuggestions = false;
+        Locked = true;
+      };
       Homepage = {
         URL = "localhost:${
             toString osConfig.services.homepage-dashboard.listenPort
@@ -65,7 +69,6 @@
         "browser.aboutwelcome.enabled" = false;
         "browser.tabs.unloadOnLowMemory" = true;
         "browser.urlbar.suggest.calculator" = true;
-        "browser.urlbar.suggest.quicksuggest.sponsored" = false;
         "browser.urlbar.trimHttps" = true;
         "browser.urlbar.unitConversion.enabled" = true;
         "browser.urlbar.untrimOnUserInteraction.featureGate" = true;
