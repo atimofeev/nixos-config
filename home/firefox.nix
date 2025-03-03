@@ -86,6 +86,8 @@
         "media.hls.enabled" = false;
 
         "media.videocontrols.picture-in-picture.enabled" = true;
+        "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" =
+          true;
         "permissions.default.desktop-notification" = 2;
         "privacy.donottrackheader.enabled" = true;
         "security.insecure_connection_text.enabled" = true;
