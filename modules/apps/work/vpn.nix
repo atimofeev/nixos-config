@@ -1,18 +1,22 @@
-{ config, vars, ... }: {
+{ config, vars, ... }:
+let
+  catoCAPem = builtins.fetchurl {
+    url =
+      "https://clientdownload.catonetworks.com/public/certificates/CatoNetworksTrustedRootCA.pem";
+    sha256 = "19kgv6lvhs3i30sxj3f4x7z843jci5c902lp41ghsrsjmbsljzqx";
+  };
+in {
 
   sops.secrets = {
     "work/officeVPNcreds".restartUnits = [ "openvpn-officeVPN.service" ];
     "work/dnsmasq-config".restartUnits = [ "dnsmasq.service" ];
   };
+
+  security.pki.certificateFiles = [ catoCAPem ];
+
   home-manager.users.${vars.username}.programs.firefox.policies = {
 
-    Certificates = let
-      catoCAPem = builtins.fetchurl {
-        url =
-          "https://clientdownload.catonetworks.com/public/certificates/CatoNetworksTrustedRootCA.pem";
-        sha256 = "19kgv6lvhs3i30sxj3f4x7z843jci5c902lp41ghsrsjmbsljzqx";
-      };
-    in {
+    Certificates = {
       ImportEnterpriseRoots = true;
       Install = [ catoCAPem ];
     };
