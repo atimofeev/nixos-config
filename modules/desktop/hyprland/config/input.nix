@@ -1,6 +1,11 @@
 { vars, ... }: {
   wayland.windowManager.hyprland.settings = {
 
+    device = [{
+      name = "etd2303:00-04f3:3083-touchpad";
+      sensitivity = "-0.15";
+    }];
+
     input = {
       accel_profile = "adaptive";
       kb_layout = vars.kb_layouts;
@@ -8,7 +13,7 @@
       numlock_by_default = true;
       repeat_delay = 275;
       repeat_rate = 35;
-      sensitivity = -0.1;
+      sensitivity = -0.8;
 
       touchpad.natural_scroll = 1;
     };
