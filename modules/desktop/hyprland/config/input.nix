@@ -16,6 +16,8 @@
       sensitivity = -0.8;
 
       touchpad.natural_scroll = 1;
+
+      touchdevice.output = "DP-1";
     };
 
     gestures = {
