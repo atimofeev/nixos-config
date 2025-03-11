@@ -6,9 +6,16 @@
     {
       work-main = [
         {
-          jira = [{
+          jira-dashboard = [{
             abbr = "JI";
-            href = "{{HOMEPAGE_VAR_JIRA_URL}}";
+            href = "{{HOMEPAGE_VAR_JIRA_DASHBOARD_URL}}";
+            icon = "jira.png";
+          }];
+        }
+        {
+          jira-backlog = [{
+            abbr = "JI";
+            href = "{{HOMEPAGE_VAR_JIRA_BACKLOG_URL}}";
             icon = "jira.png";
           }];
         }
