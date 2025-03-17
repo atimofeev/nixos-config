@@ -12,7 +12,7 @@
 
       charger = {
         governor = "performance";
-        energy_performance_preference = lib.mkDefault "default";
+        energy_performance_preference = lib.mkDefault "performance";
         turbo = "auto";
       };
 
