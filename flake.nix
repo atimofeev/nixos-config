@@ -31,6 +31,11 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { nixpkgs, ... }@inputs:

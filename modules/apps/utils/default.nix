@@ -1,5 +1,7 @@
 { pkgs, ... }: {
 
+  imports = [ ./comma.nix ];
+
   environment.systemPackages = with pkgs; [
     wl-clipboard
     coreutils
@@ -24,8 +26,6 @@
     fzf
     tldr
 
-    # nix utils
-    comma # launch any nixpkg with ', <pkg>'
   ];
 
 }
