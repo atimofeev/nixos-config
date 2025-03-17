@@ -1,8 +1,7 @@
 { pkgs, ... }: {
 
-  imports = [ ./comma.nix ];
-
   environment.systemPackages = with pkgs; [
+
     wl-clipboard
     coreutils
     util-linux

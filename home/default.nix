@@ -5,6 +5,7 @@
 
     ./firefox.nix
     ./mpv.nix
+    ./nix-index.nix
     ./obsidian.nix
     ./qbittorrent.nix
     ./sops.nix
