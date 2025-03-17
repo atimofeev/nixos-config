@@ -10,10 +10,11 @@
       args = [
         "-c"
         ''
-          server=$(kubectl config view --minify --output 'jsonpath={.clusters[0].cluster.server}')
-          ca=$(kubectl get secret/$NAME-secret -n $NAMESPACE --context $CONTEXT -o jsonpath='{.data.ca\.crt}')
-          token=$(kubectl get secret/$NAME-secret -n $NAMESPACE --context $CONTEXT -o jsonpath='{.data.token}' | base64 --decode)
-          ns="default"
+          # try both styles of secret naming
+          SA_SECRET_TOKEN1=$(kubectl get secret/$NAME-secret -n $NAMESPACE --context $CONTEXT -o jsonpath='{.data.token}' | base64 --decode)
+          SA_SECRET_TOKEN2=$(kubectl get secret/$NAME-token -n $NAMESPACE --context $CONTEXT -o jsonpath='{.data.token}' | base64 --decode)
+          CLUSTER_CA_CERT=$(kubectl config view --raw -o jsonpath="{.clusters[0].cluster.certificate-authority-data}")
+          CLUSTER_ENDPOINT=$(kubectl config view --raw -o jsonpath="{.clusters[0].cluster.server}")
 
           echo "---
           apiVersion: v1
@@ -22,22 +23,21 @@
           current-context: $CONTEXT
 
           contexts:
-            - name: $CONTEXT-$NAME
+            - name: $CONTEXT
               context:
-                user: $NAME
                 cluster: $CONTEXT
-                namespace: $ns
+                user: $NAME
 
           clusters:
             - name: $CONTEXT
               cluster:
-                server: $server
-                certificate-authority-data: $ca
+                certificate-authority-data: $CLUSTER_CA_CERT
+                server: $CLUSTER_ENDPOINT
 
           users:
             - name: $NAME
               user:
-                token: $token
+                token: $SA_SECRET_TOKEN1$SA_SECRET_TOKEN2
 
           " > ${config.home.homeDirectory}/$NAME_$CONTEXT.yaml
         ''
