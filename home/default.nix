@@ -1,6 +1,7 @@
-{ inputs, vars, ... }: {
+{ vars, ... }: {
 
   imports = [
+
     ./terminal
 
     ./firefox.nix
@@ -13,7 +14,6 @@
     ./vcv-rack.nix
     ./zathura.nix
 
-    inputs.sops-nix.homeManagerModules.sops
   ];
 
   programs.home-manager.enable = true;
