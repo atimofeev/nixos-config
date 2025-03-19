@@ -3,7 +3,7 @@
   imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
   programs = {
-    nix-index.enable = true;
+    # nix-index.enable = true; # show packages for missing command (command-not-found)
     nix-index-database.comma.enable = true;
   };
 
