@@ -14,6 +14,7 @@ _: {
     ./apps/btop.nix
     ./apps/git.nix
     ./apps/htop.nix
+    ./apps/kubecolor.nix
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
     ./apps/spotify-player.nix
