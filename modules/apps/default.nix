@@ -1,5 +1,7 @@
 { pkgs, ... }: {
 
+  imports = [ ./chromium.nix ];
+
   environment.systemPackages = with pkgs; [
     # GUI/TUI apps
     emacs29
