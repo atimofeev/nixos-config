@@ -4,7 +4,10 @@
     userName = "Artem Timofeev";
     userEmail = "39891735+atimofeev@users.noreply.github.com";
     ignores = [ "*.swp" ".null-ls_*" ];
-    extraConfig = { pull.rebase = true; };
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
+    };
     includes = [{
       path = "~/repos/betby/.gitconfig";
       condition = "gitdir:~/repos/betby/";
