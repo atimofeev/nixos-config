@@ -35,7 +35,7 @@
         SponsoredSuggestions = false;
         Locked = true;
       };
-      HardwareAcceleration = false;
+      HardwareAcceleration = true;
       Homepage = {
         URL = "localhost:${
             toString osConfig.services.homepage-dashboard.listenPort
