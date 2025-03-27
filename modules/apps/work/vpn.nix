@@ -12,7 +12,30 @@ in {
     "work/dnsmasq-config".restartUnits = [ "dnsmasq.service" ];
   };
 
-  security.pki.certificateFiles = [ catoCAPem ];
+  security = {
+    pki.certificateFiles = [ catoCAPem ];
+    sudo = {
+      extraRules = [{
+        commands = [
+          {
+            command =
+              "/run/current-system/sw/bin/systemctl restart openvpn-officeVPN.service";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command =
+              "/run/current-system/sw/bin/systemctl start openvpn-officeVPN.service";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command =
+              "/run/current-system/sw/bin/systemctl stop openvpn-officeVPN.service";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }];
+    };
+  };
 
   home-manager.users.${vars.username}.programs.firefox.policies = {
 
