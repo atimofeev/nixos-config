@@ -8,6 +8,7 @@
     curl
     wget
     jq
+    yq-go
     nmap
     unzip
     file
