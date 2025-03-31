@@ -106,6 +106,11 @@
 
       functions = {
 
+        fish_user_key_bindings = # fish
+          ''
+            bind \cf fg # Ctrl-f - `fg`
+          '';
+
         # touchx = # fish
         #   ''
         #     for file in $argv
