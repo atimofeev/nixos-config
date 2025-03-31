@@ -201,6 +201,15 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
+          "HowLongToBeat" = {
+            definedAliases = [ "hltb" ];
+            urls =
+              [{ template = "https://howlongtobeat.com/?q={searchTerms}"; }];
+            iconUpdateURL =
+              "https://howlongtobeat.com/img/icons/favicon-32x32.png";
+            updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
+          };
+
         };
       };
 
