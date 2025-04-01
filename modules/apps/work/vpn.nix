@@ -16,6 +16,8 @@ in {
     pki.certificateFiles = [ catoCAPem ];
     sudo = {
       extraRules = [{
+        groups = [ "wheel" ];
+        runAs = "root";
         commands = [
           {
             command =
