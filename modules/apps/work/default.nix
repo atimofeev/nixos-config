@@ -29,7 +29,9 @@
     kubectl
     krew # TODO: requires additional setup; see `krew list`
     # use https://github.com/eigengrau/krew2nix ?
-    kubernetes-helm
+    (wrapHelm kubernetes-helm {
+      plugins = [ kubernetes-helmPlugins.helm-diff ];
+    })
     kubie # context & ns switching sub-shell
     popeye # cluster resource sanitizer
 
