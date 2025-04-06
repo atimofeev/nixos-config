@@ -66,16 +66,6 @@
         kx = "kubie ctx";
         kn = "kubie ns";
 
-        # EZA
-        ls = "eza --color=always --group-directories-first";
-        ll = "eza --long --color=always --group-directories-first";
-        la = "eza --all --long --color=always --group-directories-first";
-        ld =
-          "eza --list-dirs --long --color=always --group-directories-first"; # show exact dir info
-        lt =
-          "eza --tree --level 2 --all --color=always --group-directories-first";
-        "l." = ''eza --all | egrep "^\."''; # show only dotfiles
-
         # adding flags
         df =
           "df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs --exclude-type=efivarfs";
