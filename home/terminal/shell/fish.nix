@@ -4,11 +4,6 @@
     kitty.shellIntegration.enableFishIntegration = false;
     yazi.enableFishIntegration = false;
     zoxide.enableFishIntegration = true;
-    starship = {
-      enableFishIntegration = true;
-      enableTransience = true;
-    };
-
     fish = {
       enable = true;
 

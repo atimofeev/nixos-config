@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   # catppuccin macchiato palette
   colors = {
@@ -52,6 +52,11 @@ let
 in {
   programs.starship = {
     enable = true;
+    enableTransience = true;
+    enableBashIntegration = config.programs.bash.enable;
+    enableFishIntegration = config.programs.fish.enable;
+    enableNushellIntegration = config.programs.nushell.enable;
+    enableZshIntegration = config.programs.zsh.enable;
     settings = {
       add_newline = false;
 
