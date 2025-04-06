@@ -1,4 +1,4 @@
-{ lib,pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   themeName = "catppuccin.yml";
 
@@ -29,15 +29,15 @@ in {
       enableZshIntegration = config.programs.zsh.enable;
     };
 
-    nushell =
-      lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
-    fish =
-      lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
     bash =
       lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
+    fish =
+      lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
+    nushell =
+      lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
     zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
   };
 
   xdg.configFile."eza/theme.yml".source = themeSource;
-  
+
 }

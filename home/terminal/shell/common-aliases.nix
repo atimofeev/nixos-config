@@ -59,12 +59,12 @@ let
 in {
 
   programs = {
-    nushell =
-      lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
-    fish =
-      lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
     bash =
       lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
+    fish =
+      lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
+    nushell =
+      lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
     zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
   };
 
