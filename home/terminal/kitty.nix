@@ -1,6 +1,12 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, config, ... }: {
   programs.kitty = {
     enable = true;
+
+    shellIntegration = {
+      enableBashIntegration = config.programs.bash.enable;
+      enableFishIntegration = config.programs.fish.enable;
+      enableZshIntegration = config.programs.zsh.enable;
+    };
 
     settings = {
       # Font

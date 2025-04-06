@@ -1,7 +1,6 @@
 { pkgs, osConfig, ... }: {
   programs = {
 
-    kitty.shellIntegration.enableFishIntegration = false;
     fish = {
       enable = true;
 
