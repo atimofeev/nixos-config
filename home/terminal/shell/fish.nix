@@ -3,7 +3,6 @@
 
     kitty.shellIntegration.enableFishIntegration = false;
     yazi.enableFishIntegration = false;
-    zoxide.enableFishIntegration = true;
     fish = {
       enable = true;
 

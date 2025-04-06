@@ -14,7 +14,6 @@
   };
 
   programs = {
-    zoxide.enableNushellIntegration = true;
     yazi.enableNushellIntegration = true;
     nushell = {
       enable = true;
