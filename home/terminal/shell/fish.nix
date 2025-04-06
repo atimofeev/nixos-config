@@ -2,7 +2,6 @@
   programs = {
 
     kitty.shellIntegration.enableFishIntegration = false;
-    yazi.enableFishIntegration = false;
     fish = {
       enable = true;
 

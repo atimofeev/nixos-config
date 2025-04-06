@@ -14,7 +14,6 @@
   };
 
   programs = {
-    yazi.enableNushellIntegration = true;
     nushell = {
       enable = true;
       extraConfig = # nu
