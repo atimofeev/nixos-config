@@ -3,8 +3,6 @@
 
     kitty.shellIntegration.enableFishIntegration = false;
     yazi.enableFishIntegration = false;
-    carapace.enableFishIntegration = false;
-
     zoxide.enableFishIntegration = true;
     starship = {
       enableFishIntegration = true;
