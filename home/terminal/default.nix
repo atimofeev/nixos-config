@@ -4,6 +4,7 @@ _: {
 
     ./kitty.nix
 
+    ./shell/bash.nix
     ./shell/fish.nix
     ./shell/nushell.nix
 
