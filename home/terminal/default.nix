@@ -13,6 +13,7 @@ _: {
     ./apps/atuin.nix
     ./apps/bat.nix
     ./apps/btop.nix
+    ./apps/eza.nix
     ./apps/git.nix
     ./apps/htop.nix
     ./apps/kubecolor.nix

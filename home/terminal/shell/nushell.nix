@@ -16,7 +16,6 @@
   programs = {
     zoxide.enableNushellIntegration = true;
     yazi.enableNushellIntegration = true;
-    eza.enableNushellIntegration = true;
     carapace = {
       enable = true;
       enableNushellIntegration = true;

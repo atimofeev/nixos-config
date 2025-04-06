@@ -18,7 +18,6 @@
     # improved utils
     fd # find
     ripgrep # grep
-    eza # ls
     du-dust # du
     curlie # curl
 
