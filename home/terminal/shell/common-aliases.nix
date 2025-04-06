@@ -63,8 +63,10 @@ in {
       lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
     fish =
       lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
-    nushell =
-      lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
+    nushell = lib.mkIf config.programs.nushell.enable {
+      shellAliases =
+        lib.attrsets.removeAttrs commonAliases [ "shell" "du" "mkdir" ];
+    };
     zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
   };
 
