@@ -4,12 +4,21 @@ _: {
 
   programs.k9s.plugin.plugins = {
 
-    # TODO: test
-    #--- Create debug container for selected pod in current namespace
-    # See https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/#ephemeral-container
-    debug-container = {
+    debug-container-busybox = {
       shortCut = "Ctrl-D";
-      description = "debug-container";
+      description = "debug-container-busybox";
+      confirm = true;
+      scopes = [ "containers" ];
+      command = "sh";
+      args = [
+        "-c"
+        "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=busybox:1.28 --share-processes"
+      ];
+    };
+
+    debug-container-netshoot = {
+      shortCut = "Ctrl-E";
+      description = "debug-container-netshoot";
       confirm = true;
       scopes = [ "containers" ];
       command = "sh";
