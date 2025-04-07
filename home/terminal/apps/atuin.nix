@@ -7,7 +7,14 @@
     enableNushellIntegration = config.programs.nushell.enable;
     enableZshIntegration = config.programs.zsh.enable;
 
-    settings = { style = "compact"; };
+    settings = {
+      dialect = "uk";
+      enter_accept = true;
+      search_mode = "fuzzy";
+      style = "compact";
+      update_check = false;
+      workspaces = true;
+    };
   };
 
 }
