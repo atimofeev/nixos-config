@@ -7,6 +7,7 @@
     ./apps/fuzzel.nix # launcher
     ./apps/gtk.nix
     ./apps/hypridle.nix
+    ./apps/hyprpanel.nix
     ./apps/hyprpaper.nix # wallpaper
     ./apps/per-window-layout.nix
     ./apps/polkit-agent.nix # sudo password prompt
