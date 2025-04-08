@@ -1,16 +1,16 @@
 { pkgs, ... }: {
 
   imports = [
+    # ./apps/hyprlock.nix
+    # ./apps/swayidle.nix
     ./apps/cliphist.nix
     ./apps/fuzzel.nix # launcher
     ./apps/gtk.nix
-    # ./apps/hypridle.nix
-    # ./apps/hyprlock.nix
+    ./apps/hypridle.nix
     ./apps/hyprpaper.nix # wallpaper
     ./apps/per-window-layout.nix
     ./apps/polkit-agent.nix # sudo password prompt
     ./apps/qt.nix
-    ./apps/swayidle.nix
     ./apps/swaylock.nix
     ./apps/wayland-pipewire-idle-inhibit.nix
     ./apps/xdg-mime.nix # file association

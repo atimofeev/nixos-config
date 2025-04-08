@@ -9,6 +9,7 @@
       verbosity = "INFO";
       media_minimum_duration = 5;
       idle_inhibitor = "wayland";
+      node_blacklist = [{ name = "[Ff]irefox"; }];
     };
   };
 
