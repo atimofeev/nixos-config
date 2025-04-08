@@ -1,6 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
+    ./apps/cliphist.nix
     ./apps/fuzzel.nix # launcher
     ./apps/gtk.nix
     # ./apps/hypridle.nix
