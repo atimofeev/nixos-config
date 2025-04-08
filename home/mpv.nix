@@ -22,5 +22,17 @@
       mpris # integrate with media controls
       autoload # load playlist entries from play dir
     ];
+
+    scriptOpts = {
+      autoload = {
+        disabled = false;
+        images = false;
+        videos = true;
+        audio = true;
+        ignore_hidden = true;
+        same_type = true;
+        directory_mode = "ignore";
+      };
+    };
   };
 }
