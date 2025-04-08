@@ -1,7 +1,7 @@
 { stdenv, fetchurl, writeScript, autoPatchelfHook, dpkg, libz, lib, }:
 stdenv.mkDerivation rec {
   pname = "cato-client";
-  version = "5.3.0.382";
+  version = "5.4.0.1006";
 
   src = fetchurl {
     url =
