@@ -36,6 +36,7 @@ in {
 
       general = {
         ignore_dbus_inhibit = false;
+        ignore_systemd_inhibit = false;
         lock_cmd = lockCommand;
         before_sleep_cmd = lockCommand;
         after_sleep_cmd = "${hyprctl} dispatch dpms on";
