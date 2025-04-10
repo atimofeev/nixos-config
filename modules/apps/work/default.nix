@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }: {
+{ pkgs, ... }: {
 
   imports = [
     # ./gns3.nix # NOTE: probably still broken
@@ -6,6 +6,7 @@
     ./ansible.nix
     ./cato.nix
     ./jira.nix
+    ./k8s.nix
     ./nitrokey.nix
     ./tofu.nix
     ./vpn.nix
@@ -23,17 +24,6 @@
     dig
     pwgen
     vault-kv-mv
-
-    # k8s 
-    minikube
-    kubectl
-    krew # TODO: requires additional setup; see `krew list`
-    # use https://github.com/eigengrau/krew2nix ?
-    (wrapHelm kubernetes-helm {
-      plugins = [ kubernetes-helmPlugins.helm-diff ];
-    })
-    kubie # context & ns switching sub-shell
-    popeye # cluster resource sanitizer
 
     # communication
     slack
