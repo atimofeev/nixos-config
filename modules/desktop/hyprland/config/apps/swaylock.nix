@@ -1,10 +1,7 @@
-{ pkgs, vars, ... }:
-let swaylockPkg = pkgs.swaylock;
-in {
+{ vars, ... }: {
 
   programs.swaylock = {
     enable = true;
-    package = swaylockPkg;
     settings = {
       daemonize = true;
       ignore-empty-password = true;
