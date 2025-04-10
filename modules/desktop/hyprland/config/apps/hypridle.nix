@@ -1,4 +1,4 @@
-{ pkgs, osConfig, ... }:
+{ lib, pkgs, osConfig, ... }:
 let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
@@ -30,6 +30,9 @@ in {
     };
   };
 
+  # NOTE: https://github.com/nix-community/home-manager/issues/5899
+  systemd.user.services.hypridle.Unit.After =
+    lib.mkForce "graphical-session.target";
   services.hypridle = {
     enable = true;
     settings = {
