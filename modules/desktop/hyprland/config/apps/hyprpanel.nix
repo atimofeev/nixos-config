@@ -16,7 +16,7 @@
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.hyprpanel}/bin/hyprpanel";
-      Restart = "on-failure";
+      Restart = "always";
       RestartSec = 1;
       TimeoutStopSec = 10;
     };
