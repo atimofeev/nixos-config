@@ -19,10 +19,11 @@
 
     # cli tools
     awscli2
-    vault
-    nettools
+    cloudlens
     dig
+    nettools
     pwgen
+    vault
     vault-kv-mv
 
     # communication
