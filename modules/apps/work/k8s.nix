@@ -8,7 +8,10 @@
     })
     kubectl
     kubectl-cnpg
+    kubectl-ktop
     kubectl-node-shell
+    kubectl-view-allocations
+    kubectl-view-secret
     kubie # context & ns switching sub-shell
     minikube
     popeye # cluster resource sanitizer
