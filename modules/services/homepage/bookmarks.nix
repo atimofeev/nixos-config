@@ -186,6 +186,15 @@
             icon = "syncthing.svg";
           }];
         })
+        (lib.mkIf config.services.stirling-pdf.enable {
+          stirling-pdf = [{
+            abbr = "SP";
+            href = "http://localhost:${
+                toString config.services.stirling-pdf.environment.SERVER_PORT
+              }/";
+            icon = "sh-stirling-pdf";
+          }];
+        })
         (lib.mkIf (config.virtualisation.oci-containers.containers ? pihole) {
           pihole = [{
             abbr = "PH";

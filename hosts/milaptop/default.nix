@@ -25,12 +25,13 @@ _: {
     ../../modules/apps/utils
     ../../modules/apps/work
 
+    # ../../modules/services/nbfc # FIX: breaks bluetooth for some reason
     ../../modules/services/auto-cpufreq
     ../../modules/services/docker
     ../../modules/services/homepage
     ../../modules/services/logrotate
-    # ../../modules/services/nbfc # FIX: breaks bluetooth for some reason
     ../../modules/services/ollama
+    ../../modules/services/stirling-pdf
     ../../modules/services/syncthing
     ../../modules/services/xremap
 
