@@ -77,6 +77,10 @@
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
         "findbar.highlightAll" = true;
 
+        "font.name.monospace.x-western" = "DejaVuSansM Nerd Font Mono";
+        "font.name.sans-serif.x-western" = "DejaVuSansM Nerd Font";
+        "font.name.serif.x-western" = "DejaVuSansM Nerd Font";
+
         # diable fullscreen notification
         "full-screen-api.transition-duration.enter" = "0 0";
         "full-screen-api.transition-duration.leave" = "0 0";
