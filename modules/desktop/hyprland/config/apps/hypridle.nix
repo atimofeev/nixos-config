@@ -30,7 +30,8 @@ in {
     };
   };
 
-  # NOTE: https://github.com/nix-community/home-manager/issues/5899
+  # NOTE: remove during upgrade to 25.05
+  # https://github.com/nix-community/home-manager/issues/5899
   systemd.user.services.hypridle.Unit.After =
     lib.mkForce "graphical-session.target";
   services.hypridle = {
