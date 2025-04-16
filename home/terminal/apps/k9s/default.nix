@@ -18,11 +18,12 @@ in {
     skins.skin = themeSource;
 
     aliases.aliases = {
+      cr = "clusterrole";
+      crb = "clusterrolebinding";
       de = "deployment";
       dp = "deployment";
       rb = "rolebinding";
-      cr = "clusterrole";
-      crb = "clusterrolebinding";
+      sec = "secrets";
     };
   };
 
