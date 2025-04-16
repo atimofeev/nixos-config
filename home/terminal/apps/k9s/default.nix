@@ -13,6 +13,7 @@ in {
 
   programs.k9s = {
     enable = true;
+    package = pkgs.unstable.k9s;
 
     settings.k9s.ui.skin = "skin";
     skins.skin = themeSource;
