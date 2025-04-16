@@ -88,6 +88,13 @@
           }];
         }
         {
+          aws_login_k8s = [{
+            abbr = "AW";
+            href = "{{HOMEPAGE_VAR_AWS_LOGIN_K8S_URL}}";
+            icon = "si-amazonwebservices-#FF9900";
+          }];
+        }
+        {
           nextcloud = [{
             abbr = "NC";
             href = "{{HOMEPAGE_VAR_NEXTCLOUD_URL}}";

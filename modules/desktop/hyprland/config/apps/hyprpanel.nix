@@ -1,11 +1,14 @@
-{ pkgs, inputs, config, osConfig, ... }: {
+{ pkgs, inputs, config, ... }: {
 
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
+
+  sops.secrets."personal/weather-api" = { };
 
   wayland.windowManager.hyprland.settings.bind =
     let systemctl = "${pkgs.systemd}/bin/systemctl";
     in [ "SUPER, B, exec, ${systemctl} --user restart hyprpanel" ];
 
+  # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/892
   systemd.user.services.hyprpanel = {
     Unit = {
       Description = "hyprpanel";
@@ -27,6 +30,7 @@
     enable = true;
     overwrite.enable = true;
 
+    # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/886
     # override.theme.bar.buttons.dashboard.icon = "#99c1f1";
 
     settings = {
@@ -86,7 +90,7 @@
         clock = {
           time.military = true;
           weather = {
-            key = osConfig.sops.secrets."personal/weather-api.json".path;
+            key = config.sops.secrets."personal/weather-api".path;
             location = "Budva";
             unit = "metric";
           };

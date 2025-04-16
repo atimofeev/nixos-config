@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, vars, ... }: {
 
   imports = [
     # ./gns3.nix # NOTE: probably still broken
@@ -44,5 +44,10 @@
       [system_default_sect]
       CipherString = Default:@SECLEVEL=0
     '';
+
+  sops.secrets."work/aws-creds" = {
+    owner = vars.username;
+    path = "/home/${vars.username}/.aws/credentials";
+  };
 
 }
