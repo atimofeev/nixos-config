@@ -15,10 +15,6 @@ in {
 
   sops.secrets = {
     "work/env/TF_HTTP_PASSWORD".owner = vars.username;
-    "work/env/AWS_ACCESS_KEY_ID".owner = vars.username;
-    "work/env/AWS_SECRET_ACCESS_KEY".owner = vars.username;
-    "work/env/BCO_AWS_ACCESS_KEY_ID".owner = vars.username;
-    "work/env/BCO_AWS_SECRET_ACCESS_KEY".owner = vars.username;
     "work/env/CLOUDFLARE_API_TOKEN".owner = vars.username;
     "work/env/GITLAB_TOKEN".owner = vars.username;
   };
@@ -26,18 +22,6 @@ in {
   environment.shellInit = ''
     export TF_HTTP_PASSWORD="$(cat ${
       config.sops.secrets."work/env/TF_HTTP_PASSWORD".path
-    })"
-    export AWS_ACCESS_KEY_ID="$(cat ${
-      config.sops.secrets."work/env/AWS_ACCESS_KEY_ID".path
-    })"
-    export AWS_SECRET_ACCESS_KEY="$(cat ${
-      config.sops.secrets."work/env/AWS_SECRET_ACCESS_KEY".path
-    })"
-    export BCO_AWS_ACCESS_KEY_ID="$(cat ${
-      config.sops.secrets."work/env/BCO_AWS_ACCESS_KEY_ID".path
-    })"
-    export BCO_AWS_SECRET_ACCESS_KEY="$(cat ${
-      config.sops.secrets."work/env/BCO_AWS_SECRET_ACCESS_KEY".path
     })"
     export CLOUDFLARE_API_TOKEN="$(cat ${
       config.sops.secrets."work/env/CLOUDFLARE_API_TOKEN".path
