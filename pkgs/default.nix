@@ -16,14 +16,6 @@ _: {
         };
       })
 
-      # (self: super: {
-      #   monokle = import ./monokle.nix {
-      #     inherit (super)
-      #       lib buildNpmPackage fetchFromGitHub electron nix-update-script
-      #       makeBinaryWrapper;
-      #   };
-      # })
-
     ];
   };
 
