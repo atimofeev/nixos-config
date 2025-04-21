@@ -34,8 +34,6 @@ let
     t = "tofu";
     k = "kubectl";
     mk = "minikube";
-    # FIX: https://github.com/sbstp/kubie/issues/123
-    # kx = "kubie ctx; k9s";
     kx = "kubie ctx";
     kn = "kubie ns";
 
@@ -56,13 +54,15 @@ let
     rm = "rm --interactive";
     # mv="mv --interactive";
   };
+  fishAliases = { unset = "set -e"; };
 in {
 
   programs = {
     bash =
       lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
-    fish =
-      lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
+    fish = lib.mkIf config.programs.fish.enable {
+      shellAliases = commonAliases // fishAliases;
+    };
     nushell = lib.mkIf config.programs.nushell.enable {
       shellAliases =
         lib.attrsets.removeAttrs commonAliases [ "shell" "du" "mkdir" ];
