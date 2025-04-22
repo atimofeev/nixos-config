@@ -131,6 +131,12 @@
             };
           };
         };
+        power = {
+          lowBatteryNotification = true;
+          lowBatteryNotificationText =
+            "Battery is running low - $POWER_LEVEL %";
+          lowBatteryThreshold = 15;
+        };
       };
 
       theme = {
