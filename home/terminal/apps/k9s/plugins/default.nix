@@ -1,6 +1,6 @@
 _: {
 
-  imports = [ ./helm.nix ./kubeconfig.nix ];
+  imports = [ ./cnpg.nix ./helm.nix ./kubeconfig.nix ];
 
   programs.k9s.plugin.plugins = {
 
