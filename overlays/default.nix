@@ -5,7 +5,7 @@
     (import ./terraformer.nix)
     (import ./unstable.nix { inherit inputs; })
     (import ./xone.nix)
-    (import ./xow_dongle-firmware-045e_02e6.nix)
+    (import ./xow_dongle-pr-400938.nix)
   ];
 
 }

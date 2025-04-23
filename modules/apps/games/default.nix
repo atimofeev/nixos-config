@@ -31,7 +31,6 @@
   hardware = {
     steam-hardware.enable = true;
     xone.enable = true;
-    firmware = [ pkgs.xow_dongle-firmware-045e_02e6 ];
   };
 
 }
