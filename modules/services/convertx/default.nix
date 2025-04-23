@@ -8,7 +8,7 @@
       ALLOW_UNAUTHENTICATED = "true";
     };
     ports = [ "3000:3000" ];
-    volumes = [ "data:/app/data" ];
+    volumes = [ "convertx:/app/data" ];
   };
 
 }
