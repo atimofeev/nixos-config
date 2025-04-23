@@ -8,6 +8,9 @@
     })
     kubectl
     kubectl-cnpg
+    kubectl-df-pv
+    kubectl-doctor
+    kubectl-graph
     kubectl-ktop
     kubectl-node-shell
     kubectl-view-allocations
