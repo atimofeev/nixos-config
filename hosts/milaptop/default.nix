@@ -27,6 +27,7 @@ _: {
 
     # ../../modules/services/nbfc # FIX: breaks bluetooth for some reason
     ../../modules/services/auto-cpufreq
+    ../../modules/services/convertx
     ../../modules/services/docker
     ../../modules/services/homepage
     ../../modules/services/logrotate

@@ -202,6 +202,13 @@
             icon = "sh-stirling-pdf";
           }];
         })
+        (lib.mkIf (config.virtualisation.oci-containers.containers ? convertx) {
+          convertx = [{
+            abbr = "CX";
+            href = "http://127.0.0.1:3000";
+            icon = "sh-convertx";
+          }];
+        })
         (lib.mkIf (config.virtualisation.oci-containers.containers ? pihole) {
           pihole = [{
             abbr = "PH";
