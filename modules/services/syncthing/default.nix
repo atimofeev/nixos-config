@@ -11,6 +11,8 @@
           "GXF4VCC-3CL7DLT-L7MPYAZ-XU5BM6G-TIKPIVA-WGMNH3B-MMRO3Z2-KF6X2AF";
         "Pixel 5a".id =
           "6TLETF7-HMGU76V-M5SN43R-ZCHPQX7-KDJGIHM-VVXHQ3H-BXWDFJN-7LPKRA3";
+        steamdeck.id =
+          "AIATXVS-TQHLJRC-TTJLPNX-V2X45YE-ZGRERKG-ITMJKMT-FBNPCQL-MMXAQQ4";
       };
 
       folders = {
@@ -18,7 +20,11 @@
           path = "/home/${vars.username}/repos/obsidian-vault";
           devices = [ "milaptop" "Pixel 5a" ];
           ignorePerms = true;
-          # copyOwnershipFromParent = true;
+        };
+        retrodeck = {
+          path = "/home/${vars.username}/retrodeck";
+          devices = [ "steamdeck" ];
+          ignorePerms = true;
         };
       };
 
