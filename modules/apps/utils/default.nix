@@ -2,25 +2,25 @@
 
   environment.systemPackages = with pkgs; [
 
-    wl-clipboard
+    bc
     coreutils
-    util-linux
     curl
-    wget
+    file
     jq
-    yq-go
     nmap
     unzip
-    file
-    bc
     usbutils
+    util-linux
+    wget
+    wl-clipboard
+    yq-go
 
     # improved utils
+    curlie # curl
+    du-dust # du
+    eza # ls
     fd # find
     ripgrep # grep
-    eza # ls
-    du-dust # du
-    curlie # curl
 
     # misc
     fzf
