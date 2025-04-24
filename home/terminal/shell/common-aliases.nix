@@ -23,7 +23,6 @@ let
     tb = "nc termbin.com 9999"; # [command] | tb
     nf = "neofetch --backend off --color_blocks off";
     chx = "chmod +x";
-    ip = "ip -4 a";
 
     # WORK
     vpn-stop = "sudo systemctl stop openvpn-officeVPN.service";
