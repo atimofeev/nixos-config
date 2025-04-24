@@ -1,6 +1,7 @@
 _: {
 
   imports = [
+    ./automount.nix
     ./boot.nix
     ./fonts.nix
     ./home-manager.nix
