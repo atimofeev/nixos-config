@@ -18,6 +18,7 @@
     kubie # context & ns switching sub-shell
     minikube
     popeye # cluster resource sanitizer
+    stern # pod/container log tailing
   ];
 
 }
