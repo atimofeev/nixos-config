@@ -120,7 +120,7 @@
     };
 
     cnpg-status = {
-      shortCut = "s";
+      shortCut = "u";
       description = "Status";
       scopes = [ "cluster" ];
       command = "bash";
@@ -133,7 +133,7 @@
     };
 
     cnpg-status-verbose = {
-      shortCut = "Shift-S";
+      shortCut = "Shift-U";
       description = "Status (verbose)";
       scopes = [ "cluster" ];
       command = "bash";
