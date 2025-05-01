@@ -17,6 +17,18 @@ in {
     enableFishIntegration = config.programs.fish.enable;
     enableNushellIntegration = config.programs.nushell.enable;
     enableZshIntegration = config.programs.zsh.enable;
+    keymap.manager.prepend_keymap = [
+      {
+        on = [ "<Tab>" ];
+        run = "tab_switch 1 --relative";
+        desc = "Switch to the next tab";
+      }
+      {
+        on = [ "<BackTab>" ];
+        run = "tab_switch -1 --relative";
+        desc = "Switch to the previous tab";
+      }
+    ];
   };
 
   xdg.configFile."yazi/theme.toml".source = themeSource;
