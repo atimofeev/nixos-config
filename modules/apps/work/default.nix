@@ -21,7 +21,9 @@
     awscli2
     cloudlens
     dig
+    lazysql
     nettools
+    pgcli
     pwgen
     vault
     vault-kv-mv
