@@ -19,6 +19,7 @@
     minikube
     popeye # cluster resource sanitizer
     stern # pod/container log tailing
+    talosctl
   ];
 
 }
