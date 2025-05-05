@@ -11,6 +11,7 @@
     kubectl-df-pv
     kubectl-doctor
     kubectl-graph
+    kubectl-klock
     kubectl-ktop
     kubectl-node-shell
     kubectl-view-allocations
