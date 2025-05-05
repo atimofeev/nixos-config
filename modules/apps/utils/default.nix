@@ -16,7 +16,7 @@
     yq-go
 
     # improved utils
-    curlie # curl
+    xh # curl
     du-dust # du
     eza # ls
     fd # find
