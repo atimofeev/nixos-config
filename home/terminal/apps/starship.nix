@@ -66,6 +66,7 @@ in {
           $battery
           $username
           $env_var
+          $kubernetes
           [](fg:${section1.bg} bg:${section2.bg})
           $directory
           [](fg:${section2.bg} bg:${section3.bg})
@@ -95,9 +96,16 @@ in {
         style_root = "fg:${section1.fg} bg:${section1.bg}";
       };
 
+      kubernetes = {
+        disabled = false;
+        format = "[$symbol $cluster( \\($namespace\\))]($style)";
+        style = "bold fg:${colors.teal} bg:${section1.bg}";
+        symbol = "☸";
+      };
+
       env_var = {
         IN_NIX_SHELL = {
-          format = "[$symbol]($style)";
+          format = "[$symbol ]($style)";
           style = "fg:${colors.blue} bg:${section1.bg}";
           symbol = "";
           variable = "IN_NIX_SHELL";
