@@ -9,7 +9,6 @@ in {
 
   sops.secrets = {
     "work/officeVPNcreds".restartUnits = [ "openvpn-officeVPN.service" ];
-    "work/dnsmasq-config".restartUnits = [ "dnsmasq.service" ];
   };
 
   security = {
@@ -75,14 +74,6 @@ in {
       };
 
     };
-
-    # dnsmasq = {
-    #   enable = true;
-    #   resolveLocalQueries = true;
-    #   settings = {
-    #     conf-file = [ "${config.sops.secrets."work/dnsmasq-config".path}" ];
-    #   };
-    # };
 
   };
 
