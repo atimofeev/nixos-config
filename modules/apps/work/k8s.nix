@@ -23,4 +23,22 @@
     talosctl
   ];
 
+  # Resolve *.homelab domain to minikube
+  services = {
+    dnsmasq = {
+      enable = true;
+      settings = {
+        address = "/homelab/192.168.49.2";
+        listen-address = "127.0.1.53";
+      };
+    };
+    resolved.extraConfig = # conf
+      ''
+        [Resolve]
+        DNSStubListener=no
+        DNS=127.0.1.53
+        Domains=~homelab
+      '';
+  };
+
 }
