@@ -4,7 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     (wrapHelm kubernetes-helm {
-      plugins = [ kubernetes-helmPlugins.helm-diff ];
+      plugins = with kubernetes-helmPlugins; [ helm-diff helm-git ];
     })
     kubectl
     kubectl-cnpg
