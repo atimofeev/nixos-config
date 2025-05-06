@@ -6,7 +6,8 @@
     wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
     wtype = "${pkgs.wtype}/bin/wtype";
   in [
-    "SUPER, V, exec, ${cliphist} list | ${fuzzel} --dmenu | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
+    # NOTE: properly exit if fuzzel returns nothing
+    "SUPER, V, exec, selected_item=$(${cliphist} list | ${fuzzel} --dmenu) && [ -n $selected_item ] && echo $selected_item | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
   ];
 
   # NOTE: remove during upgrade to 25.05
