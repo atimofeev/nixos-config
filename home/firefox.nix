@@ -112,8 +112,9 @@
 
           "GitHub" = {
             definedAliases = [ "gh" ];
-            urls =
-              [{ template = "https://github.com/search?q={searchTerms}"; }];
+            urls = [{
+              template = "https://github.com/search?q={searchTerms}&type=code";
+            }];
             iconUpdateURL =
               "https://github.githubassets.com/favicons/favicon-dark.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
@@ -170,7 +171,8 @@
           "GitHub lang:nix" = {
             definedAliases = [ "ghln" ];
             urls = [{
-              template = "https://github.com/search?q=lang:nix {searchTerms}";
+              template =
+                "https://github.com/search?q=lang:nix {searchTerms}&type=code";
             }];
             iconUpdateURL =
               "https://github.githubassets.com/favicons/favicon-dark.png";
