@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ pkgs, vars, ... }: {
 
   # Bypass hotspot restrictions for certain ISPs
   boot.kernel.sysctl = {
@@ -13,6 +13,7 @@
   networking.networkmanager = {
     enable = true;
     dns = "systemd-resolved";
+    plugins = [ pkgs.networkmanager-openvpn ];
   };
 
   services.resolved.enable = true;
