@@ -14,6 +14,7 @@
     enable = true;
     dns = "systemd-resolved";
     plugins = [ pkgs.networkmanager-openvpn ];
+    unmanaged = [ "docker*" ];
   };
 
   programs.nm-applet.enable = true;
