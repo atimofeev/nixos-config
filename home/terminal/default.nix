@@ -14,6 +14,7 @@ _: {
 
     ./apps/atuin.nix
     ./apps/bat.nix
+    ./apps/bluetuith.nix
     ./apps/btop.nix
     ./apps/eza.nix
     ./apps/git.nix

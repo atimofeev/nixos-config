@@ -1,6 +1,4 @@
-{ pkgs, vars, ... }: {
-
-  environment.systemPackages = [ pkgs.bluetuith ];
+{ vars, ... }: {
 
   services.blueman.enable = true;
 
