@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }: {
+{ pkgs, lib, inputs, config, ... }: {
 
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
@@ -62,16 +62,9 @@
           "0" = {
             left = [ "dashboard" "workspaces" "windowtitle" ];
             middle = [ "media" ];
-            right = [
-              "volume"
-              "network"
-              "bluetooth"
-              "battery"
-              "systray"
-              "clock"
-              "kbinput"
-              "notifications"
-            ];
+            right = [ "volume" "network" "bluetooth" ]
+              ++ (lib.mkIf config.services.hyprsunset.enable [ "hyprsunset" ])
+              ++ [ "battery" "systray" "clock" "kbinput" "notifications" ];
           };
           "1" = {
             left = [ ];
