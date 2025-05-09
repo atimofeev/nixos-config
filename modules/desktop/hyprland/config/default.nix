@@ -9,6 +9,7 @@
     ./apps/hypridle.nix
     ./apps/hyprpanel.nix
     ./apps/hyprpaper.nix # wallpaper
+    ./apps/hyprsunset.nix
     ./apps/per-window-layout.nix
     ./apps/polkit-agent.nix # sudo password prompt
     ./apps/qt.nix
