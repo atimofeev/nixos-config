@@ -62,8 +62,13 @@
           "0" = {
             left = [ "dashboard" "workspaces" "windowtitle" ];
             middle = [ "media" ];
-            right = [ "volume" "network" "bluetooth" ]
-              ++ (lib.mkIf config.services.hyprsunset.enable [ "hyprsunset" ])
+            right = [
+              "volume"
+              "network"
+              "bluetooth"
+            ]
+            # NOTE: uncomment during upgrade to 25.05
+            # ++ (lib.optional config.services.hyprsunset.enable "hyprsunset")
               ++ [ "battery" "systray" "clock" "kbinput" "notifications" ];
           };
           "1" = {
