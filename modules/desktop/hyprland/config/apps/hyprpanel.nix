@@ -31,7 +31,7 @@
     overwrite.enable = true;
 
     # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/886
-    # override.theme.bar.buttons.dashboard.icon = "#99c1f1";
+    override."theme.bar.buttons.dashboard.icon" = "#99c1f1";
 
     settings = {
 
