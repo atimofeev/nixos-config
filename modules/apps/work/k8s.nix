@@ -6,6 +6,7 @@
     (wrapHelm kubernetes-helm {
       plugins = with kubernetes-helmPlugins; [ helm-diff helm-git ];
     })
+    kind
     kubectl
     kubectl-cnpg
     kubectl-df-pv
