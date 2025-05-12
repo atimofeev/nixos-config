@@ -10,14 +10,11 @@
 
   users.users.${vars.username}.extraGroups = [ "networkmanager" ];
 
-  networking = {
-    firewall.checkReversePath = "loose"; # fix k8s in docker
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-      plugins = [ pkgs.networkmanager-openvpn ];
-      unmanaged = [ "docker*" ];
-    };
+  networking.networkmanager = {
+    enable = true;
+    dns = "systemd-resolved";
+    plugins = [ pkgs.networkmanager-openvpn ];
+    unmanaged = [ "docker*" ];
   };
 
   programs.nm-applet.enable = true;
