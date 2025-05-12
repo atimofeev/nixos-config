@@ -3,7 +3,7 @@
     enable = true;
     userName = "Artem Timofeev";
     userEmail = "39891735+atimofeev@users.noreply.github.com";
-    ignores = [ "*.swp" ".null-ls_*" ];
+    ignores = [ "*.swp" ".null-ls_*" ".terraform*" "terraform.tfstate*" ];
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
