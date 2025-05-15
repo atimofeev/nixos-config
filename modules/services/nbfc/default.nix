@@ -1,4 +1,5 @@
 { pkgs, ... }:
+# FIX: breaks bluetooth if enabled
 let
 
   nbfc = pkgs.nbfc-linux;
