@@ -11,6 +11,7 @@ _: {
     ../../modules/hardware/bluetooth
     ../../modules/hardware/intel/kaby-lake.nix
     ../../modules/hardware/nvidia
+    ../../modules/hardware/peripherals/logitech.nix
     ../../modules/hardware/peripherals/razer.nix
     # ../../modules/hardware/peripherals/zsa.nix
     ../../modules/hardware/power
