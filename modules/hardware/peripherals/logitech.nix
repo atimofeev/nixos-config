@@ -22,9 +22,17 @@
       devices: ({
         name: "Wireless Mouse MX Master 3S";
 
-        smartshift: { on: true; threshold: 25; };
+        smartshift: { 
+          on: true; 
+          threshold: 25; 
+          torque: 50;
+        };
 
-        hiresscroll: { hires: true; invert: false; target: false; };
+        hiresscroll: { 
+          hires: true; 
+          invert: false; 
+          target: false; 
+        };
 
         dpi: 1500;
 
