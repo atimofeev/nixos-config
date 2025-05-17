@@ -36,6 +36,36 @@
 
         dpi: 1500;
 
+        thumbwheel: {
+          divert: true;
+          invert: false;
+          left: {
+            mode: "OnInterval";
+            interval: 2;
+            action: {
+              type: "Keypress";
+              keys: ["KEY_VOLUMEDOWN"];
+            };
+          };
+          right: {
+            mode: "OnInterval";
+            interval: 2;
+            action: {
+              type: "Keypress";
+              keys: ["KEY_VOLUMEUP"];
+            };
+          };
+          tap: {
+            type: "Keypress";
+            keys: ["KEY_MUTE"];
+          };
+        };
+
+        buttons: (
+          // top button
+          { cid: 0xc4; action = { type = "ToggleSmartshift"; }; },
+        );
+        
         // buttons: (
         //
         //   // Make thumb button 10.
