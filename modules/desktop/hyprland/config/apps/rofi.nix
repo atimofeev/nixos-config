@@ -30,4 +30,13 @@ in {
     };
 
   };
+
+  wayland.windowManager.hyprland.settings.bind = let
+    pkill = "${pkgs.procps}/bin/pkill";
+    wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+    wtype = "${pkgs.wtype}/bin/wtype";
+  in [''
+    SUPER, A, exec, ${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
+  ''];
+
 }

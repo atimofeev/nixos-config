@@ -9,12 +9,10 @@ let
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
   loginctl = "${pkgs.elogind}/bin/loginctl";
-  pkill = "${pkgs.procps}/bin/pkill";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   swappy = "${pkgs.swappy}/bin/swappy";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
-  wtype = lib.getExe pkgs.wtype;
 
 in {
   wayland.windowManager.hyprland.settings = {
@@ -82,10 +80,6 @@ in {
       "SUPER SHIFT, F, togglefloating"
       "SUPER, P, pseudo" # dwindle layout
       "SUPER, S, togglesplit" # dwindle layout
-      # "SUPER, A, exec, ${pkill} rofi || rofi -show drun" # app launcher
-      ''
-        SUPER, A, exec, ${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | wl-copy && ${wtype} -M ctrl -P v -m ctrl -p v"
-      ''
       "SUPER SHIFT, L, exec, ${loginctl}  lock-session"
 
       # group
