@@ -1,4 +1,4 @@
-{ lib, config, osConfig, ... }:
+{ lib, config, osConfig, vars, ... }:
 let
   commonAliases = {
     # NIX
@@ -11,7 +11,7 @@ let
     rb =
       "sudo nixos-rebuild boot --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
     shell = "NIXPKGS_ALLOW_UNFREE=1 nix-shell --run $SHELL";
-    v = "nix run ~/repos/nixvim-config/";
+    v = vars.terminal.editor;
     sops-secrets = "sops ~/repos/nixos-config/secrets/secrets.yaml";
     flake-update = ''
       nix flake metadata --json | jq --raw-output ".locks.nodes.root.inputs[]" | fzf | xargs nix flake lock --update-input'';
