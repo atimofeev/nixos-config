@@ -1,4 +1,4 @@
-{ pkgs, lib, osConfig, vars, ... }:
+{ pkgs, osConfig, vars, ... }:
 let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
