@@ -1,4 +1,4 @@
-{ pkgs, osConfig, vars, ... }:
+{ pkgs, lib, osConfig, vars, ... }:
 let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
@@ -7,7 +7,6 @@ let
   editor = "${vars.terminal.editor}";
 
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
   hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
   loginctl = "${pkgs.elogind}/bin/loginctl";
   pkill = "${pkgs.procps}/bin/pkill";
@@ -15,6 +14,7 @@ let
   swappy = "${pkgs.swappy}/bin/swappy";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  wtype = lib.getExe pkgs.wtype;
 
 in {
   wayland.windowManager.hyprland.settings = {
@@ -82,7 +82,10 @@ in {
       "SUPER SHIFT, F, togglefloating"
       "SUPER, P, pseudo" # dwindle layout
       "SUPER, S, togglesplit" # dwindle layout
-      "SUPER, A, exec, ${pkill} fuzzel || ${fuzzel}" # app launcher
+      # "SUPER, A, exec, ${pkill} rofi || rofi -show drun" # app launcher
+      ''
+        SUPER, A, exec, ${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | wl-copy && ${wtype} -M ctrl -P v -m ctrl -p v"
+      ''
       "SUPER SHIFT, L, exec, ${loginctl}  lock-session"
 
       # group

@@ -2,6 +2,7 @@
 
   nixpkgs.overlays = [
     (import ./neovim-unwrapped.nix)
+    (import ./rofi-wayland.nix)
     (import ./terraformer.nix)
     (import ./unstable.nix { inherit inputs; })
 

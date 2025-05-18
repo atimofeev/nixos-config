@@ -15,7 +15,7 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 | Session Manager   | uwsm                    |
 | Wallpaper         | HyprPaper               |
 | Bar, Notify, OSD  | HyprPanel               |
-| Launcher          | Fuzzel                  |
+| Launcher          | Rofi                    |
 | Idle daemon       | Hypridle                |
 | Lockscreen        | Swaylock                |
 | Screenshots       | Hyprshot + Swappy       |

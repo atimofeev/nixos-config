@@ -2,11 +2,11 @@
 
   wayland.windowManager.hyprland.settings.bind = let
     cliphist = "${pkgs.cliphist}/bin/cliphist";
-    fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
+    rofi = lib.getExe pkgs.rofi-wayland;
     wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
     wtype = "${pkgs.wtype}/bin/wtype";
   in [
-    "SUPER, V, exec, ${cliphist} list | ${fuzzel} --dmenu | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
+    "SUPER, V, exec, ${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
   ];
 
   # NOTE: remove during upgrade to 25.05
