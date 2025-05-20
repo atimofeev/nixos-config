@@ -77,6 +77,11 @@
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
         "findbar.highlightAll" = true;
 
+        # smoother scrolling
+        "mousewheel.min_line_scroll_amount" = 25;
+        "general.smoothScroll.mouseWheel.durationMinMS" = 400;
+        "general.smoothScroll.mouseWheel.durationMaxMS" = 500;
+
         "font.name.monospace.x-western" = "DejaVuSansM Nerd Font Mono";
         "font.name.sans-serif.x-western" = "DejaVuSansM Nerd Font";
         "font.name.serif.x-western" = "DejaVuSansM Nerd Font";
