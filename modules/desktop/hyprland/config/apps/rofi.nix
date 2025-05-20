@@ -28,11 +28,12 @@ in {
     plugins = with pkgs; [ rofi-calc rofi-emoji-wayland ];
 
     extraConfig = {
-      modi = "drun,calc,ssh,emoji";
-      display-drun = "󰲌 ";
+      modi = "drun,calc,ssh,emoji,run";
+      display-drun = "󰘔 ";
       display-calc = "󱖦 ";
-      display-ssh = "󰣀 ";
+      display-ssh = " ";
       display-emoji = "󰞅 ";
+      display-run = "󰲌 ";
       hover-select = true;
       show-icons = true;
       run-command = "${prefix} {cmd}";
