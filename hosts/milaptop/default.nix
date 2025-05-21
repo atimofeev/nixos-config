@@ -31,7 +31,8 @@
     ../../modules/services/homepage
     ../../modules/services/logrotate
     ../../modules/services/syncthing
-    ../../modules/services/xremap
+    # ../../modules/services/xremap
+    ../../modules/services/kanata
 
   ];
 
