@@ -19,7 +19,8 @@ in
 
       # misc
       tenv # https://github.com/tofuutils/tenv-nix#usage
-      tftui
+      # FIX: fails to build on 25.05
+      # tftui
     ]);
 
   sops.secrets = {

@@ -82,7 +82,7 @@
                 "bluetooth"
               ]
               # NOTE: uncomment during upgrade to 25.05
-              # ++ (lib.optional config.services.hyprsunset.enable "hyprsunset")
+              ++ (lib.optional config.services.hyprsunset.enable "hyprsunset")
               ++ [
                 "battery"
                 "systray"

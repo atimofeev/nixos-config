@@ -5,7 +5,6 @@
     # ./gns3.nix # NOTE: probably still broken
     # ./vm.nix
     ./ansible.nix
-    ./cato.nix
     ./jira.nix
     ./k8s.nix
     ./nitrokey.nix
@@ -15,7 +14,7 @@
 
   environment.systemPackages = with pkgs; [
     # langs
-    nodejs_18
+    # nodejs_18 # EOL
     python3
 
     # cli tools

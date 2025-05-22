@@ -7,7 +7,8 @@
     (import ./terraformer.nix)
     (import ./unstable.nix { inherit inputs; })
 
-    # NOTE: remove during upgrade to 25.05(?)
+    # NOTE: remove after merged
+    # https://github.com/NixOS/nixpkgs/pull/400938
     (import ./xone.nix)
     (import ./xow_dongle-pr-400938.nix)
 

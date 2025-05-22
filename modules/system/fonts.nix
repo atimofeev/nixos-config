@@ -1,9 +1,9 @@
-{ pkgs, vars, ... }:
+{ pkgs, ... }:
 {
 
   fonts.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "${vars.terminal.font_name}" ]; })
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) # for Hyprpanel
+    pkgs.nerd-fonts.dejavu-sans-mono
+    pkgs.nerd-fonts.jetbrains-mono # Hyprpanel
   ];
 
 }

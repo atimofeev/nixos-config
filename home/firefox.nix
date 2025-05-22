@@ -106,12 +106,12 @@
 
       search = {
         force = true;
-        default = "Google";
+        default = "google";
         engines = {
 
-          "Google".metaData.alias = "g";
+          "google".metaData.alias = "g";
 
-          "DuckDuckGo".metaData.alias = "ddg";
+          "ddg".metaData.alias = "ddg";
 
           "GitHub" = {
             definedAliases = [ "gh" ];
@@ -120,25 +120,25 @@
                 template = "https://github.com/search?q={searchTerms}&type=code";
               }
             ];
-            iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.png";
+            icon = "https://github.githubassets.com/favicons/favicon-dark.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
-          "YouTube" = {
+          "youtube" = {
             definedAliases = [ "yt" ];
             urls = [
               {
                 template = "https://www.youtube.com/results?search_query={searchTerms}";
               }
             ];
-            iconUpdateURL = "https://www.youtube.com/s/desktop/6b6081dd/img/favicon_32x32.png";
+            icon = "https://www.youtube.com/s/desktop/6b6081dd/img/favicon_32x32.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
           "My NixOS" = {
             definedAliases = [ "mn" ];
             urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
-            iconUpdateURL = "https://mynixos.com/favicon.ico";
+            icon = "https://mynixos.com/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
@@ -179,7 +179,7 @@
                 template = "https://github.com/search?q=lang:nix {searchTerms}&type=code";
               }
             ];
-            iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.png";
+            icon = "https://github.githubassets.com/favicons/favicon-dark.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
@@ -190,28 +190,28 @@
                 template = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs {searchTerms}&type=code";
               }
             ];
-            iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.png";
+            icon = "https://github.githubassets.com/favicons/favicon-dark.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
           "Freedium.cfd" = {
             definedAliases = [ "fd" ];
             urls = [ { template = "https://freedium.cfd/{searchTerms}"; } ];
-            iconUpdateURL = "https://miro.medium.com/v2/5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19";
+            icon = "https://miro.medium.com/v2/5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
           "ProtonDB" = {
             definedAliases = [ "pd" ];
             urls = [ { template = "https://protondb.com/search?q={searchTerms}"; } ];
-            iconUpdateURL = "https://protondb.com/sites/protondb/images/favicon.ico";
+            icon = "https://protondb.com/sites/protondb/images/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
           "HowLongToBeat" = {
             definedAliases = [ "hltb" ];
             urls = [ { template = "https://howlongtobeat.com/?q={searchTerms}"; } ];
-            iconUpdateURL = "https://howlongtobeat.com/img/icons/favicon-32x32.png";
+            icon = "https://howlongtobeat.com/img/icons/favicon-32x32.png";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 

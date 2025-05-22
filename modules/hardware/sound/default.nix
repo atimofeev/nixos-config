@@ -1,7 +1,7 @@
 { vars, ... }:
 {
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   users.users.${vars.username}.extraGroups = [ "audio" ];

@@ -1,13 +1,6 @@
 { vars, ... }:
 {
 
-  # NOTE: switch during upgrade to 25.05
-  # wait for https://github.com/nix-community/home-manager/pull/6423
-  systemd.user.services.hyprpaper.Unit = {
-    After = [ "graphical-session.target" ];
-    PartOf = [ "graphical-session.target" ];
-  };
-
   services.hyprpaper = {
     enable = true;
     settings = {

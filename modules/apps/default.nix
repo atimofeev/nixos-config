@@ -5,7 +5,7 @@
 
   environment.systemPackages = with pkgs; [
     # GUI/TUI apps
-    emacs29
+    emacs
     vscode
     firefox
     telegram-desktop
