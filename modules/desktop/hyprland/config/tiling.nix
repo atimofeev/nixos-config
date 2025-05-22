@@ -1,4 +1,5 @@
-{ vars, ... }: {
+{ vars, ... }:
+{
   wayland.windowManager.hyprland.settings = {
 
     dwindle = {

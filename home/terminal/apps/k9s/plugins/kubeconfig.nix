@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   programs.k9s.plugin.plugins = {
 
     generate-kubeconfig = {

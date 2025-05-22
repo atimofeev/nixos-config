@@ -1,11 +1,11 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
 
   powerManagement.enable = true;
 
   services = {
 
-    power-profiles-daemon.enable =
-      lib.mkIf config.services.auto-cpufreq.enable false;
+    power-profiles-daemon.enable = lib.mkIf config.services.auto-cpufreq.enable false;
 
     upower = {
       enable = true;

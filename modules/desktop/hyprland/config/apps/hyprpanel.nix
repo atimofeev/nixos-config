@@ -1,12 +1,21 @@
-{ pkgs, lib, inputs, config, ... }: {
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
+{
 
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   sops.secrets."personal/weather-api" = { };
 
   wayland.windowManager.hyprland.settings.bind =
-    let systemctl = "${pkgs.systemd}/bin/systemctl";
-    in [ "SUPER, B, exec, ${systemctl} --user restart hyprpanel" ];
+    let
+      systemctl = "${pkgs.systemd}/bin/systemctl";
+    in
+    [ "SUPER, B, exec, ${systemctl} --user restart hyprpanel" ];
 
   # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/892
   systemd.user.services.hyprpanel = {
@@ -60,16 +69,27 @@
       layout = {
         "bar.layouts" = {
           "0" = {
-            left = [ "dashboard" "workspaces" "windowtitle" ];
+            left = [
+              "dashboard"
+              "workspaces"
+              "windowtitle"
+            ];
             middle = [ "media" ];
-            right = [
-              "volume"
-              "network"
-              "bluetooth"
-            ]
-            # NOTE: uncomment during upgrade to 25.05
-            # ++ (lib.optional config.services.hyprsunset.enable "hyprsunset")
-              ++ [ "battery" "systray" "clock" "kbinput" "notifications" ];
+            right =
+              [
+                "volume"
+                "network"
+                "bluetooth"
+              ]
+              # NOTE: uncomment during upgrade to 25.05
+              # ++ (lib.optional config.services.hyprsunset.enable "hyprsunset")
+              ++ [
+                "battery"
+                "systray"
+                "clock"
+                "kbinput"
+                "notifications"
+              ];
           };
           "1" = {
             left = [ ];
@@ -96,43 +116,36 @@
         dashboard.directories = {
           left = {
             directory1 = {
-              command =
-                "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Downloads";
+              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Downloads";
               label = "󰉍 Downloads";
             };
             directory2 = {
-              command =
-                "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Videos";
+              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Videos";
               label = "󰉏 Videos";
             };
             directory3 = {
-              command =
-                "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/repos";
+              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/repos";
               label = "󰚝 Projects";
             };
           };
           right = {
             directory1 = {
-              command =
-                "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Documents";
+              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Documents";
               label = "󱧶 Documents";
             };
             directory2 = {
-              command =
-                "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Pictures";
+              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Pictures";
               label = "󰉏 Pictures";
             };
             directory3 = {
-              command =
-                "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}";
+              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}";
               label = "󱂵 Home";
             };
           };
         };
         power = {
           lowBatteryNotification = true;
-          lowBatteryNotificationText =
-            "Battery is running low - $POWER_LEVEL %";
+          lowBatteryNotificationText = "Battery is running low - $POWER_LEVEL %";
           lowBatteryThreshold = 15;
         };
       };

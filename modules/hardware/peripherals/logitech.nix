@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  # NOTE: nixos module will be merged in 
+  # NOTE: nixos module will be merged in
   # https://github.com/NixOS/nixpkgs/pull/287399
 
   # FIX: causes SHIFT & SUPER KB keys to be always active
@@ -19,7 +20,10 @@
       User = "root";
       RuntimeDirectory = "logiops";
       CapabilityBoundingSet = [ "CAP_SYS_NICE" ];
-      DeviceAllow = [ "/dev/uinput rw" "char-hidraw rw" ];
+      DeviceAllow = [
+        "/dev/uinput rw"
+        "char-hidraw rw"
+      ];
       ProtectClock = true;
       PrivateNetwork = true;
       ProtectHome = true;
@@ -36,8 +40,15 @@
       RestrictRealtime = true;
       LockPersonality = true;
       ProtectProc = "invisible";
-      SystemCallFilter = [ "nice" "@system-service" "~@privileged" ];
-      RestrictAddressFamilies = [ "AF_NETLINK" "AF_UNIX" ];
+      SystemCallFilter = [
+        "nice"
+        "@system-service"
+        "~@privileged"
+      ];
+      RestrictAddressFamilies = [
+        "AF_NETLINK"
+        "AF_UNIX"
+      ];
       RestrictSUIDSGID = true;
       NoNewPrivileges = true;
       ProtectSystem = "strict";

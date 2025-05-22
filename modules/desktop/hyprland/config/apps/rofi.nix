@@ -1,4 +1,9 @@
-{ pkgs, vars, osConfig, ... }:
+{
+  pkgs,
+  vars,
+  osConfig,
+  ...
+}:
 let
 
   themeSource = pkgs.fetchFromGitHub {
@@ -14,7 +19,8 @@ let
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wtype = "${pkgs.wtype}/bin/wtype";
 
-in {
+in
+{
 
   xdg.configFile."rofi/catppuccin-mocha.rasi".source =
     "${themeSource}/themes/catppuccin-macchiato.rasi";
@@ -25,7 +31,10 @@ in {
     terminal = "${vars.terminal.name} -e";
     theme = "${themeSource}/catppuccin-default.rasi";
 
-    plugins = with pkgs; [ rofi-calc rofi-emoji-wayland ];
+    plugins = with pkgs; [
+      rofi-calc
+      rofi-emoji-wayland
+    ];
 
     extraConfig = {
       modi = "drun,calc,ssh,emoji,run";
@@ -41,8 +50,10 @@ in {
 
   };
 
-  wayland.windowManager.hyprland.settings.bind = [''
-    SUPER, A, exec, ${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
-  ''];
+  wayland.windowManager.hyprland.settings.bind = [
+    ''
+      SUPER, A, exec, ${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"
+    ''
+  ];
 
 }

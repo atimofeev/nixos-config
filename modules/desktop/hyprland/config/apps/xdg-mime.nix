@@ -48,7 +48,8 @@ let
     # TODO: fix
     # "inode/directory" = fileBrowser;
   };
-in {
+in
+{
   xdg.mimeApps = {
     enable = true;
     defaultApplications = associations;

@@ -1,10 +1,13 @@
-{ vars, ... }: {
+{ vars, ... }:
+{
   wayland.windowManager.hyprland.settings = {
 
-    device = [{
-      name = "etd2303:00-04f3:3083-touchpad";
-      sensitivity = "-0.15";
-    }];
+    device = [
+      {
+        name = "etd2303:00-04f3:3083-touchpad";
+        sensitivity = "-0.15";
+      }
+    ];
 
     input = {
       accel_profile = "adaptive";

@@ -6,7 +6,8 @@ let
   tcolor = "rgb(000000)"; # #000000
   active_border = "${acolor1} ${acolor2} 45deg";
   inactive_border = "${icolor1}";
-in {
+in
+{
   wayland.windowManager.hyprland.settings = {
 
     general = {

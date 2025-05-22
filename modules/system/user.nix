@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
 
   programs.${vars.shell}.enable = true;
   users.users.${vars.username} = {

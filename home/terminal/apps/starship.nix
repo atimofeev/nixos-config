@@ -49,7 +49,8 @@ let
     bg = colors.surface0;
     fg = colors.yellow;
   };
-in {
+in
+{
   programs.starship = {
     enable = true;
     enableTransience = true;
@@ -60,35 +61,38 @@ in {
     settings = {
       add_newline = false;
 
-      format = lib.strings.replaceStrings [ "\n" ] [ "" ] # toml
-        ''
-          [](${section1.bg})
-          $battery
-          $username
-          $env_var
-          $kubernetes
-          [](fg:${section1.bg} bg:${section2.bg})
-          $directory
-          [](fg:${section2.bg} bg:${section3.bg})
-          $git_branch
-          $git_status
-          [](fg:${section3.bg} bg:${section4.bg})
-          $time
-          [](fg:${section4.bg} bg:${section5.bg})
-          $cmd_duration
-          $status
-          [ ](fg:${section5.bg})
-        '';
+      format =
+        lib.strings.replaceStrings [ "\n" ] [ "" ] # toml
+          ''
+            [](${section1.bg})
+            $battery
+            $username
+            $env_var
+            $kubernetes
+            [](fg:${section1.bg} bg:${section2.bg})
+            $directory
+            [](fg:${section2.bg} bg:${section3.bg})
+            $git_branch
+            $git_status
+            [](fg:${section3.bg} bg:${section4.bg})
+            $time
+            [](fg:${section4.bg} bg:${section5.bg})
+            $cmd_duration
+            $status
+            [ ](fg:${section5.bg})
+          '';
 
       battery = {
         disabled = false;
         format = "[$symbol$percentage]($style)";
       };
 
-      battery.display = [{
-        style = "fg:${section1.fg} bg:${section1.bg}";
-        threshold = 90;
-      }];
+      battery.display = [
+        {
+          style = "fg:${section1.fg} bg:${section1.bg}";
+          threshold = 90;
+        }
+      ];
 
       username = {
         disabled = false;

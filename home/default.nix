@@ -1,4 +1,5 @@
-{ vars, ... }: {
+{ vars, ... }:
+{
 
   imports = [
 
@@ -17,8 +18,7 @@
   ];
 
   programs.home-manager.enable = true;
-  systemd.user.startServices =
-    "sd-switch"; # reload system units on config update
+  systemd.user.startServices = "sd-switch"; # reload system units on config update
 
   home = {
     inherit (vars.nix) stateVersion;

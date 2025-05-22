@@ -1,6 +1,8 @@
 { vars, ... }:
-let wallpaper-uri = "file://${vars.wallpaper}";
-in {
+let
+  wallpaper-uri = "file://${vars.wallpaper}";
+in
+{
   imports = [
     ./dark-mode.nix
     ./extensions.nix
@@ -39,7 +41,9 @@ in {
       workspaces-only-on-primary = true;
     };
 
-    "org/gnome/shell/app-switcher" = { current-workspace-only = true; };
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
+    };
 
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;

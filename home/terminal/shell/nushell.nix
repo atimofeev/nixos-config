@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # TODO: learn nu https://www.nushell.sh/book/getting_started.html
   # TODO: configure https://www.nushell.sh/book/configuration.html

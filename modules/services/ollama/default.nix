@@ -1,4 +1,9 @@
-{ pkgs, config, vars, ... }:
+{
+  pkgs,
+  config,
+  vars,
+  ...
+}:
 # TODO: cleanup exessive config
 let
   additionalPackages = [
@@ -20,9 +25,16 @@ let
     pkgs.libgcc.out
     # pkgs.zluda
   ];
-in {
-  environment.systemPackages = with pkgs;
-    [ ollama ollama-cuda aichat ] ++ additionalPackages;
+in
+{
+  environment.systemPackages =
+    with pkgs;
+    [
+      ollama
+      ollama-cuda
+      aichat
+    ]
+    ++ additionalPackages;
 
   users.users.${vars.username}.extraGroups = [ "ollama" ];
 
@@ -47,16 +59,14 @@ in {
           pkgs.cudaPackages.cudatoolkit
           pkgs.cudaPackages.cuda_cudart
         ]}";
-        LD_LIBRARY_PATH =
-          "${pkgs.lib.makeLibraryPath additionalPackages}:$LD_LIBRARY_PATH";
+        LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath additionalPackages}:$LD_LIBRARY_PATH";
       };
     };
 
     open-webui = {
       enable = true;
       environment = {
-        OLLAMA_API_BASE_URL =
-          "http://127.0.0.1:${toString config.services.ollama.port}";
+        OLLAMA_API_BASE_URL = "http://127.0.0.1:${toString config.services.ollama.port}";
         # Disable authentication
         WEBUI_AUTH = "False";
         ANONYMIZED_TELEMETRY = "False";

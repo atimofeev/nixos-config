@@ -1,11 +1,11 @@
 { config, vars, ... }:
 let
   catoCAPem = builtins.fetchurl {
-    url =
-      "https://clientdownload.catonetworks.com/public/certificates/CatoNetworksTrustedRootCA.pem";
+    url = "https://clientdownload.catonetworks.com/public/certificates/CatoNetworksTrustedRootCA.pem";
     sha256 = "19kgv6lvhs3i30sxj3f4x7z843jci5c902lp41ghsrsjmbsljzqx";
   };
-in {
+in
+{
 
   sops.secrets = {
     "work/officeVPNcreds".restartUnits = [ "openvpn-officeVPN.service" ];
@@ -14,27 +14,26 @@ in {
   security = {
     pki.certificateFiles = [ catoCAPem ];
     sudo = {
-      extraRules = [{
-        groups = [ "wheel" ];
-        runAs = "root";
-        commands = [
-          {
-            command =
-              "/run/current-system/sw/bin/systemctl restart openvpn-officeVPN.service";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command =
-              "/run/current-system/sw/bin/systemctl start openvpn-officeVPN.service";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command =
-              "/run/current-system/sw/bin/systemctl stop openvpn-officeVPN.service";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }];
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          runAs = "root";
+          commands = [
+            {
+              command = "/run/current-system/sw/bin/systemctl restart openvpn-officeVPN.service";
+              options = [ "NOPASSWD" ];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl start openvpn-officeVPN.service";
+              options = [ "NOPASSWD" ];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl stop openvpn-officeVPN.service";
+              options = [ "NOPASSWD" ];
+            }
+          ];
+        }
+      ];
     };
   };
 

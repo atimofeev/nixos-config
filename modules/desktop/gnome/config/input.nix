@@ -2,12 +2,22 @@
 let
   i = lib.hm.gvariant.mkUint32;
   t = lib.hm.gvariant.mkTuple;
-in {
+in
+{
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       # Use different keyboard language for each window
       per-window = true;
-      sources = [ (t [ "xkb" "us" ]) (t [ "xkb" "ru" ]) ];
+      sources = [
+        (t [
+          "xkb"
+          "us"
+        ])
+        (t [
+          "xkb"
+          "ru"
+        ])
+      ];
     };
 
     "org/gnome/desktop/peripherals/keyboard" = {

@@ -1,11 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.neovim = {
 
-    plugins = with pkgs.vimPlugins; [{
-      plugin = harpoon;
-      type = "lua";
-      config = "require('harpoon').setup()";
-    }];
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = harpoon;
+        type = "lua";
+        config = "require('harpoon').setup()";
+      }
+    ];
 
     extraLuaConfig = # lua
       ''

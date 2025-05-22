@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
   dconf.settings = {
     "org/gnome/TextEditor".keybindings = "vim";
 
@@ -54,68 +55,62 @@
       ];
     };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
-      {
-        binding = "<Super>Return";
-        command = vars.terminal.name;
-        inherit (vars.terminal) name;
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>Return";
+      command = vars.terminal.name;
+      inherit (vars.terminal) name;
+    };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
-      {
-        binding = "<Shift><Super>h";
-        command = "${vars.terminal.name} -e htop";
-        name = "htop";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      binding = "<Shift><Super>h";
+      command = "${vars.terminal.name} -e htop";
+      name = "htop";
+    };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
       let
         # show images in kitty
-        spotifyPlayerCMD = if vars.terminal.name == "kitty" then
-          "kitty -o term=xterm-kitty -e spotify_player"
-        else
-          "${vars.terminal.name} -e spotify_player";
-      in {
+        spotifyPlayerCMD =
+          if vars.terminal.name == "kitty" then
+            "kitty -o term=xterm-kitty -e spotify_player"
+          else
+            "${vars.terminal.name} -e spotify_player";
+      in
+      {
         binding = "<Shift><Super>s";
         command = spotifyPlayerCMD;
         name = "spotify-player";
       };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
-      {
-        binding = "<Super>e";
-        command = "${vars.terminal.name} -e yazi";
-        name = "File Manager";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+      binding = "<Super>e";
+      command = "${vars.terminal.name} -e yazi";
+      name = "File Manager";
+    };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" =
-      {
-        binding = "<Shift><Super>n";
-        command = "${vars.terminal.name} -e nvtop";
-        name = "nvtop";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
+      binding = "<Shift><Super>n";
+      command = "${vars.terminal.name} -e nvtop";
+      name = "nvtop";
+    };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" =
-      {
-        binding = "<Super>Print";
-        command =
-          "${pkgs.bash}/bin/bash -c '${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -'";
-        name = "Edit clipboard image";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" = {
+      binding = "<Super>Print";
+      command = "${pkgs.bash}/bin/bash -c '${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.swappy}/bin/swappy -f -'";
+      name = "Edit clipboard image";
+    };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" =
-      {
-        binding = "<Super><Shift>Return";
-        command = "${vars.terminal.name} -e ${vars.terminal.editor}";
-        name = vars.terminal.editor;
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
+      binding = "<Super><Shift>Return";
+      command = "${vars.terminal.name} -e ${vars.terminal.editor}";
+      name = vars.terminal.editor;
+    };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" =
-      {
-        binding = "<Super><Shift>B";
-        command = "firefox --new-window";
-        name = "Firefox new window";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {
+      binding = "<Super><Shift>B";
+      command = "firefox --new-window";
+      name = "Firefox new window";
+    };
 
   };
 }

@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
 
   home-manager.users.${vars.username} = import ./config;
 

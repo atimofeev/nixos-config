@@ -1,4 +1,5 @@
-{ vars, ... }: {
+{ vars, ... }:
+{
 
   hardware.openrazer = {
     enable = true;

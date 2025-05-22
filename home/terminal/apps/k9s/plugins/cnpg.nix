@@ -23,8 +23,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg backup $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg backup $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -36,8 +35,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg hibernate status $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg hibernate status $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -50,8 +48,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg hibernate on $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg hibernate on $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -64,8 +61,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg hibernate off $NAME -n $NAME --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg hibernate off $NAME -n $NAME --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -87,8 +83,10 @@
       scopes = [ "cluster" ];
       command = "bash";
       background = false;
-      args =
-        [ "-c" "kubectl cnpg psql $NAME -n $NAMESPACE --context $CONTEXT" ];
+      args = [
+        "-c"
+        "kubectl cnpg psql $NAME -n $NAMESPACE --context $CONTEXT"
+      ];
     };
 
     cnpg-reload = {
@@ -100,8 +98,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg reload $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg reload $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -114,8 +111,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg restart $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg restart $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -127,8 +123,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg status $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
+        ''kubectl cnpg status $NAME -n $NAMESPACE --context "$CONTEXT" |& less -R''
       ];
     };
 
@@ -140,8 +135,7 @@
       background = false;
       args = [
         "-c"
-        ''
-          kubectl cnpg status $NAME -n $NAMESPACE --context "$CONTEXT" --verbose |& less -R''
+        ''kubectl cnpg status $NAME -n $NAMESPACE --context "$CONTEXT" --verbose |& less -R''
       ];
     };
 

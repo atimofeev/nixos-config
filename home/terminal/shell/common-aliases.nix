@@ -1,20 +1,21 @@
-{ lib, config, osConfig, vars, ... }:
+{
+  lib,
+  config,
+  osConfig,
+  vars,
+  ...
+}:
 let
   commonAliases = {
     # NIX
-    r =
-      "sudo nixos-rebuild test --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
-    rd =
-      "sudo nixos-rebuild dry-activate --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
-    rs =
-      "sudo nixos-rebuild switch --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
-    rb =
-      "sudo nixos-rebuild boot --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
+    r = "sudo nixos-rebuild test --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
+    rd = "sudo nixos-rebuild dry-activate --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
+    rs = "sudo nixos-rebuild switch --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
+    rb = "sudo nixos-rebuild boot --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
     shell = "NIXPKGS_ALLOW_UNFREE=1 nix-shell --run $SHELL";
     v = vars.terminal.editor;
     sops-secrets = "sops ~/repos/nixos-config/secrets/secrets.yaml";
-    flake-update = ''
-      nix flake metadata --json | jq --raw-output ".locks.nodes.root.inputs[]" | fzf | xargs nix flake lock --update-input'';
+    flake-update = ''nix flake metadata --json | jq --raw-output ".locks.nodes.root.inputs[]" | fzf | xargs nix flake lock --update-input'';
 
     # MISC
     icat = "kitty +kitten icat";
@@ -37,8 +38,7 @@ let
     kn = "kubie ns";
 
     # adding flags
-    df =
-      "df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs --exclude-type=efivarfs";
+    df = "df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs --exclude-type=efivarfs";
     du = "du --human-readable";
     free = "free --human";
     mkdir = "mkdir --parents --verbose";
@@ -53,18 +53,23 @@ let
     rm = "rm --interactive";
     # mv="mv --interactive";
   };
-  fishAliases = { unset = "set -e"; };
-in {
+  fishAliases = {
+    unset = "set -e";
+  };
+in
+{
 
   programs = {
-    bash =
-      lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
+    bash = lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
     fish = lib.mkIf config.programs.fish.enable {
       shellAliases = commonAliases // fishAliases;
     };
     nushell = lib.mkIf config.programs.nushell.enable {
-      shellAliases =
-        lib.attrsets.removeAttrs commonAliases [ "shell" "du" "mkdir" ];
+      shellAliases = lib.attrsets.removeAttrs commonAliases [
+        "shell"
+        "du"
+        "mkdir"
+      ];
     };
     zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
   };

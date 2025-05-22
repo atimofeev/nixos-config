@@ -1,6 +1,8 @@
 { lib, pkgs, ... }:
-let i = lib.hm.gvariant.mkUint32;
-in {
+let
+  i = lib.hm.gvariant.mkUint32;
+in
+{
   qt = {
     enable = true;
     style.name = "Adwaita-dark";

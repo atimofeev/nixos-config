@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
 
   environment.systemPackages = [ pkgs.chromium ];
 
@@ -53,14 +54,12 @@
         {
           name = "GitHub nixpkgs";
           shortcut = "ghnp";
-          url =
-            "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs {searchTerms}&type=code";
+          url = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs {searchTerms}&type=code";
         }
         {
           name = "Home Manager Options";
           shortcut = "ho";
-          url =
-            "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
+          url = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
         }
         {
           name = "Freedium.cfd";
@@ -75,9 +74,7 @@
       ];
       # Startup, Home page and New Tab page
       HomepageIsNewTabPage = true;
-      NewTabPageLocation = "http://localhost:${
-          toString config.services.homepage-dashboard.listenPort
-        }";
+      NewTabPageLocation = "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
       RestoreOnStartup = 1;
     };
   };

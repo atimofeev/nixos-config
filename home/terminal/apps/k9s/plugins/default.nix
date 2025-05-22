@@ -1,6 +1,10 @@
 _: {
 
-  imports = [ ./cnpg.nix ./helm.nix ./kubeconfig.nix ];
+  imports = [
+    ./cnpg.nix
+    ./helm.nix
+    ./kubeconfig.nix
+  ];
 
   programs.k9s.plugin.plugins = {
 
@@ -46,7 +50,10 @@ _: {
       background = true;
       scopes = [ "all" ];
       command = "sh";
-      args = [ "-c" "echo -n $NAME | wl-copy" ];
+      args = [
+        "-c"
+        "echo -n $NAME | wl-copy"
+      ];
     };
 
   };

@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
   users.users.${vars.username}.extraGroups = [ "libvirtd" ];
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;

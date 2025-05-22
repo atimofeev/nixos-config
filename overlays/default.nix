@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
 
   nixpkgs.overlays = [
     (import ./neovim-unwrapped.nix)

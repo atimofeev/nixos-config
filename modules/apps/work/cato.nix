@@ -1,24 +1,31 @@
 # NOTE: https://github.com/NixOS/nixpkgs/pull/339533
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption mkPackageOption;
 
   cfg = config.services.cato-client;
-in {
+in
+{
   options.services.cato-client = {
     enable = mkEnableOption "cato-client service";
     package = mkPackageOption pkgs "cato-client" { };
   };
 
   config = mkIf cfg.enable {
-    users = { groups.cato-client = { }; };
+    users = {
+      groups.cato-client = { };
+    };
 
     environment.systemPackages = [ cfg.package ];
 
     systemd.services.cato-client = {
       enable = true;
-      description =
-        "Cato Networks Linux client - connects tunnel to Cato cloud";
+      description = "Cato Networks Linux client - connects tunnel to Cato cloud";
       after = [ "network.target" ];
 
       serviceConfig = {

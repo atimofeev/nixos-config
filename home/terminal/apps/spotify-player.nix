@@ -1,11 +1,11 @@
-{ config, ... }: {
+{ config, ... }:
+{
 
   programs.spotify-player = {
     enable = true;
     settings = {
       # NOTE: not working
-      client_id_command =
-        "cat ${config.sops.secrets."personal/spotify-client-id".path}";
+      client_id_command = "cat ${config.sops.secrets."personal/spotify-client-id".path}";
       liked_icon = "";
       device = {
         volume = 85;

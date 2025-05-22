@@ -1,4 +1,5 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
 
   imports = [ inputs.nix-gaming.nixosModules.platformOptimizations ];
 

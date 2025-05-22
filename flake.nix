@@ -38,14 +38,21 @@
 
   };
 
-  outputs = { nixpkgs, ... }@inputs:
-    let vars = import ./variables.nix;
-    in {
+  outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      vars = import ./variables.nix;
+    in
+    {
       nixosConfigurations = {
 
         milaptop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs vars; };
-          modules = [ ./hosts/milaptop ./pkgs ./overlays ];
+          modules = [
+            ./hosts/milaptop
+            ./pkgs
+            ./overlays
+          ];
         };
 
       };

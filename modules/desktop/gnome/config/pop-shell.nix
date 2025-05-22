@@ -7,7 +7,8 @@ let
   f = lib.mkForce false;
   t = lib.mkForce true;
   i = lib.hm.gvariant.mkUint32;
-in {
+in
+{
   dconf.settings = {
 
     "org/gnome/shell" = {
@@ -15,7 +16,9 @@ in {
       enabled-extensions = [ "pop-shell@system76.com" ];
     };
 
-    "org/gnome/shell/keybindings" = { toggle-quick-settings = mf [ ]; };
+    "org/gnome/shell/keybindings" = {
+      toggle-quick-settings = mf [ ];
+    };
 
     "org/gnome/mutter" = {
       center-new-windows = f;

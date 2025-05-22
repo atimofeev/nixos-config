@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
 
   # TODO: complete config
   # https://fzakaria.com/2024/08/13/nixos-raspberry-pi-me.html

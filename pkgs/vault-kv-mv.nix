@@ -1,7 +1,13 @@
-{ lib, fetchFromGitHub, buildGoModule }:
+{
+  lib,
+  fetchFromGitHub,
+  buildGoModule,
+}:
 
-let version = "0.0.8";
-in buildGoModule {
+let
+  version = "0.0.8";
+in
+buildGoModule {
   pname = "vault-kv-mv";
   inherit version;
 

@@ -1,4 +1,5 @@
-{ vars, ... }: {
+{ vars, ... }:
+{
 
   services.logrotate = {
     enable = true;

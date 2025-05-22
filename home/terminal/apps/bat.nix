@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   tail = pkgs.pkgs.writeShellScriptBin "tail" ''
     #!/usr/bin/env bash
@@ -31,12 +36,15 @@ let
     tail = "${tail}/bin/tail";
     head = "${head}/bin/head";
   };
-in {
+in
+{
   programs = {
 
     bat = {
       enable = true;
-      config = { theme = "catppuccin"; };
+      config = {
+        theme = "catppuccin";
+      };
       themes = {
         catppuccin = {
           file = "themes/Catppuccin Macchiato.tmTheme";
@@ -50,12 +58,9 @@ in {
       };
     };
 
-    bash =
-      lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
-    fish =
-      lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
-    nushell =
-      lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
+    bash = lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
+    fish = lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
+    nushell = lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
     zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
   };
 

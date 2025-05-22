@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # TODO: create home-manager module
   # example: https://github.com/nix-community/home-manager/pull/3904

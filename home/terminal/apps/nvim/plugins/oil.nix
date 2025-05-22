@@ -9,39 +9,44 @@ let
       hash = "sha256-2Oek8PncbzFhyA7u8p/4cqzroVA6eJOr1+AUaZgHZMY=";
     };
   };
-in {
+in
+{
   programs.neovim = {
 
-    plugins = (with pkgs.vimPlugins; [
-      plenary-nvim
-      nvim-web-devicons
-      {
-        plugin = oil-nvim;
-        type = "lua";
-        config = # lua
-          ''
-            require("oil").setup({
-              default_file_explorer = true,
-              delete_to_trash = true,
-              skip_confirm_for_simple_edits = true,
-              view_options = {
-                show_hidden = true,
-                natural_order = true,
-                is_always_hidden = function(name, _)
-                      return name == '..' or name == '.git'
-                    end,
-              },
-              win_options = { wrap = true };
-              keymaps = { ["<BS>"] = "actions.parent", },
-            })
-          '';
-      }
-    ]) ++ [{
-      # TODO: setup https://github.com/chrishrb/gx.nvim
-      plugin = gx-nvim;
-      type = "lua";
-      config = "require('gx').setup()";
-    }];
+    plugins =
+      (with pkgs.vimPlugins; [
+        plenary-nvim
+        nvim-web-devicons
+        {
+          plugin = oil-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              require("oil").setup({
+                default_file_explorer = true,
+                delete_to_trash = true,
+                skip_confirm_for_simple_edits = true,
+                view_options = {
+                  show_hidden = true,
+                  natural_order = true,
+                  is_always_hidden = function(name, _)
+                        return name == '..' or name == '.git'
+                      end,
+                },
+                win_options = { wrap = true };
+                keymaps = { ["<BS>"] = "actions.parent", },
+              })
+            '';
+        }
+      ])
+      ++ [
+        {
+          # TODO: setup https://github.com/chrishrb/gx.nvim
+          plugin = gx-nvim;
+          type = "lua";
+          config = "require('gx').setup()";
+        }
+      ];
 
     extraLuaConfig = # lua
       ''

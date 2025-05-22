@@ -1,6 +1,8 @@
 { pkgs, lib, ... }:
-let f = lib.mkForce;
-in {
+let
+  f = lib.mkForce;
+in
+{
 
   gtk = {
     enable = true;

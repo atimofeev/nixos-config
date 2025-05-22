@@ -53,7 +53,11 @@ _: {
       background = true;
       scopes = [ "po" ];
       command = "kubectl";
-      args = [ "purge" "$NAMESPACE" "$NAME" ];
+      args = [
+        "purge"
+        "$NAMESPACE"
+        "$NAME"
+      ];
     };
 
   };

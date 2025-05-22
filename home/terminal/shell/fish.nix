@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.fish = {
     enable = true;
@@ -77,7 +78,7 @@
 
     };
 
-    # TODO: add custom fzf functions 
+    # TODO: add custom fzf functions
   };
 
   home.sessionVariables.fish_greeting = "";

@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
 
   users.users.${vars.username}.extraGroups = [ "docker" ];
 
@@ -11,7 +12,7 @@
     # TODO: move to root-less podman
     # podman-desktop
     # podman-compose
-    # podman-tui 
+    # podman-tui
     docker-compose
     lazydocker
     dive

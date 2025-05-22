@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.btop = {
     enable = true;
@@ -11,11 +12,9 @@
     };
   };
 
-  xdg.configFile."btop/themes/catppuccin_macchiato.theme".source =
-    pkgs.fetchurl {
-      url =
-        "https://raw.githubusercontent.com/catppuccin/btop/f437574b600f1c6d932627050b15ff5153b58fa3/themes/catppuccin_macchiato.theme";
-      hash = "sha256-+LGMyyF71OvBhIBqkdSaEssxK5zzfYuiMyJlOnisiFA=";
-    };
+  xdg.configFile."btop/themes/catppuccin_macchiato.theme".source = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/catppuccin/btop/f437574b600f1c6d932627050b15ff5153b58fa3/themes/catppuccin_macchiato.theme";
+    hash = "sha256-+LGMyyF71OvBhIBqkdSaEssxK5zzfYuiMyJlOnisiFA=";
+  };
 
 }

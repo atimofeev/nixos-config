@@ -1,5 +1,10 @@
-{ pkgs, ... }: {
-  imports = [ ./plugins ./keymap.nix ./options.nix ];
+{ pkgs, ... }:
+{
+  imports = [
+    ./plugins
+    ./keymap.nix
+    ./options.nix
+  ];
   programs.neovim = {
     enable = true;
     defaultEditor = true;

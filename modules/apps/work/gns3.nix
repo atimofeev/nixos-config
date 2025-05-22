@@ -1,5 +1,15 @@
-{ pkgs, lib, config, vars, ... }: {
-  environment.systemPackages = with pkgs; [ gns3-gui libvirt ];
+{
+  pkgs,
+  lib,
+  config,
+  vars,
+  ...
+}:
+{
+  environment.systemPackages = with pkgs; [
+    gns3-gui
+    libvirt
+  ];
   # FIX: https://github.com/NixOS/nixpkgs/pull/303442
   services.gns3-server = {
     enable = true;
@@ -21,9 +31,10 @@
     NoNewPrivileges = pkgs.lib.mkForce false;
     RestrictSUIDSGID = pkgs.lib.mkForce false;
     PrivateUsers = pkgs.lib.mkForce false;
-    DeviceAllow = [ "/dev/net/tun rw" "/dev/net/tap rw" ]
-      ++ pkgs.lib.optionals config.virtualisation.libvirtd.enable
-      [ "/dev/kvm" ];
+    DeviceAllow = [
+      "/dev/net/tun rw"
+      "/dev/net/tap rw"
+    ] ++ pkgs.lib.optionals config.virtualisation.libvirtd.enable [ "/dev/kvm" ];
   };
 
   # virtualisation.vmware.host.enable = true;

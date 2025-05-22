@@ -1,4 +1,11 @@
-{ inputs, pkgs, lib, vars, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  vars,
+  ...
+}:
+{
 
   nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
 

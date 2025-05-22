@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # wayland.windowManager.hyprland.settings = {
   #   cursor = { no_hardware_cursors = true; };
@@ -13,17 +14,21 @@
       size = 24;
     };
 
-    file."adwaita-hyprcursor" = let
-      themeSource = pkgs.fetchFromGitHub {
-        owner = "joaoalves03";
-        repo = "adwaita-hyprcursor";
-        rev = "3fc6c5435b75c104cf6a156960900506af622ab4";
-        sha256 = "sha256-4DQvZVXarkyNvLKCxP+j3VVG3+BjxcOno5NHRMamc5U=";
-      } + "/hyprcursors";
-    in {
-      source = themeSource;
-      target = ".local/share/icons/adwaita-hyprcursor";
-    };
+    file."adwaita-hyprcursor" =
+      let
+        themeSource =
+          pkgs.fetchFromGitHub {
+            owner = "joaoalves03";
+            repo = "adwaita-hyprcursor";
+            rev = "3fc6c5435b75c104cf6a156960900506af622ab4";
+            sha256 = "sha256-4DQvZVXarkyNvLKCxP+j3VVG3+BjxcOno5NHRMamc5U=";
+          }
+          + "/hyprcursors";
+      in
+      {
+        source = themeSource;
+        target = ".local/share/icons/adwaita-hyprcursor";
+      };
 
     packages = with pkgs; [ hyprcursor ];
 

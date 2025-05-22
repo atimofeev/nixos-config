@@ -6,12 +6,15 @@ let
 
   configName = "Xiaomi Mi Book (TM1613, TM1703)";
 
-  cfg = pkgs.writeText "nbfc.json" (builtins.toJSON {
-    SelectedConfigId = "${configName}";
-    EmbeddedControllerType = "ec_sys_linux";
-  });
+  cfg = pkgs.writeText "nbfc.json" (
+    builtins.toJSON {
+      SelectedConfigId = "${configName}";
+      EmbeddedControllerType = "ec_sys_linux";
+    }
+  );
 
-in {
+in
+{
 
   environment.systemPackages = [ nbfc ];
   systemd.services.nbfc = {

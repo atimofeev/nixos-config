@@ -1,4 +1,5 @@
-{ pkgs, vars, ... }: {
+{ pkgs, vars, ... }:
+{
 
   # Bypass hotspot restrictions for certain ISPs
   boot.kernel.sysctl = {

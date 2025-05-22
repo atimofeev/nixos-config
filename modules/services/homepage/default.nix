@@ -1,6 +1,10 @@
-{ config, vars, ... }: {
+{ config, vars, ... }:
+{
 
-  imports = [ ./bookmarks.nix ./widgets.nix ];
+  imports = [
+    ./bookmarks.nix
+    ./widgets.nix
+  ];
 
   sops.secrets."work/homepage-env" = {
     owner = vars.username;
@@ -16,8 +20,7 @@
       title = "${vars.username} dashboard";
 
       background = {
-        image =
-          "https://raw.githubusercontent.com/atimofeev/nixos-config/main/assets/dark-shore-comp.png";
+        image = "https://raw.githubusercontent.com/atimofeev/nixos-config/main/assets/dark-shore-comp.png";
         # blur = "sm";
         saturate = 50;
         brightness = 85;

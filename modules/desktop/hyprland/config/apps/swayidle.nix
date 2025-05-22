@@ -15,7 +15,8 @@ let
   lockCommand =
     # "${playerctl} -a pause || true && (${pidof} swaylock || ${swaylock})";
     "(${pidof} swaylock || ${prefix} ${swaylock})";
-in {
+in
+{
 
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = [

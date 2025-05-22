@@ -6,7 +6,8 @@ let
     git pull --rebase origin main || true
     git push origin main
   '';
-in {
+in
+{
 
   home.packages = with pkgs; [ obsidian ];
 

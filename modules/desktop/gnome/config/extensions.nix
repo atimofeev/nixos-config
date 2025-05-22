@@ -8,7 +8,9 @@ _: {
         "gamemodeshellextension@trsnaqe.com"
       ];
     };
-    "org/gnome/shell/extensions/pip-on-top" = { stick = true; };
+    "org/gnome/shell/extensions/pip-on-top" = {
+      stick = true;
+    };
     "org/gnome/shell/extensions/gamemodeshellextension" = {
       show-icon-only-when-active = true;
     };

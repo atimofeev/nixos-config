@@ -1,11 +1,18 @@
-{ stdenv, fetchurl, writeScript, autoPatchelfHook, dpkg, libz, lib, }:
+{
+  stdenv,
+  fetchurl,
+  writeScript,
+  autoPatchelfHook,
+  dpkg,
+  libz,
+  lib,
+}:
 stdenv.mkDerivation rec {
   pname = "cato-client";
   version = "5.4.0.1006";
 
   src = fetchurl {
-    url =
-      "https://clients.catonetworks.com/linux/${version}/cato-client-install.deb";
+    url = "https://clients.catonetworks.com/linux/${version}/cato-client-install.deb";
     sha256 = "sha256-3RyiDgfWL4vA/pUyOigmuK+SV1Q96Y65HVERPeadWWY=";
   };
 
@@ -19,9 +26,15 @@ stdenv.mkDerivation rec {
 
   dontConfigure = true;
 
-  nativeBuildInputs = [ autoPatchelfHook dpkg ];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    dpkg
+  ];
 
-  buildInputs = [ libz stdenv.cc.cc ];
+  buildInputs = [
+    libz
+    stdenv.cc.cc
+  ];
 
   unpackPhase = ''
     runHook preUnpack
@@ -41,8 +54,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = {
-    description =
-      "Lightweight agent that provides secure zero-trust access to resources everywhere";
+    description = "Lightweight agent that provides secure zero-trust access to resources everywhere";
     homepage = "https://www.catonetworks.com/platform/cato-client/";
     mainProgram = "cato-sdp";
     license = lib.licenses.unfree;

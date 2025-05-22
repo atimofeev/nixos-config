@@ -11,15 +11,18 @@ let
       hash = "sha256-PpBaVuZqlU5A9a7ryEvs5TcsM/uz3dzx7KGjA3tt3NU=";
     };
   };
-in {
+in
+{
   programs = {
-    neovim.plugins = [{
-      plugin = kitty-scrollback-nvim;
-      type = "lua";
-      config = ''
-        require('kitty-scrollback').setup()
-      '';
-    }];
+    neovim.plugins = [
+      {
+        plugin = kitty-scrollback-nvim;
+        type = "lua";
+        config = ''
+          require('kitty-scrollback').setup()
+        '';
+      }
+    ];
 
     kitty.extraConfig = # conf
       ''

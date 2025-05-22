@@ -1,19 +1,22 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     # TODO: telescope integration
     # plugins.telescope.enabledExtensions = mkIf cfg.enableTelescope [ "projects" ];
-    plugins = with pkgs.vimPlugins; [{
-      plugin = project-nvim;
-      type = "lua";
-      config = # lua
-        ''
-          require("project_nvim").setup({
-            patterns = {".git"},
-            ignore_lsp = {"null-ls", "dockerls"},
-            show_hidden = true,
-          })
-        '';
-    }];
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = project-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require("project_nvim").setup({
+              patterns = {".git"},
+              ignore_lsp = {"null-ls", "dockerls"},
+              show_hidden = true,
+            })
+          '';
+      }
+    ];
 
     extraLuaConfig = # lua
       ''

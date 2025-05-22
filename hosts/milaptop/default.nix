@@ -54,12 +54,10 @@
       };
     };
 
-    bluetooth.settings.General.ControllerMode =
-      "bredr"; # Fixes Marshall Motif II LE mode
+    bluetooth.settings.General.ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
 
   };
 
-  services.auto-cpufreq.settings.battery.energy_performance_preference =
-    "balance_power";
+  services.auto-cpufreq.settings.battery.energy_performance_preference = "balance_power";
 
 }

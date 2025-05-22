@@ -1,4 +1,10 @@
-{ pkgs, vars, config, ... }: {
+{
+  pkgs,
+  vars,
+  config,
+  ...
+}:
+{
   programs.kitty = {
     enable = true;
 
@@ -48,12 +54,18 @@
     themeFile = "Catppuccin-Macchiato";
   };
 
-  xdg.configFile."kitty/diff.conf" = let
-    themeSource = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "kitty";
-      rev = "4820b3ef3f4968cf3084b2239ce7d1e99ea04dda";
-      sha256 = "sha256-uZSx+fuzcW//5/FtW98q7G4xRRjJjD5aQMbvJ4cs94U=";
-    } + "/themes/diff-macchiato.conf";
-  in { source = themeSource; };
+  xdg.configFile."kitty/diff.conf" =
+    let
+      themeSource =
+        pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "kitty";
+          rev = "4820b3ef3f4968cf3084b2239ce7d1e99ea04dda";
+          sha256 = "sha256-uZSx+fuzcW//5/FtW98q7G4xRRjJjD5aQMbvJ4cs94U=";
+        }
+        + "/themes/diff-macchiato.conf";
+    in
+    {
+      source = themeSource;
+    };
 }

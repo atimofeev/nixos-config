@@ -1,10 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # TODO: try https://github.com/a1994sc/krew2nix
 
   environment.systemPackages = with pkgs; [
     (wrapHelm kubernetes-helm {
-      plugins = with kubernetes-helmPlugins; [ helm-diff helm-git ];
+      plugins = with kubernetes-helmPlugins; [
+        helm-diff
+        helm-git
+      ];
     })
     kind
     kubectl
@@ -33,8 +37,7 @@
     172.18.255.1 alertmanager.k8s.homelab
   '';
 
-  networking.firewall.checkReversePath =
-    "loose"; # NOTE: fixed inter-node communication
+  networking.firewall.checkReversePath = "loose"; # NOTE: fixed inter-node communication
 
   # services.resolved = {
   #   domains = [ "homelab.com" ];

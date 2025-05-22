@@ -1,6 +1,8 @@
 { pkgs, vars, ... }:
-let date = "${pkgs.coreutils}/bin/date";
-in {
+let
+  date = "${pkgs.coreutils}/bin/date";
+in
+{
   # TODO: setup
   # https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
   # dots: https://github.com/anotherhadi/nixy/blob/9ffeb42e142b8367d077bd1c022cac9a04cdd19d/home/scripts/system/default.nix#L48
@@ -17,15 +19,17 @@ in {
         no_fade_in = false;
       };
 
-      background = [{
-        path = vars.wallpaper;
-        blur_passes = 3;
-        blur_size = 8;
-        contrast = 0.8916;
-        brightness = 0.7172;
-        vibrancy = 0.1696;
-        vibrancy_darkness = 0.0;
-      }];
+      background = [
+        {
+          path = vars.wallpaper;
+          blur_passes = 3;
+          blur_size = 8;
+          contrast = 0.8916;
+          brightness = 0.7172;
+          vibrancy = 0.1696;
+          vibrancy_darkness = 0.0;
+        }
+      ];
 
       label = [
         {
@@ -62,24 +66,26 @@ in {
         }
       ];
 
-      input-field = [{
-        monitor = "eDP-1";
-        size = "300, 60";
-        outline_thickness = 2;
-        dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-        dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
-        dots_center = true;
-        outer_color = "rgba(255, 255, 255, 0)";
-        inner_color = "rgba(255, 255, 255, 0.1)";
-        font_color = "rgb(255,255,255)";
-        fade_on_empty = false;
-        # font_family = font + " Bold";
-        placeholder_text = "<i>...</i>";
-        hide_input = false;
-        position = "0, -50";
-        halign = "center";
-        valign = "center";
-      }];
+      input-field = [
+        {
+          monitor = "eDP-1";
+          size = "300, 60";
+          outline_thickness = 2;
+          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true;
+          outer_color = "rgba(255, 255, 255, 0)";
+          inner_color = "rgba(255, 255, 255, 0.1)";
+          font_color = "rgb(255,255,255)";
+          fade_on_empty = false;
+          # font_family = font + " Bold";
+          placeholder_text = "<i>...</i>";
+          hide_input = false;
+          position = "0, -50";
+          halign = "center";
+          valign = "center";
+        }
+      ];
 
     };
 

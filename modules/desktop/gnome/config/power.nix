@@ -1,6 +1,8 @@
 { lib, ... }:
-let i = lib.hm.gvariant.mkUint32;
-in {
+let
+  i = lib.hm.gvariant.mkUint32;
+in
+{
   dconf.settings = {
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
