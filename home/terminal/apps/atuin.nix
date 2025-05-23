@@ -8,6 +8,8 @@
     enableNushellIntegration = config.programs.nushell.enable;
     enableZshIntegration = config.programs.zsh.enable;
 
+    flags = [ "--disable-up-arrow" ];
+
     settings = {
       dialect = "uk";
       enter_accept = true;
