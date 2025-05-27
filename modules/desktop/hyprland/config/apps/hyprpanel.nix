@@ -17,26 +17,12 @@
     in
     [ "SUPER, B, exec, ${systemctl} --user restart hyprpanel" ];
 
-  # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/892
-  systemd.user.services.hyprpanel = {
-    Unit = {
-      Description = "hyprpanel";
-      After = "graphical-session.target";
-      PartOf = "graphical-session.target";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.hyprpanel}/bin/hyprpanel";
-      Restart = "always";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
+  systemd.user.services.hyprpanel.Service.Restart = lib.mkForce "always";
 
   programs.hyprpanel = {
 
     enable = true;
+    systemd.enable = true;
     overwrite.enable = true;
 
     # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/886
