@@ -13,7 +13,7 @@
     ../../modules/hardware/nvidia
     # ../../modules/hardware/peripherals/logitech.nix
     ../../modules/hardware/peripherals/razer.nix
-    # ../../modules/hardware/peripherals/zsa.nix
+    ../../modules/hardware/peripherals/zsa.nix
     ../../modules/hardware/power
     ../../modules/hardware/sound
     ../../modules/hardware/ssd
