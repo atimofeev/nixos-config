@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel?ref=1827c01193fa5215cc308347210f0210e22ea2aa";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     wayland-pipewire-idle-inhibit = {
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
