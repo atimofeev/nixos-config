@@ -22,10 +22,10 @@
     kubectl-node-shell
     kubectl-view-allocations
     kubectl-view-secret
-    kubie # context & ns switching sub-shell
+    kubie
     minikube
-    popeye # cluster resource sanitizer
-    stern # pod/container log tailing
+    popeye
+    stern
     talosctl
   ];
 
