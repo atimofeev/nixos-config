@@ -10,6 +10,7 @@
         helm-git
       ];
     })
+    cmctl
     kind
     kubectl
     kubectl-cnpg
