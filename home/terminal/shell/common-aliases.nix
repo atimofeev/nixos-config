@@ -52,6 +52,19 @@ let
     cp = "cp --interactive";
     rm = "rm --interactive";
     # mv="mv --interactive";
+
+    # git
+    gs = "git status --short";
+    gd = "git diff";
+    ga = "git add";
+    gap = "git add --patch";
+    gc = "git commit";
+    gp = "git push";
+    gP = "git pull";
+    gl = "git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n'";
+    gb = "git branch";
+    gi = "git init";
+    gcl = "git clone";
   };
   fishAliases = {
     unset = "set -e";
