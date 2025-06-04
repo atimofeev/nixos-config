@@ -12,6 +12,7 @@ in
     [ tflint-w-plugins ]
     ++ (with pkgs; [
       unstable.opentofu
+      unstable.tfsort
 
       # import tools
       terraformer
