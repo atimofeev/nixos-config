@@ -15,9 +15,10 @@
     packageOverrides = pkgs: {
       ansible = pkgs.ansible.overrideAttrs (oldAttrs: {
         propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-          pkgs.python3Packages.hvac
-          pkgs.python3Packages.botocore
           pkgs.python3Packages.boto3
+          pkgs.python3Packages.botocore
+          pkgs.python3Packages.dnspython
+          pkgs.python3Packages.hvac
         ];
       });
     };
