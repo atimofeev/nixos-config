@@ -19,6 +19,12 @@
 
   systemd.user.services.hyprpanel.Service.Restart = lib.mkForce "always";
 
+  # FIX: resolve upstream module issue
+  xdg.configFile.hyprpanel = {
+    target = "hyprpanel/config.json";
+    force = true;
+  };
+
   programs.hyprpanel = {
 
     enable = true;
