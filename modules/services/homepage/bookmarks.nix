@@ -359,6 +359,15 @@
     {
       utils = [
         {
+          oryx = [
+            {
+              abbr = "OX";
+              href = "https://configure.zsa.io/voyager/layouts/VRLP7/latest/0";
+              icon = "sh-goatcounter";
+            }
+          ];
+        }
+        {
           diffchecker = [
             {
               abbr = "DC";
