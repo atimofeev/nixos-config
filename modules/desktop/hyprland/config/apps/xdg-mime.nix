@@ -50,9 +50,12 @@ let
   };
 in
 {
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = associations;
-    associations.added = associations;
+  xdg = {
+    configFile."mimeapps.list".force = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = associations;
+      associations.added = associations;
+    };
   };
 }
