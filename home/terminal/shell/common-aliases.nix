@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   osConfig,
@@ -36,6 +37,10 @@ let
     mk = "minikube";
     kx = "kubie ctx";
     kn = "kubie ns";
+
+    # hyprland
+    sunrise = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 6500";
+    sunset = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 4500";
 
     # adding flags
     df = "df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs --exclude-type=efivarfs";
