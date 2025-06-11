@@ -16,7 +16,7 @@ let
     shell = "NIXPKGS_ALLOW_UNFREE=1 nix-shell --run $SHELL";
     v = vars.terminal.editor;
     sops-secrets = "sops ~/repos/nixos-config/secrets/secrets.yaml";
-    flake-update = ''nix flake metadata --json | jq --raw-output ".locks.nodes.root.inputs[]" | fzf | xargs nix flake lock --update-input'';
+    flake-update = ''nix flake metadata --json | jq --raw-output ".locks.nodes.root.inputs | keys[]" | fzf | xargs nix flake update'';
 
     # MISC
     icat = "kitty +kitten icat";
