@@ -20,8 +20,7 @@ in
 
       # misc
       tenv # https://github.com/tofuutils/tenv-nix#usage
-      # FIX: fails to build on 25.05
-      # tftui
+      unstable.tftui
     ]);
 
   sops.secrets = {
