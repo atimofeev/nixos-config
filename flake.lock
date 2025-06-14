@@ -81,6 +81,27 @@
         "type": "github"
       }
     },
+    "astal_2": {
+      "inputs": {
+        "nixpkgs": [
+          "hyprpanel",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749559749,
+        "narHash": "sha256-TM95tg1G7S6rVBBoMwurXMz8Il4xlnuZ2TI4h6lfZzg=",
+        "owner": "aylur",
+        "repo": "astal",
+        "rev": "dd8a4662f2f17fb4326a7bd0fb2d054f5d477ba3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aylur",
+        "repo": "astal",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1745454774,
@@ -476,18 +497,20 @@
     "hyprpanel": {
       "inputs": {
         "ags": "ags",
+        "astal": "astal_2",
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1748443200,
-        "narHash": "sha256-2ga8+CO/guhtNKh2bloGG94hJyvJGo0KBLAYBWrByhE=",
-        "owner": "Jas-SinghFSU",
+        "lastModified": 1749416777,
+        "narHash": "sha256-VgJfxbRn7ppFx7Zb+mb/wMDWWjqUF6sLyJ3DqAcadvk=",
+        "owner": "geri1701",
         "repo": "HyprPanel",
-        "rev": "49dbce17307b2f32a71864b16692ce75ffc8fa8d",
+        "rev": "4ef6529a18833eddc6466161c8da6d6c41e3e900",
         "type": "github"
       },
       "original": {
-        "owner": "Jas-SinghFSU",
+        "owner": "geri1701",
+        "ref": "fix/gio-extra-modules",
         "repo": "HyprPanel",
         "type": "github"
       }
