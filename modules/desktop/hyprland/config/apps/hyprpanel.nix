@@ -67,20 +67,16 @@
               "windowtitle"
             ];
             middle = [ "media" ];
-            right =
-              [
-                "volume"
-                "network"
-                "bluetooth"
-              ]
-              ++ (lib.optional config.services.hyprsunset.enable "hyprsunset")
-              ++ [
-                "battery"
-                "systray"
-                "clock"
-                "kbinput"
-                "notifications"
-              ];
+            right = [
+              "volume"
+              "network"
+              "bluetooth"
+              "battery"
+              "systray"
+              "clock"
+              "kbinput"
+              "notifications"
+            ];
           };
           "1" = {
             left = [ ];
