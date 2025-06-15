@@ -20,9 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # FIX: https://github.com/Jas-SinghFSU/HyprPanel/pull/992
-    # hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
-    hyprpanel.url = "github:geri1701/HyprPanel?ref=fix/gio-extra-modules";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     wayland-pipewire-idle-inhibit = {
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";

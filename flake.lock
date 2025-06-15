@@ -501,16 +501,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1749416777,
-        "narHash": "sha256-VgJfxbRn7ppFx7Zb+mb/wMDWWjqUF6sLyJ3DqAcadvk=",
-        "owner": "geri1701",
+        "lastModified": 1749935973,
+        "narHash": "sha256-9gvXBLUJ5im8x5scIxjQnaXj5BS2gGzWj+EnN6KWJEc=",
+        "owner": "Jas-SinghFSU",
         "repo": "HyprPanel",
-        "rev": "4ef6529a18833eddc6466161c8da6d6c41e3e900",
+        "rev": "daf45665c4de82403aab40a02c2a3656737314a0",
         "type": "github"
       },
       "original": {
-        "owner": "geri1701",
-        "ref": "fix/gio-extra-modules",
+        "owner": "Jas-SinghFSU",
         "repo": "HyprPanel",
         "type": "github"
       }
