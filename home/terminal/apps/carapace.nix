@@ -9,4 +9,8 @@
     enableZshIntegration = config.programs.zsh.enable;
   };
 
+  home.sessionVariables = {
+    CARAPACE_BRIDGES = "fish,bash";
+  };
+
 }
