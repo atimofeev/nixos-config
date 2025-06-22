@@ -1,27 +1,24 @@
-{ pkgs, lib, ... }:
-let
-  f = lib.mkForce;
-in
+{ pkgs, ... }:
 {
+
+  home.packages = with pkgs; [
+    adwaita-icon-theme-legacy
+  ];
 
   gtk = {
     enable = true;
-    theme = {
-      package = f pkgs.gnome-themes-extra;
-      name = "Adwaita-dark";
-    };
-
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
     };
-
-    # font = {
-    #   name = "Sans";
-    #   size = 11;
-    # };
   };
 
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
+  home.sessionVariables = {
+    ADW_DISABLE_PORTAL = "1";
+  };
 
 }

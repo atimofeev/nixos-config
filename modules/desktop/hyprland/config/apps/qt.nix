@@ -1,9 +1,13 @@
-_: {
+{ pkgs, ... }:
+{
 
   qt = {
     enable = true;
-    platformTheme.name = "Adwaita";
-    style.name = "Adwaita-dark";
+    platformTheme.name = "gtk";
+    style = {
+      name = "Adwaita";
+      package = pkgs.adwaita-qt;
+    };
   };
 
 }
