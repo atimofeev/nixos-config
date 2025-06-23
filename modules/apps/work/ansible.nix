@@ -13,7 +13,8 @@
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      ansible = pkgs.ansible.overrideAttrs (oldAttrs: {
+      # ansible = pkgs.ansible.overrideAttrs (oldAttrs: {
+      ansible = pkgs.ansible_2_17.overrideAttrs (oldAttrs: {
         propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
           pkgs.python3Packages.boto3
           pkgs.python3Packages.botocore
