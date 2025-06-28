@@ -32,6 +32,7 @@
     eyedropper # pick colors
     parabolic # download video & audio
     # alpaca # chat with local LLMs
+    gemini-cli
   ];
 
 }
