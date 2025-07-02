@@ -26,6 +26,7 @@
     # misc
     fzf
     tldr
+    ani-cli
 
   ];
 
