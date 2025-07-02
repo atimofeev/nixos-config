@@ -11,6 +11,7 @@
 
     # tools
     mangohud # mangohud %command%
+    moonlight-qt
 
     # games
     space-cadet-pinball
