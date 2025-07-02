@@ -15,7 +15,6 @@
     lolcat
     pipes
     cmatrix
-    tmatrix
     neo
     cbonsai
     lavat
