@@ -1,13 +1,10 @@
 {
   pkgs,
   lib,
-  inputs,
   config,
   ...
 }:
 {
-
-  imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   sops.secrets."personal/weather-api" = { };
 
@@ -19,20 +16,10 @@
 
   systemd.user.services.hyprpanel.Service.Restart = lib.mkForce "always";
 
-  # FIX: resolve upstream module issue
-  xdg.configFile.hyprpanel = {
-    target = "hyprpanel/config.json";
-    force = true;
-  };
-
   programs.hyprpanel = {
 
     enable = true;
     systemd.enable = true;
-    overwrite.enable = true;
-
-    # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/886
-    override."theme.bar.buttons.dashboard.icon" = "#99c1f1";
 
     settings = {
 
@@ -43,23 +30,7 @@
         };
         clock.format = "%a %b %d %H:%M";
         launcher.autoDetectIcon = true;
-        network = {
-          rightClick = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
-          showWifiInfo = true;
-        };
-        notifications.show_total = false;
-        windowtitle.custom_title = true;
-        workspaces = {
-          ignored = "-\\d+"; # hide special workspaces
-          monitorSpecific = true;
-          show_icons = true;
-          show_numbered = false;
-          workspaceMask = false;
-        };
-      };
-
-      layout = {
-        "bar.layouts" = {
+        layouts = {
           "0" = {
             left = [
               "dashboard"
@@ -88,6 +59,19 @@
             middle = [ ];
             right = [ ];
           };
+        };
+        network = {
+          rightClick = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+          showWifiInfo = true;
+        };
+        notifications.show_total = false;
+        windowtitle.custom_title = true;
+        workspaces = {
+          ignored = "-\\d+"; # hide special workspaces
+          monitorSpecific = true;
+          show_icons = true;
+          show_numbered = false;
+          workspaceMask = false;
         };
       };
 
@@ -138,9 +122,11 @@
       };
 
       theme = {
-        name = "catppuccin_macchiato";
+        # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/1023#issuecomment-3000694765
+        # name = "catppuccin_macchiato";
         bar = {
           buttons = {
+            dashboard.icon = "#99c1f1";
             modules.kbLayout.enableBorder = false;
             workspaces.enableBorder = false;
           };
