@@ -187,6 +187,24 @@
             }
           ];
         }
+        {
+          beta-htz-fsn = [
+            {
+              abbr = "PM";
+              href = "{{HOMEPAGE_VAR_PVE_BETA_HTZ_FSN_URL}}";
+              icon = "proxmox.svg";
+            }
+          ];
+        }
+        {
+          dyn-htz-fsn = [
+            {
+              abbr = "PM";
+              href = "{{HOMEPAGE_VAR_PVE_DYN_HTZ_FSN_URL}}";
+              icon = "proxmox.svg";
+            }
+          ];
+        }
       ];
     }
 
