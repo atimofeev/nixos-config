@@ -162,6 +162,16 @@
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
 
+          "home-manager Options" = {
+            definedAliases = [ "hmo" ];
+            urls = [
+              {
+                template = "https://home-manager-options.extranix.com/?query={searchTerms}";
+              }
+            ];
+            icon = "https://home-manager-options.extranix.com/images/favicon.png";
+          };
+
           "NixOS Wiki" = {
             definedAliases = [ "nw" ];
             urls = [
