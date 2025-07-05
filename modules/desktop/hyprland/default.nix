@@ -1,13 +1,10 @@
 {
-  inputs,
   pkgs,
   lib,
   vars,
   ...
 }:
 {
-
-  nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
 
   home-manager.users.${vars.username} = import ./config;
 
