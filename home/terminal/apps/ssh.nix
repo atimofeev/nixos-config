@@ -6,6 +6,7 @@
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
+    serverAliveInterval = 10;
     includes = [ config.sops.secrets."work/ssh-config".path ];
   };
 
