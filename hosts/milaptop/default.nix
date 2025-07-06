@@ -33,6 +33,7 @@
     ../../modules/services/syncthing
     # ../../modules/services/xremap
     ../../modules/services/kanata
+    ../../modules/services/yubikey
 
   ];
 
