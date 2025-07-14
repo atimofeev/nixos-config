@@ -37,7 +37,7 @@ in
     ];
 
     extraConfig = {
-      modi = "drun,calc,ssh,emoji,run";
+      modi = "drun,run,calc,ssh,emoji";
       display-drun = "󰘔 ";
       display-calc = "󱖦 ";
       display-ssh = " ";
