@@ -11,7 +11,7 @@ in
   environment.systemPackages =
     [ tflint-w-plugins ]
     ++ (with pkgs; [
-      opentofu
+      unstable.opentofu
       unstable.tfsort
 
       # import tools
