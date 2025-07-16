@@ -1,13 +1,13 @@
-_: {
+{
   wayland.windowManager.hyprland.settings = {
 
     workspace =
       let
         monitors = [
           # order matters
-          "HDMI-A-1"
-          "eDP-1"
-          "DP-1"
+          "desc:Dell Inc. DELL P2422H 8WRR0V3"
+          "desc:BOE 0x0747"
+          "desc:^(Dell Inc. DELL P2422H 6FZG7N3|Lenovo Group Limited M14t V309WMZ3)$"
         ];
       in
       [
