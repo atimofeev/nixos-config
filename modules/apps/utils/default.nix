@@ -22,6 +22,7 @@
     eza # ls
     fd # find
     ripgrep # grep
+    gping
 
     # misc
     fzf
