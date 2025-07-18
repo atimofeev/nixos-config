@@ -1,28 +1,17 @@
 { pkgs, ... }:
 {
 
+  home = {
+    sessionVariables.fish_greeting = "";
+
+    packages = with pkgs.fishPlugins; [
+      autopair
+      puffer
+    ];
+  };
+
   programs.fish = {
     enable = true;
-    plugins = [
-      {
-        name = "autopair";
-        src = pkgs.fetchFromGitHub {
-          owner = "jorgebucaran";
-          repo = "autopair.fish";
-          rev = "4d1752ff5b39819ab58d7337c69220342e9de0e2";
-          sha256 = "sha256-qt3t1iKRRNuiLWiVoiAYOu+9E7jsyECyIqZJ/oRIT1A=";
-        };
-      }
-      {
-        name = "puffer-fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "nickeb96";
-          repo = "puffer-fish";
-          rev = "5d3cb25e0d63356c3342fb3101810799bb651b64";
-          sha256 = "sha256-aPxEHSXfiJJXosIm7b3Pd+yFnyz43W3GXyUB5BFAF54=";
-        };
-      }
-    ];
 
     functions = {
 
@@ -81,5 +70,4 @@
     # TODO: add custom fzf functions
   };
 
-  home.sessionVariables.fish_greeting = "";
 }
