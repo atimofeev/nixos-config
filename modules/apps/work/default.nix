@@ -7,7 +7,6 @@
     ./ansible.nix
     ./jira.nix
     ./k8s.nix
-    ./nitrokey.nix
     ./tofu.nix
     ./vpn.nix
   ];
