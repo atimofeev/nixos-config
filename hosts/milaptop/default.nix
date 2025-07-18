@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
 
   imports = [
@@ -24,7 +25,7 @@
     ../../modules/apps
     ../../modules/apps/games
     ../../modules/apps/utils
-    ../../modules/apps/work
+    # ../../modules/apps/work
 
     ../../modules/services/auto-cpufreq
     ../../modules/services/docker
@@ -35,11 +36,27 @@
     ../../modules/services/kanata
     ../../modules/services/yubikey
 
+    ../../modules_v2
+
   ];
 
   # CPU: i7-8550U (Kaby Lake)
   # iGPU: UHD Graphics 620
   # GPU: Nvidia MX150 (Pascal)
+
+  custom.work = {
+    ansible = {
+      enable = true;
+      package = pkgs.ansible_2_17;
+    };
+    cato.enable = true;
+    kube-tools.enable = true;
+    opentofu = {
+      enable = true;
+      package = pkgs.unstable.opentofu;
+    };
+    openvpn.enable = true;
+  };
 
   networking.hostName = "milaptop";
 
