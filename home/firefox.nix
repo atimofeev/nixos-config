@@ -109,12 +109,12 @@
         default = "google";
         engines = {
 
-          "google".metaData.alias = "g";
+          google.metaData.alias = "g";
 
-          "ddg".metaData.alias = "ddg";
+          ddg.metaData.alias = "dg";
 
-          "GitHub" = {
-            definedAliases = [ "gh" ];
+          GitHub = {
+            efinedAliases = [ "gh" ];
             urls = [
               {
                 template = "https://github.com/search?q={searchTerms}&type=code";
@@ -124,7 +124,7 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
-          "youtube" = {
+          youtube = {
             definedAliases = [ "yt" ];
             urls = [
               {
@@ -220,14 +220,14 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
-          "ProtonDB" = {
+          ProtonDB = {
             definedAliases = [ "pd" ];
             urls = [ { template = "https://protondb.com/search?q={searchTerms}"; } ];
             icon = "https://protondb.com/sites/protondb/images/favicon.ico";
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
-          "HowLongToBeat" = {
+          HowLongToBeat = {
             definedAliases = [ "hltb" ];
             urls = [ { template = "https://howlongtobeat.com/?q={searchTerms}"; } ];
             icon = "https://howlongtobeat.com/img/icons/favicon-32x32.png";
