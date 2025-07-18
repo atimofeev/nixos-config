@@ -135,6 +135,15 @@
             updateInterval = 7 * 24 * 60 * 60 * 1000; # every week
           };
 
+          ArtifactHUB = {
+            definedAliases = [ "ah" ];
+            urls = [
+              {
+                template = "https://artifacthub.io/packages/search?sort=relevance&page=1&ts_query_web={searchTerms}";
+              }
+            ];
+          };
+
           "My NixOS" = {
             definedAliases = [ "mn" ];
             urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
