@@ -6,6 +6,7 @@
 
     packages = with pkgs.fishPlugins; [
       autopair
+      bang-bang
       puffer
     ];
   };
