@@ -47,8 +47,9 @@
           specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/milaptop
-            ./pkgs
+            ./modules_v2
             ./overlays
+            ./pkgs
           ];
         };
 

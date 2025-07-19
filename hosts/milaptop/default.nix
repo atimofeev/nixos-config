@@ -25,18 +25,6 @@
     ../../modules/apps
     ../../modules/apps/games
     ../../modules/apps/utils
-    # ../../modules/apps/work
-
-    ../../modules/services/auto-cpufreq
-    ../../modules/services/docker
-    ../../modules/services/homepage
-    ../../modules/services/logrotate
-    ../../modules/services/syncthing
-    # ../../modules/services/xremap
-    ../../modules/services/kanata
-    ../../modules/services/yubikey
-
-    ../../modules_v2
 
   ];
 
@@ -44,21 +32,47 @@
   # iGPU: UHD Graphics 620
   # GPU: Nvidia MX150 (Pascal)
 
-  custom.work = {
-    ansible = {
-      enable = true;
-      package = pkgs.ansible_2_17;
-    };
-    cato.enable = true;
-    kube-tools.enable = true;
-    opentofu = {
-      enable = true;
-      package = pkgs.unstable.opentofu;
-    };
-    openvpn.enable = true;
-  };
-
   networking.hostName = "milaptop";
+
+  custom = {
+
+    services = {
+      auto-cpufreq = {
+        enable = true;
+        battery_performance = "balance_power";
+      };
+      docker.enable = true;
+      homepage.enable = true;
+      kanata = {
+        enable = true;
+        devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+      };
+      logrotate-nvim.enable = true;
+      nbfc = {
+        enable = false; # FIX: breaks bluetooth
+        configName = "Xiaomi Mi Book (TM1613, TM1703)";
+      };
+      syncthing.enable = true;
+      yubikey.enable = true;
+    };
+
+    work = {
+      ansible = {
+        enable = true;
+        package = pkgs.ansible_2_17;
+      };
+      cato.enable = true;
+      kube-tools.enable = true;
+      opentofu = {
+        enable = true;
+        package = pkgs.unstable.opentofu;
+      };
+      openvpn.enable = true;
+      misc-tools.enable = true;
+      wpa2-enterprise-fix.enable = true;
+    };
+
+  };
 
   hardware = {
 
@@ -76,6 +90,6 @@
 
   };
 
-  services.auto-cpufreq.settings.battery.energy_performance_preference = "balance_power";
+  # services.auto-cpufreq.settings.battery.energy_performance_preference = "balance_power";
 
 }
