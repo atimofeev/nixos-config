@@ -9,16 +9,6 @@
 
     ../../modules/system
 
-    ../../modules/hardware/bluetooth
-    ../../modules/hardware/intel/kaby-lake.nix
-    ../../modules/hardware/nvidia
-    # ../../modules/hardware/peripherals/logitech.nix
-    # ../../modules/hardware/peripherals/razer.nix
-    ../../modules/hardware/peripherals/zsa.nix
-    ../../modules/hardware/power
-    ../../modules/hardware/sound
-    ../../modules/hardware/ssd
-
     ../../modules/desktop/hyprland
     # ../../modules/desktop/gnome
 
@@ -34,7 +24,30 @@
 
   networking.hostName = "milaptop";
 
+  hardware = {
+    enableRedistributableFirmware = true;
+    bluetooth.settings.General.ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
+    nvidia = {
+      open = false;
+      prime = {
+        offload.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+  };
+
   custom = {
+
+    hardware = {
+      bluetooth.enable = true;
+      intel.kaby-lake.enable = true;
+      nvidia.enable = true;
+      peripherals.zsa.enable = true;
+      power.enable = true;
+      sound.enable = true;
+      ssd.enable = true;
+    };
 
     services = {
       auto-cpufreq = {
@@ -73,23 +86,5 @@
     };
 
   };
-
-  hardware = {
-
-    enableRedistributableFirmware = true;
-
-    nvidia = {
-      open = false;
-      prime = {
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
-    };
-
-    bluetooth.settings.General.ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
-
-  };
-
-  # services.auto-cpufreq.settings.battery.energy_performance_preference = "balance_power";
 
 }

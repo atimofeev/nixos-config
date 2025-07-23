@@ -2,6 +2,16 @@
 
   imports = [
 
+    ./hardware/bluetooth.nix
+    ./hardware/intel-kaby-lake.nix
+    ./hardware/logitech.nix
+    ./hardware/nvidia.nix
+    ./hardware/power.nix
+    ./hardware/razer.nix
+    ./hardware/sound.nix
+    ./hardware/ssd.nix
+    ./hardware/zsa.nix
+
     ./services/homepage
     ./services/auto-cpufreq.nix
     ./services/convertx.nix
