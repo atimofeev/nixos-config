@@ -23,6 +23,7 @@
     ./services/pihole.nix
     ./services/stirling-pdf.nix
     ./services/syncthing.nix
+    ./services/thermald.nix
     ./services/tlp.nix
     # ./services/xremap.nix # FIX: broken
     ./services/yubikey.nix

@@ -66,6 +66,7 @@
         configName = "Xiaomi Mi Book (TM1613, TM1703)";
       };
       syncthing.enable = true;
+      thermald.enable = true;
       yubikey.enable = true;
     };
 
