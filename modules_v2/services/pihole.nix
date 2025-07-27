@@ -1,7 +1,6 @@
-# NOTE: expose image config
 {
-  lib,
   config,
+  lib,
   ...
 }:
 let
@@ -11,6 +10,10 @@ in
 
   options.custom.services.pihole = {
     enable = lib.mkEnableOption "pihole bundle";
+    image = lib.mkOption {
+      default = "pihole/pihole:2024.07.0";
+      type = lib.types.str;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -27,7 +30,7 @@ in
 
     # NOTE: access through http://pi.hole/admin/
     virtualisation.oci-containers.containers.pihole = {
-      image = "pihole/pihole:2024.07.0";
+      inherit (cfg) image;
       autoStart = true;
       environment = {
         TZ = config.time.timeZone;
