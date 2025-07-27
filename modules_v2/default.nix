@@ -12,6 +12,19 @@
     ./hardware/ssd.nix
     ./hardware/zsa.nix
 
+    # TODO: separate hard-coded modules from optional ones
+    ./system/automount.nix
+    ./system/boot.nix
+    ./system/fonts.nix
+    ./system/home-manager.nix
+    ./system/locale.nix
+    ./system/logind.nix
+    ./system/network.nix
+    ./system/nix.nix
+    ./system/sops.nix
+    ./system/sudo.nix
+    ./system/user.nix
+
     ./services/homepage
     ./services/auto-cpufreq.nix
     ./services/convertx.nix

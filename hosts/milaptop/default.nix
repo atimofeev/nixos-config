@@ -7,8 +7,6 @@
     ./sound.nix
     ./hacks.nix
 
-    ../../modules/system
-
     ../../modules/desktop/hyprland
     # ../../modules/desktop/gnome
 
@@ -23,6 +21,7 @@
   # GPU: Nvidia MX150 (Pascal)
 
   networking.hostName = "milaptop";
+  time.timeZone = "Europe/Podgorica";
 
   hardware = {
     enableRedistributableFirmware = true;
@@ -47,6 +46,25 @@
       power.enable = true;
       sound.enable = true;
       ssd.enable = true;
+    };
+
+    system = {
+      automount.enable = true;
+      boot = {
+        enable = true;
+        kernelPackages = pkgs.linuxPackages_latest;
+      };
+      fonts.enable = true;
+      locale = {
+        enable = true;
+        defaultLocale = "en_US.UTF-8";
+        extraLocale = "en_GB.UTF-8";
+      };
+      logind.enable = true;
+      network = {
+        enable = true;
+        hotspot-bypass = true;
+      };
     };
 
     services = {

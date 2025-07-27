@@ -2,6 +2,7 @@
   nix.stateVersion = "24.11";
   username = "atimofeev";
   kb_layouts = "us,ru";
+  # NOTE: remove
   tz_name = "Europe/Podgorica";
   shell = "fish";
 
