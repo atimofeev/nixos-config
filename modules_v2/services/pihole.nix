@@ -1,6 +1,5 @@
 # NOTE: expose image config
 {
-  vars,
   lib,
   config,
   ...
@@ -31,7 +30,7 @@ in
       image = "pihole/pihole:2024.07.0";
       autoStart = true;
       environment = {
-        TZ = vars.tz_name;
+        TZ = config.time.timeZone;
         WEBPASSWORD = "test";
       };
       ports = [

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 let
@@ -43,7 +42,7 @@ in
       {
         openmeteo = {
           label = "Budva";
-          timezone = vars.tz_name;
+          timezone = config.time.timeZone;
           latitude = "42.291070";
           longitude = "18.840169";
           units = "metric";
