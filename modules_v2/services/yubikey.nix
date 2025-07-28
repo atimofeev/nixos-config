@@ -13,6 +13,10 @@ in
 
   options.custom.services.yubikey = {
     enable = lib.mkEnableOption "yubikey bundle";
+    yubikey-touch-detector = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -32,6 +36,12 @@ in
       yubikey-manager
       pam_u2f
     ];
+
+    programs.yubikey-touch-detector = {
+      enable = cfg.yubikey-touch-detector;
+      libnotify = true;
+      unixSocket = false;
+    };
 
     services.pcscd.enable = true;
 

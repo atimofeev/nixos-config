@@ -81,7 +81,10 @@
       };
       syncthing.enable = true;
       thermald.enable = true;
-      yubikey.enable = true;
+      yubikey = {
+        enable = true;
+        yubikey-touch-detector = true;
+      };
     };
 
     work = {
