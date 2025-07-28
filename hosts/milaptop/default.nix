@@ -10,10 +10,6 @@
     ../../modules/desktop/hyprland
     # ../../modules/desktop/gnome
 
-    ../../modules/apps
-    ../../modules/apps/games
-    ../../modules/apps/utils
-
   ];
 
   # CPU: i7-8550U (Kaby Lake)

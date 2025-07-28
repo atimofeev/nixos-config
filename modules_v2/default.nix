@@ -25,6 +25,12 @@
     ./system/sudo.nix
     ./system/user.nix
 
+    # TODO: optionalize
+    ./apps/chromium.nix
+    ./apps/games.nix
+    ./apps/gui.nix
+    ./apps/terminal.nix
+
     ./services/homepage
     ./services/auto-cpufreq.nix
     ./services/convertx.nix
