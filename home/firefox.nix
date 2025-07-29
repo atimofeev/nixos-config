@@ -1,4 +1,4 @@
-{ pkgs, osConfig, ... }:
+{ pkgs, ... }:
 {
   programs.firefox = {
     enable = true;
@@ -38,7 +38,6 @@
       };
       HardwareAcceleration = true;
       Homepage = {
-        URL = "localhost:${toString osConfig.services.homepage-dashboard.listenPort}";
         Locked = true;
         StartPage = "previous-session";
       };

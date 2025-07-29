@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -77,9 +75,6 @@
           url = "https://protondb.com/search?q={searchTerms}";
         }
       ];
-      # Startup, Home page and New Tab page
-      HomepageIsNewTabPage = true;
-      NewTabPageLocation = lib.mkIf config.services.homepage-dashboard.enable "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
       RestoreOnStartup = 1;
     };
   };

@@ -11,6 +11,7 @@ in
 
   imports = [
     ./bookmarks.nix
+    ./integrations.nix
     ./widgets.nix
   ];
 
