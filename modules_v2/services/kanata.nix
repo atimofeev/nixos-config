@@ -26,7 +26,7 @@ in
               )
 
               (defvar
-                tap-time 200 ;; double-hit key within this timeout to repeat tap action
+                tap-time 300 ;; double-hit key within this timeout to repeat tap action
                 hold-time 200
               )
 
