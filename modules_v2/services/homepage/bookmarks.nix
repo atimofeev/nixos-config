@@ -93,37 +93,19 @@ in
             ];
           }
           {
-            aws_home = [
+            aws_main = [
               {
                 abbr = "AW";
-                href = "{{HOMEPAGE_VAR_AWS_HOME_URL}}";
+                href = "{{HOMEPAGE_VAR_AWS_MAIN_URL}}";
                 icon = "si-amazonwebservices-#FF9900";
               }
             ];
           }
           {
-            aws_login_main = [
+            aws_gambite = [
               {
                 abbr = "AW";
-                href = "{{HOMEPAGE_VAR_AWS_LOGIN_MAIN_URL}}";
-                icon = "si-amazonwebservices-#FF9900";
-              }
-            ];
-          }
-          {
-            aws_login_gambite = [
-              {
-                abbr = "AW";
-                href = "{{HOMEPAGE_VAR_AWS_LOGIN_GAMBITE_URL}}";
-                icon = "si-amazonwebservices-#FF9900";
-              }
-            ];
-          }
-          {
-            aws_login_k8s = [
-              {
-                abbr = "AW";
-                href = "{{HOMEPAGE_VAR_AWS_LOGIN_K8S_URL}}";
+                href = "{{HOMEPAGE_VAR_AWS_GAMBITE_URL}}";
                 icon = "si-amazonwebservices-#FF9900";
               }
             ];
