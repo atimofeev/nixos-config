@@ -22,7 +22,7 @@ in
           config = # lisp
             ''
               (defsrc
-                caps a s d f h j k l ;
+                caps a s d f h j k l ; ins
               )
 
               (defvar
@@ -41,10 +41,17 @@ in
                 k (tap-hold $tap-time $hold-time k rsft)
                 l (tap-hold $tap-time $hold-time l ralt)
                 sc (tap-hold $tap-time $hold-time ; rmet)
+
+                gm-on (layer-switch game)
+                gm-off (layer-switch base)
               )
 
               (deflayer base
-                @escnav @a @s @d @f @h @j @k @l @sc
+                @escnav @a @s @d @f @h @j @k @l @sc @gm-on
+              )
+
+              (deflayer game
+                esc a s d f h j k l ; @gm-off
               )
 
               (deflayer nav
@@ -57,6 +64,7 @@ in
                 down   
                 up     
                 right
+                _
                 _
               )
             '';
