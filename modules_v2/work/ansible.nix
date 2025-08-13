@@ -52,28 +52,24 @@ in
         text = # conf
           ''
             [defaults]
-            # enable_plugins = aws_ec2, aws_ssm
-            inventory = /home/${vars.username}/repos/betby/ansible/playbooks/inventories/prod/hosts
+            enable_plugins = aws_ec2, aws_ssm, yaml
+            host_key_checking = false
             interpreter_python = auto_silent
+            inventory = /home/${vars.username}/repos/betby/ansible/playbooks/inventories/prod/
             max_diff_size = 0
-            # [inventory]
-            # enable_plugins = ini, aws_ec2
+            private_key_file = =/home/${vars.username}/.ssh/id_ed25519
+            [inventory]
+            enable_plugins = aws_ec2, ini, yaml
           '';
       };
 
-      programs.fish.shellAliases =
-        let
-          extra-vars = lib.concatStringsSep " " [
-            "ansible_ssh_private_key_file=/home/${vars.username}/.ssh/id_ed25519"
-            "ansible_ssh_extra_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'"
-          ];
-        in
-        {
-          ansible = ''ansible --extra-vars "ansible_user=${vars.username} ${extra-vars}"'';
-          ansible-root = ''ansible --extra-vars "ansible_user=root ${extra-vars}"'';
-          ansible-playbook = ''ansible-playbook --extra-vars "ansible_user=${vars.username} ${extra-vars}"'';
-          ansible-playbook-root = ''ansible-playbook --extra-vars "ansible_user=root ${extra-vars}"'';
-        };
+      programs.fish.shellAliases = {
+        ansible = ''ansible --extra-vars "ansible_user=${vars.username}"'';
+        ansible-root = ''ansible --extra-vars "ansible_user=root"'';
+        ansible-playbook = ''ansible-playbook --extra-vars "ansible_user=${vars.username}"'';
+        ansible-playbook-root = ''ansible-playbook --extra-vars "ansible_user=root"'';
+      };
+
     };
 
   };
