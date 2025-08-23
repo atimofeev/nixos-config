@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
 
   sops.secrets."work/ssh-config".path = "${config.home.homeDirectory}/.ssh/work_config";
@@ -21,7 +26,7 @@
     Install.WantedBy = [ "graphical-session.target" ];
     Service = {
       Type = "oneshot";
-      ExecStart = "${pkgs.openssh}/bin/ssh-add";
+      ExecStart = lib.getExe' pkgs.openssh "ssh-add";
       RemainAfterExit = false;
     };
   };

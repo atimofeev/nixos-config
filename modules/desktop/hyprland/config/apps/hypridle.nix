@@ -6,16 +6,16 @@
   ...
 }:
 let
-  uwsm = "${pkgs.uwsm}/bin/uwsm";
+  uwsm = lib.getExe pkgs.uwsm;
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
 
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-  # hyprlock = "${pkgs.hyprlock}/bin/hyprlock";
-  swaylock = "${pkgs.swaylock}/bin/swaylock";
-  pidof = "${pkgs.procps}/bin/pidof";
-  systemctl = "${pkgs.systemd}/bin/systemctl";
-  systemd-ac-power = "${pkgs.systemd}/bin/systemd-ac-power";
+  brightnessctl = lib.getExe pkgs.brightnessctl;
+  hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
+  hyprlock = lib.getExe pkgs.hyprlock;
+  swaylock = lib.getExe pkgs.swaylock;
+  pidof = lib.getExe' pkgs.procps "pidof";
+  systemctl = lib.getExe' pkgs.systemd "systemctl";
+  systemd-ac-power = lib.getExe' pkgs.systemd "systemd-ac-power";
 
   lockCommand =
     if config.programs.hyprlock.enable then

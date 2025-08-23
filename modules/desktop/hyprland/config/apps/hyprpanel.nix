@@ -4,15 +4,21 @@
   config,
   ...
 }:
+let
+  blueman-manager = lib.getExe' pkgs.blueman "blueman-manager";
+  kitty = lib.getExe pkgs.kitty;
+  nm-connection-editor = lib.getExe' pkgs.networkmanagerapplet "nm-connection-editor";
+  systemctl = lib.getExe' pkgs.systemd "systemctl";
+  yazi = lib.getExe pkgs.yazi;
+
+in
 {
 
   sops.secrets."personal/weather-api" = { };
 
-  wayland.windowManager.hyprland.settings.bind =
-    let
-      systemctl = "${pkgs.systemd}/bin/systemctl";
-    in
-    [ "SUPER, B, exec, ${systemctl} --user restart hyprpanel" ];
+  wayland.windowManager.hyprland.settings.bind = [
+    "SUPER, B, exec, ${systemctl} --user restart hyprpanel"
+  ];
 
   systemd.user.services.hyprpanel.Service.Restart = lib.mkForce "always";
 
@@ -26,7 +32,7 @@
       bar = {
         bluetooth = {
           label = true;
-          rightClick = "${pkgs.blueman}/bin/blueman-manager";
+          rightClick = blueman-manager;
         };
         clock.format = "%a %b %d %H:%M";
         launcher.autoDetectIcon = true;
@@ -61,7 +67,7 @@
           };
         };
         network = {
-          rightClick = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+          rightClick = nm-connection-editor;
           showWifiInfo = true;
         };
         notifications.show_total = false;
@@ -87,29 +93,29 @@
         dashboard.directories = {
           left = {
             directory1 = {
-              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Downloads";
+              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Downloads";
               label = "󰉍 Downloads";
             };
             directory2 = {
-              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Videos";
+              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Videos";
               label = "󰉏 Videos";
             };
             directory3 = {
-              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/repos";
+              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/repos";
               label = "󰚝 Projects";
             };
           };
           right = {
             directory1 = {
-              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Documents";
+              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Documents";
               label = "󱧶 Documents";
             };
             directory2 = {
-              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}/Pictures";
+              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Pictures";
               label = "󰉏 Pictures";
             };
             directory3 = {
-              command = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi ${config.home.homeDirectory}";
+              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}";
               label = "󱂵 Home";
             };
           };
@@ -122,8 +128,6 @@
       };
 
       theme = {
-        # NOTE: https://github.com/Jas-SinghFSU/HyprPanel/issues/1023#issuecomment-3000694765
-        # name = "catppuccin_macchiato";
         bar = {
           buttons = {
             dashboard.icon = "#99c1f1";

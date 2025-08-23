@@ -1,23 +1,24 @@
 {
-  pkgs,
+  lib,
   osConfig,
+  pkgs,
   vars,
   ...
 }:
 let
-  uwsm = "${pkgs.uwsm}/bin/uwsm";
+  uwsm = lib.getExe pkgs.uwsm;
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
 
   term = "${prefix} ${vars.terminal.name}";
   editor = "${vars.terminal.editor}";
 
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
-  loginctl = "${pkgs.elogind}/bin/loginctl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  swappy = "${pkgs.swappy}/bin/swappy";
-  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  brightnessctl = lib.getExe pkgs.brightnessctl;
+  hyprshot = lib.getExe pkgs.hyprshot;
+  loginctl = lib.getExe' pkgs.elogind "loginctl";
+  playerctl = lib.getExe pkgs.playerctl;
+  swappy = lib.getExe pkgs.swappy;
+  wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
+  wpctl = lib.getExe' pkgs.wireplumber "wpctl";
 
 in
 {
@@ -87,7 +88,7 @@ in
         "SUPER SHIFT, F, togglefloating"
         "SUPER, P, pseudo" # dwindle layout
         "SUPER, S, togglesplit" # dwindle layout
-        "SUPER SHIFT, L, exec, ${loginctl}  lock-session"
+        "SUPER SHIFT, L, exec, ${loginctl} lock-session"
 
         # group
         "SUPER, G, togglegroup"

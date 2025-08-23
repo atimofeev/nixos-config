@@ -1,7 +1,8 @@
 {
+  lib,
+  osConfig,
   pkgs,
   vars,
-  osConfig,
   ...
 }:
 let
@@ -13,11 +14,11 @@ let
     sha256 = "sha256-WGYEA4Q7UvSaRDjP/DiEtfXjvmWbewtdyJWRpjhbZgg=";
   };
 
-  uwsm = "${pkgs.uwsm}/bin/uwsm";
+  uwsm = lib.getExe pkgs.uwsm;
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
-  pkill = "${pkgs.procps}/bin/pkill";
-  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-  wtype = "${pkgs.wtype}/bin/wtype";
+  pkill = lib.getExe' pkgs.procps "pkill";
+  wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
+  wtype = lib.getExe pkgs.wtype;
 
 in
 {
