@@ -56,7 +56,7 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 | ---------------- | ----------------------- |
 | File sync        | Syncthing               |
 | Homepage         | homepage-dashboard      |
-| Key remapper     | xremap                  |
+| Key remapper     | kanata                  |
 | Local LLM        | Ollama + Open WebUI     |
 | PDF tools        | Stirling-PDF            |
 | Power management | auto-cpufreq + thermald |
