@@ -52,19 +52,19 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 
 ### Services
 
-| Type             | App                 |
-| ---------------- | ------------------- |
-| File sync        | Syncthing           |
-| Homepage         | homepage-dashboard  |
-| Key remapper     | xremap              |
-| Local LLM        | Ollama + Open WebUI |
-| PDF tools        | Stirling-PDF        |
-| Power management | auto-cpufreq        |
-| Virtualization   | Docker              |
+| Type             | App                     |
+| ---------------- | ----------------------- |
+| File sync        | Syncthing               |
+| Homepage         | homepage-dashboard      |
+| Key remapper     | xremap                  |
+| Local LLM        | Ollama + Open WebUI     |
+| PDF tools        | Stirling-PDF            |
+| Power management | auto-cpufreq + thermald |
+| Virtualization   | Docker                  |
 
 ### Additional Features
 
 | Type                 | App                                                 |
 | -------------------- | --------------------------------------------------- |
-| Secret managemet     | [sops-nix](https://github.com/Mic92/sops-nix)       |
+| Secret management    | [sops-nix](https://github.com/Mic92/sops-nix)       |
 | Gaming optimizations | [nix-gaming](https://github.com/fufexan/nix-gaming) |
