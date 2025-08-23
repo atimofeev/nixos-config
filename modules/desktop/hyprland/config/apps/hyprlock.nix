@@ -1,6 +1,11 @@
-{ pkgs, vars, ... }:
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
 let
-  date = "${pkgs.coreutils}/bin/date";
+  date = lib.getExe' pkgs.coreutils "date";
 in
 {
   # TODO: setup
@@ -30,13 +35,11 @@ in
       ];
 
       label = [
+        # Day-Month-Date
         {
-          # Day-Month-Date
           monitor = "eDP-1";
           text = ''cmd[update:10000] echo -e "$(${date} +"%A, %B %d")"'';
-          # color = foreground;
           font_size = 28;
-          # font_family = font + " Bold";
           position = "0, -50";
           halign = "center";
           valign = "top";
@@ -45,7 +48,6 @@ in
         {
           monitor = "eDP-1";
           text = ''cmd[update:10000] echo "<span>$(${date} +"%H:%M")</span>"'';
-          # color = foreground;
           font_size = 80;
           font_family = "steelfish outline regular";
           position = "0, -125";
@@ -57,7 +59,6 @@ in
           monitor = "eDP-1";
           text = "    $USER";
           font_size = 18;
-          # font_family = font + " Bold";
           position = "0, 0";
           halign = "center";
           valign = "center";
@@ -69,14 +70,13 @@ in
           monitor = "eDP-1";
           size = "300, 60";
           outline_thickness = 2;
-          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+          dots_size = 0.4; # Scale of input-field height, 0.2 - 0.8
           dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true;
           outer_color = "rgba(255, 255, 255, 0)";
           inner_color = "rgba(255, 255, 255, 0.1)";
           font_color = "rgb(255,255,255)";
           fade_on_empty = false;
-          # font_family = font + " Bold";
           placeholder_text = "<i>...</i>";
           hide_input = false;
           position = "0, -50";
