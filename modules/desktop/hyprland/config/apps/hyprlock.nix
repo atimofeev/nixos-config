@@ -13,10 +13,8 @@ in
     settings = {
 
       general = {
-        disable_loading_bar = true;
-        grace = 300;
+        grace = 3;
         hide_cursor = true;
-        no_fade_in = false;
       };
 
       background = [
@@ -34,7 +32,7 @@ in
       label = [
         {
           # Day-Month-Date
-          monitor = "";
+          monitor = "eDP-1";
           text = ''cmd[update:10000] echo -e "$(${date} +"%A, %B %d")"'';
           # color = foreground;
           font_size = 28;
@@ -45,7 +43,7 @@ in
         }
         # Time
         {
-          monitor = "";
+          monitor = "eDP-1";
           text = ''cmd[update:10000] echo "<span>$(${date} +"%H:%M")</span>"'';
           # color = foreground;
           font_size = 80;
