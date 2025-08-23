@@ -1,7 +1,8 @@
 {
+  config,
   lib,
-  pkgs,
   osConfig,
+  pkgs,
   ...
 }:
 let
@@ -16,8 +17,14 @@ let
   systemctl = "${pkgs.systemd}/bin/systemctl";
   systemd-ac-power = "${pkgs.systemd}/bin/systemd-ac-power";
 
-  # lockCommand = "(${pidof} hyprlock || ${prefix} ${hyprlock})";
-  lockCommand = "(${pidof} swaylock || ${prefix} ${swaylock})";
+  lockCommand =
+    if config.programs.hyprlock.enable then
+      "(${pidof} hyprlock || ${prefix} ${hyprlock})"
+    else if config.programs.swaylock.enable then
+      "(${pidof} swaylock || ${prefix} ${swaylock})"
+    else
+      ":";
+
 in
 {
 
