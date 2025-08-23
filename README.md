@@ -17,7 +17,7 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 | Bar, Notify, OSD  | HyprPanel               |
 | Launcher          | Rofi                    |
 | Idle daemon       | Hypridle                |
-| Lockscreen        | Swaylock                |
+| Lockscreen        | Hyprlock                |
 | Screenshots       | Hyprshot + Swappy       |
 | Clipboard manager | wl-clipboard + cliphist |
 

@@ -3,11 +3,12 @@
 
   imports = [
 
-    # ./apps/hyprlock.nix
     # ./apps/swayidle.nix
+    # ./apps/swaylock.nix
     ./apps/cliphist.nix
     ./apps/gtk.nix
     ./apps/hypridle.nix
+    ./apps/hyprlock.nix
     ./apps/hyprpanel.nix
     ./apps/hyprpaper.nix # wallpaper
     ./apps/hyprsunset.nix
@@ -15,7 +16,6 @@
     ./apps/polkit-agent.nix # sudo password prompt
     ./apps/qt.nix
     ./apps/rofi.nix
-    ./apps/swaylock.nix
     ./apps/wayland-pipewire-idle-inhibit.nix
     ./apps/xdg-mime.nix # file association
 
