@@ -31,13 +31,14 @@
     ./apps/gui.nix
     ./apps/terminal.nix
 
-    ./services/homepage
+    # ./services/xremap.nix # FIX: broken
     ./services/auto-cpufreq.nix
     ./services/convertx.nix
     ./services/docker.nix
+    ./services/homepage
     ./services/kanata.nix
     ./services/logrotate-nvim.nix
-    ./services/nbfc.nix # FIX: broken
+    ./services/nbfc.nix
     ./services/ollama.nix
     ./services/pihole.nix
     ./services/stirling-pdf.nix
@@ -45,7 +46,6 @@
     ./services/syncthing.nix
     ./services/thermald.nix
     ./services/tlp.nix
-    # ./services/xremap.nix # FIX: broken
     ./services/yubikey.nix
 
     ./work/ansible.nix
