@@ -92,7 +92,10 @@
         enable = true;
         package = pkgs.ansible_2_17;
       };
-      cato.enable = true;
+      cato = {
+        enable = true;
+        package = pkgs.unstable.cato-client;
+      };
       kube-tools.enable = true;
       opentofu = {
         enable = true;
