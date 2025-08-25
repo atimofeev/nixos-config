@@ -13,12 +13,17 @@ let
   editor = "${vars.terminal.editor}";
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
+  btop = lib.getExe pkgs.btop;
+  firefox = lib.getExe pkgs.firefox;
   hyprshot = lib.getExe pkgs.hyprshot;
   loginctl = lib.getExe' pkgs.elogind "loginctl";
+  nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
   playerctl = lib.getExe pkgs.playerctl;
+  spotify_player = lib.getExe' pkgs.spotify-player "spotify_player";
   swappy = lib.getExe pkgs.swappy;
   wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
+  yazi = lib.getExe pkgs.yazi;
 
 in
 {
@@ -62,11 +67,11 @@ in
       # apps
       "SUPER, Return, exec, ${term}"
       "SUPER SHIFT, Return, exec, ${term} -e ${editor}"
-      "SUPER, E, exec, ${term} -e yazi"
-      "SUPER SHIFT, H, exec, ${term} -e btop"
-      "SUPER SHIFT, N, exec, ${term} -e nvtop"
-      "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e spotify_player"
-      "SUPER SHIFT, B, exec, ${prefix} firefox --new-window"
+      "SUPER, E, exec, ${term} -e ${yazi}"
+      "SUPER SHIFT, H, exec, ${term} -e ${btop}"
+      "SUPER SHIFT, N, exec, ${term} -e ${nvtop}"
+      "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}"
+      "SUPER SHIFT, B, exec, ${prefix} ${firefox} --new-window"
 
       # Make screenshots!
       ", Print, exec, ${hyprshot} -m region --clipboard-only --freeze"
