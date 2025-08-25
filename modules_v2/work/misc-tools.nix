@@ -18,6 +18,7 @@ in
     environment.systemPackages = with pkgs; [
       nodejs
       python3
+      ruby
 
       awscli2
       cloudlens
