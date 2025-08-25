@@ -114,8 +114,8 @@ in
       # workspaces
       "SUPER, page_up, workspace, m-1"
       "SUPER, page_down, workspace, m+1"
-      "SUPER, bracketleft, workspace, -1"
-      "SUPER, bracketright, workspace, +1"
+      "SUPER, bracketleft, workspace, r-1"
+      "SUPER, bracketright, workspace, r+1"
       "SUPER, mouse_up, workspace, m+1"
       "SUPER, mouse_down, workspace, m-1"
       "SUPER SHIFT, U, movetoworkspace, special"
