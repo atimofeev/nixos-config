@@ -41,6 +41,7 @@
     ./services/ollama.nix
     ./services/pihole.nix
     ./services/stirling-pdf.nix
+    ./services/sunshine.nix
     ./services/syncthing.nix
     ./services/thermald.nix
     ./services/tlp.nix
