@@ -51,6 +51,7 @@
         kernelPackages = pkgs.linuxPackages_latest;
       };
       fonts.enable = true;
+      lanzaboote.enable = true;
       locale = {
         enable = true;
         defaultLocale = "en_US.UTF-8";

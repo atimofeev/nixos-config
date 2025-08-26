@@ -17,6 +17,7 @@
     ./system/boot.nix
     ./system/fonts.nix
     ./system/home-manager.nix
+    ./system/lanzaboote.nix
     ./system/locale.nix
     ./system/logind.nix
     ./system/network.nix
