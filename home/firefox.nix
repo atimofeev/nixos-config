@@ -29,7 +29,9 @@
         Search = true;
         Snippets = false;
         SponsoredPocket = false;
+        SponsoredStories = false;
         SponsoredTopSites = false;
+        Stories = false;
         TopSites = false;
       };
       FirefoxSuggest = {
