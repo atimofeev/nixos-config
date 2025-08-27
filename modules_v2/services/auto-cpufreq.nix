@@ -7,12 +7,12 @@ in
   options.custom.services.auto-cpufreq = {
     enable = lib.mkEnableOption "auto-cpufreq bundle";
     battery_performance = lib.mkOption {
-      default = "power";
-      type = lib.types.str;
+      default = null;
+      type = lib.types.nullOr lib.types.str;
     };
     charger_performance = lib.mkOption {
-      default = "performance";
-      type = lib.types.str;
+      default = null;
+      type = lib.types.nullOr lib.types.str;
     };
   };
 
@@ -23,14 +23,18 @@ in
 
         battery = {
           governor = "powersave";
-          energy_performance_preference = cfg.battery_performance;
           turbo = "never";
+        }
+        // lib.optionalAttrs (cfg.battery_performance != null) {
+          energy_performance_preference = cfg.battery_performance;
         };
 
         charger = {
           governor = "performance";
-          energy_performance_preference = cfg.charger_performance;
           turbo = "auto";
+        }
+        // lib.optionalAttrs (cfg.charger_performance != null) {
+          energy_performance_preference = cfg.charger_performance;
         };
 
       };
