@@ -14,7 +14,7 @@ let
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe pkgs.btop;
-  firefox = lib.getExe pkgs.firefox;
+  firefox = "firefox"; # NOTE: must use exe from user shell for custom policies to work
   hyprshot = lib.getExe pkgs.hyprshot;
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
