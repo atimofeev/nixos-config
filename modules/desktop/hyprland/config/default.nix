@@ -18,6 +18,7 @@
     ./apps/rofi.nix
     ./apps/wayland-pipewire-idle-inhibit.nix
     ./apps/xdg-mime.nix # file association
+    # ./apps/walker.nix
 
     ./animations.nix
     ./cursor.nix
