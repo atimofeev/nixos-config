@@ -20,11 +20,11 @@
         "7, monitor:${builtins.elemAt monitors 1}"
         "8, monitor:${builtins.elemAt monitors 1}"
         "9, monitor:${builtins.elemAt monitors 1}"
-        "10, monitor:${builtins.elemAt monitors 2}, default:yes"
-        "11, monitor:${builtins.elemAt monitors 2}"
-        "12, monitor:${builtins.elemAt monitors 2}"
-        "13, monitor:${builtins.elemAt monitors 2}"
-        "14, monitor:${builtins.elemAt monitors 2}"
+        # "10, monitor:${builtins.elemAt monitors 2}, default:yes"
+        # "11, monitor:${builtins.elemAt monitors 2}"
+        # "12, monitor:${builtins.elemAt monitors 2}"
+        # "13, monitor:${builtins.elemAt monitors 2}"
+        # "14, monitor:${builtins.elemAt monitors 2}"
       ];
 
     binds = {
