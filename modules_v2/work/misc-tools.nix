@@ -27,6 +27,7 @@ in
       nettools
       pgcli
       pwgen
+      ssm-session-manager-plugin
       vault
       vault-kv-mv
 
