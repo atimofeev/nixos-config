@@ -101,7 +101,6 @@
         enable = true;
         package = pkgs.unstable.opentofu;
       };
-      openvpn.enable = true;
       misc-tools.enable = true;
       wpa2-enterprise-fix.enable = true;
     };
