@@ -14,6 +14,7 @@ in
       enable = true;
       environment = {
         INSTALL_BOOK_AND_ADVANCED_HTML_OPS = "true";
+        SECURITY_ENABLELOGIN = "false";
         SERVER_PORT = 8181;
       };
     };
