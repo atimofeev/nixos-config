@@ -17,7 +17,13 @@ in
       keyboards = {
         default = {
           inherit (cfg) devices;
-          extraDefCfg = "process-unmapped-keys yes";
+          extraArgs = [
+            "--quiet"
+          ];
+          extraDefCfg = ''
+            process-unmapped-keys yes
+            log-layer-changes no
+          '';
 
           config = # lisp
             ''
