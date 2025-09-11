@@ -55,6 +55,16 @@
           ];
         };
 
+        zefir = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs vars; };
+          modules = [
+            ./hosts/zefir
+            ./modules_v2
+            ./overlays
+            ./pkgs
+          ];
+        };
+
       };
     };
 }
