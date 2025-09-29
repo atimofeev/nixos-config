@@ -359,7 +359,7 @@ in
       }
       {
         utils = [
-          {
+          (lib.mkIf config.hardware.keyboard.zsa.enable {
             oryx = [
               {
                 abbr = "OX";
@@ -367,7 +367,7 @@ in
                 icon = "sh-goatcounter";
               }
             ];
-          }
+          })
           {
             diffchecker = [
               {
