@@ -347,14 +347,6 @@ in
             ];
           }
           {
-            deepseek = [
-              {
-                abbr = "DS";
-                href = "https://chat.deepseek.com/";
-              }
-            ];
-          }
-          {
             gemini = [
               {
                 abbr = "GM";
