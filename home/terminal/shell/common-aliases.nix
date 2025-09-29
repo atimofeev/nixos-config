@@ -39,7 +39,7 @@ let
     kn = "kubie ns";
 
     # hyprland
-    sunrise = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 6500";
+    sunrise = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 7000";
     sunset = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 4500";
 
     # adding flags
