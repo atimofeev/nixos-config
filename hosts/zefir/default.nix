@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
 
   imports = [
+
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     # ./hardware-configuration.nix
 
@@ -9,7 +11,7 @@
 
   ];
 
-  # CPU: Intel Core Ultra 9 285H (Arrow Lake)
+  # CPU: Intel Core Ultra 9 285H
   # iGPU: Intel Arc 140T
   # GPU: Nvidia RTX 5070 Ti (Blackwell)
 
@@ -26,6 +28,7 @@
   ];
 
   hardware = {
+    intelgpu.driver = "xe";
     enableRedistributableFirmware = true;
     bluetooth.settings.General.ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
     nvidia = {
@@ -48,7 +51,6 @@
 
     hardware = {
       bluetooth.enable = true;
-      # intel.kaby-lake.enable = true;
       nvidia.enable = true;
       peripherals.zsa.enable = true;
       power.enable = true;
