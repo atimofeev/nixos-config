@@ -10,6 +10,7 @@
     ./nix-index.nix
     ./obsidian.nix
     ./qbittorrent.nix
+    ./slack.nix
     ./sops.nix
     ./swappy.nix
     ./vcv-rack.nix
