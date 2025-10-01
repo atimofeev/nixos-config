@@ -1,4 +1,4 @@
-_: {
+{
   wayland.windowManager.hyprland.settings = {
 
     windowrulev2 = [
@@ -26,7 +26,7 @@ _: {
       "float, class:firefox, title:^()$" # Page Info — .* initial title
       # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication.  This is because the window for
       # PIP changes after on first launch, and will not inherit the rules...
-      "focusonactivate off, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
+      "noinitialfocus, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
       "opacity 1.0 override, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
       "pin, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
       "float, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
