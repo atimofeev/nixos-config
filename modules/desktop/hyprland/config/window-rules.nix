@@ -27,6 +27,7 @@
       # Picture-in-a-Picture (PIP) rules: Oddly, some need re-duplication.  This is because the window for
       # PIP changes after on first launch, and will not inherit the rules...
       "noinitialfocus, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
+      "focusonactivate off, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
       "opacity 1.0 override, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
       "pin, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
       "float, title:^(Firefox|Picture-in-Picture|Picture in picture)$"
