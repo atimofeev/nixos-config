@@ -10,12 +10,15 @@
       command = "bash";
       args = [
         "-c"
+        # bash
         ''
           # try both styles of secret naming
           SA_SECRET_TOKEN1=$(kubectl get secret/$NAME-secret -n $NAMESPACE --context $CONTEXT -o jsonpath='{.data.token}' | base64 --decode)
           SA_SECRET_TOKEN2=$(kubectl get secret/$NAME-token -n $NAMESPACE --context $CONTEXT -o jsonpath='{.data.token}' | base64 --decode)
-          CLUSTER_CA_CERT=$(kubectl config view --raw -o jsonpath="{.clusters[0].cluster.certificate-authority-data}")
-          CLUSTER_ENDPOINT=$(kubectl config view --raw -o jsonpath="{.clusters[0].cluster.server}")
+          CLUSTER_CA_CERT=$(kubectl config view --minify --context $CONTEXT --raw -o jsonpath="{.clusters[0].cluster.certificate-authority-data}")
+          CLUSTER_ENDPOINT=$(kubectl config view --minify --context $CONTEXT --raw -o jsonpath="{.clusters[0].cluster.server}")
+          # fix for var evaluation issues
+          USER_NAME="$NAME"-"$CONTEXT"
 
           echo "---
           apiVersion: v1
@@ -27,7 +30,7 @@
             - name: $CONTEXT
               context:
                 cluster: $CONTEXT
-                user: $NAME
+                user: $USER_NAME
 
           clusters:
             - name: $CONTEXT
@@ -36,10 +39,9 @@
                 server: $CLUSTER_ENDPOINT
 
           users:
-            - name: $NAME
+            - name: $USER_NAME
               user:
                 token: $SA_SECRET_TOKEN1$SA_SECRET_TOKEN2
-
           " > ${config.home.homeDirectory}/$NAME_$CONTEXT.yaml
         ''
       ];
