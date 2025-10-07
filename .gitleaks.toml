@@ -1,0 +1,33 @@
+title = "Gitleaks rules"
+
+[extend]
+useDefault = true
+
+[[rules]]
+
+id = "rule-1"
+
+regex = '''password ='''
+
+[[rules]]
+
+id = "rule-2"
+
+regex = '''token ='''
+# Int used to extract secret from regex match and used as the group that will have
+# its entropy checked if `entropy` is set.
+# secretGroup = 3
+
+# Float representing the minimum shannon entropy a regex group must have to be considered a secret.
+# entropy = 3.5
+
+# Keywords are used for pre-regex check filtering. Rules that contain
+# keywords will perform a quick string compare check to make sure the
+# keyword(s) are in the content being scanned. Ideally these values should
+# either be part of the idenitifer or unique strings specific to the rule's regex
+# (introduced in v8.6.0)
+# keywords = [
+#   "auth",
+#   "password",
+#   "token",
+# ]
