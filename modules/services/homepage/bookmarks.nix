@@ -311,20 +311,20 @@ in
             ];
           }
           {
-            claude = [
-              {
-                abbr = "CL";
-                href = "https://claude.ai/new";
-                icon = "si-anthropic-#191919";
-              }
-            ];
-          }
-          {
             gemini = [
               {
                 abbr = "GM";
                 href = "https://gemini.google.com/app";
                 icon = "google-gemini";
+              }
+            ];
+          }
+          {
+            claude = [
+              {
+                abbr = "CL";
+                href = "https://claude.ai/new";
+                icon = "si-anthropic-#191919";
               }
             ];
           }
