@@ -69,15 +69,6 @@ in
               }
             ];
           }
-          {
-            portainer = [
-              {
-                abbr = "PT";
-                href = "{{HOMEPAGE_VAR_PORTAINER_URL}}";
-                icon = "portainer.svg";
-              }
-            ];
-          }
         ];
       }
 
