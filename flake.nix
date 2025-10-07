@@ -49,7 +49,7 @@
           specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/milaptop
-            ./modules_v2
+            ./modules
             ./overlays
             ./pkgs
           ];
@@ -59,7 +59,7 @@
           specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/zefir
-            ./modules_v2
+            ./modules
             ./overlays
             ./pkgs
           ];
