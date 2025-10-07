@@ -287,24 +287,6 @@ in
               }
             ];
           }
-          {
-            youtube = [
-              {
-                abbr = "YT";
-                href = "https://youtube.com/";
-                icon = "youtube.svg";
-              }
-            ];
-          }
-          {
-            mynixos = [
-              {
-                abbr = "MN";
-                href = "https://mynixos.com/";
-                icon = "si-nixos-#5277C3";
-              }
-            ];
-          }
         ];
       }
 
