@@ -52,6 +52,7 @@
     ./work/ansible.nix
     ./work/cato.nix
     ./work/falcon.nix
+    ./work/jira-cli.nix
     ./work/kube-tools.nix
     ./work/misc-tools.nix
     ./work/opentofu.nix

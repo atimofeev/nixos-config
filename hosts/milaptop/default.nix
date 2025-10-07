@@ -96,12 +96,16 @@
         enable = true;
         package = pkgs.unstable.cato-client;
       };
+      jira-cli = {
+        enable = true;
+        package = pkgs.unstable.jira-cli-go;
+      };
       kube-tools.enable = true;
+      misc-tools.enable = true;
       opentofu = {
         enable = true;
         package = pkgs.unstable.opentofu;
       };
-      misc-tools.enable = true;
       wpa2-enterprise-fix.enable = true;
     };
 
