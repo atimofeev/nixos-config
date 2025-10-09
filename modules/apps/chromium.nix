@@ -18,6 +18,7 @@
       "enamippconapkdmgfgjchkhakpfinmaj" # DeArrow
       "oldceeleldhonbafppcapldpdifcinji" # LanguageTool
       "jehmdpemhgfgjblpkilmeoafmkhbckhi" # ScrollAnywhere
+      "gfbliohnnapiefjpjlpjnehglfpaknnc" # Surfingkeys
     ];
 
     extraOpts = {
