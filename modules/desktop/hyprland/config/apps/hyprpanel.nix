@@ -127,6 +127,8 @@ in
         };
       };
 
+      scalingPriority = "hyprland";
+
       theme = {
         bar = {
           buttons = {
