@@ -7,6 +7,10 @@
         name = "etd2303:00-04f3:3083-touchpad";
         sensitivity = "-0.15";
       }
+      {
+        name = "asuf1209:00-2808:0219-touchpad";
+        sensitivity = "-0.15";
+      }
     ];
 
     input = {
