@@ -5,6 +5,7 @@
     ./hardware/bluetooth.nix
     ./hardware/intel-kaby-lake.nix
     ./hardware/logitech.nix
+    ./hardware/motiff-ii-fix.nix
     ./hardware/nvidia.nix
     ./hardware/power.nix
     ./hardware/razer.nix

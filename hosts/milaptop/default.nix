@@ -5,7 +5,6 @@
 
     ./hardware-configuration.nix
     ./sound.nix
-    ./hacks.nix
 
     ../../modules/desktop/hyprland
     # ../../modules/desktop/gnome
@@ -21,7 +20,6 @@
 
   hardware = {
     enableRedistributableFirmware = true;
-    bluetooth.settings.General.ControllerMode = "bredr"; # Fixes Marshall Motif II LE mode
     nvidia = {
 
       # NOTE: linux 6.17 compat override
@@ -50,7 +48,10 @@
       bluetooth.enable = true;
       intel.kaby-lake.enable = true;
       nvidia.enable = true;
-      peripherals.zsa.enable = true;
+      peripherals = {
+        motiff-ii-fix.enable = true;
+        zsa.enable = true;
+      };
       power.enable = true;
       sound.enable = true;
       ssd.enable = true;
