@@ -5,8 +5,7 @@
   ...
 }:
 let
-  tail = pkgs.pkgs.writeShellScriptBin "tail" ''
-    #!/usr/bin/env bash
+  tail = pkgs.pkgs.writeShellScript "tail" ''
     file="$1"
     show="$2"
 
@@ -19,8 +18,7 @@ let
 
     exec bat "$file" --color=always --style=plain --paging=never --line-range "$range"'';
 
-  head = pkgs.pkgs.writeShellScriptBin "head" ''
-    #!/usr/bin/env bash
+  head = pkgs.pkgs.writeShellScript "head" ''
     file="$1"
     show="$2"
 
@@ -33,8 +31,8 @@ let
   commonAliases = {
     less = "bat --color=always --style=auto";
     cat = "bat --color=always --style=plain --paging=never";
-    tail = "${tail}/bin/tail";
-    head = "${head}/bin/head";
+    tail = "${tail}";
+    head = "${head}";
   };
 in
 {
