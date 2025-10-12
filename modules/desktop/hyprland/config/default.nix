@@ -48,7 +48,7 @@
       monitor = [
         "desc:Dell Inc. DELL P2422H 8WRR0V3, preferred, -1920x0, 1"
         "desc:BOE 0x0747, preferred, 0x0, 1"
-        "desc:Dell Inc. DELL P2422H 6FZG7N3, preferred, auto, 1"
+        "desc:Samsung Display Corp. ATNA60DL01-0, preferred, 0x0, 1.333333"
         "desc:Lenovo Group Limited M14t V309WMZ3, preferred, auto, 1.2"
       ];
 
