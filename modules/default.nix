@@ -2,6 +2,7 @@
 
   imports = [
 
+    ./hardware/asus-linux.nix
     ./hardware/bluetooth.nix
     ./hardware/intel-kaby-lake.nix
     ./hardware/logitech.nix

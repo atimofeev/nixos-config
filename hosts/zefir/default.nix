@@ -18,8 +18,6 @@
   networking.hostName = "zefir";
   time.timeZone = "Europe/Podgorica";
 
-  services.asusd.enable = true;
-
   # These flags are used to enable backlight control when the dGPU is working in hybrid mode
   boot.kernelParams = [
     "i915.enable_dpcd_backlight=1"
@@ -61,6 +59,7 @@
   custom = {
 
     hardware = {
+      asus-linux.enable = true;
       bluetooth.enable = true;
       nvidia.enable = true;
       peripherals = {
