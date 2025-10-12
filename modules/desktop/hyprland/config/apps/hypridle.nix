@@ -59,7 +59,7 @@ in
         # ON AC
         {
           timeout = 150; # 2.5min
-          on-timeout = "${systemd-ac-power} && ${brightnessctl} -s set 1000";
+          on-timeout = "${systemd-ac-power} && ${brightnessctl} -s set 15%";
           on-resume = "${systemd-ac-power} && ${brightnessctl} -r";
         }
 
@@ -82,7 +82,7 @@ in
         # ON BATTERY
         {
           timeout = 60; # 1min
-          on-timeout = "${systemd-ac-power} || ${brightnessctl} -s set 1000";
+          on-timeout = "${systemd-ac-power} || ${brightnessctl} -s set 15%";
           on-resume = "${systemd-ac-power} || ${brightnessctl} -r";
         }
 
