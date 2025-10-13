@@ -27,87 +27,143 @@ in
       asusd = {
         enable = true;
         enableUserService = true;
+        auraConfigs."19b6".text = # ron
+          ''
+            (
+                config_name: "aura_19b6.ron",
+                brightness: Med,
+                current_mode: Static,
+                builtins: {
+                    Static: (
+                        mode: Static,
+                        zone: r#None,
+                        colour1: (
+                            r: 0,
+                            g: 198,
+                            b: 255,
+                        ),
+                        colour2: (
+                            r: 0,
+                            g: 0,
+                            b: 0,
+                        ),
+                        speed: Med,
+                        direction: Right,
+                    ),
+                },
+                multizone_on: false,
+                enabled: (
+                    states: [
+                        (
+                            zone: Keyboard,
+                            boot: false,
+                            awake: true,
+                            sleep: false,
+                            shutdown: false,
+                        ),
+                    ],
+                ),
+            )
+          '';
+
         asusdConfig.text = # ron
           ''
             (
-              charge_control_end_threshold: 80,
-              // disable_nvidia_powerd_on_battery: true,
-              // ac_command: "",
-              // bat_command: "",
-              //
-              // platform_profile_linked_epp: true,
-              // platform_profile_on_battery: Quiet,
-              // platform_profile_on_ac: Performance,
-              //
-              // change_platform_profile_on_battery: true,
-              // change_platform_profile_on_ac: true,
-              //
-              // profile_quiet_epp: Power,
-              // profile_balanced_epp: BalancePower,
-              // profile_custom_epp: Performance,
-              // profile_performance_epp: Performance,
-              //
-              // ac_profile_tunings: {},
-              // dc_profile_tunings: {},
-              // armoury_settings: {},
+                charge_control_end_threshold: 80,
+                disable_nvidia_powerd_on_battery: true,
+                ac_command: "",
+                bat_command: "",
+                platform_profile_linked_epp: true,
+                platform_profile_on_battery: Quiet,
+                change_platform_profile_on_battery: true,
+                platform_profile_on_ac: Performance,
+                change_platform_profile_on_ac: true,
+                profile_quiet_epp: Power,
+                profile_balanced_epp: BalancePower,
+                profile_custom_epp: Performance,
+                profile_performance_epp: Performance,
+                ac_profile_tunings: {
+                    Performance: (
+                        enabled: false,
+                        group: {},
+                    ),
+                },
+                dc_profile_tunings: {
+                    Quiet: (
+                        enabled: false,
+                        group: {},
+                    ),
+                    Balanced: (
+                        enabled: false,
+                        group: {},
+                    ),
+                    Performance: (
+                        enabled: false,
+                        group: {},
+                    ),
+                },
+                armoury_settings: {},
             )
           '';
-        profileConfig.text = # ron
-          ''
-            (
-              active_profile: Quiet,
-            )
-          '';
-        # fanCurvesConfig.text = # ron
+
+        # profileConfig.text = # ron
         #   ''
         #     (
-        #       profiles: (
-        #         balanced: [
-        #           (
-        #             fan: CPU,
-        #             pwm: (2, 22, 45, 68, 91, 153, 153, 153),
-        #             temp: (55, 62, 66, 70, 74, 78, 78, 78),
-        #             enabled: false,
-        #           ),
-        #           (
-        #             fan: GPU,
-        #             pwm: (2, 25, 48, 71, 94, 165, 165, 165),
-        #             temp: (55, 62, 66, 70, 74, 78, 78, 78),
-        #             enabled: false,
-        #           ),
-        #         ],
-        #         performance: [
-        #           (
-        #             fan: CPU,
-        #             pwm: (35, 68, 79, 91, 114, 175, 175, 175),
-        #             temp: (58, 62, 66, 70, 74, 78, 78, 78),
-        #             enabled: false,
-        #           ),
-        #           (
-        #             fan: GPU,
-        #             pwm: (35, 71, 84, 94, 119, 188, 188, 188),
-        #             temp: (58, 62, 66, 70, 74, 78, 78, 78),
-        #             enabled: false,
-        #           ),
-        #         ],
-        #         quiet: [
-        #           (
-        #             fan: CPU,
-        #             pwm: (2, 12, 22, 35, 45, 58, 79, 79),
-        #             temp: (55, 62, 66, 70, 74, 78, 82, 82),
-        #             enabled: true,
-        #           ),
-        #           (
-        #             fan: GPU,
-        #             pwm: (2, 12, 25, 35, 48, 61, 84, 84),
-        #             temp: (55, 62, 66, 70, 74, 78, 82, 82),
-        #             enabled: true,
-        #           ),
-        #         ],
-        #         custom: [],
-        #       ),
+        #       active_profile: Quiet,
         #     )
         #   '';
+
+        fanCurvesConfig.text = # ron
+          ''
+            (
+                profiles: (
+                    balanced: [
+                        (
+                            fan: CPU,
+                            pwm: (2, 15, 25, 43, 61, 84, 107, 130),
+                            temp: (0, 58, 62, 66, 70, 74, 78, 82),
+                            enabled: false,
+                        ),
+                        (
+                            fan: GPU,
+                            pwm: (2, 7, 20, 30, 48, 66, 84, 107),
+                            temp: (0, 52, 56, 60, 64, 68, 71, 74),
+                            enabled: false,
+                        ),
+                    ],
+                    performance: [
+                        (
+                            fan: CPU,
+                            pwm: (25, 43, 61, 84, 107, 130, 163, 186),
+                            temp: (0, 57, 61, 65, 69, 73, 78, 83),
+                            enabled: false,
+                        ),
+                        (
+                            fan: GPU,
+                            pwm: (20, 30, 48, 66, 84, 122, 158, 181),
+                            temp: (0, 47, 52, 57, 62, 67, 72, 77),
+                            enabled: false,
+                        ),
+                    ],
+                    quiet: [
+                        (
+                            fan: CPU,
+                            pwm: (2, 15, 25, 43, 61, 89, 89, 89),
+                            temp: (58, 62, 66, 70, 75, 80, 255, 255),
+                            enabled: false,
+                        ),
+                        (
+                            fan: GPU,
+                            pwm: (2, 7, 20, 30, 48, 71, 71, 71),
+                            temp: (49, 53, 57, 61, 65, 69, 255, 255),
+                            enabled: false,
+                        ),
+                    ],
+                    custom: [],
+                ),
+            )
+          '';
+
       };
     };
   };
