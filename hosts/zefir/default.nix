@@ -1,4 +1,9 @@
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
 
   imports = [
@@ -42,12 +47,12 @@
       };
 
       open = true;
-      modesetting.enable = true;
-      dynamicBoost.enable = true;
-      powerManagement = {
-        enable = true;
-        finegrained = true;
-      };
+      # modesetting.enable = true;
+      # dynamicBoost.enable = true;
+      # powerManagement = {
+      #   enable = true;
+      #   finegrained = true;
+      # };
       prime = {
         offload.enable = true;
         intelBusId = "PCI:0:2:0";
@@ -100,7 +105,7 @@
         devices = [ "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:6:1.0-event-mouse" ];
       };
       logrotate-nvim.enable = true;
-      syncthing.enable = true;
+      # syncthing.enable = true;
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;
