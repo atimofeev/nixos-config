@@ -25,6 +25,31 @@ let
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
   yazi = lib.getExe pkgs.yazi;
 
+  asus-switch-profile = pkgs.writeShellScript "asus-switch-profile" ''
+    asusctl profile -n >/dev/null 2>&1
+    name="$(asusctl profile -p | sed -n 's/.*Active profile is *//p')"
+    notify-send "ASUS Profile" "$name"
+  '';
+
+  toggle-touchpad = pkgs.writeShellScript "toggle-touchpad" ''
+    device="asuf1209:00-2808:0219-touchpad"
+    state_file="/tmp/hypr-touchpad.state"
+
+    if [ ! -f "$state_file" ]; then
+      echo "on" > "$state_file"
+    fi
+
+    if grep -q "on" "$state_file"; then
+      hyprctl keyword -r device[$device]:enabled false
+      echo "off" > "$state_file"
+      notify-send "Touchpad disabled"
+    else
+      hyprctl keyword -r device[$device]:enabled true
+      echo "on" > "$state_file"
+      notify-send "Touchpad enabled"
+    fi
+  '';
+
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -61,6 +86,8 @@ in
     bindle = [
       ", xf86MonBrightnessDown, exec, ${brightnessctl} set 5%- -q"
       ", xf86MonBrightnessUp, exec, ${brightnessctl} set 5%+ -q"
+      ", xf86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set 33%- -q"
+      ", xf86KbdBrightnessUp, exec, ${brightnessctl} -d asus::kbd_backlight set 33%+ -q"
     ];
 
     bind = [
@@ -72,6 +99,9 @@ in
       "SUPER SHIFT, N, exec, ${term} -e ${nvtop}"
       "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}"
       "SUPER SHIFT, B, exec, ${prefix} ${firefox} --new-window"
+
+      ", XF86TouchpadToggle, exec, ${toggle-touchpad}"
+      ", XF86Launch4, exec, ${asus-switch-profile}"
 
       # Make screenshots!
       ", Print, exec, ${hyprshot} -m region --clipboard-only --freeze"
