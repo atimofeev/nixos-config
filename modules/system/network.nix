@@ -29,11 +29,19 @@ in
 
     users.users.${vars.username}.extraGroups = [ "networkmanager" ];
 
-    networking.networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-      plugins = [ pkgs.networkmanager-openvpn ];
-      unmanaged = [ "docker*" ];
+    networking = {
+
+      networkmanager = {
+        enable = true;
+        dns = "systemd-resolved";
+        plugins = [ pkgs.networkmanager-openvpn ];
+        unmanaged = [ "docker*" ];
+      };
+
+      firewall = {
+        logRefusedConnections = false;
+      };
+
     };
 
     programs.nm-applet.enable = true;
