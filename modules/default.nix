@@ -2,6 +2,7 @@
 
   imports = [
 
+    ./hardware/asus-fn-lock-fix.nix
     ./hardware/asus-linux.nix
     ./hardware/bluetooth.nix
     ./hardware/intel-kaby-lake.nix

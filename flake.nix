@@ -35,6 +35,8 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
   };
 
   outputs =
