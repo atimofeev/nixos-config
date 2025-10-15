@@ -42,6 +42,11 @@
     };
   };
 
+  services.udev.extraRules = ''
+    SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x5917", SYMLINK+="dri/igpu"
+    SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x1d12", SYMLINK+="dri/dgpu"
+  '';
+
   custom = {
 
     hardware = {
