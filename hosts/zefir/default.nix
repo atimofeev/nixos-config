@@ -16,13 +16,15 @@
 
   ];
 
+  # Asus Zephyrus G16 2025 GU605CR
   # CPU: Intel Core Ultra 9 285H
   # iGPU: Intel Arc 140T
-  # GPU: Nvidia RTX 5070 Ti (Blackwell)
+  # dGPU: Nvidia RTX 5070 Ti (Blackwell)
 
   networking.hostName = "zefir";
   time.timeZone = "Europe/Podgorica";
 
+  # FIX: broken
   # These flags are used to enable backlight control when the dGPU is working in hybrid mode
   boot.kernelParams = [
     "i915.enable_dpcd_backlight=1"

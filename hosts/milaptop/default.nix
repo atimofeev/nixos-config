@@ -11,9 +11,10 @@
 
   ];
 
+  # Xiaomi Mi Notebook Pro 15.6 2018
   # CPU: i7-8550U (Kaby Lake)
   # iGPU: UHD Graphics 620
-  # GPU: Nvidia MX150 (Pascal)
+  # dGPU: Nvidia MX150 (Pascal)
 
   networking.hostName = "milaptop";
   time.timeZone = "Europe/Podgorica";
