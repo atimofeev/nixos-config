@@ -57,4 +57,10 @@
     };
   };
 
+  xdg.configFile."uwsm/env-Hyprland" = {
+    text = ''
+      export AQ_DRM_DEVICES="/dev/dri/igpu:/dev/dri/dgpu"
+    '';
+  };
+
 }
