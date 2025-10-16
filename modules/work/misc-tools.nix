@@ -35,10 +35,20 @@ in
       zoom-us
     ];
 
-    sops.secrets."work/aws-creds" = {
-      owner = vars.username;
-      path = "/home/${vars.username}/.aws/credentials";
+    sops.secrets = {
+
+      "work/aws/credentials" = {
+        owner = vars.username;
+        path = "/home/${vars.username}/.aws/credentials";
+      };
+
+      "work/aws/config" = {
+        owner = vars.username;
+        path = "/home/${vars.username}/.aws/config";
+      };
+
     };
+
   };
 
 }
