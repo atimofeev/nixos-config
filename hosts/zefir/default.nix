@@ -72,6 +72,7 @@
 
     hardware = {
       asus-linux.enable = true;
+      asus-fn-lock-fix.enable = true;
       bluetooth.enable = true;
       nvidia.enable = true;
       peripherals = {
