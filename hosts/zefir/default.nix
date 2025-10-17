@@ -49,8 +49,8 @@
       };
 
       open = true;
-      # modesetting.enable = true;
-      # dynamicBoost.enable = true;
+      modesetting.enable = true;
+      dynamicBoost.enable = true;
       # powerManagement = {
       #   enable = true;
       #   finegrained = true;
