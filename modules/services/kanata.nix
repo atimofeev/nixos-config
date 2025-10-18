@@ -28,7 +28,7 @@ in
           config = # lisp
             ''
               (defsrc
-                caps a s d f h j k l ; ins
+                caps a s d f h j k l ; ins f12
               )
 
               (defvar
@@ -53,11 +53,11 @@ in
               )
 
               (deflayer base
-                @escnav @a @s @d @f @h @j @k @l @sc @gm-on
+                @escnav @a @s @d @f @h @j @k @l @sc @gm-on @gm-on
               )
 
               (deflayer game
-                _ a s d f h j k l ; @gm-off
+                _ a s d f h j k l ; @gm-off @gm-off
               )
 
               (deflayer nav
@@ -70,6 +70,7 @@ in
                 down   
                 up     
                 right
+                _
                 _
                 _
               )
