@@ -12,7 +12,7 @@
 
   sops = {
     age.sshKeyPaths = [ "/home/${vars.username}/.ssh/id_ed25519" ];
-    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFile = ../../secrets/common.yaml;
     defaultSopsFormat = "yaml";
   };
 

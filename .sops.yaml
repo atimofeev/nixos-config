@@ -1,0 +1,23 @@
+---
+keys:
+  - &admin age12v4lgkzv3wr9e2aq5sl4atxmtlahknvnhwt5qmyv83r4rynz095s84lkwg
+  - &milaptop age1mmc0q5atv46sd4dwlj5mpkncykg26dkw568uaapq0cveslzqse0sxl2e5l
+  - &zefir age1u6pu4gnppkwtcurj2ahc9xh3p6j4d0pcksrwxd0ye7d4vnzre5gqf4qn85
+
+creation_rules:
+  - path_regex: secrets/common.yaml
+    key_groups:
+      - age:
+          - *admin
+          - *milaptop
+          - *zefir
+  - path_regex: secrets/milaptop.yaml
+    key_groups:
+      - age:
+          - *admin
+          - *milaptop
+  - path_regex: secrets/zefir.yaml
+    key_groups:
+      - age:
+          - *admin
+          - *zefir

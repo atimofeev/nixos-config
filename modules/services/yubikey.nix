@@ -23,10 +23,12 @@ in
     sops.secrets = {
       "personal/yubico/u2f_keys" = {
         owner = vars.username;
+        sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
         path = "/home/${vars.username}/.config/Yubico/u2f_keys";
       };
       "personal/ssh_keys/yubikey_home" = {
         owner = vars.username;
+        sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
         path = "/home/${vars.username}/.ssh/id_yubikey_home";
       };
     };
