@@ -90,7 +90,7 @@ in
       battery.display = [
         {
           style = "fg:${section1.fg} bg:${section1.bg}";
-          threshold = 80;
+          threshold = 79;
         }
       ];
 
