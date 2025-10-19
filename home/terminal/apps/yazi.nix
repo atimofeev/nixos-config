@@ -6,8 +6,8 @@ let
     pkgs.fetchFromGitHub {
       owner = "catppuccin";
       repo = "yazi";
-      rev = "54d868433a0c2f3e1651114136ea088eef72a4a7";
-      sha256 = "sha256-dMXSXS3Scj1LZZqqnvvC37VWSyjSQZg9thvjcm2iNSM=";
+      rev = "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";
+      sha256 = "sha256-zkL46h1+U9ThD4xXkv1uuddrlQviEQD3wNZFRgv7M8Y=";
     }
     + "/themes/macchiato/${themeName}"; # path to theme in repo
 
@@ -20,7 +20,7 @@ in
     enableFishIntegration = config.programs.fish.enable;
     enableNushellIntegration = config.programs.nushell.enable;
     enableZshIntegration = config.programs.zsh.enable;
-    keymap.manager.prepend_keymap = [
+    keymap.mgr.prepend_keymap = [
       {
         on = [ "<Tab>" ];
         run = "tab_switch 1 --relative";
