@@ -43,8 +43,8 @@ in
       # ON AC
       {
         timeout = 150; # 2.5min
-        command = "${systemd-ac-power} && ${brightnessctl} -s set 15%";
-        resumeCommand = "${systemd-ac-power} && ${brightnessctl} -r";
+        command = "${systemd-ac-power} && ${brightnessctl} -d intel_backlight -s set 15%";
+        resumeCommand = "${systemd-ac-power} && ${brightnessctl} -d intel_backlight -r";
       }
 
       {
@@ -66,8 +66,8 @@ in
       # ON BATTERY
       {
         timeout = 60; # 1min
-        command = "${systemd-ac-power} || ${brightnessctl} -s set 15%";
-        resumeCommand = "${systemd-ac-power} || ${brightnessctl} -r";
+        command = "${systemd-ac-power} || ${brightnessctl} -d intel_backlight -s set 15%";
+        resumeCommand = "${systemd-ac-power} || ${brightnessctl} -d intel_backlight -r";
       }
 
       {

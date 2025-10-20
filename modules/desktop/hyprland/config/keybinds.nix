@@ -85,8 +85,8 @@ in
 
     # lock + repeat
     bindle = [
-      ", xf86MonBrightnessDown, exec, ${brightnessctl} set 5%- -q"
-      ", xf86MonBrightnessUp, exec, ${brightnessctl} set 5%+ -q"
+      ", xf86MonBrightnessDown, exec, ${brightnessctl} -d intel_backlight set 5%- -q"
+      ", xf86MonBrightnessUp, exec, ${brightnessctl} -d intel_backlight set 5%+ -q"
       ", xf86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set 33%- -q"
       ", xf86KbdBrightnessUp, exec, ${brightnessctl} -d asus::kbd_backlight set 33%+ -q"
     ];

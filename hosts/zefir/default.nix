@@ -25,6 +25,13 @@
   networking.hostName = "zefir";
   time.timeZone = "Europe/Podgorica";
 
+  boot.kernelParams = [
+    "i915.enable_dpcd_backlight=1"
+    "xe.enable_dpcd_backlight=1"
+    "nvidia.NVreg_EnableBacklightHandler=0"
+    "nvidia.NVReg_RegistryDwords=EnableBrightnessControl=0"
+  ];
+
   hardware = {
     intelgpu.driver = "xe";
     enableRedistributableFirmware = true;
