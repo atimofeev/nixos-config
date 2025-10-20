@@ -30,7 +30,7 @@ in
     settings = {
 
       bar = {
-        autoHide = "single-window";
+        # autoHide = "single-window";
         bluetooth = {
           label = true;
           rightClick = blueman-manager;
