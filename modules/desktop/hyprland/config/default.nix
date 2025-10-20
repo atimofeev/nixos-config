@@ -3,8 +3,6 @@
 
   imports = [
 
-    # ./apps/swayidle.nix
-    # ./apps/swaylock.nix
     ./apps/cliphist.nix
     ./apps/gtk.nix
     ./apps/hypridle.nix
