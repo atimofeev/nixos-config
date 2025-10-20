@@ -28,7 +28,7 @@ let
   asus-switch-profile = pkgs.writeShellScript "asus-switch-profile" ''
     asusctl profile -n >/dev/null 2>&1
     name="$(asusctl profile -p | sed -n 's/.*Active profile is *//p')"
-    notify-send "ASUS Profile" "$name"
+    notify-send -i power-profile-performance-symbolic "ASUS Profile" "$name"
   '';
 
   toggle-touchpad = pkgs.writeShellScript "toggle-touchpad" ''
@@ -42,11 +42,11 @@ let
     if grep -q "on" "$state_file"; then
       hyprctl keyword -r device[$device]:enabled false
       echo "off" > "$state_file"
-      notify-send "Touchpad disabled"
+      notify-send -i touchpad-disabled-symbolic "Touchpad disabled"
     else
       hyprctl keyword -r device[$device]:enabled true
       echo "on" > "$state_file"
-      notify-send "Touchpad enabled"
+      notify-send -i checkbox-checked-symbolic "Touchpad enabled"
     fi
   '';
 
