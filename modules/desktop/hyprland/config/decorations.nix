@@ -23,9 +23,12 @@ in
       "col.border_active" = active_border;
       "col.border_inactive" = inactive_border;
       groupbar = {
-        text_color = tcolor;
         "col.active" = acolor1;
         "col.inactive" = icolor1;
+        gradient_rounding = 0;
+        gradients = true;
+        rounding = 0;
+        text_color = tcolor;
       };
     };
 
