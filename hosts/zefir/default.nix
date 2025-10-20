@@ -99,7 +99,7 @@
     services = {
       auto-cpufreq = {
         enable = true;
-        battery_performance = "balance_power";
+        # settings.battery.energy_performance_preference = "balance_power";
       };
       docker.enable = true;
       homepage.enable = true;

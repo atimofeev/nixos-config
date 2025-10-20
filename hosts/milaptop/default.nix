@@ -86,7 +86,13 @@
     services = {
       auto-cpufreq = {
         enable = true;
-        battery_performance = "balance_power";
+        settings = {
+          battery.energy_performance_preference = "balance_power";
+          charger = {
+            energy_performance_preference = "performance";
+            turbo = "true";
+          };
+        };
       };
       docker.enable = true;
       homepage.enable = true;
