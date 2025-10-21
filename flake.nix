@@ -10,19 +10,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
 
     lanzaboote.url = "github:nix-community/lanzaboote";
-
-    wayland-pipewire-idle-inhibit = {
-      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -31,7 +21,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wayland-pipewire-idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
