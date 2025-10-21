@@ -44,6 +44,8 @@ in
       libnotify = true;
       unixSocket = false;
     };
+    # NOTE: required for icon in libnotify
+    home-manager.users.${vars.username}.home.packages = [ pkgs.yubikey-touch-detector ];
 
     services.pcscd.enable = true;
 
