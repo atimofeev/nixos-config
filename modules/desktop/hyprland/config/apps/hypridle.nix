@@ -70,8 +70,8 @@ in
 
         {
           timeout = 330; # 5.5min
-          on-timeout = "${systemd-ac-power} && ${hyprctl} dispatch dpms off";
-          on-resume = "${systemd-ac-power} && ${hyprctl} dispatch dpms on";
+          on-timeout = "${systemd-ac-power} && ${hyprctl} dispatch dpms off && ${brightnessctl} -d asus::kbd_backlight -s set 0%";
+          on-resume = "${systemd-ac-power} && ${hyprctl} dispatch dpms on && ${brightnessctl} -d asus::kbd_backlight -r";
         }
 
         {
@@ -93,8 +93,8 @@ in
 
         {
           timeout = 160; # 3min
-          on-timeout = "${systemd-ac-power} || ${hyprctl} dispatch dpms off";
-          on-resume = "${systemd-ac-power} || ${hyprctl} dispatch dpms on";
+          on-timeout = "${systemd-ac-power} || ${hyprctl} dispatch dpms off && ${brightnessctl} -d asus::kbd_backlight -s set 0%";
+          on-resume = "${systemd-ac-power} || ${hyprctl} dispatch dpms on && ${brightnessctl} -d asus::kbd_backlight -r";
         }
 
         {
