@@ -71,6 +71,16 @@ let
     gb = "git branch";
     gi = "git init";
     gcl = "git clone";
+
+    # systemctl
+    sc = "systemctl";
+    scs = "systemctl status";
+    scr = "systemctl restart";
+    scc = "systemctl cat";
+    scu = "systemctl --user";
+    scsu = "systemctl status --user";
+    scru = "systemctl restart --user";
+    sccu = "systemctl cat --user";
   };
   fishAliases = {
     unset = "set -e";
