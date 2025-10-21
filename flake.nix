@@ -37,6 +37,8 @@
     };
 
     asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs =

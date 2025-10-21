@@ -15,6 +15,7 @@
     ./swappy.nix
     ./vcv-rack.nix
     ./zathura.nix
+    ./zen-browser.nix
 
   ];
 
