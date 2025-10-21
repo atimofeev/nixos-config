@@ -35,7 +35,6 @@
     ./apps/gui.nix
     ./apps/terminal.nix
 
-    # ./services/xremap.nix # FIX: broken
     ./services/auto-cpufreq.nix
     ./services/convertx.nix
     ./services/docker.nix

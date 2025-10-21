@@ -17,11 +17,6 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote";
 
-    xremap = {
-      url = "github:xremap/nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     wayland-pipewire-idle-inhibit = {
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
