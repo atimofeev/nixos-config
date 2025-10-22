@@ -12,6 +12,14 @@
 
     asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
 
+    firefox-addons = {
+      type = "gitlab";
+      owner = "rycee";
+      repo = "nur-expressions";
+      dir = "pkgs/firefox-addons";
+    };
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
     lanzaboote.url = "github:nix-community/lanzaboote";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
