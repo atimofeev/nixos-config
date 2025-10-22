@@ -28,7 +28,7 @@ in
       "personal/ssh_keys/yubikey_home" = {
         owner = vars.username;
         sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
-        path = "/home/${vars.username}/.ssh/id_yubikey_home";
+        path = "/home/${vars.username}/.ssh/id_ed25519_sk";
       };
     };
 
