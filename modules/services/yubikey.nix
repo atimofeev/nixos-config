@@ -25,7 +25,7 @@ in
         owner = vars.username;
         sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
       };
-      "personal/ssh_keys/yubikey_home" = {
+      "personal/ssh_keys/id_ed25519_sk" = {
         owner = vars.username;
         sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
         path = "/home/${vars.username}/.ssh/id_ed25519_sk";
