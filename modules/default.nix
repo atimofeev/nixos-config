@@ -41,7 +41,6 @@
     ./services/homepage
     ./services/kanata.nix
     ./services/logrotate-nvim.nix
-    ./services/nbfc.nix
     ./services/ollama.nix
     ./services/pihole.nix
     ./services/stirling-pdf.nix

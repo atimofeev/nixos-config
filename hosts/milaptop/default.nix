@@ -101,10 +101,6 @@
         devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
       };
       logrotate-nvim.enable = true;
-      nbfc = {
-        enable = false; # FIX: breaks bluetooth
-        configName = "Xiaomi Mi Book (TM1613, TM1703)";
-      };
       syncthing.enable = true;
       yubikey = {
         enable = true;
