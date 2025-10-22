@@ -1,7 +1,14 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
 
   imports = [
+
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     ./hardware-configuration.nix
     ./sound.nix
@@ -20,6 +27,7 @@
   time.timeZone = "Europe/Podgorica";
 
   hardware = {
+    intelgpu.driver = "i915";
     enableRedistributableFirmware = true;
     nvidia = {
 
@@ -52,7 +60,6 @@
 
     hardware = {
       bluetooth.enable = true;
-      intel.kaby-lake.enable = true;
       nvidia.enable = true;
       peripherals = {
         motiff-ii-fix.enable = true;
