@@ -61,6 +61,7 @@ in
       };
       services = {
         login.u2fAuth = false;
+        greetd.u2fAuth = false;
         sudo = {
           u2fAuth = true;
           sshAgentAuth = true;
