@@ -6,7 +6,7 @@
 }:
 {
 
-  sops.secrets."work/ssh-config".path = "${config.home.homeDirectory}/.ssh/work_config";
+  sops.secrets."work/ssh-config" = { };
 
   programs.ssh = {
     enable = true;

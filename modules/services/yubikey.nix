@@ -24,7 +24,6 @@ in
       "personal/yubico/u2f_keys" = {
         owner = vars.username;
         sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
-        path = "/home/${vars.username}/.config/Yubico/u2f_keys";
       };
       "personal/ssh_keys/yubikey_home" = {
         owner = vars.username;
@@ -55,7 +54,7 @@ in
         enable = true;
         settings = {
           cue = true;
-          authFile = "/home/${vars.username}/.config/Yubico/u2f_keys";
+          authFile = config.sops.secrets."personal/yubico/u2f_keys".path;
           # debug = true;
         };
       };
