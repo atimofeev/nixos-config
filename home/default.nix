@@ -4,8 +4,8 @@
   imports = [
 
     ./terminal
+    ./firefox
 
-    ./firefox.nix
     ./mpv.nix
     ./nix-index.nix
     ./obsidian.nix

@@ -19,6 +19,8 @@
 
       inherit (config.programs.firefox.profiles.default) userContent;
 
+      inherit (config.programs.firefox.profiles.default) extensions;
+
       settings = config.programs.firefox.profiles.default.settings // {
         "zen.tabs.show-newtab-vertical" = false;
         "zen.theme.accent-color" = "#8aadf4";
@@ -104,23 +106,6 @@
           position = 1001;
           inherit (spaces."Work") theme;
         };
-      };
-
-      extensions = {
-        force = true;
-        packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-          darkreader
-          dearrow
-          istilldontcareaboutcookies
-          sponsorblock
-          surfingkeys
-          translate-web-pages
-          ublock-origin
-          # TODO: allow unfree in firefox-addons.packages
-          # https://gitlab.com/rycee/nur-expressions/-/issues/244
-          # languagetool
-          # scroll_anywhere
-        ];
       };
 
     };
