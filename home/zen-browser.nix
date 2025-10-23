@@ -4,6 +4,10 @@
   config,
   ...
 }:
+let
+  cfg = config.programs.firefox.profiles.default;
+  catppuccin-css = inputs.catppuccin-zen-browser;
+in
 {
 
   imports = [
@@ -17,11 +21,13 @@
     profiles.default = rec {
       isDefault = true;
 
-      inherit (config.programs.firefox.profiles.default) userContent;
+      userChrome = cfg.userChrome + builtins.readFile "${catppuccin-css}/userChrome.css";
+      userContent = cfg.userContent + builtins.readFile "${catppuccin-css}/userContent.css";
 
-      inherit (config.programs.firefox.profiles.default) extensions;
+      inherit (cfg) extensions;
 
-      settings = config.programs.firefox.profiles.default.settings // {
+      settings = cfg.settings // {
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # enables css theming
         "zen.tabs.show-newtab-vertical" = false;
         "zen.theme.accent-color" = "#8aadf4";
         "zen.urlbar.behavior" = "float";
@@ -40,7 +46,7 @@
       search = {
         force = true;
         default = "google";
-        inherit (config.programs.firefox.profiles.default.search) engines;
+        inherit (cfg.search) engines;
       };
 
       pinsForce = true;

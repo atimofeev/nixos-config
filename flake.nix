@@ -12,6 +12,11 @@
 
     asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
 
+    catppuccin-zen-browser = {
+      url = "github:catppuccin/zen-browser?dir=themes/Macchiato/Lavender";
+      flake = false;
+    };
+
     firefox-addons = {
       type = "gitlab";
       owner = "rycee";
