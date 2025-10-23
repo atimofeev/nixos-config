@@ -18,12 +18,9 @@
     };
 
     firefox-addons = {
-      type = "gitlab";
-      owner = "rycee";
-      repo = "nur-expressions";
-      dir = "pkgs/firefox-addons";
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
     lanzaboote.url = "github:nix-community/lanzaboote";
 
