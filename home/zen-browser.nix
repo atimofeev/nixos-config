@@ -83,7 +83,7 @@
       spaces = {
         "Work" = {
           id = "572910e1-4468-4832-a869-0b3a93e2f165";
-          icon = "🪖";
+          icon = "🏗";
           position = 1000;
           theme = {
             type = "gradient";
