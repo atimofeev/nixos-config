@@ -118,6 +118,7 @@
     };
 
     work = {
+      openvpn.enable = true;
       ansible = {
         enable = true;
         package = pkgs.ansible_2_17;
