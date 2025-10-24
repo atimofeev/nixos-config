@@ -109,6 +109,7 @@
         devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
       };
       logrotate-nvim.enable = true;
+      printing.enable = true;
       syncthing.enable = true;
       yubikey = {
         enable = true;

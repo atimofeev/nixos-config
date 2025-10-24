@@ -42,6 +42,7 @@
     ./services/logrotate-nvim.nix
     ./services/ollama.nix
     ./services/pihole.nix
+    ./services/printing.nix
     ./services/stirling-pdf.nix
     ./services/sunshine.nix
     ./services/syncthing.nix
