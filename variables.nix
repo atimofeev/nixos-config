@@ -11,4 +11,15 @@
     font_size = "12";
     editor = "nix run ~/repos/nixvim-config/"; # should be executable
   };
+
+  hostUsers = {
+    milaptop = [
+      "atimofeev"
+      "alice"
+    ];
+    zefir = [
+      "atimofeev"
+      "guest"
+    ];
+  };
 }
