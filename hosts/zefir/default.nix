@@ -24,6 +24,7 @@
 
   networking.hostName = "zefir";
   time.timeZone = "Europe/Podgorica";
+  system.stateVersion = "24.11";
 
   boot.kernelParams = [
     "i915.enable_dpcd_backlight=1"

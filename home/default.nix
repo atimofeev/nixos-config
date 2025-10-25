@@ -1,4 +1,8 @@
-{ vars, ... }:
+{
+  osConfig,
+  vars,
+  ...
+}:
 {
 
   imports = [
@@ -23,7 +27,7 @@
   systemd.user.startServices = "sd-switch"; # reload system units on config update
 
   home = {
-    inherit (vars.nix) stateVersion;
+    inherit (osConfig.system) stateVersion;
     inherit (vars) username;
     homeDirectory = "/home/${vars.username}";
   };

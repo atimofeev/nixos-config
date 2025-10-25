@@ -26,6 +26,7 @@
 
   networking.hostName = "milaptop";
   time.timeZone = "Europe/Podgorica";
+  system.stateVersion = "24.11";
 
   hardware = {
     intelgpu.driver = "i915";

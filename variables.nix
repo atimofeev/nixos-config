@@ -1,5 +1,4 @@
 {
-  nix.stateVersion = "24.11";
   username = "atimofeev";
   kb_layouts = "us,ru";
   shell = "fish";
