@@ -22,6 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
+
     lanzaboote.url = "github:nix-community/lanzaboote";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
