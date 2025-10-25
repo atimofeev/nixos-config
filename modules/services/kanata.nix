@@ -57,7 +57,7 @@ in
               )
 
               (deflayer game
-                _ a s d f h j k l ; @gm-off @gm-off
+                XX a s d f h j k l ; @gm-off @gm-off
               )
 
               (deflayer nav
