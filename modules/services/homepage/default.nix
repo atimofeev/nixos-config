@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   vars,
   ...
 }:
@@ -17,6 +18,10 @@ in
 
   options.custom.services.homepage = {
     enable = lib.mkEnableOption "homepage bundle";
+    background_image = lib.mkOption {
+      default = ../../../assets/dark-shore-upscaled.png;
+      type = lib.types.path;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -28,6 +33,12 @@ in
 
     services.homepage-dashboard = {
       enable = true;
+      package = pkgs.homepage-dashboard.overrideAttrs (_oldAttrs: {
+        postInstall = ''
+          mkdir -p $out/share/homepage/public/images
+          ln -s ${cfg.background_image} $out/share/homepage/public/images/${builtins.baseNameOf cfg.background_image}
+        '';
+      });
       environmentFile = config.sops.secrets."work/homepage-env".path;
       listenPort = 8888;
 
@@ -35,7 +46,7 @@ in
         title = "${vars.username} dashboard";
 
         background = {
-          image = "https://raw.githubusercontent.com/atimofeev/nixos-config/main/assets/dark-shore-comp.png";
+          image = "images/${builtins.baseNameOf cfg.background_image}";
           # blur = "sm";
           saturate = 50;
           brightness = 85;
