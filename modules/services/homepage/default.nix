@@ -22,6 +22,10 @@ in
       default = ../../../assets/dark-shore-upscaled.png;
       type = lib.types.path;
     };
+    listenPort = lib.mkOption {
+      default = 8888;
+      type = lib.types.int;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -40,7 +44,7 @@ in
         '';
       });
       environmentFile = config.sops.secrets."work/homepage-env".path;
-      listenPort = 8888;
+      inherit (cfg) listenPort;
 
       settings = {
         title = "${vars.username} dashboard";
