@@ -13,7 +13,6 @@ in
 
     programs.chromium.extraOpts = {
       HomepageIsNewTabPage = true;
-      # FIX:
       NewTabPageLocation = "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
     };
 
