@@ -27,6 +27,7 @@ _: {
     ./apps/spotify-player.nix
     ./apps/ssh.nix
     ./apps/starship.nix
+    ./apps/tealdeer.nix
     ./apps/yazi.nix
     ./apps/zoxide.nix
 
