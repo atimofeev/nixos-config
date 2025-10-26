@@ -31,6 +31,7 @@
     "xe.enable_dpcd_backlight=1"
     "nvidia.NVreg_EnableBacklightHandler=0"
     "nvidia.NVReg_RegistryDwords=EnableBrightnessControl=0"
+    "nvidia.NVreg_EnableS0ixPowerManagement=1"
   ];
 
   hardware = {
@@ -52,10 +53,10 @@
       open = true;
       modesetting.enable = true;
       dynamicBoost.enable = true;
-      # powerManagement = {
-      #   enable = true;
-      #   finegrained = true;
-      # };
+      powerManagement = {
+        enable = true;
+        finegrained = true;
+      };
       prime = {
         offload.enable = true;
         intelBusId = "PCI:0:2:0";
