@@ -16,8 +16,6 @@ in
   config = lib.mkIf cfg.enable {
     users.users.${vars.username}.extraGroups = [ "audio" ];
 
-    security.rtkit.enable = true;
-
     services = {
       pulseaudio.enable = false;
       pipewire = {
