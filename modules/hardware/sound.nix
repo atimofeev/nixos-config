@@ -26,11 +26,11 @@ in
           support32Bit = true;
         };
         pulse.enable = true;
-        jack.enable = true;
 
         # extraConfig.pipewire = {
         #   "10-logging" = { "context.properties"."log.level" = 3; };
         # };
+
       };
     };
   };
