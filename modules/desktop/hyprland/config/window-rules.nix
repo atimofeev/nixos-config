@@ -21,6 +21,7 @@
       "opacity 1.0 override, onworkspace:s[true]"
       "workspace special, class:spotify_player"
       "workspace special, class:org.telegram.desktop"
+      "focusonactivate off, class:org.telegram.desktop"
 
       "float, class:firefox, title:^(About Mozilla Firefox|Library)$"
       "float, class:firefox, title:^()$" # Page Info — .* initial title
