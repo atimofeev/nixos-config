@@ -9,7 +9,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    powerManagement.enable = true;
+    powerManagement = {
+      enable = true;
+      powertop.enable = true;
+    };
     services = {
       power-profiles-daemon.enable = lib.mkIf config.services.auto-cpufreq.enable false;
       upower = {
