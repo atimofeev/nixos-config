@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  vars,
   ...
 }:
 let
@@ -14,6 +15,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    users.users.${vars.username}.extraGroups = [ "lp" ];
     services = {
       avahi = {
         enable = true;
@@ -23,8 +25,11 @@ in
       printing = {
         enable = true;
         drivers = with pkgs; [
-          cups-filters
           cups-browsed
+          cups-filters
+          gutenprint
+          hplip
+          ipp-usb
         ];
       };
     };
