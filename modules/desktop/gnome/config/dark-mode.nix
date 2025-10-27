@@ -22,7 +22,7 @@ in
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = true;
-      night-light-temperature = i 4500;
+      night-light-temperature = i 5000;
     };
   };
 }

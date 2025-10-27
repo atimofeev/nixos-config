@@ -41,7 +41,7 @@ let
 
     # hyprland
     sunrise = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 7000";
-    sunset = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 4500";
+    sunset = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 5000";
 
     # adding flags
     df = "df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs --exclude-type=efivarfs";
