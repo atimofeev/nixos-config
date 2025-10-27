@@ -1,8 +1,7 @@
-_: {
+{
 
   imports = [
     ./better-escape.nix
-    ./catppuccin.nix
     ./guess-indent.nix
     ./harpoon.nix
     ./kitty-scrollback.nix

@@ -5,6 +5,7 @@
     ../../home/terminal
     ../../home/firefox
 
+    ../../home/catppuccin.nix
     ../../home/mpv.nix
     ../../home/nix-index.nix
     ../../home/obsidian.nix

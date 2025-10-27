@@ -12,6 +12,8 @@
 
     asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
 
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
+
     catppuccin-zen-browser = {
       url = "github:catppuccin/zen-browser?dir=themes/Macchiato/Lavender";
       flake = false;

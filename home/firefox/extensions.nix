@@ -5,10 +5,6 @@
 
     policies.ExtensionSettings = {
       "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}".private_browsing = true; # surfingkeys
-      "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
-        installation_mode = "force_installed";
-      };
       "addon@darkreader.org".private_browsing = true;
       "uBlock0@raymondhill.net".private_browsing = true;
     };

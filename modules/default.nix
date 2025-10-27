@@ -17,6 +17,7 @@
     # TODO: separate hard-coded modules from optional ones
     ./system/automount.nix
     ./system/boot.nix
+    ./system/catppuccin.nix
     ./system/fonts.nix
     ./system/home-manager.nix
     ./system/lanzaboote.nix
