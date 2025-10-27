@@ -25,7 +25,6 @@
     nvim.enable = true;
     rofi.enable = true;
     spotify-player.enable = true;
-    starship.enable = false; # TODO: configure
     yazi.enable = true;
     zathura.enable = true;
   };

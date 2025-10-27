@@ -1,55 +1,5 @@
+# TODO: figure out fallback for catppuccin colors
 { lib, config, ... }:
-let
-  # catppuccin macchiato palette
-  colors = {
-    rosewater = "#f4dbd6";
-    flamingo = "#f0c6c6";
-    pink = "#f5bde6";
-    mauve = "#c6a0f6";
-    red = "#ed8796";
-    maroon = "#ee99a0";
-    peach = "#f5a97f";
-    yellow = "#eed49f";
-    green = "#a6da95";
-    teal = "#8bd5ca";
-    sky = "#91d7e3";
-    sapphire = "#7dc4e4";
-    blue = "#8aadf4";
-    lavender = "#b7bdf8";
-    text = "#cad3f5";
-    subtext1 = "#b8c0e0";
-    subtext0 = "#a5adcb";
-    overlay2 = "#939ab7";
-    overlay1 = "#8087a2";
-    overlay0 = "#6e738d";
-    surface2 = "#5b6078";
-    surface1 = "#494d64";
-    surface0 = "#363a4f";
-    base = "#24273a";
-    mantle = "#1e2030";
-    crust = "#181926";
-  };
-  section1 = {
-    bg = colors.surface0;
-    fg = colors.red;
-  };
-  section2 = {
-    bg = colors.subtext0;
-    fg = colors.surface0;
-  };
-  section3 = {
-    bg = colors.surface1;
-    fg = colors.text;
-  };
-  section4 = {
-    bg = colors.surface2;
-    fg = colors.text;
-  };
-  section5 = {
-    bg = colors.surface0;
-    fg = colors.yellow;
-  };
-in
 {
   programs.starship = {
     enable = true;
@@ -64,22 +14,22 @@ in
       format =
         lib.strings.replaceStrings [ "\n" ] [ "" ] # toml
           ''
-            [](${section1.bg})
+            [](surface0)
             $battery
             $username
             $env_var
             $kubernetes
-            [](fg:${section1.bg} bg:${section2.bg})
+            [](fg:surface0 bg:subtext0)
             $directory
-            [](fg:${section2.bg} bg:${section3.bg})
+            [](fg:subtext0 bg:surface1)
             $git_branch
             $git_status
-            [](fg:${section3.bg} bg:${section4.bg})
+            [](fg:surface1 bg:surface2)
             $time
-            [](fg:${section4.bg} bg:${section5.bg})
+            [](fg:surface2 bg:surface0)
             $cmd_duration
             $status
-            [ ](fg:${section5.bg})
+            [ ](fg:surface0)
           '';
 
       battery = {
@@ -89,7 +39,7 @@ in
 
       battery.display = [
         {
-          style = "fg:${section1.fg} bg:${section1.bg}";
+          style = "fg:red bg:surface0";
           threshold = 79;
         }
       ];
@@ -97,20 +47,20 @@ in
       username = {
         disabled = false;
         format = "[! ]($style)";
-        style_root = "fg:${section1.fg} bg:${section1.bg}";
+        style_root = "fg:red bg:surface0";
       };
 
       kubernetes = {
         disabled = false;
         format = "[$symbol $cluster( \\($namespace\\))]($style)";
-        style = "bold fg:${colors.teal} bg:${section1.bg}";
+        style = "bold fg:teal bg:surface0";
         symbol = "☸";
       };
 
       env_var = {
         IN_NIX_SHELL = {
           format = "[$symbol ]($style)";
-          style = "fg:${colors.blue} bg:${section1.bg}";
+          style = "fg:blue bg:surface0";
           symbol = "";
           variable = "IN_NIX_SHELL";
         };
@@ -118,14 +68,14 @@ in
 
       directory = {
         format = "[ $path ]($style)";
-        style = "fg:${section2.fg} bg:${section2.bg}";
+        style = "fg:surface0 bg:subtext0";
         truncation_symbol = "";
         truncation_length = 3;
       };
 
       git_branch = {
         format = "[ $symbol $branch ]($style)";
-        style = "fg:${section3.fg} bg:${section3.bg}";
+        style = "fg:text bg:surface1";
         symbol = "";
         truncation_length = 20;
       };
@@ -133,19 +83,19 @@ in
       git_status = {
         disabled = true;
         format = "[$all_status$ahead_behind ]($style)";
-        style = "fg:${section3.fg} bg:${section3.bg}";
+        style = "fg:text bg:surface1";
       };
 
       time = {
         disabled = false;
         format = "[ 󰧼 $time ]($style)";
-        style = "fg:${section4.fg} bg:${section4.bg}";
+        style = "fg:text bg:surface2";
         time_format = "%R"; # Hour:Minute Format
       };
 
       cmd_duration = {
         format = "[ 󱦟$duration ]($style)";
-        style = "fg:${section5.fg} bg:${section5.bg}";
+        style = "fg:yellow bg:surface0";
         min_time = 1000;
 
         # show_notifications = true;
@@ -156,18 +106,18 @@ in
 
       status = {
         disabled = false;
-        style = "fg:${section5.fg} bg:${section5.bg}";
+        style = "fg:yellow bg:surface0";
         format = "[!$int]($style)";
       };
 
       # NOTE: trying to utilize vim keybinds and show current mode in prompt
       character = {
-        success_symbol = "[I](fg:${section5.fg} bg:${section5.bg})";
-        error_symbol = "[E](fg:${section5.fg} bg:${section5.bg})";
-        vicmd_symbol = "[N](fg:${section5.fg} bg:${section5.bg})";
-        vimcmd_replace_one_symbol = "[r](fg:${section5.fg} bg:${section5.bg})";
-        vimcmd_replace_symbol = "[R](fg:${section5.fg} bg:${section5.bg})";
-        vimcmd_visual_symbol = "[V](fg:${section5.fg} bg:${section5.bg})";
+        success_symbol = "[I](fg:yellow bg:surface0)";
+        error_symbol = "[E](fg:yellow bg:surface0)";
+        vicmd_symbol = "[N](fg:yellow bg:surface0)";
+        vimcmd_replace_one_symbol = "[r](fg:yellow bg:surface0)";
+        vimcmd_replace_symbol = "[R](fg:yellow bg:surface0)";
+        vimcmd_visual_symbol = "[V](fg:yellow bg:surface0)";
       };
 
     };
