@@ -39,6 +39,16 @@
 
   };
 
+  # NOTE: prevent systemd messages appearing on top of greetd
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
