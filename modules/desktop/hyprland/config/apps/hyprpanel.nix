@@ -91,33 +91,36 @@ in
             unit = "metric";
           };
         };
-        dashboard.directories = {
-          left = {
-            directory1 = {
-              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Downloads";
-              label = "󰉍 Downloads";
+        dashboard = {
+          powermenu.avatar.image = "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+          directories = {
+            left = {
+              directory1 = {
+                command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Downloads";
+                label = "󰉍 Downloads";
+              };
+              directory2 = {
+                command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Videos";
+                label = "󰉏 Videos";
+              };
+              directory3 = {
+                command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/repos";
+                label = "󰚝 Projects";
+              };
             };
-            directory2 = {
-              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Videos";
-              label = "󰉏 Videos";
-            };
-            directory3 = {
-              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/repos";
-              label = "󰚝 Projects";
-            };
-          };
-          right = {
-            directory1 = {
-              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Documents";
-              label = "󱧶 Documents";
-            };
-            directory2 = {
-              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Pictures";
-              label = "󰉏 Pictures";
-            };
-            directory3 = {
-              command = "${kitty} -e ${yazi} ${config.home.homeDirectory}";
-              label = "󱂵 Home";
+            right = {
+              directory1 = {
+                command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Documents";
+                label = "󱧶 Documents";
+              };
+              directory2 = {
+                command = "${kitty} -e ${yazi} ${config.home.homeDirectory}/Pictures";
+                label = "󰉏 Pictures";
+              };
+              directory3 = {
+                command = "${kitty} -e ${yazi} ${config.home.homeDirectory}";
+                label = "󱂵 Home";
+              };
             };
           };
         };
