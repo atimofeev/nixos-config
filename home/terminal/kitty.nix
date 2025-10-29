@@ -28,14 +28,20 @@
       input_delay = 0; # Remove artificial input delay
       sync_to_monitor = "no"; # turn off vsync
 
+      # tabs
+      tab_bar_style = "powerline";
+      tab_powerline_style = "slanted";
+
       # Window
       # background_opacity = "0.8";
       hide_window_decorations = "yes";
       confirm_os_window_close = "2";
+      window_border_width = "1.5pt";
 
-      enable_audio_bell = "no";
       copy_on_select = "yes";
       cursor_trail = 3;
+      enable_audio_bell = "no";
+      focus_follows_mouse = "yes";
 
       # Fix issues related to SSH (may break kitty functionality):
       term = "xterm-256color";
