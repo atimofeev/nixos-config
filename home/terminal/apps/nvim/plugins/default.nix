@@ -4,7 +4,7 @@
     ./better-escape.nix
     ./guess-indent.nix
     ./harpoon.nix
-    ./kitty-scrollback.nix
+    ./kitty-integration.nix
     ./lualine.nix
     ./mini-move.nix
     ./mini-surround.nix
