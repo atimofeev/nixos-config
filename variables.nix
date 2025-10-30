@@ -15,11 +15,11 @@
   hostUsers = {
     milaptop = [
       "atimofeev"
-      "alice"
+      # "alice"
     ];
     zefir = [
       "atimofeev"
-      "guest"
+      # "guest"
     ];
   };
 }
