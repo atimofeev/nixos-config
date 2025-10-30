@@ -10,7 +10,7 @@
     enable = true;
 
     extensions = [
-      "cmpdlhmnmjhihmcfnigoememnffkimlk" # Catppuccin Macchiato Theme
+      "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Catppuccin Mocha Theme
       "hkgfoiooedgoejojocmhlaklaeopbecg" # Picture-in-Picture
       "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
