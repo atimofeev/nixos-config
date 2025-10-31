@@ -34,6 +34,9 @@
     "nvidia.NVreg_EnableS0ixPowerManagement=1"
   ];
 
+  # NOTE: prevent Logi Bolt receiver from interrupting suspend
+  environment.systemPackages = [ pkgs.logitech-udev-rules ];
+
   hardware = {
     intelgpu.driver = "xe";
     enableRedistributableFirmware = true;
