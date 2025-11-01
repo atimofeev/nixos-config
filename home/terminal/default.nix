@@ -13,7 +13,6 @@ _: {
     ./apps/k9s
 
     ./apps/atuin.nix
-    ./apps/bagels.nix
     ./apps/bat.nix
     ./apps/bluetuith.nix
     ./apps/btop.nix
