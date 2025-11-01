@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  vars,
   ...
 }:
 let
@@ -17,27 +16,26 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    environment.systemPackages =
-      [
-        cfg.package
-        tflint-w-plugins
-      ]
-      ++ (with pkgs; [
-        unstable.tfsort
+    environment.systemPackages = [
+      cfg.package
+      tflint-w-plugins
+    ]
+    ++ (with pkgs; [
+      unstable.tfsort
 
-        # import tools
-        terraformer
-        cf-terraforming
+      # import tools
+      terraformer
+      cf-terraforming
 
-        # misc
-        tenv # https://github.com/tofuutils/tenv-nix#usage
-        unstable.tftui
-      ]);
+      # misc
+      tenv # https://github.com/tofuutils/tenv-nix#usage
+      unstable.tftui
+    ]);
 
     sops.secrets = {
-      "work/env/TF_HTTP_PASSWORD".owner = vars.username;
-      "work/env/CLOUDFLARE_API_TOKEN".owner = vars.username;
-      "work/env/GITLAB_TOKEN".owner = vars.username;
+      "work/env/TF_HTTP_PASSWORD".owner = config.custom.hm-admin;
+      "work/env/CLOUDFLARE_API_TOKEN".owner = config.custom.hm-admin;
+      "work/env/GITLAB_TOKEN".owner = config.custom.hm-admin;
     };
 
     environment.shellInit = ''

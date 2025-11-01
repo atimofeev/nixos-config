@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -31,7 +30,7 @@ in
   config = lib.mkIf cfg.enable {
 
     sops.secrets."work/homepage-env" = {
-      owner = vars.username;
+      owner = config.custom.hm-admin;
       restartUnits = [ "homepage-dashboard.service" ];
     };
 
@@ -47,7 +46,7 @@ in
       inherit (cfg) listenPort;
 
       settings = {
-        title = "${vars.username} dashboard";
+        title = "${config.custom.hm-admin} dashboard";
 
         background = {
           image = "images/${builtins.baseNameOf cfg.background_image}";

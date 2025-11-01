@@ -1,7 +1,7 @@
 {
+  config,
   inputs,
   pkgs,
-  vars,
   ...
 }:
 {
@@ -11,7 +11,7 @@
   environment.systemPackages = [ pkgs.sops ];
 
   sops = {
-    age.sshKeyPaths = [ "/home/${vars.username}/.ssh/id_ed25519" ];
+    age.sshKeyPaths = [ "/home/${config.custom.hm-admin}/.ssh/id_ed25519" ];
     defaultSopsFile = ../../secrets/common.yaml;
     defaultSopsFormat = "yaml";
   };

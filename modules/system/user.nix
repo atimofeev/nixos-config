@@ -6,16 +6,20 @@
   ...
 }:
 let
-  hostUsers = vars.hostUsers.${config.networking.hostName};
+  cfg = config.custom;
 in
 {
 
   programs.${vars.shell}.enable = true;
-  users.users = lib.attrsets.genAttrs hostUsers (u: {
-    isNormalUser = true;
-    description = u;
-    extraGroups = [ "wheel" ];
-    shell = pkgs.${vars.shell};
-  });
+  users.users =
+    lib.recursiveUpdate
+
+      (lib.attrsets.genAttrs cfg.hm-users (u: {
+        isNormalUser = true;
+        description = u;
+        shell = pkgs.${vars.shell};
+      }))
+
+      { "${cfg.hm-admin}".extraGroups = [ "wheel" ]; };
 
 }

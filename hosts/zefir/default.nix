@@ -26,6 +26,11 @@
   time.timeZone = "Europe/Podgorica";
   system.stateVersion = "24.11";
 
+  custom.hm-users = [
+    "atimofeev"
+    "alice"
+  ];
+
   boot.kernelParams = [
     "nvidia.NVreg_EnableS0ixPowerManagement=1"
   ];

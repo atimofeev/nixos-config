@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 let
@@ -14,7 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    users.users.${vars.username}.extraGroups = [ "audio" ];
+
+    users.users = lib.attrsets.genAttrs config.custom.hm-users (u: {
+      extraGroups = [ "audio" ];
+    });
 
     services = {
       pulseaudio.enable = false;

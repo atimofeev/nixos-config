@@ -1,8 +1,7 @@
 {
+  config,
   lib,
   pkgs,
-  config,
-  vars,
   ...
 }:
 let
@@ -36,8 +35,8 @@ in
     ];
 
     sops.secrets = {
-      "work/env/VAULT_ADDR".owner = vars.username;
-      "work/env/VAULT_TOKEN".owner = vars.username;
+      "work/env/VAULT_ADDR".owner = config.custom.hm-admin;
+      "work/env/VAULT_TOKEN".owner = config.custom.hm-admin;
     };
 
     environment.shellInit = ''
@@ -45,7 +44,7 @@ in
       export VAULT_TOKEN="$(cat ${config.sops.secrets."work/env/VAULT_TOKEN".path})"
     '';
 
-    home-manager.users.${vars.username} = {
+    home-manager.users.${config.custom.hm-admin} = {
 
       home.file.".ansible.cfg" = {
         target = ".ansible.cfg";
@@ -55,18 +54,18 @@ in
             enable_plugins = aws_ec2, aws_ssm, yaml
             host_key_checking = false
             interpreter_python = auto_silent
-            inventory = /home/${vars.username}/repos/betby/ansible/playbooks/inventories/prod/
+            inventory = /home/${config.custom.hm-admin}/repos/betby/ansible/playbooks/inventories/prod/
             max_diff_size = 0
-            private_key_file = =/home/${vars.username}/.ssh/id_ed25519
+            private_key_file = =/home/${config.custom.hm-admin}/.ssh/id_ed25519
             [inventory]
             enable_plugins = aws_ec2, ini, yaml
           '';
       };
 
       programs.fish.shellAliases = {
-        ansible = ''ansible --extra-vars "ansible_user=${vars.username}"'';
+        ansible = ''ansible --extra-vars "ansible_user=${config.custom.hm-admin}"'';
         ansible-root = ''ansible --extra-vars "ansible_user=root"'';
-        ansible-playbook = ''ansible-playbook --extra-vars "ansible_user=${vars.username}"'';
+        ansible-playbook = ''ansible-playbook --extra-vars "ansible_user=${config.custom.hm-admin}"'';
         ansible-playbook-root = ''ansible-playbook --extra-vars "ansible_user=root"'';
       };
 

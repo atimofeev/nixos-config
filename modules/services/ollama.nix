@@ -3,7 +3,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -44,7 +43,7 @@ in
       ])
       ++ additionalPackages;
 
-    users.users.${vars.username}.extraGroups = [ "ollama" ];
+    users.users.${config.custom.hm-admin}.extraGroups = [ "ollama" ];
 
     services = {
 
@@ -81,7 +80,7 @@ in
           DO_NOT_TRACK = "True";
           SCARF_NO_ANALYTICS = "True";
           LOCAL_FILES_ONLY = "False";
-          USER_AGENT = "${vars.username}";
+          USER_AGENT = "${config.custom.hm-admin}";
         };
       };
 

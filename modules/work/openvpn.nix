@@ -1,7 +1,6 @@
 {
-  lib,
   config,
-  vars,
+  lib,
   ...
 }:
 {
@@ -47,7 +46,7 @@
           # updateResolvConf = true;
           autoStart = false;
           config = ''
-            config /home/${vars.username}/secrets/officeVPN.conf
+            config /home/${config.custom.hm-admin}/secrets/officeVPN.conf
             auth-user-pass ${config.sops.secrets."work/officeVPNcreds".path}
           '';
         };
@@ -55,7 +54,7 @@
         AH-VPN = {
           autoStart = false;
           # https://ipmilist.advancedhosters.com/
-          config = "config /home/${vars.username}/secrets/AH-VPN.conf";
+          config = "config /home/${config.custom.hm-admin}/secrets/AH-VPN.conf";
         };
 
       };

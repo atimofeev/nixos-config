@@ -1,7 +1,6 @@
 {
-  vars,
-  lib,
   config,
+  lib,
   ...
 }:
 let
@@ -16,16 +15,20 @@ in
   config = lib.mkIf cfg.enable {
     services.logrotate = {
       enable = true;
-      settings = {
-        "/home/${vars.username}/.local/state/nvim/*log" = {
-          size = "5M";
-          rotate = 4;
-          compress = true;
-          missingok = true;
-          notifempty = true;
-          copytruncate = true;
-        };
-      };
+
+      settings = lib.mkMerge (
+        map (u: {
+          "/home/${u}/.local/state/nvim/*log" = {
+            compress = true;
+            copytruncate = true;
+            missingok = true;
+            notifempty = true;
+            rotate = 4;
+            size = "5M";
+          };
+        }) config.custom.hm-users
+      );
+
     };
   };
 

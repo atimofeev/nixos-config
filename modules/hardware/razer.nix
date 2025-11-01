@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 let
@@ -16,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     hardware.openrazer = {
       enable = true;
-      users = [ "${vars.username}" ];
+      users = config.custom.hm-users;
       batteryNotifier.enable = false;
     };
   };

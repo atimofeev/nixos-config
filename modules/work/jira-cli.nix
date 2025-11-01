@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -18,7 +17,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    sops.secrets."work/env/JIRA_API_TOKEN".owner = vars.username;
+    sops.secrets."work/env/JIRA_API_TOKEN".owner = config.custom.hm-admin;
 
     environment = {
       systemPackages = [ cfg.package ];

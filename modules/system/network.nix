@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -27,7 +26,9 @@ in
       "net.ipv6.conf.*.hop_limit" = 65;
     };
 
-    users.users.${vars.username}.extraGroups = [ "networkmanager" ];
+    users.users = lib.attrsets.genAttrs config.custom.hm-users (u: {
+      extraGroups = [ "networkmanager" ];
+    });
 
     networking = {
 

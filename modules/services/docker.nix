@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -15,7 +14,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    users.users.${vars.username}.extraGroups = [ "docker" ];
+    users.users.${config.custom.hm-admin}.extraGroups = [ "docker" ];
 
     virtualisation = {
       docker.enable = true;

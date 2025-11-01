@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 let
@@ -15,7 +14,11 @@ in
 
   config = lib.mkIf cfg.enable {
     services.blueman.enable = true;
-    home-manager.users.${vars.username}.services.blueman-applet.enable = true;
+
+    home-manager.users = lib.attrsets.genAttrs config.custom.hm-users (u: {
+      services.blueman-applet.enable = true;
+    });
+
     hardware.bluetooth = {
       enable = true;
       settings = {

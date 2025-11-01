@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 let
@@ -16,7 +15,7 @@ in
       NewTabPageLocation = "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
     };
 
-    home-manager.users.${vars.username}.programs.firefox.policies.Homepage = {
+    home-manager.users.${config.custom.hm-admin}.programs.firefox.policies.Homepage = {
       URL = "localhost:${toString config.services.homepage-dashboard.listenPort}";
     };
 

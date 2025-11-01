@@ -1,9 +1,8 @@
 # NOTE: figure out config options
 {
-  pkgs,
-  vars,
-  lib,
   config,
+  lib,
+  pkgs,
   ...
 }:
 let
@@ -22,13 +21,13 @@ in
   config = lib.mkIf cfg.enable {
     sops.secrets = {
       "personal/yubico/u2f_keys" = {
-        owner = vars.username;
+        owner = config.custom.hm-admin;
         sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
       };
       "personal/ssh_keys/id_ed25519_sk" = {
-        owner = vars.username;
+        owner = config.custom.hm-admin;
         sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
-        path = "/home/${vars.username}/.ssh/id_ed25519_sk";
+        path = "/home/${config.custom.hm-admin}/.ssh/id_ed25519_sk";
       };
     };
 
@@ -44,7 +43,7 @@ in
       unixSocket = false;
     };
     # NOTE: required for icon in libnotify
-    home-manager.users.${vars.username}.home.packages = [ pkgs.yubikey-touch-detector ];
+    home-manager.users.${config.custom.hm-admin}.home.packages = [ pkgs.yubikey-touch-detector ];
     # NOTE: https://github.com/max-baz/yubikey-touch-detector/issues/72
     systemd.user.services.yubikey-touch-detector.serviceConfig.StandardOutput = "null";
 

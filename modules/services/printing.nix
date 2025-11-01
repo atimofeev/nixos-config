@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -15,7 +14,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    users.users.${vars.username}.extraGroups = [ "lp" ];
+
+    users.users = lib.attrsets.genAttrs config.custom.hm-users (u: {
+      extraGroups = [ "lp" ];
+    });
+
     services = {
       avahi = {
         enable = true;

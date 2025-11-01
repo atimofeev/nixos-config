@@ -1,8 +1,7 @@
 {
+  config,
   lib,
   pkgs,
-  config,
-  vars,
   ...
 }:
 let
@@ -30,7 +29,7 @@ in
 
     security.pki.certificateFiles = [ catoCAPem ];
 
-    home-manager.users.${vars.username}.programs.firefox.policies = {
+    home-manager.users.${config.custom.hm-admin}.programs.firefox.policies = {
       Certificates = {
         ImportEnterpriseRoots = true;
         Install = [ catoCAPem ];
