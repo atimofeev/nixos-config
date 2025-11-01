@@ -27,10 +27,6 @@
   system.stateVersion = "24.11";
 
   boot.kernelParams = [
-    "i915.enable_dpcd_backlight=1"
-    "xe.enable_dpcd_backlight=1"
-    "nvidia.NVreg_EnableBacklightHandler=0"
-    "nvidia.NVReg_RegistryDwords=EnableBrightnessControl=0"
     "nvidia.NVreg_EnableS0ixPowerManagement=1"
   ];
 
@@ -78,6 +74,7 @@
   custom = {
 
     hardware = {
+      asus-backlight-fix.enable = true;
       asus-linux.enable = true;
       asus-fn-lock-fix.enable = true;
       bluetooth.enable = true;

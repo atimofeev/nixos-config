@@ -2,6 +2,7 @@
 
   imports = [
 
+    ./hardware/asus-backlight-fix.nix
     ./hardware/asus-fn-lock-fix.nix
     ./hardware/asus-linux.nix
     ./hardware/bluetooth.nix
