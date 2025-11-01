@@ -21,13 +21,13 @@
       "opacity 1.0 override, onworkspace:s[true]"
       "workspace special, class:spotify_player"
       "workspace special, class:org.telegram.desktop"
-      "focusonactivate off, class:org.telegram.desktop"
+      "focusonactivate 0, class:org.telegram.desktop"
 
       "float, class:firefox, title:^(About Mozilla Firefox|Library)$"
       "float, class:firefox, title:^()$" # Page Info — .* initial title
 
       "tag +pip, title:^(Picture-in-Picture|Picture in picture)$"
-      "focusonactivate off, tag:pip"
+      "focusonactivate 0, tag:pip"
       "noinitialfocus, tag:pip"
       "opacity 1.0 override, tag:pip"
       "float, tag:pip"
