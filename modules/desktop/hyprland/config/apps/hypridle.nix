@@ -35,6 +35,9 @@ in
     };
   };
 
+  # NOTE: https://github.com/hyprwm/hypridle/issues/129
+  systemd.user.services.hypridle.Service.StandardOutput = "null";
+
   services.hypridle = {
     enable = true;
     settings = {
