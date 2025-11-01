@@ -19,4 +19,6 @@
 
   ];
 
+  custom-hm.services.syncthing.enable = true;
+
 }

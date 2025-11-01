@@ -46,7 +46,6 @@
     ./services/printing.nix
     ./services/stirling-pdf.nix
     ./services/sunshine.nix
-    ./services/syncthing.nix
     ./services/thermald.nix
     ./services/tlp.nix
     ./services/yubikey.nix
