@@ -45,6 +45,8 @@ in
     };
     # NOTE: required for icon in libnotify
     home-manager.users.${vars.username}.home.packages = [ pkgs.yubikey-touch-detector ];
+    # NOTE: https://github.com/max-baz/yubikey-touch-detector/issues/72
+    systemd.user.services.yubikey-touch-detector.serviceConfig.StandardOutput = "null";
 
     services.pcscd.enable = true;
 
