@@ -61,47 +61,47 @@ in
 
         # ON AC
         {
-          timeout = 150; # 2.5min
+          timeout = 60 * 2.5;
           on-timeout = "${systemd-ac-power} && ${brightnessctl} -d intel_backlight -s set 15%";
           on-resume = "${systemd-ac-power} && ${brightnessctl} -d intel_backlight -r";
         }
 
         {
-          timeout = 300; # 5min
+          timeout = 60 * 5;
           on-timeout = "${systemd-ac-power} && ${lockCommand}";
         }
 
         {
-          timeout = 330; # 5.5min
+          timeout = 60 * 5.5;
           on-timeout = "${systemd-ac-power} && ${hyprctl} dispatch dpms off && ${brightnessctl} -d asus::kbd_backlight -s set 0%";
           on-resume = "${systemd-ac-power} && ${hyprctl} dispatch dpms on && ${brightnessctl} -d asus::kbd_backlight -s set 33%";
         }
 
         {
-          timeout = 1800; # 30min
+          timeout = 60 * 10;
           on-timeout = "${systemd-ac-power} && ${systemctl} suspend";
         }
 
         # ON BATTERY
         {
-          timeout = 60; # 1min
+          timeout = 60;
           on-timeout = "${systemd-ac-power} || ${brightnessctl} -d intel_backlight -s set 15%";
           on-resume = "${systemd-ac-power} || ${brightnessctl} -d intel_backlight -r";
         }
 
         {
-          timeout = 130; # 2.5min
+          timeout = 60 * 2.5;
           on-timeout = "${systemd-ac-power} || ${lockCommand}";
         }
 
         {
-          timeout = 160; # 3min
+          timeout = 60 * 3;
           on-timeout = "${systemd-ac-power} || ${hyprctl} dispatch dpms off && ${brightnessctl} -d asus::kbd_backlight -s set 0%";
           on-resume = "${systemd-ac-power} || ${hyprctl} dispatch dpms on && ${brightnessctl} -d asus::kbd_backlight -s set 33%";
         }
 
         {
-          timeout = 600; # 10min
+          timeout = 60 * 4;
           on-timeout = "${systemd-ac-power} || ${systemctl} suspend";
         }
 
