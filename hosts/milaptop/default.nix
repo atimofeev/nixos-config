@@ -116,7 +116,6 @@
       };
       logrotate-nvim.enable = true;
       printing.enable = true;
-      syncthing.enable = true;
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;
