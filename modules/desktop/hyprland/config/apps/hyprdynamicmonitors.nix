@@ -1,9 +1,18 @@
 {
   inputs,
+  osConfig,
   pkgs,
   ...
 }:
 let
+
+  # NOTE: https://github.com/fiffeek/hyprdynamicmonitors/issues/82
+  # temporary fix for missing hardcoded udev device on milatop
+  upower_path =
+    if osConfig.networking.hostName == "milaptop" then
+      "/org/freedesktop/UPower/devices/line_power_ADP0"
+    else
+      "/org/freedesktop/UPower/devices/line_power_ACAD";
 
   monitors = rec {
     work-left = {
@@ -95,6 +104,12 @@ in
     enable = true;
     config = # toml
       ''
+        [power_events.dbus_query_object]
+        path = "${upower_path}"
+
+        [[power_events.dbus_signal_match_rules]]
+        object_path = "${upower_path}"
+
         [profiles.zefir-bat]
         config_file = "${zefir-bat-conf}"
         config_file_type = "static"
