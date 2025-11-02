@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  vcv-config-source = pkgs.pkgs.writeShellScript "source" ''
+  vcv-config-source = pkgs.writeShellScript "source" ''
     rm -rf $HOME/.local/share/Rack2
     ln -s $HOME/repos/vcv-rack2-settings/ $HOME/.local/share/Rack2
     ln -s $HOME/repos/vcv-rack2-patches/ $HOME/.local/share/Rack2/patches

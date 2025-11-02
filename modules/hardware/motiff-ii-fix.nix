@@ -7,7 +7,7 @@
 let
   cfg = config.custom.hardware.peripherals.motiff-ii-fix;
 
-  reconnect-motif2 = pkgs.pkgs.writeShellScript "reconnect-motif2" ''
+  reconnect-motif2 = pkgs.writeShellScript "reconnect-motif2" ''
     bluetoothctl disconnect 00:25:D1:37:8C:19
     sleep 3
     bluetoothctl connect 00:25:D1:37:8C:19'';

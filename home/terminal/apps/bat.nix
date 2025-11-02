@@ -5,7 +5,7 @@
   ...
 }:
 let
-  tail = pkgs.pkgs.writeShellScript "tail" ''
+  tail = pkgs.writeShellScript "tail" ''
     file="$1"
     show="$2"
 
@@ -18,7 +18,7 @@ let
 
     exec bat "$file" --style=plain --paging=never --line-range "$range"'';
 
-  head = pkgs.pkgs.writeShellScript "head" ''
+  head = pkgs.writeShellScript "head" ''
     file="$1"
     show="$2"
 
