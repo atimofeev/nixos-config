@@ -5,83 +5,83 @@
 }:
 let
 
-  zefir-monitor = "Samsung Display Corp. ATNA60DL01-0";
-  milaptop-monitor = "BOE 0x0747";
-  portable-monitor = "Lenovo Group Limited M14t V309WMZ3";
-  work-monitor-left = "Dell Inc. DELL P2422H 8WRR0V3";
-  work-monitor-right = "Dell Inc. DELL P2422H 6FZG7N3";
+  monitors = rec {
+    work-left = {
+      desc = "Dell Inc. DELL P2422H 8WRR0V3";
+      conf = "preferred,auto-left,1";
+    };
+    zefir = {
+      desc = "Samsung Display Corp. ATNA60DL01-0";
+      conf = "2560x1600@240,0x0,1.33";
+    };
+    zefir-60 = {
+      inherit (zefir) desc;
+      conf = "2560x1600@60,0x0,1.33";
+    };
+    milaptop = {
+      desc = "BOE 0x0747";
+      conf = "preferred,0x0,1";
+    };
+    portable = {
+      desc = "Lenovo Group Limited M14t V309WMZ3";
+      conf = "preferred,auto,1.2";
+    };
+    work-right = {
+      desc = "Dell Inc. DELL P2422H 8WRR0V3";
+      conf = "preferred,auto,1";
+    };
+  };
 
-  zefir-bat-conf = pkgs.writeText "zefir-bat" ''monitor=desc:Samsung Display Corp. ATNA60DL01-0,2560x1600@60,0x0,1.33'';
-  zefir-ac-conf = pkgs.writeText "zefir-ac" ''monitor=desc:Samsung Display Corp. ATNA60DL01-0,2560x1600@240,0x0,1.33'';
+  workspaces-left = m: ''
+    monitor=desc:${m.desc},${m.conf}
+    workspace=1, monitor:desc:${m.desc}, default:yes
+    workspace=2, monitor:desc:${m.desc}
+    workspace=3, monitor:desc:${m.desc}
+    workspace=4, monitor:desc:${m.desc}
+  '';
 
+  workspaces-center = m: ''
+    monitor=desc:${m.desc},${m.conf}
+    workspace=5, monitor:desc:${m.desc}, default:yes
+    workspace=6, monitor:desc:${m.desc}
+    workspace=7, monitor:desc:${m.desc}
+    workspace=8, monitor:desc:${m.desc}
+    workspace=9, monitor:desc:${m.desc}
+  '';
+
+  workspaces-right = m: ''
+    monitor=desc:${m.desc},${m.conf}
+    workspace=10, monitor:desc:${m.desc}, default:yes
+    workspace=11, monitor:desc:${m.desc}
+    workspace=12, monitor:desc:${m.desc}
+    workspace=13, monitor:desc:${m.desc}
+    workspace=14, monitor:desc:${m.desc}
+  '';
+
+  zefir-bat-conf = pkgs.writeText "zefir-bat" ''
+    ${workspaces-left monitors.work-left}
+    ${workspaces-center monitors.zefir-60}
+    ${workspaces-right monitors.portable}
+  '';
   zefir-home-conf = pkgs.writeText "zefir-home-conf" ''
-    monitor=desc:Samsung Display Corp. ATNA60DL01-0,2560x1600@240,0x0,1.33
-    workspace=1, monitor:desc:${work-monitor-left}, default:yes
-    workspace=2, monitor:desc:${work-monitor-left}
-    workspace=3, monitor:desc:${work-monitor-left}
-    workspace=4, monitor:desc:${work-monitor-left}
-    workspace=5, monitor:desc:${zefir-monitor}, default:yes
-    workspace=6, monitor:desc:${zefir-monitor}
-    workspace=7, monitor:desc:${zefir-monitor}
-    workspace=8, monitor:desc:${zefir-monitor}
-    workspace=9, monitor:desc:${zefir-monitor}
-    workspace=10, monitor:desc:${portable-monitor}, default:yes
-    workspace=11, monitor:desc:${portable-monitor}
-    workspace=12, monitor:desc:${portable-monitor}
-    workspace=13, monitor:desc:${portable-monitor}
-    workspace=14, monitor:desc:${portable-monitor}
+    ${workspaces-left monitors.work-left}
+    ${workspaces-center monitors.zefir}
+    ${workspaces-right monitors.portable}
   '';
-
   zefir-work-conf = pkgs.writeText "zefir-work-conf" ''
-    monitor=desc:Samsung Display Corp. ATNA60DL01-0,2560x1600@240,0x0,1.33
-    workspace=1, monitor:desc:${work-monitor-left}, default:yes
-    workspace=2, monitor:desc:${work-monitor-left}
-    workspace=3, monitor:desc:${work-monitor-left}
-    workspace=4, monitor:desc:${work-monitor-left}
-    workspace=5, monitor:desc:${zefir-monitor}, default:yes
-    workspace=6, monitor:desc:${zefir-monitor}
-    workspace=7, monitor:desc:${zefir-monitor}
-    workspace=8, monitor:desc:${zefir-monitor}
-    workspace=9, monitor:desc:${zefir-monitor}
-    workspace=10, monitor:desc:${work-monitor-right}, default:yes
-    workspace=11, monitor:desc:${work-monitor-right}
-    workspace=12, monitor:desc:${work-monitor-right}
-    workspace=13, monitor:desc:${work-monitor-right}
-    workspace=14, monitor:desc:${work-monitor-right}
+    ${workspaces-left monitors.work-left}
+    ${workspaces-center monitors.zefir}
+    ${workspaces-right monitors.work-right}
   '';
-
   milaptop-home-conf = pkgs.writeText "milaptop-home-conf" ''
-    workspace=1, monitor:desc:${work-monitor-left}, default:yes
-    workspace=2, monitor:desc:${work-monitor-left}
-    workspace=3, monitor:desc:${work-monitor-left}
-    workspace=4, monitor:desc:${work-monitor-left}
-    workspace=5, monitor:desc:${milaptop-monitor}, default:yes
-    workspace=6, monitor:desc:${milaptop-monitor}
-    workspace=7, monitor:desc:${milaptop-monitor}
-    workspace=8, monitor:desc:${milaptop-monitor}
-    workspace=9, monitor:desc:${milaptop-monitor}
-    workspace=10, monitor:desc:${portable-monitor}, default:yes
-    workspace=11, monitor:desc:${portable-monitor}
-    workspace=12, monitor:desc:${portable-monitor}
-    workspace=13, monitor:desc:${portable-monitor}
-    workspace=14, monitor:desc:${portable-monitor}
+    ${workspaces-left monitors.work-left}
+    ${workspaces-center monitors.milaptop}
+    ${workspaces-right monitors.portable}
   '';
-
   milaptop-work-conf = pkgs.writeText "milaptop-work-conf" ''
-    workspace=1, monitor:desc:${work-monitor-left}, default:yes
-    workspace=2, monitor:desc:${work-monitor-left}
-    workspace=3, monitor:desc:${work-monitor-left}
-    workspace=4, monitor:desc:${work-monitor-left}
-    workspace=5, monitor:desc:${milaptop-monitor}, default:yes
-    workspace=6, monitor:desc:${milaptop-monitor}
-    workspace=7, monitor:desc:${milaptop-monitor}
-    workspace=8, monitor:desc:${milaptop-monitor}
-    workspace=9, monitor:desc:${milaptop-monitor}
-    workspace=10, monitor:desc:${work-monitor-right}, default:yes
-    workspace=11, monitor:desc:${work-monitor-right}
-    workspace=12, monitor:desc:${work-monitor-right}
-    workspace=13, monitor:desc:${work-monitor-right}
-    workspace=14, monitor:desc:${work-monitor-right}
+    ${workspaces-left monitors.work-left}
+    ${workspaces-center monitors.milaptop}
+    ${workspaces-right monitors.work-right}
   '';
 
 in
@@ -98,76 +98,46 @@ in
         [profiles.zefir-bat]
         config_file = "${zefir-bat-conf}"
         config_file_type = "static"
-
         [profiles.zefir-bat.conditions]
         power_state = "BAT"
-
         [[profiles.zefir-bat.conditions.required_monitors]]
-        description = "${zefir-monitor}"
-
-        [profiles.zefir-ac]
-        config_file = "${zefir-ac-conf}"
-        config_file_type = "static"
-
-        [profiles.zefir-ac.conditions]
-        power_state = "AC"
-
-        [[profiles.zefir-ac.conditions.required_monitors]]
-        description = "${portable-monitor}"
+        description = "${monitors.zefir.desc}"
 
         [profiles.zefir-home]
         config_file = "${zefir-home-conf}"
         config_file_type = "static"
-
         [profiles.zefir-home.conditions]
-
         [[profiles.zefir-home.conditions.required_monitors]]
-        description = "${zefir-monitor}"
-
-        [[profiles.zefir-home.conditions.required_monitors]]
-        description = "${portable-monitor}"
+        description = "${monitors.zefir.desc}"
 
         [profiles.zefir-work]
         config_file = "${zefir-work-conf}"
         config_file_type = "static"
-
         [profiles.zefir-work.conditions]
-
         [[profiles.zefir-work.conditions.required_monitors]]
-        description = "${zefir-monitor}"
-
+        description = "${monitors.zefir.desc}"
         [[profiles.zefir-work.conditions.required_monitors]]
-        description = "${work-monitor-left}"
-
+        description = "${monitors.work-left.desc}"
         [[profiles.zefir-work.conditions.required_monitors]]
-        description = "${work-monitor-right}"
+        description = "${monitors.work-right.desc}"
 
         [profiles.milaptop-home]
         config_file = "${milaptop-home-conf}"
         config_file_type = "static"
-
         [profiles.milaptop-home.conditions]
-
         [[profiles.milaptop-home.conditions.required_monitors]]
-        description = "${milaptop-monitor}"
-
-        [[profiles.milaptop-home.conditions.required_monitors]]
-        description = "${portable-monitor}"
+        description = "${monitors.milaptop.desc}"
 
         [profiles.milaptop-work]
         config_file = "${milaptop-work-conf}"
         config_file_type = "static"
-
         [profiles.milaptop-work.conditions]
-
         [[profiles.milaptop-work.conditions.required_monitors]]
-        description = "${milaptop-monitor}"
-
+        description = "${monitors.milaptop.desc}"
         [[profiles.milaptop-work.conditions.required_monitors]]
-        description = "${work-monitor-left}"
-
+        description = "${monitors.work-left.desc}"
         [[profiles.milaptop-work.conditions.required_monitors]]
-        description = "${work-monitor-right}"
+        description = "${monitors.work-right.desc}"
       '';
   };
 
