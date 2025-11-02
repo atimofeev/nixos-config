@@ -35,9 +35,6 @@
     "nvidia.NVreg_EnableS0ixPowerManagement=1"
   ];
 
-  # NOTE: prevent Logi Bolt receiver from interrupting suspend
-  environment.systemPackages = [ pkgs.logitech-udev-rules ];
-
   hardware = {
     intelgpu.driver = "xe";
     enableRedistributableFirmware = true;
@@ -85,6 +82,7 @@
       bluetooth.enable = true;
       nvidia.enable = true;
       peripherals = {
+        logitech.logi-bolt-disable-wakeup = true;
         motiff-ii-fix.enable = true;
         zsa.enable = true;
       };
