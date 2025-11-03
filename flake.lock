@@ -253,11 +253,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1762030040,
-        "narHash": "sha256-5hexPqXCFBcgulncObXQErIUf8bf+44ZFJADqIFP0bU=",
+        "lastModified": 1762199331,
+        "narHash": "sha256-M/AFeugyKfG7Zq9pkYBzK+3s2XvbOobgna4+zXNPJmU=",
         "owner": "fiffeek",
         "repo": "hyprdynamicmonitors",
-        "rev": "4f3b37dd2e08f17189328fe6b879510762675ae7",
+        "rev": "656ba7653b1b3caf9679cc768b9078bc0d0b3cc5",
         "type": "github"
       },
       "original": {
