@@ -17,7 +17,7 @@ let
   monitors = rec {
     work-left = {
       desc = "Dell Inc. DELL P2422H 8WRR0V3";
-      conf = "preferred,auto-left,1";
+      conf = "preferred,-1920x0,1";
     };
     zefir = {
       desc = "Samsung Display Corp. ATNA60DL01-0";
@@ -36,7 +36,7 @@ let
       conf = "preferred,auto,1.2";
     };
     work-right = {
-      desc = "Dell Inc. DELL P2422H 8WRR0V3";
+      desc = "Dell Inc. DELL P2422H 4X6V7N3";
       conf = "preferred,auto,1";
     };
   };
