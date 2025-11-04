@@ -98,7 +98,7 @@ in
       "SUPER, E, exec, ${term} -e ${yazi}"
       "SUPER SHIFT, H, exec, ${term} -e ${btop}"
       "SUPER SHIFT, N, exec, ${term} -e ${nvtop}"
-      "SUPER SHIFT, S, exec, ${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}"
+      "SUPER SHIFT, P, exec, ${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}"
       "SUPER SHIFT, B, exec, ${prefix} ${firefox} --new-window"
 
       ", XF86TouchpadToggle, exec, ${toggle-touchpad}"
@@ -106,6 +106,7 @@ in
 
       # Make screenshots!
       ", Print, exec, ${hyprshot} -m region --clipboard-only --freeze"
+      "SUPER SHIFT, S, exec, ${hyprshot} -m region --clipboard-only --freeze"
       "ALT, Print, exec, ${hyprshot} -m window --clipboard-only --freeze"
       "SHIFT, Print, exec, ${hyprshot} -m output --clipboard-only --freeze"
       ", xf86Cut, exec, ${hyprshot} -m region --raw --freeze | ${swappy} -f -" # region -> edit
