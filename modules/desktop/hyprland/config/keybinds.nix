@@ -15,7 +15,7 @@ let
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe pkgs.btop;
   firefox = "firefox"; # NOTE: must use exe from user shell for custom policies to work
-  hyprshot = lib.getExe pkgs.hyprshot;
+  grimblast = lib.getExe pkgs.grimblast;
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
   playerctl = lib.getExe pkgs.playerctl;
@@ -105,12 +105,12 @@ in
       ", XF86Launch4, exec, ${asus-switch-profile}"
 
       # Make screenshots!
-      ", Print, exec, ${hyprshot} -m region --clipboard-only --freeze"
-      "SUPER SHIFT, S, exec, ${hyprshot} -m region --clipboard-only --freeze"
-      "ALT, Print, exec, ${hyprshot} -m window --clipboard-only --freeze"
-      "SHIFT, Print, exec, ${hyprshot} -m output --clipboard-only --freeze"
-      ", xf86Cut, exec, ${hyprshot} -m region --raw --freeze | ${swappy} -f -" # region -> edit
-      "SUPER, Print, exec, ${wl-paste} | ${swappy} -f -" # clipboard -> edit
+      # https://github.com/hyprwm/contrib/issues/153
+      ", Print, exec, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze copy area"
+      "SUPER SHIFT, S, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze save area - | ${swappy} -f -"
+      ", xf86Cut, exec,  GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze save area - | ${swappy} -f -"
+      "SHIFT, Print, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze copy output"
+      "SUPER, Print, exec, ${wl-paste} | ${swappy} -f -"
 
       # Record screen!
       # wf-recorder
