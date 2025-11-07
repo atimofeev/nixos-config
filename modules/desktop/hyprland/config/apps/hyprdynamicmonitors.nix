@@ -40,6 +40,19 @@ let
     workspace=4, monitor:desc:${m.desc}
   '';
 
+  workspaces-left-center = m: ''
+    monitor=desc:${m.desc},${m.conf}
+    workspace=1, monitor:desc:${m.desc}
+    workspace=2, monitor:desc:${m.desc}
+    workspace=3, monitor:desc:${m.desc}
+    workspace=4, monitor:desc:${m.desc}
+    workspace=5, monitor:desc:${m.desc}, default:yes
+    workspace=6, monitor:desc:${m.desc}
+    workspace=7, monitor:desc:${m.desc}
+    workspace=8, monitor:desc:${m.desc}
+    workspace=9, monitor:desc:${m.desc}
+  '';
+
   workspaces-center = m: ''
     monitor=desc:${m.desc},${m.conf}
     workspace=5, monitor:desc:${m.desc}, default:yes
@@ -59,13 +72,11 @@ let
   '';
 
   zefir-bat-conf = pkgs.writeText "zefir-bat" ''
-    ${workspaces-left monitors.work-left}
-    ${workspaces-center monitors.zefir-60}
+    ${workspaces-left-center monitors.zefir-60}
     ${workspaces-right monitors.portable}
   '';
   zefir-home-conf = pkgs.writeText "zefir-home-conf" ''
-    ${workspaces-left monitors.work-left}
-    ${workspaces-center monitors.zefir}
+    ${workspaces-left-center monitors.zefir}
     ${workspaces-right monitors.portable}
   '';
   zefir-work-conf = pkgs.writeText "zefir-work-conf" ''
@@ -74,8 +85,7 @@ let
     ${workspaces-right monitors.work-right}
   '';
   milaptop-home-conf = pkgs.writeText "milaptop-home-conf" ''
-    ${workspaces-left monitors.work-left}
-    ${workspaces-center monitors.milaptop}
+    ${workspaces-left-center monitors.milaptop}
     ${workspaces-right monitors.portable}
   '';
   milaptop-work-conf = pkgs.writeText "milaptop-work-conf" ''
