@@ -21,7 +21,7 @@ in
         };
 
         devices = {
-          milaptop.id = "GXF4VCC-3CL7DLT-L7MPYAZ-XU5BM6G-TIKPIVA-WGMNH3B-MMRO3Z2-KF6X2AF";
+          milaptop.id = "OMLCF55-CZON22Z-3IVO7WL-TRJ2RBF-EZIRIHI-LM6DLGC-H2RM22P-3N6GQQF";
           zefir.id = "OGKDC5I-ZWEPHMX-RIEGN72-EWF4ETK-NQ253V5-6AIDHNP-HKD7LRN-GAZOXAM";
           "Pixel 5a".id = "6TLETF7-HMGU76V-M5SN43R-ZCHPQX7-KDJGIHM-VVXHQ3H-BXWDFJN-7LPKRA3";
           steamdeck.id = "AIATXVS-TQHLJRC-TTJLPNX-V2X45YE-ZGRERKG-ITMJKMT-FBNPCQL-MMXAQQ4";
@@ -39,7 +39,11 @@ in
           };
           retrodeck = {
             path = "${config.home.homeDirectory}/retrodeck";
-            devices = [ "steamdeck" ];
+            devices = [
+              "milaptop"
+              "steamdeck"
+              "zefir"
+            ];
             ignorePerms = true;
           };
         };
