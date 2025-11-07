@@ -28,6 +28,9 @@
       Type = "oneshot";
       ExecStart = lib.getExe' pkgs.openssh "ssh-add";
       RemainAfterExit = false;
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
   };
 
