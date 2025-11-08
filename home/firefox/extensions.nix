@@ -102,7 +102,7 @@
         "addon@darkreader.org" = {
           default_area = "navbar";
           install_url = "file:///${pkgs.darkreader-declarative}/firefox.xpi";
-          installation_mode = "normal_installed";
+          installation_mode = "force_installed";
           private_browsing = true;
           updates_disabled = true;
         };
@@ -115,15 +115,15 @@
         };
         "idcac-pub@guus.ninja" = {
           default_area = "menubar";
-          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/istilldontcareaboutcookies/latest.xpi";
+          installation_mode = "normal_installed";
           private_browsing = true;
           updates_disabled = false;
         };
         "languagetool-webextension@languagetool.org" = {
           default_area = "menubar";
-          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool-webextension@languagetool.org/latest.xpi";
+          installation_mode = "normal_installed";
           private_browsing = true;
           updates_disabled = false;
         };
@@ -137,14 +137,14 @@
         "surfingkeys@brookhong.github.io" = {
           default_area = "menubar";
           install_url = "file:///${pkgs.surfingkeys-declarative}/firefox.xpi";
-          installation_mode = "normal_installed";
+          installation_mode = "force_installed";
           private_browsing = true;
           updates_disabled = true;
         };
         "uBlock0@raymondhill.net" = {
           default_area = "menubar";
-          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/uBlock0@raymondhill.net/latest.xpi";
+          installation_mode = "normal_installed";
           private_browsing = true;
           updates_disabled = false;
         };
