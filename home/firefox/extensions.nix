@@ -74,8 +74,11 @@
             # ++ [
             [
               "localhost:*"
-              "github.com"
+              "configure.zsa.io"
               "en.wikipedia.org"
+              "gemini.google.com"
+              "github.com"
+              "mail.google.com"
             ];
         };
       };
