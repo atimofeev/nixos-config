@@ -84,8 +84,15 @@
         "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}" = {
           # translate-web-pages
           default_area = "menubar";
-          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/traduzir-paginas-web/latest.xpi";
+          installation_mode = "normal_installed";
+          private_browsing = true;
+          updates_disabled = false;
+        };
+        "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
+          # catppuccin-mocha-lavender theme
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
+          installation_mode = "force_installed";
           private_browsing = true;
           updates_disabled = false;
         };
