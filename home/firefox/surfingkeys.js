@@ -471,6 +471,7 @@ settings.theme = `
 // Unmaps
 
 api.unmap("/") // Find in current page
+api.unmap("0") // ?
 api.unmap("A") // LLM Chat
 api.unmap("H") // Open opened URL in current tab
 api.unmap("Q") // Open omnibar for word translation
