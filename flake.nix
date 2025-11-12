@@ -28,6 +28,8 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote";
 
+    niri.url = "github:sodiboo/niri-flake";
+
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     nix-index-database = {

@@ -13,6 +13,7 @@
     ./sound-fix.nix
 
     ../../modules/desktop/hyprland
+    ../../modules/desktop/niri
 
   ];
 
