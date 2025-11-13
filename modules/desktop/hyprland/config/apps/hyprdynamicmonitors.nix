@@ -151,4 +151,9 @@ in
       '';
   };
 
+  systemd.user.services.hyprdynamicmonitors.Unit = {
+    StartLimitBurst = 5;
+    StartLimitIntervalSec = 120;
+  };
+
 }
