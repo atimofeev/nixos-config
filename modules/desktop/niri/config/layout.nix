@@ -4,7 +4,7 @@
 
     gaps = 3;
 
-    center-focused-column = "on-overflow";
+    center-focused-column = "never";
 
     default-column-width.proportion = 0.5;
 

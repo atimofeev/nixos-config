@@ -2,11 +2,15 @@
 
   programs.niri.settings.outputs = {
 
-    "Samsung Display Corp. ATNA60DL01-0" = {
+    "Samsung Display Corp. ATNA60DL01-0  Unknown" = {
       mode = {
         width = 2560;
         height = 1600;
         refresh = 240.0;
+      };
+      position = {
+        x = 0;
+        y = 0;
       };
       scale = 1.33;
       variable-refresh-rate = true;
@@ -17,6 +21,10 @@
         width = 1920;
         height = 1080;
         refresh = 60.0;
+      };
+      position = {
+        x = 0;
+        y = 0;
       };
       scale = 1;
     };

@@ -13,14 +13,17 @@
     ./layout.nix
     ./outputs.nix
     ./window-rules.nix
+    ./workspaces.nix
   ];
 
   programs.niri = {
     enable = true;
     package = pkgs.niri;
     settings = {
-      prefer-no-csd = true;
+      debug.honor-xdg-activation-with-invalid-serial = { };
       hotkey-overlay.skip-at-startup = true;
+      prefer-no-csd = true;
+      screenshot-path = null;
     };
   };
 

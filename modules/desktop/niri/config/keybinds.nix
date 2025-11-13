@@ -12,8 +12,10 @@
       repeat = false;
     };
 
-    "Mod+P".action = switch-preset-column-width;
+    "Mod+R".action = switch-preset-column-width;
+    "Mod+Shift+R".action = switch-preset-window-height;
     "Mod+Shift+F".action = toggle-window-floating;
+    "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
     "Mod+F".action = fullscreen-window;
 
     # NOTE: remove?
@@ -24,10 +26,15 @@
     # "Ctrl+Print".action = screenshot-screen;
     # "Alt+Print".action = screenshot-window;
 
-    "Mod+H".action = focus-column-left;
-    "Mod+J".action = focus-window-down;
-    "Mod+K".action = focus-window-up;
-    "Mod+L".action = focus-column-right;
+    "Mod+H".action = focus-monitor-left;
+    "Mod+J".action = focus-window-or-workspace-down;
+    "Mod+K".action = focus-window-or-workspace-up;
+    "Mod+L".action = focus-monitor-right;
+
+    "Mod+BracketLeft".action = focus-column-left;
+    "Mod+BracketRight".action = focus-column-right;
+    "Mod+Alt+H".action = focus-column-left;
+    "Mod+Alt+L".action = focus-column-right;
 
     "Mod+1".action = focus-workspace 1;
     "Mod+2".action = focus-workspace 2;
