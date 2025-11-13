@@ -25,4 +25,9 @@
     };
   };
 
+  systemd.user.services.hyprsunset.Unit = {
+    StartLimitBurst = 5;
+    StartLimitIntervalSec = 120;
+  };
+
 }
