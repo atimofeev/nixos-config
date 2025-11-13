@@ -10,6 +10,8 @@
       Description = "hyprland-per-window-layout";
       After = "graphical-session.target";
       PartOf = "graphical-session.target";
+      StartLimitBurst = 5;
+      StartLimitIntervalSec = 120;
     };
 
     Install.WantedBy = [ "graphical-session.target" ];
