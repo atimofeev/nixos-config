@@ -20,8 +20,7 @@
       natural-scroll = true;
     };
 
-    # touch.map-to-output = "Lenovo Group Limited M14t V309WMZ3";
-    tablet.map-to-output = "Lenovo Group Limited M14t V309WMZ3";
+    touch.map-to-output = "Lenovo Group Limited M14t V309WMZ3";
 
     focus-follows-mouse = {
       enable = true;
