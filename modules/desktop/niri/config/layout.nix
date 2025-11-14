@@ -18,6 +18,8 @@
       { proportion = 1.0; }
     ];
 
+    empty-workspace-above-first = true;
+
     focus-ring.enable = false;
 
     border = {
