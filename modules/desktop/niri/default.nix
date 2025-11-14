@@ -10,6 +10,8 @@
 
   home-manager.users.${vars.username} = import ./config;
 
+  environment.systemPackages = [ pkgs.xwayland-satellite ];
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
