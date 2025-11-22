@@ -10,10 +10,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    programs.rog-control-center = {
-      enable = true;
-      autoStart = true;
-    };
+    # programs.rog-control-center = {
+    #   enable = true;
+    #   autoStart = true;
+    # };
 
     services = {
       supergfxd = {
