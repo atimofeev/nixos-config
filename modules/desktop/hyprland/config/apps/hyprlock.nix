@@ -18,7 +18,7 @@ in
     settings = {
 
       general = {
-        grace = 3;
+        grace = 10;
         hide_cursor = true;
       };
 
