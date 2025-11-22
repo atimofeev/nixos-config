@@ -32,9 +32,12 @@
     "alice"
   ];
 
-  boot.kernelParams = [
-    "nvidia.NVreg_EnableS0ixPowerManagement=1"
-  ];
+  boot = {
+    kernelParams = [
+      "pcie_aspm=force"
+      "nvidia.NVreg_EnableS0ixPowerManagement=1"
+    ];
+  };
 
   hardware = {
     intelgpu.driver = "xe";
@@ -110,10 +113,10 @@
     };
 
     services = {
-      auto-cpufreq = {
-        enable = true;
-        settings.battery.energy_performance_preference = "power";
-      };
+      # auto-cpufreq = {
+      #   enable = true;
+      #   settings.battery.energy_performance_preference = "power";
+      # };
       docker.enable = true;
       homepage.enable = true;
       kanata = {
@@ -121,6 +124,7 @@
         devices = [ "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:6:1.0-event-mouse" ];
       };
       logrotate-nvim.enable = true;
+      tlp.enable = true;
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;
