@@ -8,6 +8,8 @@
   imports = [
     inputs.niri.homeModules.niri
 
+    # TODO: enable in 25.11
+    # ./dankmaterialshell.nix
     ./input.nix
     ./keybinds.nix
     ./layout.nix
