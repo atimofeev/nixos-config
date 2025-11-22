@@ -79,7 +79,7 @@ in
 
         {
           timeout = 60 * 10;
-          on-timeout = "${systemd-ac-power} && ${systemctl} suspend";
+          on-timeout = "${systemd-ac-power} && ${systemctl} suspend-then-hibernate";
         }
 
         # ON BATTERY
@@ -102,7 +102,7 @@ in
 
         {
           timeout = 60 * 4;
-          on-timeout = "${systemd-ac-power} || ${systemctl} suspend";
+          on-timeout = "${systemd-ac-power} || ${systemctl} suspend-then-hibernate";
         }
 
       ];

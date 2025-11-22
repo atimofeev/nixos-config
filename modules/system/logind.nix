@@ -10,11 +10,11 @@ in
 
   config = lib.mkIf cfg.enable {
     services.logind = {
-      powerKey = "suspend";
+      powerKey = "suspend-then-hibernate";
       powerKeyLongPress = "poweroff";
-      lidSwitch = "suspend";
-      lidSwitchExternalPower = "suspend";
-      lidSwitchDocked = "suspend";
+      lidSwitch = "suspend-then-hibernate";
+      lidSwitchExternalPower = "suspend-then-hibernate";
+      lidSwitchDocked = "suspend-then-hibernate";
     };
   };
 

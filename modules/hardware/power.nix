@@ -23,6 +23,10 @@ in
         criticalPowerAction = "Hibernate";
       };
     };
+    systemd.sleep.extraConfig = # ini
+      ''
+        HibernateOnACPower=false
+      '';
   };
 
 }
