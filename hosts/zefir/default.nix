@@ -33,6 +33,11 @@
   ];
 
   boot = {
+    blacklistedKernelModules = [
+      # NOTE: block Realtek Card Reader, which prevents deep sleep
+      "rtsx_pci"
+      "rtsx_pci_sdmmc"
+    ];
     kernelParams = [
       "pcie_aspm=force"
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
