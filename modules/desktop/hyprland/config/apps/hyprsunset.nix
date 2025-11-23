@@ -8,7 +8,7 @@
         requests = [
           [
             "temperature"
-            "7000"
+            "6500"
           ]
           [ "gamma 100" ]
         ];
