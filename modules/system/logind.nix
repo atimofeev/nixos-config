@@ -1,6 +1,8 @@
 { lib, config, ... }:
 let
   cfg = config.custom.system.logind;
+  suspend-command =
+    if config.custom.hardware.power.hibernate then "suspend-then-hibernate" else "suspend";
 in
 {
 
@@ -10,11 +12,11 @@ in
 
   config = lib.mkIf cfg.enable {
     services.logind = {
-      powerKey = "suspend-then-hibernate";
+      powerKey = suspend-command;
       powerKeyLongPress = "poweroff";
-      lidSwitch = "suspend-then-hibernate";
-      lidSwitchExternalPower = "suspend-then-hibernate";
-      lidSwitchDocked = "suspend-then-hibernate";
+      lidSwitch = suspend-command;
+      lidSwitchExternalPower = suspend-command;
+      lidSwitchDocked = suspend-command;
     };
   };
 

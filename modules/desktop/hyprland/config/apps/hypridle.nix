@@ -24,6 +24,8 @@ let
       "(${pidof} swaylock || ${prefix} ${swaylock})"
     else
       ":";
+  suspend-command =
+    if osConfig.custom.hardware.power.hibernate then "suspend-then-hibernate" else "suspend";
 
 in
 {
@@ -79,7 +81,7 @@ in
 
         {
           timeout = 60 * 10;
-          on-timeout = "${systemd-ac-power} && ${systemctl} suspend-then-hibernate";
+          on-timeout = "${systemd-ac-power} && ${systemctl} ${suspend-command}";
         }
 
         # ON BATTERY
@@ -102,7 +104,7 @@ in
 
         {
           timeout = 60 * 4;
-          on-timeout = "${systemd-ac-power} || ${systemctl} suspend-then-hibernate";
+          on-timeout = "${systemd-ac-power} || ${systemctl} ${suspend-command}";
         }
 
       ];

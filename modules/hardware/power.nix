@@ -6,6 +6,12 @@ in
 
   options.custom.hardware.power = {
     enable = lib.mkEnableOption "Power bundle";
+    hibernate = lib.mkOption {
+      description = "Enable hibernation";
+      default = false;
+      type = lib.types.bool;
+    };
+
   };
 
   config = lib.mkIf cfg.enable {
@@ -15,13 +21,18 @@ in
     };
     services = {
       power-profiles-daemon.enable = lib.mkIf config.services.auto-cpufreq.enable false;
-      upower = {
-        enable = true;
-        percentageLow = 15;
-        percentageCritical = 10;
-        percentageAction = 5;
-        criticalPowerAction = "Hibernate";
-      };
+      upower = lib.mkMerge [
+        {
+          enable = true;
+          percentageLow = 15;
+          percentageCritical = 10;
+        }
+        # NOTE: may be already handled via systemd
+        (lib.mkIf cfg.hibernate {
+          percentageAction = 5;
+          criticalPowerAction = "Hibernate";
+        })
+      ];
     };
     systemd.sleep.extraConfig = # ini
       ''

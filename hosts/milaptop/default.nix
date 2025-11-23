@@ -59,7 +59,10 @@
         motiff-ii-fix.enable = true;
         zsa.enable = true;
       };
-      power.enable = true;
+      power = {
+        enable = true;
+        hibernate = true;
+      };
       sound.enable = true;
       ssd.enable = true;
     };
