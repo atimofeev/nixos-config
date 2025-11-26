@@ -26,7 +26,7 @@
       "float, class:firefox, title:^(About Mozilla Firefox|Library)$"
       "float, class:firefox, title:^()$" # Page Info — .* initial title
 
-      "opacity 1.0 override, title:^(.*YouTube.*)$"
+      "opacity 1.0 override, title:^(.*YouTube.*|Meet –.*)$"
 
       "tag +pip, title:^(Picture-in-Picture|Picture in picture)$"
       "focusonactivate 0, tag:pip"
