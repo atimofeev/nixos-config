@@ -106,7 +106,7 @@ in
 
       # Make screenshots!
       # https://github.com/hyprwm/contrib/issues/153
-      ", Print, exec, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze copy area"
+      ", Print, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze copy area"
       "SUPER SHIFT, S, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze save area - | ${swappy} -f -"
       ", xf86Cut, exec,  GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze save area - | ${swappy} -f -"
       "SHIFT, Print, exec, GRIMBLAST_HIDE_CURSOR=0 ${grimblast} --notify --freeze copy output"
