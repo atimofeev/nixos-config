@@ -12,9 +12,9 @@
       # enableKeybinds = true; # Automatic keybinding configuration
       enableSpawn = true; # Auto-start DMS with niri
     };
-    quickshell.package = pkgs.unstable.quickshell;
+    quickshell.package = pkgs.quickshell;
   };
 
-  systemd.user.services.niri-flake-polkit.enable = false;
+  # systemd.user.services.niri-flake-polkit.enable = false;
 
 }

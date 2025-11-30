@@ -18,12 +18,11 @@ in
 
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
     terminal = "${vars.terminal.name} -e";
 
     plugins = with pkgs; [
       rofi-calc
-      rofi-emoji-wayland
+      rofi-emoji
     ];
 
     extraConfig = {

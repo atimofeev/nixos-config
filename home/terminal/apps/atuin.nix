@@ -9,6 +9,7 @@
     enableZshIntegration = config.programs.zsh.enable;
 
     flags = [ "--disable-up-arrow" ];
+    forceOverwriteSettings = true;
 
     settings = {
       dialect = "uk";

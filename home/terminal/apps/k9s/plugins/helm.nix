@@ -1,5 +1,5 @@
-_: {
-  programs.k9s.plugin.plugins = {
+{
+  programs.k9s.plugins = {
 
     # TODO: rewrite
     helmrelease-toggle = {

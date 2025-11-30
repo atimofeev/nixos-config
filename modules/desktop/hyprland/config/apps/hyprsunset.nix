@@ -2,27 +2,17 @@
 
   services.hyprsunset = {
     enable = true;
-    transitions = {
-      sunrise = {
-        calendar = "*-*-* 08:30:00";
-        requests = [
-          [
-            "temperature"
-            "6500"
-          ]
-          [ "gamma 100" ]
-        ];
-      };
-      sunset = {
-        calendar = "*-*-* 22:00:00";
-        requests = [
-          [
-            "temperature"
-            "5000"
-          ]
-        ];
-      };
-    };
+    settings.profile = [
+      {
+        time = "8:30";
+        identity = true;
+      }
+      {
+        time = "22:00";
+        temperature = "5000";
+        gamma = 0.8;
+      }
+    ];
   };
 
   systemd.user.services.hyprsunset.Unit = {

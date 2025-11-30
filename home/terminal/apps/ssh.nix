@@ -10,9 +10,12 @@
 
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    serverAliveInterval = 10;
+    enableDefaultConfig = false;
     includes = [ config.sops.secrets."work/ssh-config".path ];
+    matchBlocks."*" = {
+      addKeysToAgent = "yes";
+      serverAliveInterval = 3;
+    };
   };
 
   services.ssh-agent.enable = true;

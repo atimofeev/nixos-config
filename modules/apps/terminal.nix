@@ -19,7 +19,7 @@
 
     # improved utils
     xh # curl
-    du-dust # du
+    dust # du
     eza # ls
     fd # find
     ripgrep # grep

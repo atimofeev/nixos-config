@@ -1,4 +1,4 @@
-_: {
+{
 
   imports = [
     ./cnpg.nix
@@ -6,7 +6,7 @@ _: {
     ./kubeconfig.nix
   ];
 
-  programs.k9s.plugin.plugins = {
+  programs.k9s.plugins = {
 
     debug-container-busybox = {
       shortCut = "Ctrl-D";

@@ -11,12 +11,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.logind = {
-      powerKey = suspend-command;
-      powerKeyLongPress = "poweroff";
-      lidSwitch = suspend-command;
-      lidSwitchExternalPower = suspend-command;
-      lidSwitchDocked = suspend-command;
+    services.logind.settings.Login = {
+      HandlePowerKey = suspend-command;
+      HandlePowerKeyLongPress = "poweroff";
+      HandleLidSwitch = suspend-command;
+      HandleLidSwitchExternalPower = suspend-command;
+      HandleLidSwitchDocked = suspend-command;
     };
   };
 

@@ -22,7 +22,7 @@
       settings = {
         default_session = {
           command = lib.concatStringsSep " " [
-            "${pkgs.greetd.tuigreet}/bin/tuigreet"
+            "${lib.getExe pkgs.tuigreet}"
             "--cmd 'uwsm start hyprland-uwsm.desktop'"
             "--asterisks"
             "--remember"

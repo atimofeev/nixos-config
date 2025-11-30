@@ -19,7 +19,7 @@ let
 
   lockCommand =
     if config.programs.hyprlock.enable then
-      "(${pidof} hyprlock || ${prefix} ${hyprlock})"
+      "(${pidof} hyprlock || ${prefix} ${hyprlock} --grace 10)"
     else if config.programs.swaylock.enable then
       "(${pidof} swaylock || ${prefix} ${swaylock})"
     else

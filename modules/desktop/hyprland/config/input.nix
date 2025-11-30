@@ -27,10 +27,9 @@
       touchdevice.output = "DP-1";
     };
 
-    gestures = {
-      workspace_swipe = 1;
-      workspace_swipe_create_new = false;
-    };
+    gesture = [
+      "3, horizontal, workspace"
+    ];
 
   };
 }
