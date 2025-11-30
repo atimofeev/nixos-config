@@ -9,12 +9,14 @@
     inputs.niri.homeModules.niri
 
     ./dankmaterialshell.nix
+    ./gestures.nix
     ./input.nix
     ./keybinds.nix
     ./layout.nix
     ./outputs.nix
     ./window-rules.nix
     ./workspaces.nix
+
   ];
 
   programs.niri = {
