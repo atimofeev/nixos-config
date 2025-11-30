@@ -7,22 +7,12 @@
 
   gtk = {
     enable = true;
-
-    # NOTE: replace with gtk.colorScheme = "dark";
-    # on 25.11
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-interface-color-scheme = 2;
-    };
-
+    colorScheme = "dark";
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
     };
   };
-
-  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
   home.sessionVariables = {
     ADW_DISABLE_PORTAL = "1";
