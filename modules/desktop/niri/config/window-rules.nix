@@ -11,6 +11,7 @@
         bottom-right = 6.0;
       };
       clip-to-geometry = true;
+      draw-border-with-background = false;
       opacity = 1.0;
       open-maximized = true;
     }
