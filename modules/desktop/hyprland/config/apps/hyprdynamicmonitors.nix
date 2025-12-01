@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -151,9 +152,20 @@ in
       '';
   };
 
-  systemd.user.services.hyprdynamicmonitors.Unit = {
-    StartLimitBurst = 5;
-    StartLimitIntervalSec = 120;
+  systemd.user.services.hyprdynamicmonitors = {
+    Install = {
+      WantedBy = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+    };
+    Unit = {
+      After = lib.mkForce [
+        "hyprdynamicmonitors-prepare.service"
+        "wayland-wm@Hyprland.service"
+      ];
+      PartOf = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+      Requires = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+      StartLimitBurst = 5;
+      StartLimitIntervalSec = 120;
+    };
   };
 
 }

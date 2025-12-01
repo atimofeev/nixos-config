@@ -20,7 +20,16 @@ in
     "SUPER, B, exec, ${systemctl} --user restart hyprpanel"
   ];
 
-  systemd.user.services.hyprpanel.Service.Restart = lib.mkForce "always";
+  systemd.user.services.hyprpanel = {
+    Install = {
+      WantedBy = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+    };
+    Service.Restart = lib.mkForce "always";
+    Unit = {
+      After = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+      PartOf = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+    };
+  };
 
   programs.hyprpanel = {
 

@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
 
   services.hyprsunset = {
@@ -15,9 +16,16 @@
     ];
   };
 
-  systemd.user.services.hyprsunset.Unit = {
-    StartLimitBurst = 5;
-    StartLimitIntervalSec = 120;
+  systemd.user.services.hyprsunset = {
+    Install = {
+      WantedBy = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+    };
+    Unit = {
+      After = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+      PartOf = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+      StartLimitBurst = 5;
+      StartLimitIntervalSec = 120;
+    };
   };
 
 }
