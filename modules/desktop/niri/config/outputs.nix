@@ -13,7 +13,7 @@
         y = 0;
       };
       scale = 1.33;
-      variable-refresh-rate = true;
+      variable-refresh-rate = false;
     };
 
     "BOE 0x0747" = {
