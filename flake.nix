@@ -60,6 +60,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    walls = {
+      url = "github:atimofeev/walls";
+      flake = false;
+    };
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 

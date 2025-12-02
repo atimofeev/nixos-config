@@ -688,6 +688,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
+        "walls": "walls",
         "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit",
         "zen-browser": "zen-browser"
       }
@@ -796,6 +797,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "walls": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764711329,
+        "narHash": "sha256-8afi1yEU1BBdxWeFterIIAj9D9k5dNypxH8fJx/2ffE=",
+        "owner": "atimofeev",
+        "repo": "walls",
+        "rev": "31aecb4452991ef037ab7a2fcb61a0a2fd48654d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "atimofeev",
+        "repo": "walls",
         "type": "github"
       }
     },
