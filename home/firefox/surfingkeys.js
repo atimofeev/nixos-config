@@ -483,3 +483,4 @@ api.unmap("m") // vim-like marks
 api.unmap("o") // Omnibar
 api.unmap("s") // Search Selected With
 api.unmap("t") // Open a URL
+api.iunmap("<Ctrl-a>") // start of input field
