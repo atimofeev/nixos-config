@@ -38,7 +38,7 @@ in
 
     decoration = {
       rounding = 3;
-      inactive_opacity = 0.9;
+      inactive_opacity = 0.85;
       dim_special = 0.35;
       shadow.enabled = false;
       blur.enabled = false;

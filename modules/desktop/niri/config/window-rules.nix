@@ -21,7 +21,7 @@
       matches = [
         { is-focused = false; }
       ];
-      opacity = 0.9;
+      opacity = 0.85;
     }
 
     # non-maximized
