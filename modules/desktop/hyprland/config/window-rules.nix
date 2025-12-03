@@ -19,6 +19,7 @@
       "float, class:^(Slack|slack)$ title:^(.*Huddle.*|.*Canvas.*|Open File.*)$"
 
       "opacity 1.0 override, onworkspace:s[true]"
+      "workspace special, class:spotify"
       "workspace special, class:spotify_player"
       "workspace special, class:org.telegram.desktop"
       "focusonactivate 0, class:org.telegram.desktop"

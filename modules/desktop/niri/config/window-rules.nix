@@ -35,6 +35,7 @@
     # special workspace
     {
       matches = [
+        { app-id = "spotify"; }
         { app-id = "spotify_player"; }
         { app-id = "org.telegram.desktop"; }
       ];
