@@ -79,6 +79,7 @@
               "gemini.google.com"
               "github.com"
               "mail.google.com"
+              "registry.terraform.io"
             ];
         };
       };
