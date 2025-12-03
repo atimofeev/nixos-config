@@ -41,9 +41,9 @@
     enable = true;
     systemd.enable = false;
     settings = {
-
+      key_press_enables_dpms = true;
+      mouse_move_enables_dpms = true;
       xwayland.force_zero_scaling = true;
-
     };
   };
 

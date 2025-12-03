@@ -30,13 +30,6 @@ let
 in
 {
 
-  wayland.windowManager.hyprland.settings = {
-    misc = {
-      key_press_enables_dpms = true;
-      mouse_move_enables_dpms = true;
-    };
-  };
-
   # NOTE: https://github.com/hyprwm/hypridle/issues/129
   systemd.user.services.hypridle.Service.StandardOutput = "null";
 
