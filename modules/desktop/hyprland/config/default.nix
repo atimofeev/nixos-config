@@ -3,7 +3,6 @@
 
   imports = [
 
-    ./apps/cliphist.nix
     ./apps/gtk.nix
     ./apps/hyprdynamicmonitors.nix
     ./apps/hypridle.nix

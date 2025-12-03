@@ -69,6 +69,7 @@ in
     "Mod+Shift+B".action = spawn-sh "${term} -e ${firefox} --new-window";
     "Mod+A".action =
       spawn-sh ''${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"'';
+    "Mod+V".action = spawn-sh config.custom-hm.services.cliphist.command;
 
     # media keys
     "XF86AudioLowerVolume".action =

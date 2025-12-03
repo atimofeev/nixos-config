@@ -19,6 +19,11 @@
 
   ];
 
-  custom-hm.services.syncthing.enable = true;
+  custom-hm = {
+    services = {
+      cliphist.enable = true;
+      syncthing.enable = true;
+    };
+  };
 
 }
