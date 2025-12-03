@@ -23,6 +23,11 @@
       "workspace special, class:org.telegram.desktop"
       "focusonactivate 0, class:org.telegram.desktop"
 
+      "tag +polkit-agent, class:polkit-gnome-authentication-agent-1"
+      "stayfocused, tag:polkit-agent"
+      "dimaround, tag:polkit-agent"
+      "noanim, tag:polkit-agent"
+
       "float, class:firefox, title:^(About Mozilla Firefox|Library)$"
       "float, class:firefox, title:^()$" # Page Info — .* initial title
 
