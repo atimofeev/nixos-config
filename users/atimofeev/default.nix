@@ -5,13 +5,10 @@
     ../../home/terminal
     ../../home/firefox
 
-    ../../home/catppuccin.nix
     ../../home/mpv.nix
-    ../../home/nix-index.nix
     ../../home/obsidian.nix
     ../../home/qbittorrent.nix
     ../../home/slack.nix
-    ../../home/sops.nix
     ../../home/swappy.nix
     ../../home/vcv-rack.nix
     ../../home/zathura.nix
@@ -24,6 +21,9 @@
       cliphist.enable = true;
       polkit-gnome.enable = true;
       syncthing.enable = true;
+    };
+    system = {
+      nix-index.enable = true;
     };
   };
 
