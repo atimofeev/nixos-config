@@ -8,7 +8,6 @@
     ../../home/mpv.nix
     ../../home/obsidian.nix
     ../../home/qbittorrent.nix
-    ../../home/slack.nix
     ../../home/swappy.nix
     ../../home/vcv-rack.nix
     ../../home/zathura.nix

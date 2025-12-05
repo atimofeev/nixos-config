@@ -33,7 +33,6 @@
   #   # ./apps/mpv.nix
   #   # ./apps/obsidian.nix
   #   # ./apps/qbittorrent.nix
-  #   # ./apps/slack.nix
   #   # ./apps/swappy.nix
   #   # ./apps/vcv-rack.nix
   #   # ./apps/zathura.nix
