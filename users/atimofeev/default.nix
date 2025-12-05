@@ -18,6 +18,7 @@
   custom-hm = {
     services = {
       cliphist.enable = true;
+      vicinae.enable = true;
       polkit-gnome.enable = true;
       syncthing.enable = true;
     };
