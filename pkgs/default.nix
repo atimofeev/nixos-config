@@ -1,7 +1,7 @@
 {
 
   nixpkgs.overlays = [
-    (final: prev: {
+    (_final: prev: {
       # falcon = prev.callPackage ./falcon.nix { };
       darkreader-declarative = prev.callPackage ./darkreader-declarative.nix { };
       surfingkeys-declarative = prev.callPackage ./surfingkeys-declarative.nix { };
