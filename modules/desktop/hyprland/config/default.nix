@@ -5,7 +5,6 @@
 
     ./apps/gtk.nix
     ./apps/hyprdynamicmonitors.nix
-    ./apps/hypridle.nix
     ./apps/hyprlock.nix
     ./apps/hyprpaper.nix # wallpaper
     ./apps/qt.nix
@@ -33,6 +32,7 @@
   ];
 
   custom-hm.services = {
+    hypridle.enable = true;
     hyprland-per-window-layout.enable = true;
     hyprpanel.enable = true;
     hyprsunset.enable = true;
