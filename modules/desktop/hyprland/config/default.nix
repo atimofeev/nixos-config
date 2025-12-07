@@ -7,7 +7,6 @@
     ./apps/hyprdynamicmonitors.nix
     ./apps/hypridle.nix
     ./apps/hyprlock.nix
-    ./apps/hyprpanel.nix
     ./apps/hyprpaper.nix # wallpaper
     ./apps/hyprsunset.nix
     ./apps/per-window-layout.nix
@@ -36,6 +35,7 @@
   ];
 
   custom-hm.services = {
+    hyprpanel.enable = true;
     wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
   };
 
