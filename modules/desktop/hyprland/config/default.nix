@@ -6,7 +6,6 @@
     ./apps/gtk.nix
     ./apps/hyprdynamicmonitors.nix
     ./apps/hyprlock.nix
-    ./apps/hyprpaper.nix # wallpaper
     ./apps/qt.nix
     ./apps/rofi.nix
     ./apps/xdg-mime.nix # file association
@@ -36,6 +35,7 @@
     hyprland-per-window-layout.enable = true;
     hyprpanel.enable = true;
     hyprsunset.enable = true;
+    hyprpaper.enable = true;
     wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
   };
 
