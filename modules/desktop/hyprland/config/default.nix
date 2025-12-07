@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
 
   imports = [
@@ -13,7 +13,6 @@
     ./apps/per-window-layout.nix
     ./apps/qt.nix
     ./apps/rofi.nix
-    ./apps/wayland-pipewire-idle-inhibit.nix
     ./apps/xdg-mime.nix # file association
     # ./apps/walker.nix
 
@@ -36,6 +35,10 @@
     pwvucontrol
     snapshot
   ];
+
+  custom-hm.services = {
+    wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;

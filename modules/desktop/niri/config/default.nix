@@ -1,11 +1,13 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }:
 {
 
   imports = [
+
     inputs.niri.homeModules.niri
 
     ./dankmaterialshell.nix
@@ -18,6 +20,10 @@
     ./workspaces.nix
 
   ];
+
+  custom-hm.services = {
+    wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+  };
 
   programs.niri = {
     enable = true;
