@@ -14,7 +14,6 @@
     ./apps/qt.nix
     ./apps/rofi.nix
     ./apps/xdg-mime.nix # file association
-    # ./apps/walker.nix
 
     ./animations.nix
     ./cursor.nix
