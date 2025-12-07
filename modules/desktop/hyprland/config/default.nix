@@ -8,7 +8,6 @@
     ./apps/hypridle.nix
     ./apps/hyprlock.nix
     ./apps/hyprpaper.nix # wallpaper
-    ./apps/hyprsunset.nix
     ./apps/qt.nix
     ./apps/rofi.nix
     ./apps/xdg-mime.nix # file association
@@ -36,6 +35,7 @@
   custom-hm.services = {
     hyprland-per-window-layout.enable = true;
     hyprpanel.enable = true;
+    hyprsunset.enable = true;
     wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
   };
 
