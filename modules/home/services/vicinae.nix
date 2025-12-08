@@ -29,14 +29,19 @@ in
         # NOTE: won't build
         # https://github.com/nix-community/home-manager/issues/8262
         # (config.lib.vicinae.mkRayCastExtension {
-        #   name = "weather";
-        #   sha256 = "sha256-GopBV/7AiOTUYdz3anWcL2gd9dDg+6tgO4wckO4ATRs=";
-        #   rev = "542ed079c2eb5a95df0835d83ab1f1c2b1970e44";
-        # })
-        # (config.lib.vicinae.mkRayCastExtension {
         #   name = "air-quality";
         #   sha256 = "sha256-vjMGvr/YP/FYfsL6LnICMXNuhbhNbzDtePka7pPCcXM=";
         #   rev = "fc54e0d0e82a3aaec0983dd4be128ce935acdbf0";
+        # })
+        # (config.lib.vicinae.mkRayCastExtension {
+        #   name = "bitwarden";
+        #   sha256 = "sha256-N1zAPZJmmfvSw425MQDopSm/stu1IRI2t17xo8Ml+8g=";
+        #   rev = "b8c8fcd7ebd441a5452b396923f2a40e879565ba";
+        # })
+        # (config.lib.vicinae.mkRayCastExtension {
+        #   name = "weather";
+        #   sha256 = "sha256-GopBV/7AiOTUYdz3anWcL2gd9dDg+6tgO4wckO4ATRs=";
+        #   rev = "542ed079c2eb5a95df0835d83ab1f1c2b1970e44";
         # })
       ];
 
