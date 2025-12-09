@@ -22,12 +22,36 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    security = {
+
+      pki.certificateFiles = [ catoCAPem ];
+
+      sudo = {
+        extraRules = [
+          {
+            groups = [ "wheel" ];
+            runAs = "root";
+            commands =
+              map
+                (action: {
+                  command = "/run/current-system/sw/bin/systemctl ${action} cato-client.service";
+                  options = [ "NOPASSWD" ];
+                })
+                [
+                  "start"
+                  "stop"
+                  "restart"
+                ];
+          }
+        ];
+      };
+
+    };
+
     services.cato-client = {
       enable = true;
       inherit (cfg) package;
     };
-
-    security.pki.certificateFiles = [ catoCAPem ];
 
     home-manager.users.${config.custom.hm-admin}.programs.firefox.policies = {
       Certificates = {

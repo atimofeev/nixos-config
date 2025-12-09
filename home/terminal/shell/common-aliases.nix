@@ -31,6 +31,8 @@ let
     vpn-stop = "sudo systemctl stop openvpn-officeVPN.service";
     vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
     vpn-status = "systemctl status openvpn-officeVPN.service";
+    cato-restart = "sudo pkill -9 cato-client";
+    cato-status = "cato-sdp status";
     d = "docker";
     dc = "docker-compose";
     t = "tofu";
