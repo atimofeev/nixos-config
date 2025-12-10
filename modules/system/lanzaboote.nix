@@ -22,6 +22,11 @@ in
       loader.systemd-boot.enable = lib.mkForce false;
       lanzaboote = {
         enable = true;
+        autoEnrollKeys = {
+          enable = true;
+          autoReboot = true;
+        };
+        autoGenerateKeys.enable = true;
         pkiBundle = "/var/lib/sbctl";
       };
     };
