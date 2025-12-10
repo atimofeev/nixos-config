@@ -23,7 +23,6 @@
         default_session = {
           command = lib.concatStringsSep " " [
             "${lib.getExe pkgs.tuigreet}"
-            "--cmd 'uwsm start hyprland-uwsm.desktop'"
             "--asterisks"
             "--remember"
             "--remember-user-session"
