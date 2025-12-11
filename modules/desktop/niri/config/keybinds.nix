@@ -166,6 +166,7 @@ in
     # "Mod+Ctrl+9".action = move-window-to-workspace 9;
     # "Mod+Ctrl+0".action = move-window-to-workspace 10;
 
-  };
-
+  } // lib.mkIf config.custom-hm.services.vicinae {
+      "Mod+Z".action = spawn-sh "vicinae toggle";
+    };
 }

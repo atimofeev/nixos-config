@@ -47,10 +47,6 @@ in
 
     };
 
-    wayland.windowManager.hyprland.settings.bind = [
-      "SUPER, Z, exec, vicinae toggle"
-    ];
-
   };
 
 }
