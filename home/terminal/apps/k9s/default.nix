@@ -7,7 +7,7 @@
     enable = true;
     package = pkgs.unstable.k9s;
 
-    aliases.aliases = {
+    aliases = {
       cr = "clusterrole";
       crb = "clusterrolebinding";
       de = "deployment";
