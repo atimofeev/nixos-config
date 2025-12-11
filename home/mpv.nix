@@ -4,8 +4,8 @@
     enable = true;
 
     config = {
-      slang = "eng,en";
-      alang = "jpn,jap,ja,jp";
+      slang = "eng,en,rus,ru";
+      alang = "jpn,jap,ja,jp,ger,ge";
     };
 
     bindings = {
