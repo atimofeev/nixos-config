@@ -19,6 +19,7 @@
     services = {
       cliphist.enable = true;
       vicinae.enable = true;
+      dankmaterialshell.enable = true;
       polkit-gnome.enable = true;
       syncthing.enable = true;
     };

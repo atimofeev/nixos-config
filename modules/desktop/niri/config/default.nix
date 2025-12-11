@@ -10,7 +10,6 @@
 
     inputs.niri.homeModules.niri
 
-    ./dankmaterialshell.nix
     ./gestures.nix
     ./input.nix
     ./keybinds.nix

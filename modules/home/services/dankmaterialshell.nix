@@ -4,45 +4,39 @@
   lib,
   ...
 }:
+let
+  cfg = config.custom-hm.services.dankmaterialshell;
+in
 {
 
   imports = [
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
   ];
 
-  programs = {
+  options.custom-hm.services.dankmaterialshell = {
+    enable = lib.mkEnableOption "dankmaterialshell bundle";
+    target = lib.mkOption {
+      default = "graphical-session.target";
+      type = lib.types.str;
+    };
+  };
 
-    niri.settings.binds =
-      let
-        dms-ipc = config.lib.niri.actions.spawn "dms" "ipc";
-      in
-      {
-        "XF86AudioLowerVolume".action = lib.mkForce (dms-ipc "audio" "decrement" "5");
-        "XF86AudioRaiseVolume".action = lib.mkForce (dms-ipc "audio" "increment" "5");
-        "XF86AudioMute".action = lib.mkForce (dms-ipc "audio" "mute");
-        "XF86AudioMicMute".action = lib.mkForce (dms-ipc "audio" "micmute");
-        "XF86MonBrightnessDown".action = lib.mkForce (
-          dms-ipc "brightness" "decrement" "5" "backlight:intel_backlight"
-        );
-        "XF86MonBrightnessUp".action = lib.mkForce (
-          dms-ipc "brightness" "increment" "5" "backlight:intel_backlight"
-        );
-        "XF86KbdBrightnessDown".action = lib.mkForce (
-          dms-ipc "brightness" "decrement" "33" "leds:asus::kbd_backlight"
-        );
-        "XF86KbdBrightnessUp".action = lib.mkForce (
-          dms-ipc "brightness" "increment" "34" "leds:asus::kbd_backlight"
-        );
+  config = lib.mkIf cfg.enable {
+
+    systemd.user.services.dms = {
+      Install = {
+        WantedBy = lib.mkForce [ cfg.target ];
       };
+      Unit = {
+        After = lib.mkForce [ cfg.target ];
+        PartOf = lib.mkForce [ cfg.target ];
+      };
+    };
 
-    dankMaterialShell = {
+    programs.dankMaterialShell = {
       enable = true;
 
-      niri = {
-        # enableKeybinds = true;
-        enableSpawn = true;
-      };
+      systemd.enable = true;
 
       enableClipboard = false;
       enableVPN = false;
@@ -324,10 +318,6 @@
               "rightWidgets" = [
                 {
                   "id" = "systemTray";
-                  "enabled" = true;
-                }
-                {
-                  "id" = "clipboard";
                   "enabled" = true;
                 }
                 {
