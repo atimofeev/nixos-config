@@ -4,7 +4,6 @@
   imports = [
 
     ./apps/gtk.nix
-    ./apps/hyprdynamicmonitors.nix
     ./apps/hyprlock.nix
     ./apps/qt.nix
     ./apps/rofi.nix
@@ -31,11 +30,12 @@
   ];
 
   custom-hm.services = {
+    hyprdynamicmonitors.enable = true;
     hypridle.enable = true;
     hyprland-per-window-layout.enable = true;
     hyprpanel.enable = true;
-    hyprsunset.enable = true;
     hyprpaper.enable = true;
+    hyprsunset.enable = true;
     wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
   };
 

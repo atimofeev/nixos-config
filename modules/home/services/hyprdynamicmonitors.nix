@@ -1,10 +1,12 @@
 {
+  config,
   inputs,
   lib,
   pkgs,
   ...
 }:
 let
+  cfg = config.custom-hm.services.hyprdynamicmonitors;
 
   monitors = rec {
     work-left = {
@@ -100,72 +102,80 @@ in
 
   imports = [ inputs.hyprdynamicmonitors.homeManagerModules.default ];
 
-  wayland.windowManager.hyprland.settings.source = "~/.config/hypr/monitors.conf";
-
-  home.hyprdynamicmonitors = {
-    enable = true;
-    config = # toml
-      ''
-        [profiles.zefir-bat]
-        config_file = "${zefir-bat-conf}"
-        config_file_type = "static"
-        [profiles.zefir-bat.conditions]
-        power_state = "BAT"
-        [[profiles.zefir-bat.conditions.required_monitors]]
-        description = "${monitors.zefir.desc}"
-
-        [profiles.zefir-home]
-        config_file = "${zefir-home-conf}"
-        config_file_type = "static"
-        [profiles.zefir-home.conditions]
-        [[profiles.zefir-home.conditions.required_monitors]]
-        description = "${monitors.zefir.desc}"
-
-        [profiles.zefir-work]
-        config_file = "${zefir-work-conf}"
-        config_file_type = "static"
-        [profiles.zefir-work.conditions]
-        [[profiles.zefir-work.conditions.required_monitors]]
-        description = "${monitors.zefir.desc}"
-        [[profiles.zefir-work.conditions.required_monitors]]
-        description = "${monitors.work-left.desc}"
-        [[profiles.zefir-work.conditions.required_monitors]]
-        description = "${monitors.work-right.desc}"
-
-        [profiles.milaptop-home]
-        config_file = "${milaptop-home-conf}"
-        config_file_type = "static"
-        [profiles.milaptop-home.conditions]
-        [[profiles.milaptop-home.conditions.required_monitors]]
-        description = "${monitors.milaptop.desc}"
-
-        [profiles.milaptop-work]
-        config_file = "${milaptop-work-conf}"
-        config_file_type = "static"
-        [profiles.milaptop-work.conditions]
-        [[profiles.milaptop-work.conditions.required_monitors]]
-        description = "${monitors.milaptop.desc}"
-        [[profiles.milaptop-work.conditions.required_monitors]]
-        description = "${monitors.work-left.desc}"
-        [[profiles.milaptop-work.conditions.required_monitors]]
-        description = "${monitors.work-right.desc}"
-      '';
+  options.custom-hm.services.hyprdynamicmonitors = {
+    enable = lib.mkEnableOption "hyprdynamicmonitors bundle";
   };
 
-  systemd.user.services.hyprdynamicmonitors = {
-    Install = {
-      WantedBy = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+  config = lib.mkIf cfg.enable {
+
+    wayland.windowManager.hyprland.settings.source = "~/.config/hypr/monitors.conf";
+
+    home.hyprdynamicmonitors = {
+      enable = true;
+      config = # toml
+        ''
+          [profiles.zefir-bat]
+          config_file = "${zefir-bat-conf}"
+          config_file_type = "static"
+          [profiles.zefir-bat.conditions]
+          power_state = "BAT"
+          [[profiles.zefir-bat.conditions.required_monitors]]
+          description = "${monitors.zefir.desc}"
+
+          [profiles.zefir-home]
+          config_file = "${zefir-home-conf}"
+          config_file_type = "static"
+          [profiles.zefir-home.conditions]
+          [[profiles.zefir-home.conditions.required_monitors]]
+          description = "${monitors.zefir.desc}"
+
+          [profiles.zefir-work]
+          config_file = "${zefir-work-conf}"
+          config_file_type = "static"
+          [profiles.zefir-work.conditions]
+          [[profiles.zefir-work.conditions.required_monitors]]
+          description = "${monitors.zefir.desc}"
+          [[profiles.zefir-work.conditions.required_monitors]]
+          description = "${monitors.work-left.desc}"
+          [[profiles.zefir-work.conditions.required_monitors]]
+          description = "${monitors.work-right.desc}"
+
+          [profiles.milaptop-home]
+          config_file = "${milaptop-home-conf}"
+          config_file_type = "static"
+          [profiles.milaptop-home.conditions]
+          [[profiles.milaptop-home.conditions.required_monitors]]
+          description = "${monitors.milaptop.desc}"
+
+          [profiles.milaptop-work]
+          config_file = "${milaptop-work-conf}"
+          config_file_type = "static"
+          [profiles.milaptop-work.conditions]
+          [[profiles.milaptop-work.conditions.required_monitors]]
+          description = "${monitors.milaptop.desc}"
+          [[profiles.milaptop-work.conditions.required_monitors]]
+          description = "${monitors.work-left.desc}"
+          [[profiles.milaptop-work.conditions.required_monitors]]
+          description = "${monitors.work-right.desc}"
+        '';
     };
-    Unit = {
-      After = lib.mkForce [
-        "hyprdynamicmonitors-prepare.service"
-        "wayland-wm@Hyprland.service"
-      ];
-      PartOf = lib.mkForce [ "wayland-wm@Hyprland.service" ];
-      Requires = lib.mkForce [ "wayland-wm@Hyprland.service" ];
-      StartLimitBurst = 5;
-      StartLimitIntervalSec = 120;
+
+    systemd.user.services.hyprdynamicmonitors = {
+      Install = {
+        WantedBy = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+      };
+      Unit = {
+        After = lib.mkForce [
+          "hyprdynamicmonitors-prepare.service"
+          "wayland-wm@Hyprland.service"
+        ];
+        PartOf = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+        Requires = lib.mkForce [ "wayland-wm@Hyprland.service" ];
+        StartLimitBurst = 5;
+        StartLimitIntervalSec = 120;
+      };
     };
+
   };
 
 }
