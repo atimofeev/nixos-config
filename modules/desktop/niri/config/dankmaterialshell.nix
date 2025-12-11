@@ -243,8 +243,8 @@
           "enableFprint" = false;
           "maxFprintTries" = 3;
           "hideBrightnessSlider" = false;
-          "notificationTimeoutLow" = 8000;
-          "notificationTimeoutNormal" = 8000;
+          "notificationTimeoutLow" = 5000;
+          "notificationTimeoutNormal" = 5000;
           "notificationTimeoutCritical" = 0;
           "notificationPopupPosition" = 0;
           "osdAlwaysShowValue" = false;
