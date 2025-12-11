@@ -31,11 +31,7 @@
 
   custom-hm.services = {
     hyprdynamicmonitors.enable = lib.mkDefault true;
-    hypridle.enable = lib.mkDefault true;
     hyprland-per-window-layout.enable = lib.mkDefault true;
-    hyprpanel.enable = lib.mkDefault true;
-    hyprpaper.enable = lib.mkDefault true;
-    hyprsunset.enable = lib.mkDefault true;
     wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
   };
 

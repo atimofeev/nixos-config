@@ -18,10 +18,14 @@
   custom-hm = {
     services = {
       cliphist.enable = true;
-      vicinae.enable = true;
       dankmaterialshell.enable = true;
+      hypridle.enable = false;
+      hyprpanel.enable = false;
+      hyprpaper.enable = false;
+      hyprsunset.enable = false;
       polkit-gnome.enable = true;
       syncthing.enable = true;
+      vicinae.enable = true;
     };
     system = {
       nix-index.enable = true;
