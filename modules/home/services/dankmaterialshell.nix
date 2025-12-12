@@ -251,7 +251,7 @@ in
           "osdCapsLockEnabled" = true;
           "osdPowerProfileEnabled" = false;
           "powerActionConfirm" = true;
-          "powerActionHoldDuration" = 1;
+          "powerActionHoldDuration" = 0.5;
           "powerMenuActions" = [
             "reboot"
             "logout"
