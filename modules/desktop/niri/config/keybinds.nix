@@ -105,6 +105,7 @@ in
       "Mod+Shift+R".action = switch-preset-window-height;
       "Mod+Shift+F".action = toggle-window-floating;
       "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+      "Mod+Shift+L".action = spawn-sh "${loginctl} lock-session";
 
       # screen capture
       "Print".action.screenshot = {
