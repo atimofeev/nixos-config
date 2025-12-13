@@ -27,6 +27,7 @@ in
       Install = {
         WantedBy = lib.mkForce [ cfg.target ];
       };
+      Service.Restart = lib.mkForce "always";
       Unit = {
         After = lib.mkForce [ cfg.target ];
         PartOf = lib.mkForce [ cfg.target ];
