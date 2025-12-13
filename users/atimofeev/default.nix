@@ -16,6 +16,18 @@
   ];
 
   custom-hm = {
+
+    user = {
+      input = {
+        repeat-delay = 275;
+        repeat-rate = 35;
+        xkb = {
+          layout = "us,ru";
+          options = "grp:win_space_toggle";
+        };
+      };
+    };
+
     services = {
       cliphist.enable = true;
       dankmaterialshell.enable = true;
@@ -27,9 +39,11 @@
       syncthing.enable = true;
       vicinae.enable = true;
     };
+
     system = {
       nix-index.enable = true;
     };
+
   };
 
 }

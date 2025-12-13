@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, ... }:
 {
   wayland.windowManager.hyprland.settings = {
 
@@ -15,11 +15,11 @@
 
     input = {
       accel_profile = "adaptive";
-      kb_layout = vars.kb_layouts;
-      kb_options = "grp:win_space_toggle";
+      kb_layout = config.custom-hm.user.input.xkb.layout;
+      kb_options = config.custom-hm.user.input.xkb.options;
       numlock_by_default = true;
-      repeat_delay = 275;
-      repeat_rate = 35;
+      repeat_delay = config.custom-hm.user.input.repeat-delay;
+      repeat_rate = config.custom-hm.user.input.repeat-rate;
       sensitivity = -0.8;
 
       touchpad.natural_scroll = 1;

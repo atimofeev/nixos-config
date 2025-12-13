@@ -1,6 +1,5 @@
 {
   username = "atimofeev";
-  kb_layouts = "us,ru";
   shell = "fish";
 
   terminal = {

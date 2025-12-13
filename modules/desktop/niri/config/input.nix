@@ -1,16 +1,14 @@
-{ vars, ... }:
+{ config, ... }:
 {
 
   programs.niri.settings.input = {
 
     keyboard = {
       xkb = {
-        layout = vars.kb_layouts;
-        options = "grp:win_space_toggle";
+        inherit (config.custom-hm.user.input.xkb) layout options;
       };
       numlock = true;
-      repeat-delay = 275;
-      repeat-rate = 35;
+      inherit (config.custom-hm.user.input) repeat-delay repeat-rate;
       track-layout = "window";
     };
 
