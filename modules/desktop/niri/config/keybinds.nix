@@ -16,7 +16,6 @@ let
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe pkgs.btop;
   firefox = "firefox"; # NOTE: must use exe from user shell for custom policies to work
-  grimblast = lib.getExe pkgs.grimblast;
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
   pkill = lib.getExe' pkgs.procps "pkill";
@@ -56,144 +55,93 @@ let
 in
 {
 
-  programs.niri.settings.binds =
-    with config.lib.niri.actions;
-    {
+  programs.niri.settings.binds = with config.lib.niri.actions; {
 
-      # apps
-      "Mod+Return".action = spawn-sh "${term}";
-      "Mod+Shift+Return".action = spawn-sh "${term} -e ${editor}";
-      "Mod+E".action = spawn-sh "${term} -e ${yazi}";
-      "Mod+Shift+H".action = spawn-sh "${term} -e ${btop}";
-      "Mod+Shift+N".action = spawn-sh "${term} -e ${nvtop}";
-      "Mod+Shift+P".action =
-        spawn-sh "${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}";
-      "Mod+Shift+B".action = spawn-sh "${term} -e ${firefox} --new-window";
-      "Mod+A".action =
-        spawn-sh ''${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"'';
-      "Mod+V".action = spawn-sh config.custom-hm.services.cliphist.command;
+    # apps
+    "Mod+Return".action = spawn-sh "${term}";
+    "Mod+Shift+Return".action = spawn-sh "${term} -e ${editor}";
+    "Mod+E".action = spawn-sh "${term} -e ${yazi}";
+    "Mod+Shift+H".action = spawn-sh "${term} -e ${btop}";
+    "Mod+Shift+N".action = spawn-sh "${term} -e ${nvtop}";
+    "Mod+Shift+P".action =
+      spawn-sh "${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}";
+    "Mod+Shift+B".action = spawn-sh "${term} -e ${firefox} --new-window";
+    "Mod+A".action =
+      spawn-sh ''${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"'';
+    "Mod+V".action = spawn-sh config.custom-hm.services.cliphist.command;
 
-      # media keys
-      "XF86AudioLowerVolume".action =
-        spawn-sh "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ 0";
-      "XF86AudioRaiseVolume".action =
-        spawn-sh "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ 0";
-      "XF86AudioMute".action = spawn-sh "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-      "XF86AudioMicMute".action = spawn-sh "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-      "XF86AudioPlay".action = spawn-sh "${playerctl} play-pause";
-      "XF86AudioPause".action = spawn-sh "${playerctl} play-pause";
-      "XF86AudioPrev".action = spawn-sh "${playerctl} previous";
-      "XF86AudioNext".action = spawn-sh "${playerctl} next";
-      "Ctrl+Shift+N".action = spawn-sh "${playerctl} next";
-      "Ctrl+Shift+P".action = spawn-sh "${playerctl} previous";
-      "Ctrl+Shift+Space".action = spawn-sh "${playerctl} play-pause";
-      # "XF86TouchpadToggle".action = spawn-sh "${toggle-touchpad}";
-      "XF86Launch4".action = spawn-sh "${asus-switch-profile}";
-      "XF86MonBrightnessDown".action = spawn-sh "${brightnessctl} -d intel_backlight set 5%- -q";
-      "XF86MonBrightnessUp".action = spawn-sh "${brightnessctl} -d intel_backlight set 5%+ -q";
-      "XF86KbdBrightnessDown".action = spawn-sh "${brightnessctl} -d asus::kbd_backlight set 33%- -q";
-      "XF86KbdBrightnessUp".action = spawn-sh "${brightnessctl} -d asus::kbd_backlight set 33%+ -q";
+    # media keys
+    "XF86AudioLowerVolume".action =
+      spawn-sh "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ 0";
+    "XF86AudioRaiseVolume".action =
+      spawn-sh "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ 0";
+    "XF86AudioMute".action = spawn-sh "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    "XF86AudioMicMute".action = spawn-sh "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+    "XF86AudioPlay".action = spawn-sh "${playerctl} play-pause";
+    "XF86AudioPause".action = spawn-sh "${playerctl} play-pause";
+    "XF86AudioPrev".action = spawn-sh "${playerctl} previous";
+    "XF86AudioNext".action = spawn-sh "${playerctl} next";
+    "Ctrl+Shift+N".action = spawn-sh "${playerctl} next";
+    "Ctrl+Shift+P".action = spawn-sh "${playerctl} previous";
+    "Ctrl+Shift+Space".action = spawn-sh "${playerctl} play-pause";
+    # "XF86TouchpadToggle".action = spawn-sh "${toggle-touchpad}";
+    "XF86Launch4".action = spawn-sh "${asus-switch-profile}";
+    "XF86MonBrightnessDown".action = spawn-sh "${brightnessctl} -d intel_backlight set 5%- -q";
+    "XF86MonBrightnessUp".action = spawn-sh "${brightnessctl} -d intel_backlight set 5%+ -q";
+    "XF86KbdBrightnessDown".action = spawn-sh "${brightnessctl} -d asus::kbd_backlight set 33%- -q";
+    "XF86KbdBrightnessUp".action = spawn-sh "${brightnessctl} -d asus::kbd_backlight set 33%+ -q";
 
-      # main
-      "Mod+Q" = {
-        action = close-window;
-        repeat = false;
-      };
-      "Mod+O".action = toggle-overview;
-      "Mod+F".action = fullscreen-window;
-      "Mod+R".action = switch-preset-column-width;
-      "Mod+Shift+R".action = switch-preset-window-height;
-      "Mod+Shift+F".action = toggle-window-floating;
-      "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
-      "Mod+Shift+L".action = spawn-sh "${loginctl} lock-session";
-
-      # screen capture
-      "Print".action.screenshot = {
-        # write-to-disk = false;
-        show-pointer = false;
-      };
-      "Ctrl+Print".action.screenshot-screen = {
-        write-to-disk = false;
-        show-pointer = false;
-      };
-      "Alt+Print".action.screenshot-window = {
-        # write-to-disk = false;
-        # show-pointer = false;
-      };
-      "Mod+Shift+S".action.screenshot = {
-        # write-to-disk = false;
-        show-pointer = false;
-      };
-
-      # focus and movement
-      "Mod+H".action = focus-column-left;
-      "Mod+J".action = focus-window-or-workspace-down;
-      "Mod+K".action = focus-window-or-workspace-up;
-      "Mod+L".action = focus-column-right;
-
-      "Mod+Ctrl+H".action = move-column-left;
-      "Mod+Ctrl+J".action = move-window-down-or-to-workspace-down;
-      "Mod+Ctrl+K".action = move-window-up-or-to-workspace-up;
-      "Mod+Ctrl+L".action = move-column-right;
-
-      "Mod+BracketLeft".action = focus-monitor-left;
-      "Mod+BracketRight".action = focus-monitor-right;
-      "Mod+Alt+H".action = focus-monitor-left;
-      "Mod+Alt+L".action = focus-monitor-right;
-
-      "Mod+Ctrl+BracketLeft".action = move-window-to-monitor-left;
-      "Mod+Ctrl+BracketRight".action = move-window-to-monitor-right;
-      "Mod+Ctrl+Alt+H".action = move-window-to-monitor-left;
-      "Mod+Ctrl+Alt+L".action = move-window-to-monitor-right;
-
-      # "Mod+1".action = focus-workspace 1;
-      # "Mod+2".action = focus-workspace 2;
-      # "Mod+3".action = focus-workspace 3;
-      # "Mod+4".action = focus-workspace 4;
-      # "Mod+5".action = focus-workspace 5;
-      # "Mod+6".action = focus-workspace 6;
-      # "Mod+7".action = focus-workspace 7;
-      # "Mod+8".action = focus-workspace 8;
-      # "Mod+9".action = focus-workspace 9;
-      # "Mod+0".action = focus-workspace 10;
-
-      # NOTE: won't build
-      # "Mod+Ctrl+1".action = move-window-to-workspace 1;
-      # "Mod+Ctrl+2".action = move-window-to-workspace 2;
-      # "Mod+Ctrl+3".action = move-window-to-workspace 3;
-      # "Mod+Ctrl+4".action = move-window-to-workspace 4;
-      # "Mod+Ctrl+5".action = move-window-to-workspace 5;
-      # "Mod+Ctrl+6".action = move-window-to-workspace 6;
-      # "Mod+Ctrl+7".action = move-window-to-workspace 7;
-      # "Mod+Ctrl+8".action = move-window-to-workspace 8;
-      # "Mod+Ctrl+9".action = move-window-to-workspace 9;
-      # "Mod+Ctrl+0".action = move-window-to-workspace 10;
-
-    }
-    // lib.mkIf config.custom-hm.services.dankmaterialshell.enable (
-      let
-        dms-ipc = config.lib.niri.actions.spawn "dms" "ipc";
-      in
-      {
-        "XF86AudioLowerVolume".action = lib.mkForce (dms-ipc "audio" "decrement" "5");
-        "XF86AudioRaiseVolume".action = lib.mkForce (dms-ipc "audio" "increment" "5");
-        "XF86AudioMute".action = lib.mkForce (dms-ipc "audio" "mute");
-        "XF86AudioMicMute".action = lib.mkForce (dms-ipc "audio" "micmute");
-        "XF86MonBrightnessDown".action = lib.mkForce (
-          dms-ipc "brightness" "decrement" "5" "backlight:intel_backlight"
-        );
-        "XF86MonBrightnessUp".action = lib.mkForce (
-          dms-ipc "brightness" "increment" "5" "backlight:intel_backlight"
-        );
-        "XF86KbdBrightnessDown".action = lib.mkForce (
-          dms-ipc "brightness" "decrement" "33" "leds:asus::kbd_backlight"
-        );
-        "XF86KbdBrightnessUp".action = lib.mkForce (
-          dms-ipc "brightness" "increment" "34" "leds:asus::kbd_backlight"
-        );
-      }
-    )
-    // lib.mkIf config.custom-hm.services.vicinae.enable {
-      "Mod+Z".action = spawn-sh "vicinae toggle";
+    # main
+    "Mod+Q" = {
+      action = close-window;
+      repeat = false;
     };
+    "Mod+O".action = toggle-overview;
+    "Mod+F".action = fullscreen-window;
+    "Mod+R".action = switch-preset-column-width;
+    "Mod+Shift+R".action = switch-preset-window-height;
+    "Mod+Shift+F".action = toggle-window-floating;
+    "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+    "Mod+Shift+L".action = spawn-sh "${loginctl} lock-session";
+
+    # screen capture
+    "Print".action.screenshot = {
+      # write-to-disk = false;
+      show-pointer = false;
+    };
+    "Ctrl+Print".action.screenshot-screen = {
+      write-to-disk = false;
+      show-pointer = false;
+    };
+    "Alt+Print".action.screenshot-window = {
+      # write-to-disk = false;
+      # show-pointer = false;
+    };
+    "Mod+Shift+S".action = spawn-sh "niri msg action screenshot && ${wl-paste} | ${swappy} -f - ";
+    "Mod+Print".action = spawn-sh "${wl-paste} | ${swappy} -f -";
+
+    # focus and movement
+    "Mod+H".action = focus-column-left;
+    "Mod+J".action = focus-window-or-workspace-down;
+    "Mod+K".action = focus-window-or-workspace-up;
+    "Mod+L".action = focus-column-right;
+
+    "Mod+Ctrl+H".action = move-column-left;
+    "Mod+Ctrl+J".action = move-window-down-or-to-workspace-down;
+    "Mod+Ctrl+K".action = move-window-up-or-to-workspace-up;
+    "Mod+Ctrl+L".action = move-column-right;
+
+    "Mod+BracketLeft".action = focus-monitor-left;
+    "Mod+BracketRight".action = focus-monitor-right;
+    "Mod+Alt+H".action = focus-monitor-left;
+    "Mod+Alt+L".action = focus-monitor-right;
+
+    "Mod+Ctrl+BracketLeft".action = move-window-to-monitor-left;
+    "Mod+Ctrl+BracketRight".action = move-window-to-monitor-right;
+    "Mod+Ctrl+Alt+H".action = move-window-to-monitor-left;
+    "Mod+Ctrl+Alt+L".action = move-window-to-monitor-right;
+
+    "Mod+Z".action = spawn-sh "vicinae toggle";
+
+  };
 }
