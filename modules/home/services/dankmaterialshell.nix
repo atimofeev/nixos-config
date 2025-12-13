@@ -38,7 +38,6 @@ in
 
       systemd.enable = true;
 
-      enableClipboard = false;
       enableVPN = false;
 
       default = {
