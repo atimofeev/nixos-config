@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -18,7 +19,7 @@ in
   options.custom.services.homepage = {
     enable = lib.mkEnableOption "homepage bundle";
     background_image = lib.mkOption {
-      default = ../../../assets/dark-shore-upscaled.png;
+      default = inputs.walls + "/dark-shore.png";
       type = lib.types.path;
     };
     listenPort = lib.mkOption {

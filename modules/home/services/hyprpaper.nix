@@ -1,7 +1,7 @@
 {
   config,
+  inputs,
   lib,
-  vars,
   ...
 }:
 let
@@ -18,8 +18,8 @@ in
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload = [ vars.wallpaper ];
-        wallpaper = [ ",${vars.wallpaper}" ];
+        preload = [ "${inputs.walls}/dark-shore.png" ];
+        wallpaper = [ ",${inputs.walls}/dark-shore.png" ];
       };
     };
 

@@ -1,7 +1,7 @@
 {
+  inputs,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -23,7 +23,7 @@ in
 
       background = [
         {
-          path = vars.wallpaper;
+          path = inputs.walls + "/dark-shore.png";
           blur_passes = 3;
           blur_size = 8;
           contrast = 0.8916;

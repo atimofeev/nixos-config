@@ -1,6 +1,6 @@
-{ vars, ... }:
+{ inputs, ... }:
 let
-  wallpaper-uri = "file://${vars.wallpaper}";
+  wallpaper-uri = "file://${inputs.walls}/dark-shore.png";
 in
 {
   imports = [
