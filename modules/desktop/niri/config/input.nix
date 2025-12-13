@@ -30,7 +30,7 @@
 
     focus-follows-mouse = {
       enable = true;
-      max-scroll-amount = "0%";
+      max-scroll-amount = "51%";
     };
 
     warp-mouse-to-focus.enable = true;
