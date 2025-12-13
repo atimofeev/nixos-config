@@ -35,6 +35,11 @@
       inputs.dgop.follows = "dgop";
     };
 
+    github-avatar = {
+      url = "https://avatars.githubusercontent.com/u/39891735?v=4";
+      flake = false;
+    };
+
     hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
 
     lanzaboote.url = "github:nix-community/lanzaboote";
@@ -66,6 +71,7 @@
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
   };
 
   outputs =

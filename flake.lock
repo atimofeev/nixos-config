@@ -228,6 +228,18 @@
         "type": "github"
       }
     },
+    "github-avatar": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-K2aO4Is8pEmxJZuNZEm3/KHZEAiMp/unWLd2LvCD3h8=",
+        "type": "file",
+        "url": "https://avatars.githubusercontent.com/u/39891735?v=4"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://avatars.githubusercontent.com/u/39891735?v=4"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -701,6 +713,7 @@
         "catppuccin-zen-browser": "catppuccin-zen-browser",
         "dankMaterialShell": "dankMaterialShell",
         "dgop": "dgop",
+        "github-avatar": "github-avatar",
         "home-manager": "home-manager",
         "hyprdynamicmonitors": "hyprdynamicmonitors",
         "lanzaboote": "lanzaboote",

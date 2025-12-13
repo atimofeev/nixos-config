@@ -1,7 +1,8 @@
 {
-  pkgs,
-  lib,
   config,
+  inputs,
+  lib,
+  pkgs,
   ...
 }:
 let
@@ -109,7 +110,7 @@ in
             };
           };
           dashboard = {
-            powermenu.avatar.image = "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+            powermenu.avatar.image = inputs.github-avatar.outPath;
             directories = {
               left = {
                 directory1 = {
