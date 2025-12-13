@@ -21,6 +21,8 @@
       input = {
         repeat-delay = 275;
         repeat-rate = 35;
+        mouse-sensitivity = -0.8;
+        touchpad-sensitivity = -0.15;
         xkb = {
           layout = "us,ru";
           options = "grp:win_space_toggle";

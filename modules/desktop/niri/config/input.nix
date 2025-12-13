@@ -12,7 +12,15 @@
       track-layout = "window";
     };
 
+    mouse = {
+      accel-profile = "flat";
+      # accel-speed = config.custom-hm.user.input.mouse-sensitivity;
+      accel-speed = config.custom-hm.user.input.touchpad-sensitivity;
+    };
+
     touchpad = {
+      accel-profile = "flat";
+      accel-speed = config.custom-hm.user.input.touchpad-sensitivity;
       click-method = "button-areas";
       dwt = true;
       natural-scroll = true;

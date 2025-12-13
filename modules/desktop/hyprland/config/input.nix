@@ -1,15 +1,19 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  f2s = lib.strings.floatToString;
+  inherit (config.custom-hm.user.input) touchpad-sensitivity;
+in
 {
   wayland.windowManager.hyprland.settings = {
 
     device = [
       {
         name = "etd2303:00-04f3:3083-touchpad";
-        sensitivity = "-0.15";
+        sensitivity = f2s touchpad-sensitivity;
       }
       {
         name = "asuf1209:00-2808:0219-touchpad";
-        sensitivity = "-0.15";
+        sensitivity = f2s touchpad-sensitivity;
       }
     ];
 
