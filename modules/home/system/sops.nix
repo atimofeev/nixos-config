@@ -24,8 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     sops = {
       age = { inherit (osConfig.sops.age) sshKeyPaths; };
-      inherit (osConfig.sops) defaultSopsFile;
-      inherit (osConfig.sops) defaultSopsFormat;
+      inherit (osConfig.sops) defaultSopsFile defaultSopsFormat;
     };
   };
 
