@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -16,6 +17,7 @@ in
 
     programs.vicinae = {
       enable = true;
+      package = pkgs.unstable.vicinae;
       systemd.enable = true;
       settings = {
         theme.name = "catppuccin-mocha";
