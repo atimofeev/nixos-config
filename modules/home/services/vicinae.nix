@@ -6,18 +6,24 @@
 }:
 let
   cfg = config.custom-hm.services.vicinae;
+  launcher = config.custom-hm.user.launcher.app;
 in
 {
 
   options.custom-hm.services.vicinae = {
     enable = lib.mkEnableOption "vicinae bundle";
+    package = lib.mkPackageOption pkgs "vicinae" { };
+    command = lib.mkOption {
+      default = "vicinae toggle";
+      type = lib.types.str;
+    };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (launcher == "vicinae" || cfg.enable) {
 
     programs.vicinae = {
       enable = true;
-      package = pkgs.unstable.vicinae;
+      inherit (cfg) package;
       systemd.enable = true;
       settings = {
         theme.name = "catppuccin-mocha";

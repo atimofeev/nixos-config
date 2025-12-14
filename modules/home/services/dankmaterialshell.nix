@@ -19,6 +19,10 @@ in
       default = "graphical-session.target";
       type = lib.types.str;
     };
+    launcher-cmd = lib.mkOption {
+      default = "dms ipc spotlight toggle";
+      type = lib.types.str;
+    };
   };
 
   config = lib.mkIf cfg.enable {

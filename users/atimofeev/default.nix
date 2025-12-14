@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
 
   imports = [
@@ -18,6 +19,7 @@
   custom-hm = {
 
     user = {
+      launcher.app = "vicinae";
       input = {
         repeat-delay = 275;
         repeat-rate = 35;
@@ -30,6 +32,10 @@
       };
     };
 
+    applications = {
+      rofi.enable = true;
+    };
+
     services = {
       cliphist.enable = true;
       dankmaterialshell.enable = true;
@@ -39,7 +45,10 @@
       hyprsunset.enable = false;
       polkit-gnome.enable = true;
       syncthing.enable = true;
-      vicinae.enable = true;
+      vicinae = {
+        enable = true;
+        package = pkgs.unstable.vicinae;
+      };
     };
 
     system = {

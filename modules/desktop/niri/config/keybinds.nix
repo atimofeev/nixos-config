@@ -18,14 +18,11 @@ let
   firefox = "firefox"; # NOTE: must use exe from user shell for custom policies to work
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
-  pkill = lib.getExe' pkgs.procps "pkill";
   playerctl = lib.getExe pkgs.playerctl;
   spotify_player = lib.getExe' pkgs.spotify-player "spotify_player";
   swappy = lib.getExe pkgs.swappy;
-  wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
   wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
-  wtype = lib.getExe pkgs.wtype;
   yazi = lib.getExe pkgs.yazi;
 
   asus-switch-profile = pkgs.writeShellScript "asus-switch-profile" ''
@@ -66,8 +63,7 @@ in
     "Mod+Shift+P".action =
       spawn-sh "${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}";
     "Mod+Shift+B".action = spawn-sh "${term} -e ${firefox} --new-window";
-    "Mod+A".action =
-      spawn-sh ''${pkill} rofi || rofi -show drun -no-history -calc-command "echo -n '{result}' | ${wl-copy} && ${wtype} -M ctrl -P v -m ctrl -p v"'';
+    "Mod+A".action = spawn-sh config.custom-hm.user.launcher.command;
     "Mod+V".action = spawn-sh config.custom-hm.services.cliphist.command;
 
     # media keys
@@ -140,8 +136,6 @@ in
     "Mod+Ctrl+BracketRight".action = move-window-to-monitor-right;
     "Mod+Ctrl+Alt+H".action = move-window-to-monitor-left;
     "Mod+Ctrl+Alt+L".action = move-window-to-monitor-right;
-
-    "Mod+Z".action = spawn-sh "vicinae toggle";
 
   };
 }

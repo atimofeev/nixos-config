@@ -6,7 +6,6 @@
     ./apps/gtk.nix
     ./apps/hyprlock.nix
     ./apps/qt.nix
-    ./apps/rofi.nix
     ./apps/xdg-mime.nix # file association
 
     ./animations.nix

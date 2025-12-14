@@ -101,6 +101,7 @@ in
       "SUPER SHIFT, N, exec, ${term} -e ${nvtop}"
       "SUPER SHIFT, P, exec, ${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}"
       "SUPER SHIFT, B, exec, ${prefix} ${firefox} --new-window"
+      "SUPER, A, exec, ${config.custom-hm.user.launcher.command}"
       "SUPER, V, exec, ${config.custom-hm.services.cliphist.command}"
 
       ", XF86TouchpadToggle, exec, ${toggle-touchpad}"
