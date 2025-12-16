@@ -43,10 +43,11 @@
       open-on-workspace = "special";
     }
 
-    # opaque active youtube window
     {
       matches = [
         { is-active = true; }
+        { title = "Meet"; }
+        { title = "Udemy"; }
         { title = "YouTube"; }
       ];
       opacity = 1.0;
