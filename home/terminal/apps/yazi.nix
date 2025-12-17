@@ -18,6 +18,22 @@
         run = "tab_switch -1 --relative";
         desc = "Switch to the previous tab";
       }
+      {
+        on = [
+          "g"
+          "?"
+        ];
+        run = "help";
+        desc = "Open help";
+      }
+      {
+        on = [
+          "g"
+          "."
+        ];
+        run = "spot";
+        desc = "Spot hovered file";
+      }
     ];
   };
 
