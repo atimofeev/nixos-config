@@ -137,5 +137,10 @@ in
     "Mod+Ctrl+Alt+H".action = move-window-to-monitor-left;
     "Mod+Ctrl+Alt+L".action = move-window-to-monitor-right;
 
+    "Mod+WheelScrollDown".action = focus-window-or-workspace-down;
+    "Mod+WheelScrollUp".action = focus-window-or-workspace-up;
+    "Mod+WheelScrollRight".action = focus-column-right;
+    "Mod+WheelScrollLeft".action = focus-column-left;
+
   };
 }
