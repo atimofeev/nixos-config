@@ -1,0 +1,57 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.custom-hm.applications.mpv;
+in
+{
+
+  options.custom-hm.applications.mpv = {
+    enable = lib.mkEnableOption "mpv bundle";
+    package = lib.mkPackageOption pkgs "mpv" { };
+  };
+
+  config = lib.mkIf cfg.enable {
+    programs.mpv = {
+      enable = true;
+      inherit (cfg) package;
+
+      config = {
+        slang = "eng,en,rus,ru";
+        alang = "jpn,jap,ja,jp,ger,ge";
+      };
+
+      bindings = {
+        a = "cycle audio";
+        s = "cycle sub";
+        WHEEL_UP = "add volume 2.5";
+        WHEEL_DOWN = "add volume -2.5";
+        UP = "add volume 2.5";
+        DOWN = "add volume -2.5";
+        ENTER = "ignore";
+      };
+
+      scripts = with pkgs.mpvScripts; [
+        inhibit-gnome # do not let gnome sleep during playback
+        mpris # integrate with media controls
+        autoload # load playlist entries from play dir
+      ];
+
+      scriptOpts = {
+        autoload = {
+          disabled = false;
+          images = false;
+          videos = true;
+          audio = true;
+          ignore_hidden = true;
+          same_type = true;
+          directory_mode = "ignore";
+        };
+      };
+    };
+  };
+
+}
