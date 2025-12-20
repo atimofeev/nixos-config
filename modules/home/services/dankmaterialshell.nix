@@ -404,47 +404,12 @@ in
         };
 
         session = {
-          "isLightMode" = false;
-          "wallpaperPath" = inputs.walls + "/dark-shore.png";
-          "perMonitorWallpaper" = false;
-          "monitorWallpapers" = { };
-          "perModeWallpaper" = false;
-          "wallpaperPathLight" = "";
-          "wallpaperPathDark" = "";
-          "monitorWallpapersLight" = { };
-          "monitorWallpapersDark" = { };
+          "brightnessExponentValues" = { };
           "brightnessExponentialDevices" = { };
           "brightnessUserSetValues" = { };
-          "brightnessExponentValues" = { };
           "doNotDisturb" = false;
-          "nightModeEnabled" = false;
-          "nightModeTemperature" = 5000;
-          "nightModeHighTemperature" = 6500;
-          "nightModeAutoEnabled" = true;
-          "nightModeAutoMode" = "time";
-          "nightModeStartHour" = 22;
-          "nightModeStartMinute" = 0;
-          "nightModeEndHour" = 8;
-          "nightModeEndMinute" = 0;
-          "latitude" = 0;
-          "longitude" = 0;
-          "nightModeUseIPLocation" = false;
-          "nightModeLocationProvider" = "";
-          "pinnedApps" = [ ];
-          "hiddenTrayIds" = [ ];
-          "selectedGpuIndex" = 0;
-          "nvidiaGpuTempEnabled" = false;
-          "nonNvidiaGpuTempEnabled" = false;
           "enabledGpuPciIds" = [ ];
-          "wifiDeviceOverride" = "";
-          "wallpaperCyclingEnabled" = true;
-          "wallpaperCyclingMode" = "interval";
-          "wallpaperCyclingInterval" = 900;
-          "wallpaperCyclingTime" = "06:00";
-          "monitorCyclingSettings" = { };
-          "lastBrightnessDevice" = "";
-          "launchPrefix" = "";
-          "wallpaperTransition" = "fade";
+          "hiddenTrayIds" = [ ];
           "includedTransitions" = [
             "fade"
             "wipe"
@@ -454,10 +419,43 @@ in
             "pixelate"
             "portal"
           ];
-          "recentColors" = [
-            "#8ccff0"
-          ];
+          "isLightMode" = false;
+          "lastBrightnessDevice" = "";
+          "latitude" = 0;
+          "launchPrefix" = "";
+          "longitude" = 0;
+          "monitorCyclingSettings" = { };
+          "monitorWallpapers" = { };
+          "monitorWallpapersDark" = { };
+          "monitorWallpapersLight" = { };
+          "nightModeAutoEnabled" = true;
+          "nightModeAutoMode" = "time";
+          "nightModeEnabled" = false;
+          "nightModeEndHour" = 8;
+          "nightModeEndMinute" = 0;
+          "nightModeHighTemperature" = 6500;
+          "nightModeLocationProvider" = "";
+          "nightModeStartHour" = 22;
+          "nightModeStartMinute" = 0;
+          "nightModeTemperature" = 5000;
+          "nightModeUseIPLocation" = false;
+          "nonNvidiaGpuTempEnabled" = false;
+          "nvidiaGpuTempEnabled" = false;
+          "perModeWallpaper" = false;
+          "perMonitorWallpaper" = false;
+          "pinnedApps" = [ ];
+          "recentColors" = [ "#8ccff0" ];
+          "selectedGpuIndex" = 0;
           "showThirdPartyPlugins" = true;
+          "wallpaperCyclingEnabled" = true;
+          "wallpaperCyclingInterval" = 900;
+          "wallpaperCyclingMode" = "interval";
+          "wallpaperCyclingTime" = "06:00";
+          "wallpaperPath" = inputs.walls + "/dark-shore.png";
+          "wallpaperPathDark" = "";
+          "wallpaperPathLight" = "";
+          "wallpaperTransition" = "fade";
+          "wifiDeviceOverride" = "";
         };
 
       };
