@@ -10,7 +10,6 @@
     ../../home/obsidian.nix
     ../../home/qbittorrent.nix
     ../../home/swappy.nix
-    ../../home/vcv-rack.nix
     ../../home/zen-browser.nix
 
   ];
@@ -33,6 +32,7 @@
 
     applications = {
       rofi.enable = true;
+      vcv-rack.enable = true;
       zathura.enable = true;
     };
 
