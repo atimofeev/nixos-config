@@ -8,7 +8,6 @@
     ../../home/mpv.nix
     ../../home/obsidian.nix
     ../../home/qbittorrent.nix
-    ../../home/swappy.nix
     ../../home/zen-browser.nix
 
   ];
