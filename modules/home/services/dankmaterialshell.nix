@@ -407,6 +407,7 @@ in
           "brightnessExponentValues" = { };
           "brightnessExponentialDevices" = { };
           "brightnessUserSetValues" = { };
+          "configVersion" = 1;
           "doNotDisturb" = false;
           "enabledGpuPciIds" = [ ];
           "hiddenTrayIds" = [ ];
@@ -444,17 +445,23 @@ in
           "perModeWallpaper" = false;
           "perMonitorWallpaper" = false;
           "pinnedApps" = [ ];
-          "recentColors" = [ "#8ccff0" ];
+          "recentColors" = [
+            "#000000"
+            "#00000000"
+            "#9e9e9e"
+            "#8ccff0"
+          ];
           "selectedGpuIndex" = 0;
           "showThirdPartyPlugins" = true;
           "wallpaperCyclingEnabled" = true;
-          "wallpaperCyclingInterval" = 900;
+          "wallpaperCyclingInterval" = 300;
           "wallpaperCyclingMode" = "interval";
           "wallpaperCyclingTime" = "06:00";
           "wallpaperPath" = inputs.walls + "/dark-shore.png";
-          "wallpaperPathDark" = "";
-          "wallpaperPathLight" = "";
+          "wallpaperPathDark" = inputs.walls + "/dark-shore.png";
+          "wallpaperPathLight" = inputs.walls + "/dark-shore.png";
           "wallpaperTransition" = "fade";
+          "weatherHourlyDetailed" = true;
           "wifiDeviceOverride" = "";
         };
 
