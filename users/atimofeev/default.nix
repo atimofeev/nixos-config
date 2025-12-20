@@ -11,7 +11,6 @@
     ../../home/qbittorrent.nix
     ../../home/swappy.nix
     ../../home/vcv-rack.nix
-    ../../home/zathura.nix
     ../../home/zen-browser.nix
 
   ];
@@ -34,6 +33,7 @@
 
     applications = {
       rofi.enable = true;
+      zathura.enable = true;
     };
 
     services = {

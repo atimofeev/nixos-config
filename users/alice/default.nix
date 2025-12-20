@@ -9,7 +9,6 @@
     ../../home/obsidian.nix
     ../../home/qbittorrent.nix
     ../../home/swappy.nix
-    ../../home/zathura.nix
     ../../home/zen-browser.nix
 
   ];
