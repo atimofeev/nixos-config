@@ -5,7 +5,6 @@
     ../../home/terminal
     ../../home/firefox
 
-    ../../home/obsidian.nix
     ../../home/qbittorrent.nix
     ../../home/zen-browser.nix
 
