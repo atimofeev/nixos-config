@@ -45,8 +45,6 @@ in
 
     };
 
-    programs.nm-applet.enable = true;
-
     services.resolved.enable = true;
   };
 

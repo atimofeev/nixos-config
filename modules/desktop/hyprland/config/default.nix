@@ -20,11 +20,7 @@
   ];
 
   home.packages = with pkgs; [
-    hyprpicker
     libnotify
-    networkmanagerapplet # bin: nm-connection-editor
-    blueman # bin: blueman-manager
-    pwvucontrol
     snapshot
   ];
 

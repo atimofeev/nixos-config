@@ -8,8 +8,10 @@
 let
   cfg = config.custom-hm.services.hyprpanel;
 
+  blueman-applet = lib.getExe' pkgs.blueman "blueman-applet";
   blueman-manager = lib.getExe' pkgs.blueman "blueman-manager";
   kitty = lib.getExe pkgs.kitty;
+  nm-applet = lib.getExe' pkgs.networkmanagerapplet "nm-applet";
   nm-connection-editor = lib.getExe' pkgs.networkmanagerapplet "nm-connection-editor";
   systemctl = lib.getExe' pkgs.systemd "systemctl";
   yazi = lib.getExe pkgs.yazi;
@@ -25,9 +27,20 @@ in
 
     sops.secrets."personal/weather-api" = { };
 
-    wayland.windowManager.hyprland.settings.bind = [
-      "SUPER, B, exec, ${systemctl} --user restart hyprpanel"
+    home.packages = with pkgs; [
+      hyprpicker
+      pwvucontrol
     ];
+
+    wayland.windowManager.hyprland.settings = {
+      exec-once = [
+        blueman-applet
+        "${nm-applet} --indicator"
+      ];
+      bind = [
+        "SUPER, B, exec, ${systemctl} --user restart hyprpanel"
+      ];
+    };
 
     systemd.user.services.hyprpanel = {
       Install = {
