@@ -1,28 +1,42 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.custom.applications.common-gui;
+in
 {
 
-  imports = [ ./chromium.nix ];
+  options.custom.applications.common-gui = {
+    enable = lib.mkEnableOption "common-gui bundle";
+  };
 
-  environment.systemPackages = with pkgs; [
-    # GUI/TUI apps
-    emacs
-    vscode
-    firefox
-    telegram-desktop
-    spotify
+  config = lib.mkIf cfg.enable {
 
-    # typing
-    keypunch
-    gtypist
+    environment.systemPackages = with pkgs; [
+      # GUI/TUI apps
+      emacs
+      vscode
+      firefox
+      telegram-desktop
+      spotify
 
-    # misc
-    prusa-slicer
-    freecad
-    openscad
-    upscayl
-    eyedropper # pick colors
-    parabolic # download video & audio
-    # alpaca # chat with local LLMs
-  ];
+      # typing
+      keypunch
+      gtypist
+
+      # misc
+      prusa-slicer
+      freecad
+      openscad
+      upscayl
+      eyedropper # pick colors
+      parabolic # download video & audio
+      # alpaca # chat with local LLMs
+    ];
+
+  };
 
 }

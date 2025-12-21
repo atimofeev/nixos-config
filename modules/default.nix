@@ -30,7 +30,6 @@
     ./system/sudo.nix
     ./system/user.nix
 
-    # TODO: optionalize
     ./apps/chromium.nix
     ./apps/games.nix
     ./apps/gui.nix

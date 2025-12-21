@@ -107,6 +107,13 @@
       network.enable = true;
     };
 
+    applications = {
+      chromium.enable = true;
+      common-gui.enable = true;
+      common-terminal.enable = true;
+      games.enable = true;
+    };
+
     services = {
       # auto-cpufreq = {
       #   enable = true;

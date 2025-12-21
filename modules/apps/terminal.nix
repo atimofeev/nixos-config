@@ -1,44 +1,60 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.custom.applications.common-terminal;
+in
 {
 
-  environment.systemPackages = with pkgs; [
+  options.custom.applications.common-terminal = {
+    enable = lib.mkEnableOption "common-terminal bundle";
+  };
 
-    # utils
-    bc
-    coreutils
-    curl
-    file
-    jq
-    nmap
-    unzip
-    usbutils
-    util-linux
-    wget
-    wl-clipboard
-    yq-go
+  config = lib.mkIf cfg.enable {
 
-    # improved utils
-    xh # curl
-    dust # du
-    eza # ls
-    fd # find
-    ripgrep # grep
-    gping
+    environment.systemPackages = with pkgs; [
 
-    # misc
-    fzf
-    tldr
-    ani-cli
-    gemini-cli
+      # utils
+      bc
+      coreutils
+      curl
+      file
+      jq
+      nmap
+      unzip
+      usbutils
+      util-linux
+      wget
+      wl-clipboard
+      yq-go
 
-    # fun
-    lolcat
-    pipes
-    cmatrix
-    neo
-    cbonsai
-    lavat
+      # improved utils
+      xh # curl
+      dust # du
+      eza # ls
+      fd # find
+      ripgrep # grep
+      gping
 
-  ];
+      # misc
+      fzf
+      tldr
+      ani-cli
+      gemini-cli
+
+      # fun
+      lolcat
+      pipes
+      cmatrix
+      neo
+      cbonsai
+      lavat
+
+    ];
+
+  };
 
 }
