@@ -90,6 +90,7 @@ in
                 {
                   "id" = "music";
                   "enabled" = true;
+                  "mediaSize" = 2;
                 }
               ];
               "rightWidgets" = [
