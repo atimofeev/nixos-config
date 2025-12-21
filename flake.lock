@@ -839,11 +839,11 @@
     "walls": {
       "flake": false,
       "locked": {
-        "lastModified": 1765902959,
-        "narHash": "sha256-pNj3e8Wn88C9G5B9X4YbRR6S4pmgAHEI7hCr9uzqoBM=",
+        "lastModified": 1766317396,
+        "narHash": "sha256-ty+ot0ChK5mBURAn711w+b48h2PD97Eip05zcKg+wa0=",
         "owner": "atimofeev",
         "repo": "walls",
-        "rev": "9862b75f4c805b26f100542b2e87b38cc0610c04",
+        "rev": "b6cdf6bacf068bcc921091ee086d79aa9ba173b9",
         "type": "github"
       },
       "original": {
