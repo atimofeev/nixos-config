@@ -23,14 +23,25 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    home.packages = [ cfg.package ];
+
+    # FIX: https://github.com/nix-community/home-manager/issues/7906
     # TODO: configre
     # https://home-manager-options.extranix.com/?query=obsidian&release=release-25.11
     # https://github.com/RandomNEET/nixos/blob/b0f78c396d759e88f13dddead4a2e6d507cbe4a7/modules/programs/gui/obsidian/default.nix
     # https://github.com/RandomNEET/nixos/blob/b0f78c396d759e88f13dddead4a2e6d507cbe4a7/pkgs/obsidian-catppuccin/default.nix
-    programs.obsidian = {
-      enable = true;
-      inherit (cfg) package;
-    };
+    # programs.obsidian = {
+    #   enable = true;
+    #   inherit (cfg) package;
+    #   vaults = {
+    #     main = {
+    #       target = "repos/obsidian-vault";
+    #     };
+    #     orgroam_to_obsidian = {
+    #       target = "repos/orgroam_to_obsidian/output";
+    #     };
+    #   };
+    # };
 
     systemd.user = {
 
