@@ -73,7 +73,10 @@
 
     hardware = {
       asus-backlight-fix.enable = true;
-      asus-linux.enable = true;
+      asus-linux = {
+        enable = true;
+        package = pkgs.unstable.asusctl;
+      };
       asus-fn-lock-fix.enable = true;
       bluetooth.enable = true;
       nvidia.enable = true;

@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.custom.hardware.asus-linux;
 in
@@ -6,6 +11,7 @@ in
 
   options.custom.hardware.asus-linux = {
     enable = lib.mkEnableOption "asus-linux bundle";
+    package = lib.mkPackageOption pkgs "asusctl" { };
   };
 
   config = lib.mkIf cfg.enable {
@@ -31,6 +37,7 @@ in
 
       asusd = {
         enable = true;
+        inherit (cfg) package;
         enableUserService = true;
         auraConfigs."19b6".text = # ron
           ''
