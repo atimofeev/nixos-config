@@ -1,12 +1,24 @@
-# NixOS configuration with dotfiles
+# NixOS configuration
 
-NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato color scheme (mainly for TUI apps).
+![desktop-screenshot](./assets/desktop-screenshot.png)
 
 ## Apps & Utils
 
 ### Desktop Environment
 
+#### Niri
+
+| Type            | App               |
+| --------------- | ----------------- |
+| Display manager | tuigreet          |
+| Compositor      | Niri              |
+| Session Manager | uwsm              |
+| Shell           | DankMaterialShell |
+| Launcher        | Vicinae           |
+
 #### Hyprland
+
+_slowly being phased-out_
 
 | Type              | App                     |
 | ----------------- | ----------------------- |
@@ -22,6 +34,8 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 | Clipboard manager | wl-clipboard + cliphist |
 
 #### Gnome
+
+_abandoned at this point_
 
 | Type            | App   |
 | --------------- | ----- |
@@ -43,12 +57,12 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 
 ### GUI apps
 
-| Type         | App         |
-| ------------ | ----------- |
-| Browser      | Firefox     |
-| Video player | mpv         |
-| Torrent      | qbittorrent |
-| Music making | vcv-rack    |
+| Type         | App           |
+| ------------ | ------------- |
+| Browser      | Zen + Firefox |
+| Video player | mpv           |
+| Torrent      | qbittorrent   |
+| Music making | vcv-rack      |
 
 ### Services
 
@@ -64,7 +78,10 @@ NixOS configuration based on Hyprland compositor, utilizing catppuccin-macchiato
 
 ### Additional Features
 
-| Type                 | App                                                 |
-| -------------------- | --------------------------------------------------- |
-| Secret management    | [sops-nix](https://github.com/Mic92/sops-nix)       |
-| Gaming optimizations | [nix-gaming](https://github.com/fufexan/nix-gaming) |
+| Type                 | App                                                           |
+| -------------------- | ------------------------------------------------------------- |
+| User configuration   | [home-manager](https://github.com/nix-community/home-manager) |
+| Secret management    | [sops-nix](https://github.com/Mic92/sops-nix)                 |
+| Secure boot          | [lanzaboote](https://github.com/nix-community/lanzaboote)     |
+| Gaming optimizations | [nix-gaming](https://github.com/fufexan/nix-gaming)           |
+| Theming              | [catpuccin-nix](https://github.com/catppuccin/nix)            |
