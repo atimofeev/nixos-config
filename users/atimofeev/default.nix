@@ -6,7 +6,6 @@
     ../../home/terminal
     ../../home/firefox
 
-    ../../home/qbittorrent.nix
     ../../home/zen-browser.nix
 
   ];
@@ -31,6 +30,7 @@
     applications = {
       mpv.enable = true;
       obsidian.enable = true;
+      qbittorrent.enable = true;
       rofi.enable = true;
       swappy.enable = true;
       vcv-rack.enable = true;
