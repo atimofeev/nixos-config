@@ -26,11 +26,6 @@
   time.timeZone = "Europe/Podgorica";
   system.stateVersion = "24.11";
 
-  custom.hm-users = [
-    "atimofeev"
-    "alice"
-  ];
-
   boot = {
     blacklistedKernelModules = [
       # NOTE: block Realtek Card Reader, which prevents deep sleep
@@ -70,6 +65,11 @@
   environment.sessionVariables.AQ_DRM_DEVICES = "/dev/dri/igpu:/dev/dri/dgpu";
 
   custom = {
+
+    hm-users = [
+      "atimofeev"
+      "alice"
+    ];
 
     hardware = {
       asus-backlight-fix.enable = true;
