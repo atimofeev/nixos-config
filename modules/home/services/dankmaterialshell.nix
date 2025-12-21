@@ -454,7 +454,7 @@ in
           "selectedGpuIndex" = 0;
           "showThirdPartyPlugins" = true;
           "wallpaperCyclingEnabled" = true;
-          "wallpaperCyclingInterval" = 300;
+          "wallpaperCyclingInterval" = 900;
           "wallpaperCyclingMode" = "interval";
           "wallpaperCyclingTime" = "06:00";
           "wallpaperPath" = inputs.walls + "/dark-shore.png";
