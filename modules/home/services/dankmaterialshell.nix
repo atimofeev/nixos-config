@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.custom-hm.services.dankmaterialshell;
+  wall = config.custom-hm.user.wallpaper;
 in
 {
 
@@ -458,9 +459,9 @@ in
           "wallpaperCyclingInterval" = 900;
           "wallpaperCyclingMode" = "interval";
           "wallpaperCyclingTime" = "06:00";
-          "wallpaperPath" = inputs.walls + "/dark-shore.png";
-          "wallpaperPathDark" = inputs.walls + "/dark-shore.png";
-          "wallpaperPathLight" = inputs.walls + "/dark-shore.png";
+          "wallpaperPath" = wall.dest + "/dark-shore.png";
+          "wallpaperPathDark" = wall.dest + "/dark-shore.png";
+          "wallpaperPathLight" = wall.dest + "/dark-shore.png";
           "wallpaperTransition" = "fade";
           "weatherHourlyDetailed" = true;
           "wifiDeviceOverride" = "";

@@ -1,11 +1,12 @@
 {
-  inputs,
+  config,
   lib,
   pkgs,
   ...
 }:
 let
   date = lib.getExe' pkgs.coreutils "date";
+  wall = config.custom-hm.user.wallpaper;
 in
 {
   # TODO: setup
@@ -23,7 +24,7 @@ in
 
       background = [
         {
-          path = inputs.walls + "/dark-shore.png";
+          path = wall.dest + "/dark-shore.png";
           blur_passes = 3;
           blur_size = 8;
           contrast = 0.8916;

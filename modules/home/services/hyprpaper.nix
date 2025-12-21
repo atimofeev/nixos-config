@@ -1,11 +1,11 @@
 {
   config,
-  inputs,
   lib,
   ...
 }:
 let
   cfg = config.custom-hm.services.hyprpaper;
+  wall = config.custom-hm.user.wallpaper;
 in
 {
 
@@ -18,8 +18,8 @@ in
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload = [ "${inputs.walls}/dark-shore.png" ];
-        wallpaper = [ ",${inputs.walls}/dark-shore.png" ];
+        preload = [ "${wall.dest}/dark-shore.png" ];
+        wallpaper = [ ",${wall.dest}/dark-shore.png" ];
       };
     };
 

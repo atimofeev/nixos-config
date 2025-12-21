@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
 
   imports = [
@@ -25,6 +25,7 @@
           options = "grp:win_space_toggle";
         };
       };
+      wallpaper.source = inputs.walls;
     };
 
     applications = {

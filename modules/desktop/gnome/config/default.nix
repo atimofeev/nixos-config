@@ -1,6 +1,7 @@
-{ inputs, ... }:
+{ config, ... }:
 let
-  wallpaper-uri = "file://${inputs.walls}/dark-shore.png";
+  wall = config.custom-hm.user.wallpaper;
+  wallpaper-uri = "file://${wall.dest}/dark-shore.png";
 in
 {
   imports = [
