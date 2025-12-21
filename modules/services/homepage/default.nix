@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -19,8 +18,8 @@ in
   options.custom.services.homepage = {
     enable = lib.mkEnableOption "homepage bundle";
     background_image = lib.mkOption {
-      default = inputs.walls + "/dark-shore.png";
-      type = lib.types.path;
+      default = null;
+      type = lib.types.nullOr lib.types.path;
     };
     listenPort = lib.mkOption {
       default = 8888;
@@ -37,18 +36,28 @@ in
 
     services.homepage-dashboard = {
       enable = true;
-      package = pkgs.homepage-dashboard.overrideAttrs (_oldAttrs: {
-        postInstall = ''
-          mkdir -p $out/share/homepage/public/images
-          ln -s ${cfg.background_image} $out/share/homepage/public/images/${builtins.baseNameOf cfg.background_image}
-        '';
-      });
+      package =
+        if cfg.background_image != null then
+          pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
+            postInstall = (oldAttrs.postInstall or "") + ''
+              mkdir -p $out/share/homepage/public/images
+              ln -s ${cfg.background_image} $out/share/homepage/public/images/${builtins.baseNameOf cfg.background_image}
+            '';
+          })
+        else
+          pkgs.homepage-dashboard;
       environmentFile = config.sops.secrets."work/homepage-env".path;
       inherit (cfg) listenPort;
 
       settings = {
         title = "${config.custom.hm-admin} dashboard";
-
+        cardBlur = "sm";
+        color = "slate";
+        hideVersion = true;
+        target = "_self";
+        theme = "dark";
+      }
+      // lib.optionalAttrs (cfg.background_image != null) {
         background = {
           image = "images/${builtins.baseNameOf cfg.background_image}";
           # blur = "sm";
@@ -56,14 +65,6 @@ in
           brightness = 85;
           opacity = 50;
         };
-
-        cardBlur = "sm";
-        theme = "dark";
-        color = "slate";
-
-        target = "_self";
-
-        hideVersion = true;
       };
     };
   };
