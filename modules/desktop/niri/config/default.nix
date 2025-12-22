@@ -30,6 +30,7 @@
     settings = {
       debug.honor-xdg-activation-with-invalid-serial = { };
       hotkey-overlay.skip-at-startup = true;
+      overview.backdrop-color = "#1e1e2e";
       prefer-no-csd = true;
       screenshot-path = null;
       xwayland-satellite.enable = true;
