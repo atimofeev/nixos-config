@@ -6,8 +6,6 @@
     ../../home/terminal
     ../../home/firefox
 
-    ../../home/zen-browser.nix
-
   ];
 
   custom-hm = {
@@ -35,6 +33,7 @@
       swappy.enable = true;
       vcv-rack.enable = true;
       zathura.enable = true;
+      zen-browser.enable = true;
     };
 
     services = {

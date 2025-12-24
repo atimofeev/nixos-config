@@ -5,8 +5,6 @@
     ../../home/terminal
     ../../home/firefox
 
-    ../../home/zen-browser.nix
-
   ];
 
   custom-hm = {
