@@ -3,7 +3,6 @@
   imports = [
 
     ../../home/terminal
-    ../../home/firefox
 
   ];
 

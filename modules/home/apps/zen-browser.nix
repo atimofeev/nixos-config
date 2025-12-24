@@ -21,6 +21,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    custom-hm.applications.firefox.enable = true;
+
     programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [ pkgs.firefoxpwa ];

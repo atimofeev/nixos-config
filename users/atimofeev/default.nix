@@ -4,7 +4,6 @@
   imports = [
 
     ../../home/terminal
-    ../../home/firefox
 
   ];
 
@@ -26,6 +25,15 @@
     };
 
     applications = {
+      firefox = {
+        enable = true;
+        betterfox = {
+          enable = true;
+          settings = {
+            fastfox.enable = true;
+          };
+        };
+      };
       mpv.enable = true;
       obsidian.enable = true;
       qbittorrent.enable = true;
