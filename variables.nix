@@ -1,5 +1,4 @@
 {
   username = "atimofeev";
-  shell = "fish";
 
 }

@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  vars,
   ...
 }:
 let
@@ -10,16 +9,24 @@ let
 in
 {
 
-  programs.${vars.shell}.enable = true;
-  users.users =
-    lib.recursiveUpdate
+  options.custom.user-shell = lib.mkOption {
+    default = "fish";
+    type = lib.types.str;
+  };
 
-      (lib.attrsets.genAttrs cfg.hm-users (u: {
-        isNormalUser = true;
-        description = u;
-        shell = pkgs.${vars.shell};
-      }))
+  config = {
 
-      { "${cfg.hm-admin}".extraGroups = [ "wheel" ]; };
+    programs.${cfg.user-shell}.enable = true;
+    users.users =
+      lib.recursiveUpdate
 
+        (lib.attrsets.genAttrs cfg.hm-users (u: {
+          isNormalUser = true;
+          description = u;
+          shell = pkgs.${cfg.user-shell};
+        }))
+
+        { "${cfg.hm-admin}".extraGroups = [ "wheel" ]; };
+
+  };
 }

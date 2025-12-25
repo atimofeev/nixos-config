@@ -66,6 +66,8 @@
 
   custom = {
 
+    user-shell = "fish";
+
     hm-users = [
       "atimofeev"
       "alice"

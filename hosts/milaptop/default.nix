@@ -27,11 +27,6 @@
   time.timeZone = "Europe/Podgorica";
   system.stateVersion = "24.11";
 
-  custom.hm-users = [
-    "atimofeev"
-    "alice"
-  ];
-
   hardware = {
     intelgpu.driver = "i915";
     enableRedistributableFirmware = true;
@@ -51,6 +46,13 @@
   '';
 
   custom = {
+
+    user-shell = "fish";
+
+    hm-users = [
+      "atimofeev"
+      "alice"
+    ];
 
     hardware = {
       bluetooth.enable = true;
