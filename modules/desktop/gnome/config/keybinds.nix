@@ -62,13 +62,13 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
-      command = vars.terminal.name;
-      inherit (vars.terminal) name;
+      command = config.custom-hm.user.terminal;
+      name = config.custom-hm.user.terminal;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Shift><Super>h";
-      command = "${vars.terminal.name} -e htop";
+      command = "${config.custom-hm.user.terminal} -e htop";
       name = "htop";
     };
 
@@ -76,10 +76,10 @@
       let
         # show images in kitty
         spotifyPlayerCMD =
-          if vars.terminal.name == "kitty" then
+          if config.custom-hm.user.terminal == "kitty" then
             "kitty -o term=xterm-kitty -e spotify_player"
           else
-            "${vars.terminal.name} -e spotify_player";
+            "${config.custom-hm.user.terminal} -e spotify_player";
       in
       {
         binding = "<Shift><Super>s";
@@ -89,13 +89,13 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
       binding = "<Super>e";
-      command = "${vars.terminal.name} -e yazi";
+      command = "${config.custom-hm.user.terminal} -e yazi";
       name = "File Manager";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
       binding = "<Shift><Super>n";
-      command = "${vars.terminal.name} -e nvtop";
+      command = "${config.custom-hm.user.terminal} -e nvtop";
       name = "nvtop";
     };
 
@@ -107,7 +107,7 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
       binding = "<Super><Shift>Return";
-      command = "${vars.terminal.name} -e ${config.custom-hm.user.editor}";
+      command = "${config.custom-hm.user.terminal} -e ${config.custom-hm.user.editor}";
       name = config.custom-hm.user.editor;
     };
 

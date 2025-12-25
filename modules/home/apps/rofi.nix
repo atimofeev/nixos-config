@@ -3,7 +3,6 @@
   lib,
   osConfig,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -35,7 +34,7 @@ in
     programs.rofi = {
       enable = true;
       inherit (cfg) package;
-      terminal = "${vars.terminal.name} -e";
+      terminal = "${config.custom-hm.user.terminal} -e";
 
       plugins = with pkgs; [
         rofi-calc

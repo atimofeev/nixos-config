@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, ... }:
 {
   wayland.windowManager.hyprland.settings = {
 
@@ -14,7 +14,7 @@
     misc = {
       focus_on_activate = true;
       enable_swallow = true;
-      swallow_regex = "^(${vars.terminal.name})$";
+      swallow_regex = "^(${config.custom-hm.user.terminal})$";
     };
 
   };

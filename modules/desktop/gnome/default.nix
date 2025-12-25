@@ -1,4 +1,9 @@
-{ pkgs, vars, ... }:
+{
+  config,
+  pkgs,
+  vars,
+  ...
+}:
 {
 
   home-manager.users.${vars.username} = import ./config;
@@ -20,7 +25,7 @@
 
   programs.nautilus-open-any-terminal = {
     enable = true;
-    terminal = vars.terminal.name;
+    inherit (config.custom-hm.user) terminal;
   };
 
 }

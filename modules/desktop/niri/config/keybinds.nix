@@ -3,14 +3,13 @@
   lib,
   osConfig,
   pkgs,
-  vars,
   ...
 }:
 let
   uwsm = lib.getExe pkgs.uwsm;
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
 
-  term = "${prefix} ${vars.terminal.name}";
+  term = "${prefix} ${config.custom-hm.user.terminal}";
   inherit (config.custom-hm.user) editor;
 
   brightnessctl = lib.getExe pkgs.brightnessctl;

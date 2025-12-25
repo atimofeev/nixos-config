@@ -10,6 +10,7 @@
   custom-hm = {
 
     user = {
+      terminal = "kitty";
       editor = "nix run ~/repos/nixvim-config/";
       launcher.app = "vicinae";
       input = {
