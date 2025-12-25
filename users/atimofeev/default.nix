@@ -10,6 +10,7 @@
   custom-hm = {
 
     user = {
+      editor = "nix run ~/repos/nixvim-config/";
       launcher.app = "vicinae";
       input = {
         repeat-delay = 275;

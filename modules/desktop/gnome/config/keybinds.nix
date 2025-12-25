@@ -1,4 +1,9 @@
-{ pkgs, vars, ... }:
+{
+  config,
+  pkgs,
+  vars,
+  ...
+}:
 {
   dconf.settings = {
     "org/gnome/TextEditor".keybindings = "vim";
@@ -102,8 +107,8 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
       binding = "<Super><Shift>Return";
-      command = "${vars.terminal.name} -e ${vars.terminal.editor}";
-      name = vars.terminal.editor;
+      command = "${vars.terminal.name} -e ${config.custom-hm.user.editor}";
+      name = config.custom-hm.user.editor;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {

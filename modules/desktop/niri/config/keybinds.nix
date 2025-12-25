@@ -11,7 +11,7 @@ let
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
 
   term = "${prefix} ${vars.terminal.name}";
-  editor = "${vars.terminal.editor}";
+  inherit (config.custom-hm.user) editor;
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe pkgs.btop;

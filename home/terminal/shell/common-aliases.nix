@@ -3,7 +3,6 @@
   lib,
   config,
   osConfig,
-  vars,
   ...
 }:
 let
@@ -14,7 +13,7 @@ let
     rs = "sudo nixos-rebuild switch --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
     rb = "sudo nixos-rebuild boot --flake ~/repos/nixos-config#${osConfig.networking.hostName}";
     shell = "NIXPKGS_ALLOW_UNFREE=1 nix-shell --run $SHELL";
-    v = vars.terminal.editor;
+    v = config.custom-hm.user.editor;
     sops-common = "SOPS_AGE_KEY=$(${lib.getExe pkgs.ssh-to-age} -private-key -i ~/.ssh/id_ed25519) sops ~/repos/nixos-config/secrets/common.yaml";
     sops-host = "SOPS_AGE_KEY=$(${lib.getExe pkgs.ssh-to-age} -private-key -i ~/.ssh/id_ed25519) sops ~/repos/nixos-config/secrets/${osConfig.networking.hostName}.yaml";
     flake-update = ''nix flake metadata --json | jq --raw-output ".locks.nodes.root.inputs | keys[]" | fzf | xargs nix flake update'';
