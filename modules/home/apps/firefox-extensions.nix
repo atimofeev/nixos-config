@@ -30,6 +30,9 @@ in
             "uBlock0@raymondhill.net" = {
               force = true;
               settings = {
+                userSettings = {
+                  userFiltersTrusted = true;
+                };
                 selectedFilterLists = [
                   "easylist"
                   "easylist-annoyances"
@@ -49,6 +52,11 @@ in
                   "user-filters"
                   "RUS-0"
                   "RUS-1"
+                ];
+                whitelist = [
+                  "chrome-extension-scheme"
+                  "moz-extension-scheme"
+                  "bitwarden.eu"
                 ];
               };
             };
