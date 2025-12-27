@@ -20,12 +20,10 @@ in
   config = lib.mkIf cfg.enable {
 
     programs.firefox.policies = {
-      # NOTE: Can't be enabled outside US and some other countries
-      # AutofillAddressEnabled = true;
-      # AutofillCreditCardEnabled = true;
       DisableAppUpdate = true;
       DisableFirefoxScreenshots = true;
       DisableFirefoxStudies = true;
+      DisableFormHistory = true;
       DisablePocket = true;
       DisableSetDesktopBackground = true;
       DisableTelemetry = true;
@@ -60,8 +58,10 @@ in
         StartPage = "previous-session";
       };
       NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
+      PasswordManagerEnabled = false;
       ShowHomeButton = true;
       UserMessaging = {
         ExtensionRecommendations = false;

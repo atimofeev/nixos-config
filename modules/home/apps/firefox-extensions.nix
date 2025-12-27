@@ -107,6 +107,7 @@ in
                 "github.com"
                 "mail.google.com"
                 "registry.terraform.io"
+                "vault.bitwarden.eu"
               ];
           };
         };
@@ -117,6 +118,14 @@ in
             default_area = "menubar";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/traduzir-paginas-web/latest.xpi";
             installation_mode = "normal_installed";
+            private_browsing = true;
+            updates_disabled = false;
+          };
+          # bitwarden-password-manager
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+            installation_mode = "normal_installed";
+            default_area = "navbar";
             private_browsing = true;
             updates_disabled = false;
           };
