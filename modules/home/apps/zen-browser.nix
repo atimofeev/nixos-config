@@ -45,6 +45,7 @@ in
           "zen.view.compact.hide-tabbar" = true;
           "zen.view.compact.hide-toolbar" = true;
           "zen.view.compact.toolbar-flash-popup" = true;
+          "zen.view.experimental-no-window-controls" = true;
           "zen.view.show-newtab-button-top" = false;
           "zen.view.window.scheme" = 0;
           "zen.welcome-screen.seen" = true;
