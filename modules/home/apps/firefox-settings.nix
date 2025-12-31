@@ -23,6 +23,7 @@ in
       "browser.aboutConfig.showWarning" = false;
       "browser.aboutwelcome.enabled" = false;
       "browser.tabs.unloadOnLowMemory" = true;
+      "browser.urlbar.shortcuts.bookmarks" = false;
       "browser.urlbar.suggest.calculator" = true;
       "browser.urlbar.trimHttps" = true;
       "browser.urlbar.unitConversion.enabled" = true;
