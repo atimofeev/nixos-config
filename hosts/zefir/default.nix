@@ -117,10 +117,6 @@
     };
 
     services = {
-      # auto-cpufreq = {
-      #   enable = true;
-      #   settings.battery.energy_performance_preference = "power";
-      # };
       docker.enable = true;
       homepage = {
         enable = true;
@@ -131,12 +127,6 @@
         devices = [ "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:6:1.0-event-mouse" ];
       };
       logrotate-nvim.enable = true;
-      tlp = {
-        enable = true;
-        settings = {
-          CPU_BOOST_ON_AC = 0;
-        };
-      };
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;

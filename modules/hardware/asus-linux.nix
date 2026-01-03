@@ -22,6 +22,9 @@ in
     # };
 
     services = {
+
+      power-profiles-daemon.enable = true;
+
       supergfxd = {
         enable = false;
         settings = {
@@ -88,10 +91,10 @@ in
                 platform_profile_linked_epp: true,
                 platform_profile_on_battery: Quiet,
                 change_platform_profile_on_battery: true,
-                platform_profile_on_ac: Quiet,
+                platform_profile_on_ac: Balanced,
                 change_platform_profile_on_ac: true,
                 profile_quiet_epp: Power,
-                profile_balanced_epp: BalancePower,
+                profile_balanced_epp: BalancePerformance,
                 profile_custom_epp: Performance,
                 profile_performance_epp: Performance,
                 ac_profile_tunings: {
