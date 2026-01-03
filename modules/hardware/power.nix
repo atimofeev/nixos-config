@@ -20,7 +20,6 @@ in
       powertop.enable = true;
     };
     services = {
-      power-profiles-daemon.enable = lib.mkIf config.services.auto-cpufreq.enable false;
       upower = lib.mkMerge [
         {
           enable = true;

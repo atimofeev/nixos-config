@@ -31,9 +31,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.tlp = {
-      enable = true;
-      settings = lib.recursiveUpdate defaultSettings cfg.settings;
+    services = {
+      power-profiles-daemon.enable = false;
+      tlp = {
+        enable = true;
+        settings = lib.recursiveUpdate defaultSettings cfg.settings;
+      };
     };
   };
 

@@ -26,9 +26,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.auto-cpufreq = {
-      enable = true;
-      settings = lib.recursiveUpdate defaultSettings cfg.settings;
+    services = {
+      power-profiles-daemon.enable = false;
+      auto-cpufreq = {
+        enable = true;
+        settings = lib.recursiveUpdate defaultSettings cfg.settings;
+      };
     };
   };
 
