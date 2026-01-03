@@ -14,6 +14,7 @@
     ./sound.nix
 
     ../../modules/desktop/hyprland
+    ../../modules/desktop/niri
     # ../../modules/desktop/gnome
 
   ];
