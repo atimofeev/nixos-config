@@ -97,16 +97,6 @@
     };
 
     services = {
-      auto-cpufreq = {
-        enable = true;
-        settings = {
-          battery.energy_performance_preference = "balance_power";
-          charger = {
-            energy_performance_preference = "performance";
-            turbo = "true";
-          };
-        };
-      };
       docker.enable = true;
       homepage = {
         enable = true;
@@ -117,6 +107,7 @@
         devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
       };
       logrotate-nvim.enable = true;
+      power-profiles-daemon.enable = true;
       printing.enable = true;
       yubikey = {
         enable = true;
