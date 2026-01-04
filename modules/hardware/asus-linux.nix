@@ -121,13 +121,6 @@ in
             )
           '';
 
-        # profileConfig.text = # ron
-        #   ''
-        #     (
-        #       active_profile: Quiet,
-        #     )
-        #   '';
-
         fanCurvesConfig.text = # ron
           ''
             (
