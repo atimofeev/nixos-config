@@ -28,6 +28,10 @@ in
       };
     };
 
+    systemd.services.asus-px-keyboard-tool = {
+      serviceConfig.Restart = lib.mkForce "always";
+    };
+
   };
 
 }
