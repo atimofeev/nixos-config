@@ -121,56 +121,56 @@ in
             )
           '';
 
-        fanCurvesConfig.text = # ron
-          ''
-            (
-                profiles: (
-                    balanced: [
-                        (
-                            fan: CPU,
-                            pwm: (2, 15, 25, 43, 61, 84, 107, 130),
-                            temp: (0, 58, 62, 66, 70, 74, 78, 82),
-                            enabled: false,
-                        ),
-                        (
-                            fan: GPU,
-                            pwm: (2, 7, 20, 30, 48, 66, 84, 107),
-                            temp: (0, 52, 56, 60, 64, 68, 71, 74),
-                            enabled: false,
-                        ),
-                    ],
-                    performance: [
-                        (
-                            fan: CPU,
-                            pwm: (25, 43, 61, 84, 107, 130, 163, 186),
-                            temp: (0, 57, 61, 65, 69, 73, 78, 83),
-                            enabled: false,
-                        ),
-                        (
-                            fan: GPU,
-                            pwm: (20, 30, 48, 66, 84, 122, 158, 181),
-                            temp: (0, 47, 52, 57, 62, 67, 72, 77),
-                            enabled: false,
-                        ),
-                    ],
-                    quiet: [
-                        (
-                            fan: CPU,
-                            pwm: (2, 15, 25, 43, 61, 89, 89, 89),
-                            temp: (58, 62, 66, 70, 75, 80, 255, 255),
-                            enabled: false,
-                        ),
-                        (
-                            fan: GPU,
-                            pwm: (2, 7, 20, 30, 48, 71, 71, 71),
-                            temp: (49, 53, 57, 61, 65, 69, 255, 255),
-                            enabled: false,
-                        ),
-                    ],
-                    custom: [],
-                ),
-            )
-          '';
+        # fanCurvesConfig.text = # ron
+        #   ''
+        #     (
+        #         profiles: (
+        #             balanced: [
+        #                 (
+        #                     fan: CPU,
+        #                     pwm: (2, 15, 25, 43, 61, 84, 107, 130),
+        #                     temp: (0, 58, 62, 66, 70, 74, 78, 82),
+        #                     enabled: false,
+        #                 ),
+        #                 (
+        #                     fan: GPU,
+        #                     pwm: (2, 7, 20, 30, 48, 66, 84, 107),
+        #                     temp: (0, 52, 56, 60, 64, 68, 71, 74),
+        #                     enabled: false,
+        #                 ),
+        #             ],
+        #             performance: [
+        #                 (
+        #                     fan: CPU,
+        #                     pwm: (25, 43, 61, 84, 107, 140, 178, 255),
+        #                     temp: (0, 57, 61, 65, 69, 73, 78, 83),
+        #                     enabled: true,
+        #                 ),
+        #                 (
+        #                     fan: GPU,
+        #                     pwm: (20, 30, 48, 66, 84, 122, 158, 181),
+        #                     temp: (0, 47, 52, 57, 62, 67, 72, 77),
+        #                     enabled: false,
+        #                 ),
+        #             ],
+        #             quiet: [
+        #                 (
+        #                     fan: CPU,
+        #                     pwm: (2, 15, 25, 43, 61, 89, 89, 89),
+        #                     temp: (58, 62, 66, 70, 75, 80, 255, 255),
+        #                     enabled: false,
+        #                 ),
+        #                 (
+        #                     fan: GPU,
+        #                     pwm: (2, 7, 20, 30, 48, 71, 71, 71),
+        #                     temp: (49, 53, 57, 61, 65, 69, 255, 255),
+        #                     enabled: false,
+        #                 ),
+        #             ],
+        #             custom: [],
+        #         ),
+        #     )
+        #   '';
 
       };
     };
