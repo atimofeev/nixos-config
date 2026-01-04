@@ -21,9 +21,9 @@ in
     #   autoStart = true;
     # };
 
-    services = {
+    custom.services.power-profiles-daemon.enable = true;
 
-      power-profiles-daemon.enable = true;
+    services = {
 
       supergfxd = {
         enable = false;
