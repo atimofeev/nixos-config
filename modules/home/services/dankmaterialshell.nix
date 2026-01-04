@@ -240,6 +240,8 @@ in
           "dwlShowAllTags" = false;
           "enableFprint" = false;
           "enabledGpuPciIds" = [ ];
+          "fadeToDpmsEnabled" = true;
+          "fadeToDpmsGracePeriod" = 15;
           "fadeToLockEnabled" = true;
           "fadeToLockGracePeriod" = 15;
           "focusedWindowCompactMode" = false;
