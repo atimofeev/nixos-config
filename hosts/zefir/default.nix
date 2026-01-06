@@ -96,7 +96,7 @@
       automount.enable = true;
       boot = {
         enable = true;
-        kernelPackages = pkgs.linuxPackages_6_18;
+        kernelPackages = pkgs.linux-g14;
       };
       fonts.enable = true;
       lanzaboote.enable = true;
