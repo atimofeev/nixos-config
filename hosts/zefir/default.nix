@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -43,6 +44,7 @@
     enableRedistributableFirmware = true;
     nvidia = {
       open = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       modesetting.enable = true;
       dynamicBoost.enable = true;
       powerManagement = {
