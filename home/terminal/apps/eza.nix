@@ -1,21 +1,9 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
 let
-  themeName = "catppuccin.yml";
-
-  themeSource =
-    pkgs.fetchFromGitHub {
-      owner = "eza-community";
-      repo = "eza-themes";
-      rev = "57149851f07b3ee6ca94f5fe3d9d552f73f8b8b4";
-      sha256 = "sha256-vu6QLz0RvPavpD2VED25D2PJlHgQ8Yis+DnL+BPlvHw=";
-    }
-    + "/themes/${themeName}"; # path to theme in repo
-
   commonAliases = {
     ls = "eza";
     ll = "eza --long";
@@ -45,7 +33,5 @@ in
     nushell = lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
     zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
   };
-
-  xdg.configFile."eza/theme.yml".source = themeSource;
 
 }

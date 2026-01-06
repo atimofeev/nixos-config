@@ -25,9 +25,6 @@ in
       enable = true;
       inherit (cfg) package;
       systemd.enable = true;
-      settings = {
-        theme.name = "catppuccin-mocha";
-      };
       extensions = [
         (config.lib.vicinae.mkRayCastExtension {
           name = "gif-search";

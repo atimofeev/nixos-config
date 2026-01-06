@@ -17,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    catppuccin.url = "github:catppuccin/nix/release-25.11";
 
     catppuccin-zen-browser = {
       url = "github:catppuccin/zen-browser?dir=themes/Macchiato/Lavender";

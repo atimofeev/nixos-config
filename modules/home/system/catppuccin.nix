@@ -26,9 +26,6 @@ in
       enable = true;
       inherit (osConfig.catppuccin) accent flavor;
 
-      # NOTE: wait for 25.11
-      # eza.enable = true;
-
       chromium.enable = false; # chromium is configured outside of home-manager
       cursors.enable = false; # using adwaita cursors
       gtk.icon.enable = false; # using adwaita icons
