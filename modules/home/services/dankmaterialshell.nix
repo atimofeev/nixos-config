@@ -264,6 +264,7 @@ in
           "lockDateFormat" = "";
           "lockScreenActiveMonitor" = "eDP-1";
           "lockScreenInactiveColor" = "#000000";
+          "lockScreenNotificationMode" = 2;
           "lockScreenShowDate" = true;
           "lockScreenShowPasswordField" = true;
           "lockScreenShowPowerActions" = true;
