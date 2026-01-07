@@ -16,21 +16,8 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    nixpkgs.config = {
-      packageOverrides = pkgs: {
-        ansible-w-plugins = cfg.package.overrideAttrs (oldAttrs: {
-          propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-            pkgs.python3Packages.boto3
-            pkgs.python3Packages.botocore
-            pkgs.python3Packages.dnspython
-            pkgs.python3Packages.hvac
-          ];
-        });
-      };
-    };
-
     environment.systemPackages = with pkgs; [
-      ansible-w-plugins
+      cfg.package
       sshpass # ssh auth with password
     ];
 
