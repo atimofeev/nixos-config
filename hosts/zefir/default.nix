@@ -11,7 +11,6 @@
     inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     ./hardware-configuration.nix
-    ./sound-fix.nix
 
     ../../modules/desktop/hyprland
     ../../modules/desktop/niri
