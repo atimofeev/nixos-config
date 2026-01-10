@@ -29,7 +29,11 @@ in
     };
 
     systemd.services.asus-px-keyboard-tool = {
-      serviceConfig.Restart = lib.mkForce "always";
+      serviceConfig = {
+        Restart = lib.mkForce "always";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
     };
 
   };
