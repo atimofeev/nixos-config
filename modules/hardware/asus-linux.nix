@@ -26,7 +26,7 @@ in
     services = {
 
       supergfxd = {
-        enable = false;
+        enable = true;
         settings = {
           mode = "Hybrid";
           vfio_enable = false;
