@@ -59,7 +59,6 @@
       bluetooth.enable = true;
       nvidia.enable = true;
       peripherals = {
-        motiff-ii-fix.enable = true;
         zsa.enable = true;
       };
       power = {

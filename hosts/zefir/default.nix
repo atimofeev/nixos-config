@@ -85,7 +85,6 @@
       nvidia.enable = true;
       peripherals = {
         logitech.logi-bolt-disable-wakeup = true;
-        motiff-ii-fix.enable = true;
         zsa.enable = true;
       };
       power.enable = true;
