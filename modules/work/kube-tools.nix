@@ -27,6 +27,7 @@ in
       kubectl-graph
       kubectl-klock
       kubectl-ktop
+      kubectl-login
       kubectl-node-shell
       kubectl-view-allocations
       kubectl-view-secret
