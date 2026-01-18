@@ -10,7 +10,6 @@ _: {
     ./apps/nvim
     ./apps/k9s
 
-    ./apps/atuin.nix
     ./apps/bat.nix
     ./apps/btop.nix
     ./apps/carapace.nix
