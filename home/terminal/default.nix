@@ -11,7 +11,6 @@ _: {
     ./apps/k9s
 
     ./apps/bat.nix
-    ./apps/btop.nix
     ./apps/carapace.nix
     ./apps/eza.nix
     ./apps/git.nix
