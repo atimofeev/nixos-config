@@ -98,6 +98,8 @@ in
     "Mod+Shift+F".action = toggle-window-floating;
     "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
     "Mod+Shift+L".action = spawn-sh "${loginctl} lock-session";
+    "Mod+U".action =
+      spawn-sh ''niri msg workspaces | grep "\*.*special" && niri msg action focus-workspace-previous || niri msg action focus-workspace special'';
 
     # screen capture
     "Print".action.screenshot = {
