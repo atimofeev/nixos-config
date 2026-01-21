@@ -20,7 +20,7 @@ in
       # utils
       bc
       coreutils
-      curl
+      curl-ws
       file
       jq
       nmap
