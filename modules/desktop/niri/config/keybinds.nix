@@ -13,7 +13,7 @@ let
   inherit (config.custom-hm.user) editor;
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
-  btop = lib.getExe pkgs.btop;
+  btop = lib.getExe config.custom-hm.applications.btop.package;
   firefox = "firefox"; # NOTE: must use exe from user shell for custom policies to work
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
