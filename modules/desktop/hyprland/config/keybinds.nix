@@ -166,7 +166,6 @@ in
       "SUPER SHIFT, bracketright, movetoworkspacesilent, +1"
 
     ]
-    ++ lib.optionals config.custom-hm.services.vicinae.enable [ "SUPER, Z, exec, vicinae toggle" ]
 
     # 1..10 workspaces
     ++ (builtins.concatLists (
