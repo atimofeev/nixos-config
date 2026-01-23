@@ -38,6 +38,7 @@ in
       fd # find
       gping
       ripgrep # grep
+      unstable.snitch # ss
       xh # curl
 
       # misc
