@@ -32,12 +32,13 @@ in
       yq-go
 
       # improved utils
-      xh # curl
+      duf # df
       dust # du
       eza # ls
       fd # find
-      ripgrep # grep
       gping
+      ripgrep # grep
+      xh # curl
 
       # misc
       fzf
