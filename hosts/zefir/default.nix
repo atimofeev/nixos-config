@@ -36,6 +36,15 @@
       "pcie_aspm=force"
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
     ];
+    kernelPatches = [
+      {
+        name = "GU605CR power limits";
+        patch = pkgs.fetchpatch {
+          url = "https://github.com/torvalds/linux/commit/063185ba32747f69159777c66097cd8f428e8b7a.diff";
+          sha256 = "sha256-LWF+MmMUf9aRrepwfXARmYt5uF0JaKbTSyKYajpZxJo=";
+        };
+      }
+    ];
   };
 
   hardware = {
