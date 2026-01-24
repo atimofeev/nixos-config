@@ -4,8 +4,8 @@ let
   g14 = pkgs.fetchFromGitLab {
     owner = "asus-linux";
     repo = "linux-g14";
-    rev = "6d082ec0868f945c5fa49cec2eab38d64d0c6b2e";
-    hash = "sha256-HAvENk6Urga0TnvvJJhFIBlTu3w+8ICWkxt844kpM1U=";
+    rev = "489efffc1b1d0188391a9dae71a3111c24cd22d8";
+    hash = "sha256-6PrA/lZaD3TeAJJt/atnJdmxd921xTvAdHR+fgCns5Y=";
   };
   patches = [
     "sys-kernel_arch-sources-g14_files-0004-more-uarches-for-kernel-6.15.patch"
@@ -19,12 +19,9 @@ let
     "0008-platform-x86-asus-armoury-add-ppt_-and-nv_-tuning-kn.patch"
     "0001-platform-x86-asus-armoury-Fix-error-code-in-mini_led.patch"
     "0002-platform-x86-asus-armoury-fix-mini-led-mode-show.patch"
-    "0003-platform-x86-asus-armoury-add-support-for-FA507UV.patch"
+    "0003-platform-x86-asus-armoury-add-support-for-GU605CR.patch"
     "0001-platform-x86-asus-armoury-fix-only-DC-tunables-being.patch"
-    "PATCH-v10-00-11-HID-asus-Fix-ASUS-ROG-Laptop-s-Keyboard-backlight-handling.patch"
-    "PATCH-v10-00-11-HID-asus-Fix-ASUS-ROG-Laptop-s-Keyboard-backlight-handling-id1-id2-pr_err.patch"
-    "0001-platform-x86-asus-wmi-fix-initializing-TUFs-keyboard.patch"
-    "0002-platform-x86-asus-armoury-add-keyboard-control-firmw.patch"
+    "0010-platform-x86-asus-wmi-move-keyboard-control-firmware.patch"
     "0001-acpi-proc-idle-skip-dummy-wait.patch"
     "PATCH-v5-00-11-Improvements-to-S5-power-consumption.patch"
     "PATCH-asus-wmi-fixup-screenpad-brightness.patch"
@@ -44,7 +41,7 @@ pkgs.linuxPackagesFor (
         name = "linux-g14";
         src = pkgs.fetchurl {
           url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-          hash = "sha256-0KeL8/DRKqoQrzta3K7VvHZ7W3hwXl74hdXpMLcuJdU=";
+          hash = "sha256-eoh5FnuJxLrgd9bznE8hMHafBdva0qrZFK2rmvt9f5o=";
         };
         buildPhase = ''
           cp $src -r .
@@ -56,8 +53,8 @@ pkgs.linuxPackagesFor (
           cp -r . $out
         '';
       };
-      version = "6.18.1";
-      modDirVersion = "6.18.1";
+      version = "6.18.3";
+      modDirVersion = "6.18.3";
 
       # Config from the g14 kernel
       # Note: the order matters, unlike in the linux-g14 repo
