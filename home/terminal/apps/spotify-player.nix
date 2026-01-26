@@ -14,10 +14,6 @@
     };
   };
 
-  sops.secrets = {
-    "personal/spotify-client-id" = { };
-    "personal/spotify-creds".path =
-      "${config.home.homeDirectory}/.cache/spotify-player/credentials.json";
-  };
+  sops.secrets."personal/spotify-client-id" = { };
 
 }
