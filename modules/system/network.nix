@@ -12,10 +12,6 @@ in
   options.custom.system.network = {
     enable = lib.mkEnableOption "network bundle";
     hotspot-bypass = lib.mkEnableOption "Bypass hotspot restrictions for certain ISPs";
-    defaultLocale = lib.mkOption {
-      default = null;
-      type = lib.types.str;
-    };
   };
 
   config = lib.mkIf cfg.enable {
