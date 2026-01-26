@@ -29,11 +29,6 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    sops.secrets."work/homepage-env" = {
-      owner = config.custom.hm-admin;
-      restartUnits = [ "homepage-dashboard.service" ];
-    };
-
     services.homepage-dashboard = {
       enable = true;
       package =
@@ -46,7 +41,6 @@ in
           })
         else
           pkgs.homepage-dashboard;
-      environmentFile = config.sops.secrets."work/homepage-env".path;
       inherit (cfg) listenPort;
 
       settings = {

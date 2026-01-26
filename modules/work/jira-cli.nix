@@ -17,14 +17,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    sops.secrets."work/env/JIRA_API_TOKEN".owner = config.custom.hm-admin;
-
-    environment = {
-      systemPackages = [ cfg.package ];
-      shellInit = ''
-        export JIRA_API_TOKEN="$(cat ${config.sops.secrets."work/env/JIRA_API_TOKEN".path})"
-      '';
-    };
+    environment.systemPackages = [ cfg.package ];
 
   };
 

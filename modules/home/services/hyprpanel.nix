@@ -25,8 +25,6 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    sops.secrets."personal/weather-api" = { };
-
     home.packages = with pkgs; [
       hyprpicker
       pwvucontrol
@@ -117,7 +115,6 @@ in
           clock = {
             time.military = true;
             weather = {
-              key = config.sops.secrets."personal/weather-api".path;
               location = "Budva";
               unit = "metric";
             };

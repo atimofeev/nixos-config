@@ -19,17 +19,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    sops.secrets = {
-      "personal/yubico/u2f_keys" = {
-        owner = config.custom.hm-admin;
-        sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
-      };
-      "personal/ssh_keys/id_ed25519_sk" = {
-        owner = config.custom.hm-admin;
-        sopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
-        path = "/home/${config.custom.hm-admin}/.ssh/id_ed25519_sk";
-      };
-    };
 
     environment.systemPackages = with pkgs; [
       yubioath-flutter
@@ -55,7 +44,6 @@ in
         enable = true;
         settings = {
           cue = true;
-          authFile = config.sops.secrets."personal/yubico/u2f_keys".path;
           # debug = true;
         };
       };

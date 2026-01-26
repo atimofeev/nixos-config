@@ -21,16 +21,6 @@ in
       sshpass # ssh auth with password
     ];
 
-    sops.secrets = {
-      "work/env/VAULT_ADDR".owner = config.custom.hm-admin;
-      "work/env/VAULT_TOKEN".owner = config.custom.hm-admin;
-    };
-
-    environment.shellInit = ''
-      export VAULT_ADDR="$(cat ${config.sops.secrets."work/env/VAULT_ADDR".path})"
-      export VAULT_TOKEN="$(cat ${config.sops.secrets."work/env/VAULT_TOKEN".path})"
-    '';
-
     home-manager.users.${config.custom.hm-admin} = {
 
       home.file.".ansible.cfg" = {

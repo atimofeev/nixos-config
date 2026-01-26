@@ -26,6 +26,7 @@
     ./system/logind.nix
     ./system/network.nix
     ./system/nix.nix
+    ./system/secrets.nix
     ./system/sops.nix
     ./system/sudo.nix
     ./system/user.nix

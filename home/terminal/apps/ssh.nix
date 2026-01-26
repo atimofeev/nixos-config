@@ -1,17 +1,13 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
 {
 
-  sops.secrets."work/ssh-config" = { };
-
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    includes = [ config.sops.secrets."work/ssh-config".path ];
     matchBlocks."*" = {
       addKeysToAgent = "yes";
       serverAliveInterval = 3;

@@ -1,9 +1,4 @@
-{ config, ... }:
 {
-
-  sops.secrets."work/gitlab-config" = {
-    path = "${config.home.homeDirectory}/repos/betby/.gitconfig";
-  };
 
   programs = {
 

@@ -9,10 +9,6 @@
 
   config = lib.mkIf config.custom.work.openvpn.enable {
 
-    sops.secrets = {
-      "work/officeVPNcreds".restartUnits = [ "openvpn-officeVPN.service" ];
-    };
-
     security = {
       sudo = {
         extraRules = [
@@ -42,14 +38,11 @@
 
       openvpn.servers = {
 
-        officeVPN = {
-          # updateResolvConf = true;
-          autoStart = false;
-          config = ''
-            config /home/${config.custom.hm-admin}/secrets/officeVPN.conf
-            auth-user-pass ${config.sops.secrets."work/officeVPNcreds".path}
-          '';
-        };
+        # NOTE: defined in ../system/secrets.nix
+        # officeVPN = {
+        #   # updateResolvConf = true;
+        #   autoStart = false;
+        # };
 
         AH-VPN = {
           autoStart = false;
