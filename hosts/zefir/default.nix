@@ -10,6 +10,7 @@
 
     inputs.nixos-hardware.nixosModules.common-cpu-intel
 
+    # ./disko-config.nix
     ./hardware-configuration.nix
 
     ../../modules/desktop/hyprland

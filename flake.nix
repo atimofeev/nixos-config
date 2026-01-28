@@ -24,17 +24,22 @@
       flake = false;
     };
 
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         dgop.follows = "dgop";
       };
+    };
+
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     github-avatar = {
