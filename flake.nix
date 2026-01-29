@@ -24,17 +24,11 @@
       flake = false;
     };
 
-    dankMaterialShell = {
+    dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        dgop.follows = "dgop";
       };
-    };
-
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {

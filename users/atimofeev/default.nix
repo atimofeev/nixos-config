@@ -50,7 +50,7 @@
 
     services = {
       cliphist.enable = true;
-      dankmaterialshell.enable = true;
+      dank-material-shell.enable = true;
       hypridle.enable = false;
       hyprpanel.enable = false;
       hyprpaper.enable = false;

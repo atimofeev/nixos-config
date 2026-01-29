@@ -32,7 +32,7 @@ in
         launcherMap = {
           rofi = config.custom-hm.applications.rofi.command;
           vicinae = config.custom-hm.services.vicinae.command;
-          dms = config.custom-hm.services.dankmaterialshell.launcher-cmd;
+          dms = config.custom-hm.services.dank-material-shell.launcher-cmd;
         };
       in
       launcherMap.${cfg.app};
