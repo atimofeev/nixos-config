@@ -18,10 +18,12 @@ in
 
   services = {
     homepage-dashboard.environmentFile = config.sops.secrets."work/homepage-env".path;
-    openvpn.servers.officeVPN.config = ''
-      config /home/${config.custom.hm-admin}/secrets/officeVPN.conf
-      auth-user-pass ${config.sops.secrets."work/vpn-creds".path}
-    '';
+    openvpn.servers.officeVPN = lib.mkIf config.custom.work.openvpn.enable {
+      config = ''
+        config /home/${config.custom.hm-admin}/secrets/officeVPN.conf
+        auth-user-pass ${config.sops.secrets."work/vpn-creds".path}
+      '';
+    };
   };
 
   sops.secrets = {
