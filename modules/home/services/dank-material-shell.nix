@@ -187,22 +187,22 @@ in
           {
             "id" = "nightMode";
             "enabled" = true;
-            "width" = 25;
+            "width" = 50;
           }
           {
             "id" = "doNotDisturb";
             "enabled" = true;
-            "width" = 25;
+            "width" = 50;
           }
           {
             "id" = "idleInhibitor";
             "enabled" = true;
-            "width" = 25;
+            "width" = 50;
           }
           {
             "id" = "colorPicker";
             "enabled" = true;
-            "width" = 25;
+            "width" = 50;
           }
         ];
         "cornerRadius" = 12;
