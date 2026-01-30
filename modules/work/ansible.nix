@@ -33,16 +33,13 @@ in
             interpreter_python = auto_silent
             inventory = /home/${config.custom.hm-admin}/repos/betby/ansible/playbooks/inventories/prod/
             max_diff_size = 0
-            private_key_file = =/home/${config.custom.hm-admin}/.ssh/id_ed25519
             [inventory]
             enable_plugins = aws_ec2, ini, yaml
           '';
       };
 
       programs.fish.shellAliases = {
-        ansible = ''ansible --extra-vars "ansible_user=${config.custom.hm-admin}"'';
         ansible-root = ''ansible --extra-vars "ansible_user=root"'';
-        ansible-playbook = ''ansible-playbook --extra-vars "ansible_user=${config.custom.hm-admin}"'';
         ansible-playbook-root = ''ansible-playbook --extra-vars "ansible_user=root"'';
       };
 
