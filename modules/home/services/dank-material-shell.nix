@@ -390,9 +390,7 @@ in
         "vpnLastConnected" = "";
         "wallpaperFillMode" = "Fill";
         "waveProgressEnabled" = true;
-        "weatherCoordinates" = "42.2885656,18.8419505";
         "weatherEnabled" = true;
-        "weatherLocation" = "Budva, Opština Budva";
         "widgetBackgroundColor" = "s";
         "widgetColorMode" = "default";
         "wifiNetworkPins" = { };
@@ -405,7 +403,7 @@ in
         "brightnessExponentValues" = { };
         "brightnessExponentialDevices" = { };
         "brightnessUserSetValues" = { };
-        "configVersion" = 1;
+        "configVersion" = 2;
         "doNotDisturb" = false;
         "enabledGpuPciIds" = [ ];
         "hiddenTrayIds" = [ ];
@@ -459,7 +457,9 @@ in
         "wallpaperPathDark" = wall.dest + "/dark-shore.png";
         "wallpaperPathLight" = wall.dest + "/dark-shore.png";
         "wallpaperTransition" = "fade";
+        "weatherCoordinates" = "42.2885656,18.8419505";
         "weatherHourlyDetailed" = true;
+        "weatherLocation" = "Budva, Opština Budva";
         "wifiDeviceOverride" = "";
       };
 
