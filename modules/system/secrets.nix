@@ -11,9 +11,11 @@ in
   # config = lib.mkIf cfg.enable {
 
   environment.shellInit = ''
-    set -a
-    source ${config.sops.secrets."work/env-vars".path}
-    set +a
+    if [ -r ${config.sops.secrets."work/env-vars".path} ]; then
+      set -a
+      source ${config.sops.secrets."work/env-vars".path}
+      set +a
+    fi
   '';
 
   services = {
