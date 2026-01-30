@@ -22,7 +22,7 @@ in
       "net.ipv6.conf.*.hop_limit" = 65;
     };
 
-    users.users = lib.attrsets.genAttrs config.custom.hm-users (u: {
+    users.users = lib.attrsets.genAttrs config.custom.hm-users (_u: {
       extraGroups = [ "networkmanager" ];
     });
 
