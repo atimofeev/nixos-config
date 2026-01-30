@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -29,7 +28,7 @@ in
   config = lib.mkIf (cfg.hm-users != null) {
 
     home-manager = {
-      extraSpecialArgs = { inherit inputs pkgs vars; };
+      extraSpecialArgs = { inherit inputs pkgs; };
 
       users = lib.attrsets.genAttrs cfg.hm-users (u: {
 
