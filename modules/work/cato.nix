@@ -41,6 +41,7 @@ in
                   "start"
                   "stop"
                   "restart"
+                  "kill"
                 ];
           }
         ];

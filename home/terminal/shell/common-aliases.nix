@@ -27,11 +27,14 @@ let
     chx = "chmod +x";
 
     # WORK
-    vpn-stop = "sudo systemctl stop openvpn-officeVPN.service";
     vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
+    vpn-start = "sudo systemctl start openvpn-officeVPN.service";
     vpn-status = "systemctl status openvpn-officeVPN.service";
-    cato-restart = "sudo pkill -9 cato-client";
+    vpn-stop = "sudo systemctl stop openvpn-officeVPN.service";
+    cato-restart = "sudo systemctl kill cato-client.service";
+    cato-start = "cato-sdp start";
     cato-status = "cato-sdp status";
+    cato-stop = "cato-sdp stop";
     d = "docker";
     dc = "docker-compose";
     t = "tofu";
