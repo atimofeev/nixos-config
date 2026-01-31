@@ -18,7 +18,7 @@ let
           set -euo pipefail
 
           # Copy original files, for each split-output (`out`, `dev` etc.).
-          # TODO: Remove hard coded refrence to pipewire so this function will
+          # TODO: Remove hard coded reference to pipewire so this function will
           #   work with any package.
           ${lib.concatStringsSep "\n" (
             map (outputName: ''
