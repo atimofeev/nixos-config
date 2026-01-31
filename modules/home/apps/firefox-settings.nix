@@ -22,6 +22,7 @@ in
     programs.firefox.profiles.default.settings = {
       "browser.aboutConfig.showWarning" = false;
       "browser.aboutwelcome.enabled" = false;
+      "browser.search.suggest.enabled" = true;
       "browser.tabs.unloadOnLowMemory" = true;
       "browser.urlbar.shortcuts.bookmarks" = false;
       "browser.urlbar.suggest.calculator" = true;
