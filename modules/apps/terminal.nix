@@ -42,19 +42,19 @@ in
       xh # curl
 
       # misc
-      fzf
-      tldr
       ani-cli
+      fzf
       gemini-cli
       nvidia-hide
+      tldr
 
       # fun
-      lolcat
-      pipes
-      cmatrix
-      neo
       cbonsai
+      cmatrix
       lavat
+      lolcat
+      neo
+      pipes
 
     ];
 
