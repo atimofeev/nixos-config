@@ -1,4 +1,4 @@
-# TODO: cleanup exessive config
+# TODO: cleanup excessive config
 {
   config,
   lib,

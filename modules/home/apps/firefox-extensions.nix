@@ -94,7 +94,7 @@ in
               styleSystemControls = true;
               darkColorScheme = "default";
               lightColorScheme = "default";
-              immedateModify = false;
+              immediateModify = false;
             };
             disabledFor =
               # (lib.importJSON inputs.self.packages.${pkgs.system}.catppuccin-userstyles-domains)
