@@ -46,6 +46,7 @@ in
       tldr
       ani-cli
       gemini-cli
+      nvidia-hide
 
       # fun
       lolcat
