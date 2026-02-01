@@ -21,7 +21,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.fish.shellAliases.vcv-config-source = "${vcv-config-source}";
+    custom-hm.user.shellAliases.vcv-config-source = "${vcv-config-source}";
     home.packages = [ cfg.package ];
   };
 

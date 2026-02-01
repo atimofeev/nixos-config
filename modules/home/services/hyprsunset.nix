@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.custom-hm.services.hyprsunset;
 in
@@ -35,6 +40,11 @@ in
         StartLimitBurst = 5;
         StartLimitIntervalSec = 120;
       };
+    };
+
+    custom-hm.user.shellAliases = {
+      sunrise = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 6500";
+      sunset = "${lib.getExe' pkgs.hyprland "hyprctl"} hyprsunset temperature 5000";
     };
 
   };

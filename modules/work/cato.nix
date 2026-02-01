@@ -26,26 +26,24 @@ in
 
       pki.certificateFiles = [ catoCAPem ];
 
-      sudo = {
-        extraRules = [
-          {
-            groups = [ "wheel" ];
-            runAs = "root";
-            commands =
-              map
-                (action: {
-                  command = "/run/current-system/sw/bin/systemctl ${action} cato-client.service";
-                  options = [ "NOPASSWD" ];
-                })
-                [
-                  "start"
-                  "stop"
-                  "restart"
-                  "kill"
-                ];
-          }
-        ];
-      };
+      sudo.extraRules = [
+        {
+          groups = [ "wheel" ];
+          runAs = "root";
+          commands =
+            map
+              (action: {
+                command = "/run/current-system/sw/bin/systemctl ${action} cato-client.service";
+                options = [ "NOPASSWD" ];
+              })
+              [
+                "kill"
+                "restart"
+                "start"
+                "stop"
+              ];
+        }
+      ];
 
     };
 
@@ -54,15 +52,26 @@ in
       inherit (cfg) package;
     };
 
-    home-manager.users.${config.custom.hm-admin}.programs.firefox.policies = {
-      Certificates = {
-        ImportEnterpriseRoots = true;
-        Install = [ catoCAPem ];
+    home-manager.users.${config.custom.hm-admin} = {
+
+      programs.firefox.policies = {
+        Certificates = {
+          ImportEnterpriseRoots = true;
+          Install = [ catoCAPem ];
+        };
+        DNSOverHTTPS = {
+          Enabled = false;
+          Locked = true;
+        };
       };
-      DNSOverHTTPS = {
-        Enabled = false;
-        Locked = true;
+
+      custom-hm.user.shellAliases = {
+        cato-restart = "sudo systemctl kill cato-client.service";
+        cato-start = "cato-sdp start";
+        cato-status = "cato-sdp status";
+        cato-stop = "cato-sdp stop";
       };
+
     };
 
   };

@@ -26,7 +26,7 @@ in
 
     # NOTE: reconnect to fix stuck handsfree on Marshall Motif II
     home-manager.users = lib.attrsets.genAttrs config.custom.hm-users (u: {
-      programs.fish.shellAliases.reconnect-motif2 = reconnect-motif2-exec;
+      custom-hm.user.shellAliases.reconnect-motif2 = reconnect-motif2-exec;
       wayland.windowManager.hyprland.settings.bind = [ "SUPER, R, exec, ${reconnect-motif2-exec}" ];
     });
 

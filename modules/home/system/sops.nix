@@ -3,6 +3,7 @@
   inputs,
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 let
@@ -22,10 +23,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
     sops = {
       age = { inherit (osConfig.sops.age) sshKeyPaths; };
       inherit (osConfig.sops) defaultSopsFile defaultSopsFormat;
     };
+
+    custom-hm.user.shellAliases = {
+      sops-common = "SOPS_AGE_KEY=$(${lib.getExe pkgs.ssh-to-age} -private-key -i ~/.ssh/id_ed25519) sops ~/repos/nixos-config/secrets/common.yaml";
+      sops-host = "SOPS_AGE_KEY=$(${lib.getExe pkgs.ssh-to-age} -private-key -i ~/.ssh/id_ed25519) sops ~/repos/nixos-config/secrets/${osConfig.networking.hostName}.yaml";
+    };
+
   };
 
 }

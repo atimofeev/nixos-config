@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
   tail = pkgs.writeShellScript "tail" ''
     file="$1"
@@ -28,22 +23,16 @@ let
 
     exec bat "$file" --style=plain --paging=never --line-range 1:"$show"'';
 
-  commonAliases = {
+in
+{
+
+  custom-hm.user.shellAliases = {
     less = "bat --style=auto";
     cat = "bat --style=plain --paging=never";
     tail = "${tail}";
     head = "${head}";
   };
-in
-{
-  programs = {
 
-    bat.enable = true;
-
-    bash = lib.mkIf config.programs.bash.enable { shellAliases = commonAliases; };
-    fish = lib.mkIf config.programs.fish.enable { shellAliases = commonAliases; };
-    nushell = lib.mkIf config.programs.nushell.enable { shellAliases = commonAliases; };
-    zsh = lib.mkIf config.programs.zsh.enable { shellAliases = commonAliases; };
-  };
+  programs.bat.enable = true;
 
 }

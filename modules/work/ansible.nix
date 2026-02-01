@@ -38,7 +38,7 @@ in
           '';
       };
 
-      programs.fish.shellAliases = {
+      custom-hm.user.shellAliases = {
         ansible-root = ''ansible --extra-vars "ansible_user=root"'';
         ansible-playbook-root = ''ansible-playbook --extra-vars "ansible_user=root"'';
       };
