@@ -16,10 +16,32 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    # NOTE: https://github.com/NixOS/nixpkgs/issues/455932
     # programs.rog-control-center = {
     #   enable = true;
     #   autoStart = true;
     # };
+
+    systemd.user.services.rog-control-center =
+      let
+        target = "graphical-session.target";
+      in
+      {
+        description = "rog-control-center";
+        after = [ target ];
+        partOf = [ target ];
+        startLimitBurst = 5;
+        startLimitIntervalSec = 120;
+        wantedBy = [ target ];
+
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = lib.getExe' cfg.package "rog-control-center";
+          Restart = "always";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
 
     custom.services.power-profiles-daemon.enable = true;
 
