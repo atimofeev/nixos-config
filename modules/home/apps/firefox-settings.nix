@@ -45,7 +45,7 @@ in
       "font.name.sans-serif.x-western" = "DejaVuSansM Nerd Font";
       "font.name.serif.x-western" = "DejaVuSansM Nerd Font";
 
-      # diable fullscreen notification
+      # disable fullscreen notification
       "full-screen-api.transition-duration.enter" = "0 0";
       "full-screen-api.transition-duration.leave" = "0 0";
       "full-screen-api.warning.delay" = -1;
