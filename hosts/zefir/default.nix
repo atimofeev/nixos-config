@@ -143,11 +143,12 @@
         package = pkgs.unstable.cato-client;
       };
       kube-tools.enable = true;
+      misc-tools.enable = true;
       opentofu = {
         enable = true;
         package = pkgs.unstable.opentofu;
       };
-      misc-tools.enable = true;
+      # openvpn.enable = true;
       wpa2-enterprise-fix.enable = true;
     };
 

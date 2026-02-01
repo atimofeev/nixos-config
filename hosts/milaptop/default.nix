@@ -116,7 +116,6 @@
     };
 
     work = {
-      openvpn.enable = true;
       ansible = {
         enable = true;
         package = pkgs.ansible_2_17;
@@ -135,6 +134,7 @@
         enable = true;
         package = pkgs.unstable.opentofu;
       };
+      openvpn.enable = true;
       wpa2-enterprise-fix.enable = true;
     };
 
