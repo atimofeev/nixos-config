@@ -88,6 +88,10 @@
         zsa.enable = true;
       };
       power.enable = true;
+      rog-control-center = {
+        enable = true;
+        target = "dms.service";
+      };
       sound.enable = true;
       ssd.enable = true;
     };

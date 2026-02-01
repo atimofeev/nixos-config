@@ -11,6 +11,7 @@
     ./hardware/nvidia.nix
     ./hardware/power.nix
     ./hardware/razer.nix
+    ./hardware/rog-control-center.nix
     ./hardware/sound.nix
     ./hardware/ssd.nix
     ./hardware/zsa.nix
