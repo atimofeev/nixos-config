@@ -97,6 +97,7 @@
     };
 
     services = {
+      dbus.enable = true;
       docker.enable = true;
       homepage = {
         enable = true;

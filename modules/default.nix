@@ -39,6 +39,7 @@
 
     ./services/auto-cpufreq.nix
     ./services/convertx.nix
+    ./services/dbus.nix
     ./services/docker.nix
     ./services/homepage
     ./services/kanata.nix

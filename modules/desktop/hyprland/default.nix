@@ -15,8 +15,6 @@
   };
 
   services = {
-    dbus.implementation = "broker";
-
     greetd = {
       enable = true;
       settings = {
