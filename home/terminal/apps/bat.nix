@@ -26,13 +26,18 @@ let
 in
 {
 
+  home.sessionVariables = {
+    # MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    # MANROFFOPT = "-c";
+  };
+
+  programs.bat.enable = true;
+
   custom-hm.user.shellAliases = {
     less = "bat --style=auto";
     cat = "bat --style=plain --paging=never";
     tail = "${tail}";
     head = "${head}";
   };
-
-  programs.bat.enable = true;
 
 }

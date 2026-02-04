@@ -1,10 +1,16 @@
 { pkgs, ... }:
 {
+
   imports = [
     ./plugins
     ./keymap.nix
     ./options.nix
   ];
+
+  home.sessionVariables = {
+    MANPAGER = "nvim +Man!";
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
