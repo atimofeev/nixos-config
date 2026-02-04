@@ -99,6 +99,7 @@
     services = {
       dbus.enable = true;
       docker.enable = true;
+      greetd.enable = true;
       homepage = {
         enable = true;
         background_image = inputs.walls + "/dark-shore.png";

@@ -41,6 +41,7 @@
     ./services/convertx.nix
     ./services/dbus.nix
     ./services/docker.nix
+    ./services/greetd.nix
     ./services/homepage
     ./services/kanata.nix
     ./services/logrotate-nvim.nix
