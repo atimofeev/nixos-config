@@ -46,6 +46,14 @@ in
             ];
             ignorePerms = true;
           };
+          sims4-saves = {
+            path = "${config.home.homeDirectory}/.local/share/Steam/steamapps/compatdata/1222670/pfx/drive_c/users/steamuser/My Documents/Electronic Arts/The Sims 4/saves/";
+            devices = [
+              "milaptop"
+              "zefir"
+            ];
+            ignorePerms = true;
+          };
         };
 
       };
