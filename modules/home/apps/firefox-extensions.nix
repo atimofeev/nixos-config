@@ -100,6 +100,7 @@ in
               # (lib.importJSON inputs.self.packages.${pkgs.system}.catppuccin-userstyles-domains)
               # ++ [
               [
+                "*:8384" # syncthing
                 "localhost:*"
                 "configure.zsa.io"
                 "en.wikipedia.org"
