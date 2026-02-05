@@ -35,6 +35,7 @@ in
       "extensions.getAddons.showPane" = false;
       "extensions.htmlaboutaddons.recommendations.enabled" = false;
       "findbar.highlightAll" = true;
+      "middlemouse.paste" = false;
 
       # smoother scrolling
       "mousewheel.min_line_scroll_amount" = 25;
