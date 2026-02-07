@@ -9,6 +9,15 @@ let
 in
 {
 
+  imports = [
+    ./betterfox.nix
+    ./extensions.nix
+    ./policies.nix
+    ./search.nix
+    ./settings.nix
+    ./user-content.nix
+  ];
+
   options.custom-hm.applications.firefox = {
     enable = lib.mkEnableOption "firefox bundle";
     package = lib.mkPackageOption pkgs "firefox" { };

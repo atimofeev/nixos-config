@@ -69,7 +69,7 @@ in
         "3rdparty".Extensions = {
           "surfingkeys@brookhong.github.io" = {
             showAdvanced = true;
-            snippets = builtins.readFile ./firefox-surfingkeys.js;
+            snippets = builtins.readFile ./surfingkeys.js;
           };
           "addon@darkreader.org" = {
             syncSettings = false;
