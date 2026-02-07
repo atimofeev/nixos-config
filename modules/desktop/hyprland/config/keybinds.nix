@@ -26,9 +26,9 @@ let
   yazi = lib.getExe pkgs.yazi;
 
   asus-switch-profile = pkgs.writeShellScript "asus-switch-profile" ''
-    asusctl profile -n >/dev/null 2>&1
-    name="$(asusctl profile -p | sed -n 's/.*Active profile is *//p')"
-    notify-send -i power-profile-performance-symbolic "ASUS Profile" "$name"
+    asusctl profile next 
+    name="$(asusctl profile get | sed -n 's/.*Active profile: //p')"
+    notify-send -i power-profile-performance-symbolic "$name" "ASUS Profile" 
   '';
 
   toggle-touchpad = pkgs.writeShellScript "toggle-touchpad" ''
