@@ -16,6 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     services.greetd = {
       enable = true;
+      useTextGreeter = true;
       settings = {
         default_session = {
           command = lib.concatStringsSep " " [
@@ -31,19 +32,7 @@ in
           user = "greeter";
         };
       };
-
     };
-
-    # NOTE: prevent systemd messages appearing on top of greetd
-    systemd.services.greetd.serviceConfig = {
-      Type = "idle";
-      StandardOutput = "tty";
-      StandardError = "journal";
-      TTYReset = true;
-      TTYVHangup = true;
-      TTYVTDisallocate = true;
-    };
-
   };
 
 }
