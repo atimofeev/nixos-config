@@ -45,6 +45,7 @@
     ./services/homepage
     ./services/kanata.nix
     ./services/logrotate-nvim.nix
+    ./services/netbootxyz.nix
     ./services/ollama.nix
     ./services/pihole.nix
     ./services/power-profiles-daemon.nix
