@@ -49,6 +49,7 @@ in
           "zen.view.show-newtab-button-top" = false;
           "zen.view.window.scheme" = 0;
           "zen.welcome-screen.seen" = true;
+          "zen.window-sync.enabled" = false;
           "zen.workspaces.continue-where-left-off" = true;
           # "zen.view.compact.animate-sidebar" = false;
           # "zen.workspaces.natural-scroll" = true;
