@@ -37,6 +37,7 @@
     ./apps/gui.nix
     ./apps/terminal.nix
 
+    ./services/accounts-daemon.nix
     ./services/auto-cpufreq.nix
     ./services/convertx.nix
     ./services/dbus.nix

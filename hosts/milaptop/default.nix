@@ -97,6 +97,7 @@
     };
 
     services = {
+      accounts-daemon.enable = true;
       dbus.enable = true;
       docker.enable = true;
       greetd.enable = true;
