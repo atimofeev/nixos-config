@@ -3,11 +3,17 @@
   lib,
   ...
 }:
+let
+  cfg = config.custom.work.openvpn;
+in
 {
 
-  options.custom.work.openvpn.enable = lib.mkEnableOption "OpenVPN client bundle";
+  options.custom.work.openvpn = {
+    enable = lib.mkEnableOption "OpenVPN client bundle";
+    autoStart = lib.mkEnableOption "Autostart main VPN connection";
+  };
 
-  config = lib.mkIf config.custom.work.openvpn.enable {
+  config = lib.mkIf cfg.enable {
 
     security.sudo.extraRules = [
       {
@@ -29,11 +35,11 @@
 
     services.openvpn.servers = {
 
-      # NOTE: defined in ../system/secrets.nix
-      # officeVPN = {
-      #   # updateResolvConf = true;
-      #   autoStart = false;
-      # };
+      # NOTE: config defined in ../system/secrets.nix
+      officeVPN = {
+        # updateResolvConf = true;
+        inherit (cfg) autoStart;
+      };
 
       AH-VPN = {
         autoStart = false;
