@@ -19,7 +19,7 @@
   ];
 
   # Asus Zephyrus G16 2025 GU605CR
-  # CPU: Intel Core Ultra 9 285H
+  # CPU: Intel Core Ultra 9 285H (Arrow Lake-H)
   # iGPU: Intel Arc 140T
   # dGPU: Nvidia RTX 5070 Ti (Blackwell)
 
