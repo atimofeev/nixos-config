@@ -102,12 +102,17 @@ in
               [
                 "*:8384" # syncthing
                 "localhost:*"
+                "*.awsapps.com"
                 "configure.zsa.io"
+                "console.hetzner.com"
+                "dash.cloudflare.com"
+                "diffchecker.com"
                 "en.wikipedia.org"
                 "gemini.google.com"
                 "github.com"
                 "mail.google.com"
                 "registry.terraform.io"
+                "robot.hetzner.com"
                 "vault.bitwarden.eu"
               ];
           };
