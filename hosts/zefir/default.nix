@@ -102,6 +102,11 @@
         enable = true;
         kernelPackages = pkgs.linux-g14;
       };
+      catppuccin = {
+        enable = true;
+        accent = "lavender";
+        flavor = "mocha";
+      };
       fonts.enable = true;
       lanzaboote.enable = true;
       locale = {

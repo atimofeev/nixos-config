@@ -75,6 +75,11 @@
         enable = true;
         kernelPackages = pkgs.linuxPackages_6_18;
       };
+      catppuccin = {
+        enable = true;
+        accent = "lavender";
+        flavor = "mocha";
+      };
       fonts.enable = true;
       lanzaboote.enable = true;
       locale = {
