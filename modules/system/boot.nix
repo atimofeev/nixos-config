@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "boot bundle";
     kernelPackages = lib.mkOption {
       default = null;
-      type = lib.types.raw;
+      type = lib.types.nullOr lib.types.raw;
     };
   };
 

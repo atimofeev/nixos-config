@@ -8,11 +8,11 @@ in
     enable = lib.mkEnableOption "locale bundle";
     defaultLocale = lib.mkOption {
       default = null;
-      type = lib.types.str;
+      type = lib.types.nullOr lib.types.str;
     };
     extraLocale = lib.mkOption {
       default = null;
-      type = lib.types.str;
+      type = lib.types.nullOr lib.types.str;
     };
   };
 
