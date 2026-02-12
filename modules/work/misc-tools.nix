@@ -22,6 +22,7 @@ in
       awscli2
       cloudlens
       dig
+      jira-cli-go
       lazysql
       nettools
       pgcli

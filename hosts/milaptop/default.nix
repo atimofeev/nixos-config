@@ -127,10 +127,6 @@
         enable = true;
         package = pkgs.unstable.cato-client;
       };
-      jira-cli = {
-        enable = true;
-        package = pkgs.unstable.jira-cli-go;
-      };
       kube-tools.enable = true;
       misc-tools.enable = true;
       opentofu = {
