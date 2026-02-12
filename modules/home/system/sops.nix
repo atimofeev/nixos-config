@@ -8,7 +8,6 @@
 }:
 let
   cfg = config.custom-hm.system.sops;
-  osEnabled = (osConfig ? sops) && ((osConfig.sops.defaultSopsFile or null) != null);
 in
 {
 
@@ -17,7 +16,7 @@ in
   options.custom-hm.system.sops = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = osEnabled;
+      default = osConfig.custom.system.sops.enable;
       description = "Enable sops integration. Defaults to enabled if system sops is configured.";
     };
   };

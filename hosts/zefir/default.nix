@@ -116,6 +116,7 @@
       };
       logind.enable = true;
       network.enable = true;
+      sops.enable = true;
     };
 
     applications = {

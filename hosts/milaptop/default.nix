@@ -92,6 +92,7 @@
         enable = true;
         hotspot-bypass = true;
       };
+      sops.enable = true;
     };
 
     applications = {
