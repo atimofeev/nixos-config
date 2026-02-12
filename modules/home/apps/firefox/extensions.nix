@@ -102,6 +102,7 @@ in
               [
                 "*:8384" # syncthing
                 "localhost:*"
+                "*.atlassian.net"
                 "*.awsapps.com"
                 "configure.zsa.io"
                 "console.hetzner.com"
