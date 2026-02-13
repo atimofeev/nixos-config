@@ -29,6 +29,15 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    # HACK: https://github.com/AvengeMedia/DankMaterialShell/issues/1073
+    # fix for autostart apps tray functionality
+    systemd.user.services.dms = {
+      Service.ExecStartPost = "${pkgs.coreutils}/bin/sleep 5";
+      Unit.Before = [
+        "xdg-desktop-autostart.target"
+      ];
+    };
+
     programs.dank-material-shell = {
       enable = true;
 

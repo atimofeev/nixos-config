@@ -18,6 +18,11 @@ in
 
     custom.services.power-profiles-daemon.enable = true;
 
+    programs.rog-control-center = {
+      enable = true;
+      autoStart = true;
+    };
+
     services = {
 
       supergfxd = {
