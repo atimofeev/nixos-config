@@ -342,6 +342,15 @@ in
             ];
           })
           {
+            keybr = [
+              {
+                abbr = "KB";
+                href = "https://keybr.com/";
+                icon = "mdi-keyboard-#FFFFFF";
+              }
+            ];
+          }
+          {
             diffchecker = [
               {
                 abbr = "DC";
@@ -356,6 +365,15 @@ in
                 abbr = "DR";
                 href = "https://app.diagrams.net/";
                 icon = "diagrams-net.svg";
+              }
+            ];
+          }
+          {
+            tldraw = [
+              {
+                abbr = "TD";
+                href = "https://tldraw.com/";
+                icon = "si-tldraw-#FFFFFF";
               }
             ];
           }
