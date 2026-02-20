@@ -19,7 +19,7 @@ let
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
   playerctl = lib.getExe pkgs.playerctl;
-  spotify_player = lib.getExe' pkgs.spotify-player "spotify_player";
+  spotify_player = lib.getExe' config.programs.spotify-player.package "spotify_player";
   swappy = lib.getExe pkgs.swappy;
   wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
