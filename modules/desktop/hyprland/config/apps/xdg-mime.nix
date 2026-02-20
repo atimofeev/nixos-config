@@ -2,7 +2,7 @@
 # example: https://github.com/gytis-ivaskevicius/nixfiles/blob/f644edf7abbc5c8190421b88408a23ce73f53a4b/home-manager/common.nix#L48
 let
   editor = [ "nvim.desktop" ];
-  browser = [ "firefox.desktop" ];
+  browser = [ "zen-beta.desktop" ];
   fileBrowser = [ "yazi.desktop" ];
   imageViewer = [ "org.gnome.Loupe.desktop" ]; # TODO: change to sxiv/feh
   # https://www.youtube.com/watch?v=GYW9i_u5PYs
