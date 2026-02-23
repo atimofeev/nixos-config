@@ -64,34 +64,6 @@ in
           inherit (firefoxCfg.search) engines;
         };
 
-        pinsForce = true;
-        pins = {
-          "Gmail" = {
-            id = "1eabb6a3-911b-4fa9-9eaf-232a3703db19";
-            workspace = spaces."Work".id;
-            url = "https://mail.google.com/mail/u/0/#inbox";
-            position = 102;
-            isEssential = false;
-            editedTitle = true;
-          };
-          "Gcalendar" = {
-            id = "5065293b-1c04-40ee-ba1d-99a231873864";
-            workspace = spaces."Work".id;
-            url = "https://calendar.google.com/calendar/u/0/r";
-            position = 103;
-            isEssential = false;
-            editedTitle = true;
-          };
-          "Miro" = {
-            id = "e1aa0661-70a8-4ea7-a311-3d5a5c8ee218";
-            workspace = spaces."Work".id;
-            url = "https://miro.com";
-            position = 104;
-            isEssential = false;
-            editedTitle = true;
-          };
-        };
-
         spacesForce = true;
         spaces = {
           "Work" = {
