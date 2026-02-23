@@ -41,11 +41,6 @@
     };
   };
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x5917", SYMLINK+="dri/igpu"
-    SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x1d12", SYMLINK+="dri/dgpu"
-  '';
-
   custom = {
 
     user-shell = "fish";
@@ -57,6 +52,11 @@
 
     hardware = {
       bluetooth.enable = true;
+      gpu-ordering = {
+        enable = true;
+        dgpu = "0x8086:0x5917";
+        igpu = "0x10de:0x1d12";
+      };
       nvidia.enable = true;
       peripherals = {
         zsa.enable = true;
