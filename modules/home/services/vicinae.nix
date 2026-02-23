@@ -25,6 +25,21 @@ in
       enable = true;
       inherit (cfg) package;
       systemd.enable = true;
+      settings = {
+        faviconService = "twenty";
+        font = {
+          size = 11.5;
+        };
+        popToRootOnClose = false;
+        rootSearch = {
+          searchFiles = false;
+        };
+        window = {
+          csd = true;
+          opacity = 1;
+          rounding = 10;
+        };
+      };
       extensions = [
         (config.lib.vicinae.mkRayCastExtension {
           name = "gif-search";
