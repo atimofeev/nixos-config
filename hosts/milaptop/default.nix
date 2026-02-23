@@ -20,7 +20,7 @@
   ];
 
   # Xiaomi Mi Notebook Pro 15.6 2018
-  # CPU: i7-8550U (Kaby Lake)
+  # CPU: Intel Core i7-8550U (Kaby Lake)
   # iGPU: UHD Graphics 620
   # dGPU: Nvidia MX150 (Pascal)
 
