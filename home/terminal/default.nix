@@ -17,7 +17,6 @@ _: {
     ./apps/kubecolor.nix
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
-    ./apps/spotify-player.nix
     ./apps/ssh.nix
     ./apps/starship.nix
     ./apps/tealdeer.nix

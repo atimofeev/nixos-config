@@ -43,6 +43,10 @@
       obsidian.enable = true;
       qbittorrent.enable = true;
       rofi.enable = true;
+      spotify-player = {
+        enable = true;
+        package = pkgs.unstable.spotify-player;
+      };
       swappy.enable = true;
       vcv-rack.enable = true;
       zathura.enable = true;
