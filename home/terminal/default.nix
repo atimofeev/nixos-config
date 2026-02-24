@@ -16,7 +16,6 @@ _: {
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
     ./apps/ssh.nix
-    ./apps/starship.nix
     ./apps/tealdeer.nix
 
   ];

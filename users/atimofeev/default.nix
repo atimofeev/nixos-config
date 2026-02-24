@@ -49,6 +49,7 @@
         enable = true;
         package = pkgs.unstable.spotify-player;
       };
+      starship.enable = true;
       swappy.enable = true;
       vcv-rack.enable = true;
       yazi.enable = true;
