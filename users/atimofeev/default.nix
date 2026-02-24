@@ -51,6 +51,7 @@
       vcv-rack.enable = true;
       zathura.enable = true;
       zen-browser.enable = true;
+      zoxide.enable = true;
     };
 
     services = {

@@ -21,7 +21,6 @@ _: {
     ./apps/starship.nix
     ./apps/tealdeer.nix
     ./apps/yazi.nix
-    ./apps/zoxide.nix
 
   ];
 
