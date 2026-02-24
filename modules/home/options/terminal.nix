@@ -1,4 +1,7 @@
-{ lib, ... }:
+{ config, lib, ... }:
+let
+  cfg = config.custom-hm.user;
+in
 {
 
   options.custom-hm.user = {
@@ -8,6 +11,10 @@
       type = lib.types.str;
     };
 
+  };
+
+  config = {
+    home.sessionVariables.TERMINAL = cfg.terminal;
   };
 
 }
