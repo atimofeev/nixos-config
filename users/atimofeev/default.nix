@@ -29,6 +29,7 @@
     applications = {
       atuin.enable = true;
       btop.enable = true;
+      carapace.enable = true;
       firefox = {
         enable = true;
         betterfox = {
