@@ -52,6 +52,11 @@ in
       inherit (cfg) package;
     };
 
+    # NOTE: not sure if this has any effect
+    systemd.services.cato-client.serviceConfig = {
+      ExecStart = lib.mkForce "${cfg.package}/bin/cato-clientd systemd --use-systemd-resolv";
+    };
+
     home-manager.users.${config.custom.hm-admin} = {
 
       programs.firefox.policies = {
