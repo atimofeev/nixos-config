@@ -30,6 +30,7 @@
       atuin.enable = true;
       btop.enable = true;
       carapace.enable = true;
+      eza.enable = true;
       firefox = {
         enable = true;
         betterfox = {

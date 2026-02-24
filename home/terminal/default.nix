@@ -11,7 +11,6 @@ _: {
     ./apps/k9s
 
     ./apps/bat.nix
-    ./apps/eza.nix
     ./apps/git.nix
     ./apps/htop.nix
     ./apps/kubecolor.nix
