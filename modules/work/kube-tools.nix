@@ -37,6 +37,15 @@ in
       stern
       talosctl
     ];
+
+    # TODO: improve colorscheme (or even port catppuccin?)
+    # https://kubecolor.github.io/customizing/themes/
+    # https://kubecolor.github.io/reference/config/
+    home-manager.users.${config.custom.hm-admin}.programs.kubecolor = {
+      enable = true;
+      enableAlias = true;
+    };
+
   };
 
 }

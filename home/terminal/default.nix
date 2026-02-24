@@ -12,7 +12,6 @@ _: {
 
     ./apps/bat.nix
     ./apps/htop.nix
-    ./apps/kubecolor.nix
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
     ./apps/ssh.nix
