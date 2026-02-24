@@ -11,7 +11,7 @@ in
 
   options.custom-hm.applications.carapace = {
     enable = lib.mkEnableOption "carapace bundle";
-    package = lib.mkPackageOption pkgs "carapace";
+    package = lib.mkPackageOption pkgs "carapace" { };
   };
 
   config = lib.mkIf cfg.enable {
