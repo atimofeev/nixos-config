@@ -13,7 +13,6 @@ _: {
     ./apps/bat.nix
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
-    ./apps/ssh.nix
 
   ];
 

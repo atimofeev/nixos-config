@@ -53,6 +53,11 @@
         enable = true;
         package = pkgs.unstable.spotify-player;
       };
+      ssh = {
+        enable = true;
+        agent = true;
+        ssh-add-on-boot = true;
+      };
       starship.enable = true;
       swappy.enable = true;
       tealdeer.enable = true;
