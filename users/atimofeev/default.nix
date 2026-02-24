@@ -40,6 +40,7 @@
           };
         };
       };
+      git.enable = true;
       mpv.enable = true;
       obsidian.enable = true;
       qbittorrent.enable = true;
