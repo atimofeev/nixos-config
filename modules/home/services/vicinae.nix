@@ -27,6 +27,7 @@ in
       systemd.enable = true;
       settings = {
         faviconService = "twenty";
+        favorites = [ "applications:zen-beta" ];
         font = {
           size = 11.5;
         };
