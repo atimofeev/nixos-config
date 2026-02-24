@@ -49,6 +49,7 @@
       mpv.enable = true;
       obsidian.enable = true;
       qbittorrent.enable = true;
+      ripgrep.enable = true;
       rofi.enable = true;
       spotify-player = {
         enable = true;

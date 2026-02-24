@@ -11,7 +11,6 @@ _: {
     ./apps/k9s
 
     ./apps/playerctl.nix
-    ./apps/ripgrep.nix
 
   ];
 
