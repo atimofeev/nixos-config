@@ -26,10 +26,6 @@ in
       # import tools
       terraformer
       cf-terraforming
-
-      # misc
-      tenv # https://github.com/tofuutils/tenv-nix#usage
-      unstable.tftui
     ]);
 
   };
