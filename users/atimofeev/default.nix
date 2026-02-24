@@ -49,6 +49,7 @@
       };
       swappy.enable = true;
       vcv-rack.enable = true;
+      yazi.enable = true;
       zathura.enable = true;
       zen-browser.enable = true;
       zoxide.enable = true;

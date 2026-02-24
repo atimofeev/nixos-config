@@ -20,7 +20,6 @@ _: {
     ./apps/ssh.nix
     ./apps/starship.nix
     ./apps/tealdeer.nix
-    ./apps/yazi.nix
 
   ];
 
