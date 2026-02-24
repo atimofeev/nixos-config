@@ -55,6 +55,7 @@
       };
       starship.enable = true;
       swappy.enable = true;
+      tealdeer.enable = true;
       vcv-rack.enable = true;
       yazi.enable = true;
       zathura.enable = true;
