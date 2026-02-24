@@ -11,7 +11,6 @@ _: {
     ./apps/k9s
 
     ./apps/bat.nix
-    ./apps/htop.nix
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
     ./apps/ssh.nix

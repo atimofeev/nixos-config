@@ -41,6 +41,10 @@
         };
       };
       git.enable = true;
+      htop = {
+        enable = true;
+        package = pkgs.htop-vim;
+      };
       mpv.enable = true;
       obsidian.enable = true;
       qbittorrent.enable = true;
