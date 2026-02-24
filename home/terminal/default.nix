@@ -10,7 +10,6 @@ _: {
     ./apps/nvim
     ./apps/k9s
 
-    ./apps/bat.nix
     ./apps/playerctl.nix
     ./apps/ripgrep.nix
 
