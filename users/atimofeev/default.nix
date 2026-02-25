@@ -3,6 +3,8 @@
 
   imports = [
 
+    ./shell-aliases.nix
+
     ../../home/terminal
 
   ];

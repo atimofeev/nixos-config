@@ -2,7 +2,6 @@ _: {
 
   imports = [
 
-    ./shell/common-aliases.nix
     ./shell/nushell.nix
 
     ./apps/nvim
