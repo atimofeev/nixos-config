@@ -71,7 +71,7 @@ in
       };
 
       custom-hm.user.shellAliases = {
-        cato-restart = "sudo systemctl kill cato-client.service && sudo sed -i '/10.254.254.1/d' /etc/resolv.conf";
+        cato-restart = "sudo systemctl kill cato-client.service; sudo sed -i '/10.254.254.1/d' /etc/resolv.conf";
         cato-start = "cato-sdp start";
         cato-status = "cato-sdp status";
         cato-stop = "cato-sdp stop";
