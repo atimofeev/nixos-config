@@ -3,6 +3,8 @@
 
   # TODO: learn nu https://www.nushell.sh/book/getting_started.html
   # TODO: configure https://www.nushell.sh/book/configuration.html
+  # TODO: add plugins https://search.nixos.org/packages?channel=25.11&query=nushellPlugins
+  # https://github.com/stars/atimofeev/lists/nushell
 
   # FIX: kubie prompt breaks nushell
   home.file."kubie.yaml" = {
