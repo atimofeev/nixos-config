@@ -28,6 +28,7 @@
 
     applications = {
       atuin.enable = true;
+      bash.enable = true;
       bat.enable = true;
       btop.enable = true;
       carapace.enable = true;
