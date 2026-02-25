@@ -3,7 +3,6 @@ _: {
   imports = [
 
     ./shell/common-aliases.nix
-    ./shell/fish.nix
     ./shell/nushell.nix
 
     ./apps/nvim
