@@ -51,6 +51,7 @@
         package = pkgs.htop-vim;
       };
       mpv.enable = true;
+      nushell.enable = true;
       obsidian.enable = true;
       qbittorrent.enable = true;
       ripgrep.enable = true;
