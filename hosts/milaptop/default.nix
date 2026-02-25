@@ -131,7 +131,7 @@
       };
       cato = {
         enable = true;
-        package = pkgs.unstable.cato-client;
+        # package = pkgs.unstable.cato-client;
       };
       kube-tools.enable = true;
       misc-tools.enable = true;
