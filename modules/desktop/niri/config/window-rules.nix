@@ -28,6 +28,7 @@
     {
       matches = [
         { app-id = "kitty"; }
+        { app-id = "Slack"; }
       ];
       open-maximized = false;
     }
