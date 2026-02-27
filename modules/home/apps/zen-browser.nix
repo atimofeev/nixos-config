@@ -43,6 +43,7 @@ in
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # enables css theming
           "zen.tabs.show-newtab-vertical" = false;
           "zen.theme.accent-color" = "#8aadf4";
+          "zen.theme.content-element-separation" = 1;
           "zen.urlbar.behavior" = "float";
           "zen.view.compact.enable-at-startup" = true;
           "zen.view.compact.hide-tabbar" = true;
