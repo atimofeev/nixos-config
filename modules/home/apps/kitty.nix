@@ -68,6 +68,13 @@ in
 
     };
 
+    # Tricks GLib into using Kitty by pretending to be xterm
+    home.packages = [
+      (pkgs.writeShellScriptBin "xterm" ''
+        exec ${pkgs.kitty}/bin/kitty "$@"
+      '')
+    ];
+
     xdg.configFile."kitty/diff.conf" =
       let
         themeSource =

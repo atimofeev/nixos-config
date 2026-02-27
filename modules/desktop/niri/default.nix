@@ -11,7 +11,10 @@
 
   programs = {
 
-    niri.enable = true;
+    niri = {
+      enable = true;
+      useNautilus = false;
+    };
 
     uwsm.waylandCompositors.niri = {
       prettyName = "Niri";
