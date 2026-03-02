@@ -41,6 +41,11 @@
     };
   };
 
+  services.scx = {
+    enable = true;
+    scheduler = "scx_rustland";
+  };
+
   custom = {
 
     user-shell = "fish";
