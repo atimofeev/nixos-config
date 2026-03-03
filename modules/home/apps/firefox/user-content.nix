@@ -24,7 +24,7 @@ in
         /* dark background for default tabs */
         @-moz-document url("about:home"), url("about:blank"), url("about:newtab") {
           body {
-            background-color: #24273a !important;
+            background-color: #1e1e2e !important;
           }
         }
       '';
