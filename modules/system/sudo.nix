@@ -2,6 +2,10 @@
 
   security.sudo = {
     enable = true;
+    extraConfig = ''
+      Defaults pwfeedback
+      Defaults insults
+    '';
     extraRules = [
       {
         groups = [ "wheel" ];
