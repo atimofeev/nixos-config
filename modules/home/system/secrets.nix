@@ -14,9 +14,9 @@ in
 
     programs = {
       hyprpanel.settings.menus.clock.weather.key = config.sops.secrets."personal/weather-api".path;
-      spotify-player.settings.client_id_command = "cat ${
-        config.sops.secrets."personal/spotify-client-id".path
-      }";
+      # spotify-player.settings.client_id_command = "cat ${
+      #   config.sops.secrets."personal/spotify-client-id".path
+      # }";
       ssh.includes = [ config.sops.secrets."work/ssh-config".path ];
     };
 
