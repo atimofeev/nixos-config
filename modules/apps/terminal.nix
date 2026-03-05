@@ -44,7 +44,7 @@ in
       # misc
       ani-cli
       fzf
-      gemini-cli
+      unstable.gemini-cli
       nvidia-hide
       tldr
 
