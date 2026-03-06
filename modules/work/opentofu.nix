@@ -28,6 +28,28 @@ in
       cf-terraforming
     ]);
 
+    home-manager.users.${config.custom.hm-admin} = {
+
+      home.file = {
+
+        ".terraform.d/plugins/.keep".text = ""; # create and keep this dir
+
+        ".tofurc" = {
+          target = ".tofurc";
+          text = # hcl
+            ''
+              plugin_cache_dir = "$HOME/.terraform.d/plugins"
+            '';
+        };
+
+      };
+
+      custom-hm.user.shellAliases = {
+        t = "tofu";
+      };
+
+    };
+
   };
 
 }

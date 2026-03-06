@@ -25,7 +25,6 @@
     # WORK
     d = "docker";
     dc = "docker-compose";
-    t = "tofu";
     k = "kubectl";
     mk = "minikube";
     kx = "kubie ctx";
