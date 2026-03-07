@@ -14,7 +14,7 @@ let
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe config.custom-hm.applications.btop.package;
-  firefox = "firefox"; # NOTE: must use exe from user shell for custom policies to work
+  browser-exe = "firefox"; # NOTE: must use exe from user shell for custom policies to work
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
   playerctl = lib.getExe pkgs.playerctl;
@@ -61,7 +61,10 @@ in
     "Mod+Shift+N".action = spawn-sh "${term} -e ${nvtop}";
     "Mod+Shift+P".action =
       spawn-sh "${term} -o term=xterm-kitty --class spotify_player -e ${spotify_player}";
-    "Mod+Shift+B".action = spawn-sh "${term} -e ${firefox} --new-window";
+    "Mod+Shift+B".action.spawn = [
+      browser-exe
+      "--new-window"
+    ];
     "Mod+A".action = spawn-sh config.custom-hm.user.launcher.command;
     "Mod+V".action = spawn-sh config.custom-hm.services.cliphist.command;
 
@@ -70,21 +73,80 @@ in
       spawn-sh "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ 0";
     "XF86AudioRaiseVolume".action =
       spawn-sh "${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ 0";
-    "XF86AudioMute".action = spawn-sh "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-    "XF86AudioMicMute".action = spawn-sh "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-    "XF86AudioPlay".action = spawn-sh "${playerctl} play-pause";
-    "XF86AudioPause".action = spawn-sh "${playerctl} play-pause";
-    "XF86AudioPrev".action = spawn-sh "${playerctl} previous";
-    "XF86AudioNext".action = spawn-sh "${playerctl} next";
-    "Ctrl+Shift+N".action = spawn-sh "${playerctl} next";
-    "Ctrl+Shift+P".action = spawn-sh "${playerctl} previous";
-    "Ctrl+Shift+Space".action = spawn-sh "${playerctl} play-pause";
+    "XF86AudioMute".action.spawn = [
+      wpctl
+      "set-mute"
+      "@DEFAULT_AUDIO_SINK@"
+      "toggle"
+    ];
+    "XF86AudioMicMute".action.spawn = [
+      wpctl
+      "set-mute"
+      "@DEFAULT_AUDIO_SOURCE@"
+      "toggle"
+    ];
+    "XF86AudioPlay".action.spawn = [
+      playerctl
+      "play-pause"
+    ];
+    "XF86AudioPause".action.spawn = [
+      playerctl
+      "play-pause"
+    ];
+    "XF86AudioPrev".action.spawn = [
+      playerctl
+      "previous"
+    ];
+    "XF86AudioNext".action.spawn = [
+      playerctl
+      "next"
+    ];
+    "Ctrl+Shift+N".action.spawn = [
+      playerctl
+      "next"
+    ];
+    "Ctrl+Shift+P".action.spawn = [
+      playerctl
+      "previous"
+    ];
+    "Ctrl+Shift+Space".action.spawn = [
+      playerctl
+      "play-pause"
+    ];
     # "XF86TouchpadToggle".action = spawn-sh "${toggle-touchpad}";
-    "XF86Launch4".action = spawn-sh "${asus-switch-profile}";
-    "XF86MonBrightnessDown".action = spawn-sh "${brightnessctl} -d intel_backlight set 5%- -q";
-    "XF86MonBrightnessUp".action = spawn-sh "${brightnessctl} -d intel_backlight set 5%+ -q";
-    "XF86KbdBrightnessDown".action = spawn-sh "${brightnessctl} -d asus::kbd_backlight set 33%- -q";
-    "XF86KbdBrightnessUp".action = spawn-sh "${brightnessctl} -d asus::kbd_backlight set 33%+ -q";
+    "XF86Launch4".action.spawn = [ "${asus-switch-profile}" ];
+    "XF86MonBrightnessDown".action.spawn = [
+      brightnessctl
+      "-d"
+      "intel_backlight"
+      "set"
+      "5%-"
+      "-q"
+    ];
+    "XF86MonBrightnessUp".action.spawn = [
+      brightnessctl
+      "-d"
+      "intel_backlight"
+      "set"
+      "5%+"
+      "-q"
+    ];
+    "XF86KbdBrightnessDown".action.spawn = [
+      brightnessctl
+      "-d"
+      "asus::kbd_backlight"
+      "set"
+      "33%-"
+      "-q"
+    ];
+    "XF86KbdBrightnessUp".action.spawn = [
+      brightnessctl
+      "-d"
+      "asus::kbd_backlight"
+      "set"
+      "33%+"
+      "-q"
+    ];
 
     # main
     "Mod+Q" = {
@@ -99,7 +161,10 @@ in
     "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
     "Mod+Comma".action = consume-window-into-column;
     "Mod+Period".action = expel-window-from-column;
-    "Mod+Shift+L".action = spawn-sh "${loginctl} lock-session";
+    "Mod+Shift+L".action.spawn = [
+      loginctl
+      "lock-session"
+    ];
     "Mod+U".action =
       spawn-sh ''niri msg workspaces | grep "\*.*special" && niri msg action focus-workspace-previous || niri msg action focus-workspace special'';
 
