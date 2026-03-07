@@ -14,7 +14,7 @@ let
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe config.custom-hm.applications.btop.package;
-  browser-exe = "firefox"; # NOTE: must use exe from user shell for custom policies to work
+  browser-exe = "zen-beta"; # NOTE: must use exe from user shell for custom policies to work
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
   playerctl = lib.getExe pkgs.playerctl;
