@@ -34,7 +34,14 @@ in
         owner = config.custom.hm-admin;
         restartUnits = [ "homepage-dashboard.service" ];
       };
-      "work/vpn-creds" = lib.mkIf config.custom.work.openvpn.enable { };
+      "work/vpn-creds" = lib.mkIf config.custom.work.openvpn.enable (
+        lib.mkMerge [
+          { }
+          (lib.mkIf config.custom.work.openvpn.autoStart {
+            restartUnits = [ "openvpn-officeVPN.service" ];
+          })
+        ]
+      );
     };
 
   };
