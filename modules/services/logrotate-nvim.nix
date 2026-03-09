@@ -13,6 +13,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    systemd.services.logrotate.serviceConfig.ProtectHome = lib.mkForce false;
+
     services.logrotate = {
       enable = true;
 
