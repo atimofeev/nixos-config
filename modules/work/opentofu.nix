@@ -38,7 +38,7 @@ in
           target = ".tofurc";
           text = # hcl
             ''
-              plugin_cache_dir = "$HOME/.terraform.d/plugins"
+              plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
             '';
         };
 
