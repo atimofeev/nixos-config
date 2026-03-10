@@ -104,6 +104,7 @@ in
                 "localhost:*"
                 "*.atlassian.net"
                 "*.awsapps.com"
+                "*.passwork.io"
                 "configure.zsa.io"
                 "console.hetzner.com"
                 "dash.cloudflare.com"
