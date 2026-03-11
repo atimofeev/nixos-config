@@ -13,7 +13,9 @@
 
     niri = {
       enable = true;
-      useNautilus = false;
+      # FIX: nautilus is required for screensharing
+      # https://github.com/niri-wm/niri/issues/544
+      # useNautilus = false;
     };
 
     uwsm.waylandCompositors.niri = {
