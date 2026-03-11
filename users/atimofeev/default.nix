@@ -45,6 +45,10 @@
         };
       };
       fish.enable = true;
+      gemini-cli = {
+        enable = true;
+        package = pkgs.unstable.gemini-cli;
+      };
       git.enable = true;
       htop = {
         enable = true;
