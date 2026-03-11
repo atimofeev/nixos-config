@@ -1,6 +1,37 @@
 {
   description = "Nixos config flake";
 
+  outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      vars = import ./variables.nix;
+    in
+    {
+      nixosConfigurations = {
+
+        milaptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs vars; };
+          modules = [
+            ./hosts/milaptop
+            ./modules
+            ./overlays
+            ./pkgs
+          ];
+        };
+
+        zefir = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs vars; };
+          modules = [
+            ./hosts/zefir
+            ./modules
+            ./overlays
+            ./pkgs
+          ];
+        };
+
+      };
+    };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -74,35 +105,4 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
   };
-
-  outputs =
-    { nixpkgs, ... }@inputs:
-    let
-      vars = import ./variables.nix;
-    in
-    {
-      nixosConfigurations = {
-
-        milaptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
-          modules = [
-            ./hosts/milaptop
-            ./modules
-            ./overlays
-            ./pkgs
-          ];
-        };
-
-        zefir = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
-          modules = [
-            ./hosts/zefir
-            ./modules
-            ./overlays
-            ./pkgs
-          ];
-        };
-
-      };
-    };
 }
