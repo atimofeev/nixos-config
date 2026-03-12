@@ -35,7 +35,7 @@ in
       minikube
       popeye
       stern
-      talosctl
+      unstable.talosctl
     ];
 
     # TODO: improve colorscheme (or even port catppuccin?)
