@@ -20,8 +20,10 @@ in
       inherit (cfg) package;
       defaultModel = "gemini-3-pro-preview";
       settings = {
+        billing.overageStrategy = "never";
         general = {
           enablePromptCompletion = true;
+          maxAttempts = 30;
           preferredEditor = "nvim";
           previewFeatures = true;
           vimMode = true;
@@ -29,14 +31,26 @@ in
         privacy.usageStatisticsEnabled = false;
         security.auth.selectedType = "oauth-personal";
         theme = "Atom One";
-        tools.allowed = [
-          "echo"
-          "grep"
-          "ls"
-          # NOTE: terraform MCP
-          "search_providers"
-          "get_provider_details"
-        ];
+        tools = {
+          allowed = [
+            "arp"
+            "echo"
+            "grep"
+            "head"
+            "jq"
+            "ls"
+            "nc"
+            "ping"
+            "sleep"
+            "tail"
+            "yq"
+            # NOTE: terraform MCP
+            "search_providers"
+            "get_provider_details"
+          ];
+          sandbox = "docker";
+          shell.showColor = true;
+        };
         ui.theme = "GitHub";
       };
 
