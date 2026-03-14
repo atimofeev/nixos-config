@@ -22,6 +22,8 @@ in
       settings = {
         billing.overageStrategy = "never";
         general = {
+          enableAutoUpdate = true;
+          enableAutoUpdateNotification = true;
           enablePromptCompletion = true;
           maxAttempts = 30;
           preferredEditor = "nvim";
