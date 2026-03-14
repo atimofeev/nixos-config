@@ -18,7 +18,6 @@ in
     programs.gemini-cli = {
       enable = true;
       inherit (cfg) package;
-      defaultModel = "gemini-3-pro-preview";
       settings = {
         billing.overageStrategy = "never";
         general = {
