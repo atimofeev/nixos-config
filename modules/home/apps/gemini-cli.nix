@@ -25,7 +25,7 @@ in
           enableAutoUpdateNotification = true;
           enablePromptCompletion = true;
           maxAttempts = 30;
-          preferredEditor = "nvim";
+          preferredEditor = "neovim";
           previewFeatures = true;
           sessionRetention = {
             enabled = true;
