@@ -28,6 +28,10 @@ in
           maxAttempts = 30;
           preferredEditor = "nvim";
           previewFeatures = true;
+          sessionRetention = {
+            enabled = true;
+            maxAge = "60d";
+          };
           vimMode = true;
         };
         privacy.usageStatisticsEnabled = false;
