@@ -6,6 +6,21 @@
 }:
 let
   cfg = config.custom-hm.applications.gemini-cli;
+
+  base-command-prompt = ''
+    You are an expert DevOps assistant. Execure the following task with specified tools.
+  '';
+
+  release-template = ''
+    ```
+    Title: {{project_name}} {{version}}
+    Body:
+    {{short summary}}
+
+    ## What's Changed
+    {{list of commits before current tag/version}}
+    ```
+  '';
 in
 {
 
@@ -20,38 +35,61 @@ in
       inherit (cfg) package;
       commands = {
         git_commit = {
+          description = "Commit changes";
           prompt = ''
-            You are an expert developer assistant. The user wants to commit and push their current work.
-
-            Execute the following steps using your available tools (Local Shell/Git tools and GitHub MCP):
+            ${base-command-prompt}
+            Task Summary: Commit and push changes to upstram repo
+            Tools: Local Shell/Git tools and GitHub MCP
+            Task Steps:
             1. **Analyze Changes:** Check the current git status and diff to understand what changes have been made.
             2. **Generate Message:** Draft a commit message strictly following the Conventional Commits specification (e.g., feat(scope):, fix(scope):, chore(scope):, docs(scope):, refactor(scope):). Include a concise description and, if necessary, an extended body.
             3. **Confirm (Optional but recommended):** If your CLI supports user confirmation, present the proposed commit message to the user before proceeding.
             4. **Commit:** Execute the git commit command with the generated message.
             5. **Push:** Push the new commit to the current branch on the remote repository.
           '';
-          description = "Commit changes";
         };
         git_release = {
+          description = "Create release";
           prompt = ''
-            You are an expert DevOps assistant. The user wants to create a new release for the current repository. 
-
-            Execute the following steps using your available tools (Local Shell/Git tools and GitHub MCP):
+            ${base-command-prompt}
+            Task Summary: Create GitHub/GitLab Release
+            Tools: Local Shell/Git tools and GitHub MCP
+            Task Steps:
+            1. **Analyze History:** Fetch the latest git tag. Retrieve all commit messages made since that last tag.
+            2. **Create GitHub/GitLab Release:** Use the `gh` or `glab` cli tool to create a new Release on the repository. Use this template for release:
+            ${release-template}
+          '';
+        };
+        git_tag = {
+          description = "Create tag and release";
+          prompt = ''
+            ${base-command-prompt}
+            Task Summary: Create git SemVer tag
+            Tools: Local Shell/Git tools and GitHub MCP
+            Task Steps:
             1. **Analyze History:** Fetch the latest git tag. Retrieve all commit messages made since that last tag.
             2. **Determine Semantic Version:** Analyze the commit messages (looking for 'feat', 'fix', 'BREAKING CHANGE', etc.) to determine the next logical version number according to Semantic Versioning (SemVer: MAJOR.MINOR.PATCH).
-            3. **Tag and Push:** Create a lightweight or annotated git tag locally with this new version number (e.g., v1.2.3), and push the tag to the remote repository.
-            4. **Draft Release Notes:** Compile a short, high-level summary of the changes. Below the summary, create a categorized, bulleted list of all commits made since the previous release.
-            5. **Create GitHub Release:** Use the `gh` cli tool to create a new Release on the repository. Use this template for release:
-            ```
-            Title: {{project_name}} {{version}}
-            Body:
-            {{short summary}}
-
-            ### What's Changed
-            {{list of commits before current tag/version}}
-            ```
+            3. **Prepare Tag Vesion and Annotation:** Prepare a SemVer tag (e.g. v1.2.3) with annotation: {{list of commits before current tag/version}}.
+            4. **Confirm:** Present the proposed tag version and annotation to the user before proceeding.
+            5. **Create annotated tag:** Execute git tag command with selected version and annotation.
           '';
+        };
+        git_tag_and_release = {
           description = "Create tag and release";
+          prompt = ''
+            ${base-command-prompt}
+            Task Summary: Create git SemVer tag and GitHub/GitLab Release
+            Tools: Local Shell/Git tools and GitHub MCP
+            Task Steps:
+            1. **Analyze History:** Fetch the latest git tag. Retrieve all commit messages made since that last tag.
+            2. **Determine Semantic Version:** Analyze the commit messages (looking for 'feat', 'fix', 'BREAKING CHANGE', etc.) to determine the next logical version number according to Semantic Versioning (SemVer: MAJOR.MINOR.PATCH).
+            3. **Prepare Tag Vesion and Annotation:** Prepare a SemVer tag (e.g. v1.2.3) with annotation: {{list of commits before current tag/version}}.
+            4. **Confirm:** Present the proposed tag version and annotation to the user before proceeding.
+            5. **Create annotated tag:** Execute git tag command with selected version and annotation.
+            6. **Push:** Push annotated tag to upstream repository.
+            7. **Create GitHub/GitLab Release:** Use the `gh` or `glab` cli tool to create a new Release on the repository. Use this template for release:
+            ${release-template}
+          '';
         };
       };
       settings = {
