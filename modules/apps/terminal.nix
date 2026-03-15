@@ -44,6 +44,7 @@ in
       # misc
       ani-cli
       fzf
+      gh
       nvidia-hide
       tldr
 
