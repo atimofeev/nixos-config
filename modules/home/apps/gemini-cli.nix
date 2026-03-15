@@ -69,6 +69,29 @@ in
           };
           vimMode = true;
         };
+        mcpServers = {
+          github = {
+            command = "docker";
+            args = [
+              "run"
+              "-i"
+              "--rm"
+              "-e"
+              "GITHUB_PERSONAL_ACCESS_TOKEN"
+              "ghcr.io/github/github-mcp-server"
+            ];
+            env.GITHUB_PERSONAL_ACCESS_TOKEN = "$GITHUB_MCP_PAT";
+          };
+          terraform = {
+            command = "docker";
+            args = [
+              "run"
+              "-i"
+              "--rm"
+              "hashicorp/terraform-mcp-server:0.4.0"
+            ];
+          };
+        };
         privacy.usageStatisticsEnabled = false;
         security.auth.selectedType = "oauth-personal";
         theme = "Atom One";
