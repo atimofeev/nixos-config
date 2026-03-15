@@ -108,7 +108,6 @@ in
             enabled = true;
             maxAge = "60d";
           };
-          vimMode = true;
         };
         mcpServers = {
           github = {
