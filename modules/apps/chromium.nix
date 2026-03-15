@@ -73,6 +73,11 @@ in
             url = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs {searchTerms}&type=code";
           }
           {
+            name = "GitHub home-manager";
+            shortcut = "ghhm";
+            url = "https://github.com/search?q=repo%3Anix-community%2Fhome-manager {searchTerms}&type=code";
+          }
+          {
             name = "Home Manager Options";
             shortcut = "ho";
             url = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
