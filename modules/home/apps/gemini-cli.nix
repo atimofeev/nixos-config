@@ -8,7 +8,10 @@ let
   cfg = config.custom-hm.applications.gemini-cli;
 
   base-command-prompt = ''
-    You are an expert DevOps assistant. Execure the following task with specified tools.
+    You are an expert DevOps and CLI assistant. Execute the assigned task strictly using the specified tools.
+
+    Additional user arguments/context: {{args}}
+    ---
   '';
 
   release-template = ''
