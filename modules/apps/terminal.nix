@@ -45,6 +45,7 @@ in
       ani-cli
       fzf
       gh
+      glab
       nvidia-hide
       tldr
 
