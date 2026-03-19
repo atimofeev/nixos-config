@@ -138,6 +138,7 @@ in
         tools = {
           allowed = [
             "arp"
+            "command"
             "echo"
             "grep"
             "head"
@@ -147,10 +148,16 @@ in
             "ping"
             "sleep"
             "tail"
+            "type"
+            "which"
             "yq"
             # NOTE: terraform MCP
             "search_providers"
             "get_provider_details"
+            # NOTE: superpowers MCP
+            "WriteTodos"
+            "WriteFile"
+            "writing-plans"
           ];
           sandbox = "docker";
           shell.showColor = true;
