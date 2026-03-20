@@ -132,6 +132,8 @@ in
             ];
           };
         };
+        model.name = "auto-gemini-3";
+        plan.modelRouting = true;
         privacy.usageStatisticsEnabled = false;
         security.auth.selectedType = "oauth-personal";
         theme = "Atom One";
