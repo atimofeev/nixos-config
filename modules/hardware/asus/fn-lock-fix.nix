@@ -5,14 +5,14 @@
   ...
 }:
 let
-  cfg = config.custom.hardware.asus-fn-lock-fix;
+  cfg = config.custom.hardware.asus.fn-lock-fix;
 
 in
 {
 
   imports = [ inputs.asus-px-keyboard-tool.nixosModules.default ];
 
-  options.custom.hardware.asus-fn-lock-fix = {
+  options.custom.hardware.asus.fn-lock-fix = {
     enable = lib.mkEnableOption "Enables fn-lock by default on Asus GU605CR";
   };
 

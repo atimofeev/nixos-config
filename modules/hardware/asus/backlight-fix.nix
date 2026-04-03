@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.custom.hardware.asus-backlight-fix;
+  cfg = config.custom.hardware.asus.backlight-fix;
 in
 {
 
-  options.custom.hardware.asus-backlight-fix = {
+  options.custom.hardware.asus.backlight-fix = {
     enable = lib.mkEnableOption "Fix screen backlight control in Hybrid GPU mode";
   };
 

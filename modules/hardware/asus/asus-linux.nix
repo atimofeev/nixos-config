@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.custom.hardware.asus-linux;
+  cfg = config.custom.hardware.asus.asus-linux;
 in
 {
 
-  options.custom.hardware.asus-linux = {
+  options.custom.hardware.asus.asus-linux = {
     enable = lib.mkEnableOption "asus-linux bundle";
     package = lib.mkPackageOption pkgs "asusctl" { };
   };

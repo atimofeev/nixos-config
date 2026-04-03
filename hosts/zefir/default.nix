@@ -84,12 +84,14 @@
     ];
 
     hardware = {
-      asus-backlight-fix.enable = true;
-      asus-linux = {
-        enable = true;
-        package = pkgs.unstable.asusctl;
+      asus = {
+        asus-linux = {
+          enable = true;
+          package = pkgs.unstable.asusctl;
+        };
+        backlight-fix.enable = true;
+        fn-lock-fix.enable = true;
       };
-      asus-fn-lock-fix.enable = true;
       bluetooth.enable = true;
       gpu-ordering = {
         enable = true;
