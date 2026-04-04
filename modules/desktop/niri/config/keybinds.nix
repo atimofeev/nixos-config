@@ -17,7 +17,6 @@ let
   browser-exe = "zen-beta"; # NOTE: must use exe from user shell for custom policies to work
   loginctl = lib.getExe' pkgs.elogind "loginctl";
   nvtop = lib.getExe' pkgs.nvtopPackages.full "nvtop";
-  playerctl = lib.getExe pkgs.playerctl;
   spotify_player = lib.getExe' config.programs.spotify-player.package "spotify_player";
   swappy = lib.getExe pkgs.swappy;
   wl-paste = lib.getExe' pkgs.wl-clipboard "wl-paste";
@@ -86,32 +85,46 @@ in
       "toggle"
     ];
     "XF86AudioPlay".action.spawn = [
-      playerctl
-      "play-pause"
+      "dms"
+      "ipc"
+      "mpris"
+      "playPause"
     ];
     "XF86AudioPause".action.spawn = [
-      playerctl
-      "play-pause"
-    ];
-    "XF86AudioPrev".action.spawn = [
-      playerctl
-      "previous"
+      "dms"
+      "ipc"
+      "mpris"
+      "playPause"
     ];
     "XF86AudioNext".action.spawn = [
-      playerctl
+      "dms"
+      "ipc"
+      "mpris"
       "next"
     ];
+    "XF86AudioPrev".action.spawn = [
+      "dms"
+      "ipc"
+      "mpris"
+      "previous"
+    ];
     "Ctrl+Shift+N".action.spawn = [
-      playerctl
+      "dms"
+      "ipc"
+      "mpris"
       "next"
     ];
     "Ctrl+Shift+P".action.spawn = [
-      playerctl
+      "dms"
+      "ipc"
+      "mpris"
       "previous"
     ];
     "Ctrl+Shift+Space".action.spawn = [
-      playerctl
-      "play-pause"
+      "dms"
+      "ipc"
+      "mpris"
+      "playPause"
     ];
     # "XF86TouchpadToggle".action = spawn-sh "${toggle-touchpad}";
     "XF86Launch4".action.spawn = [ "${asus-switch-profile}" ];
