@@ -3,9 +3,8 @@
 
   imports = [
 
+    ./neovim
     ./shell-aliases.nix
-
-    ../../home/terminal
 
   ];
 

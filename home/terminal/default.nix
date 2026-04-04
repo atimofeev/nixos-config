@@ -1,9 +1,0 @@
-_: {
-
-  imports = [
-
-    ./apps/nvim
-
-  ];
-
-}
