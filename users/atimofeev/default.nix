@@ -54,6 +54,10 @@
         enable = true;
         package = pkgs.htop-vim;
       };
+      k9s = {
+        enable = true;
+        package = pkgs.unstable.k9s;
+      };
       mpv.enable = true;
       nushell.enable = true;
       obsidian.enable = true;
