@@ -24,7 +24,6 @@ in
         enable = true;
         autoEnrollKeys = {
           enable = true;
-          autoReboot = true;
         };
         autoGenerateKeys.enable = true;
         pkiBundle = "/var/lib/sbctl";
