@@ -32,6 +32,7 @@ in
 {
   options.custom.services.ollama = {
     enable = lib.mkEnableOption "ollama bundle";
+    package = lib.mkPackageOption pkgs "ollama" { };
   };
 
   config = lib.mkIf cfg.enable {
@@ -51,7 +52,7 @@ in
       ollama = {
         enable = true;
         acceleration = "cuda";
-        package = pkgs.ollama-cuda;
+        inherit (cfg) package;
         user = "ollama";
         environmentVariables = {
           HIP_VISIBLE_DEVICES = "0,1";
