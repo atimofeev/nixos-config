@@ -55,6 +55,7 @@ in
         inherit (cfg) package;
         user = "ollama";
         environmentVariables = {
+          OLLAMA_CONTEXT_LENGTH = "131072";
           HIP_VISIBLE_DEVICES = "0,1";
           OLLAMA_INTEL_GPU = "1";
           OLLAMA_SCHED_SPREAD = "1";
