@@ -1,4 +1,3 @@
-# TODO: cleanup excessive config
 {
   config,
   lib,
@@ -6,28 +5,7 @@
   ...
 }:
 let
-
   cfg = config.custom.services.ollama;
-
-  additionalPackages = [
-    pkgs.sycl-info
-    pkgs.adaptivecpp
-    pkgs.level-zero
-    pkgs.mkl
-    pkgs.vpl-gpu-rt
-    pkgs.intel-compute-runtime.drivers
-    pkgs.intel-compute-runtime.out
-    pkgs.intel-gpu-tools
-    pkgs.intel-media-driver
-    pkgs.intel-vaapi-driver
-    pkgs.vaapi-intel-hybrid
-    pkgs.intel-gmmlib
-    pkgs.intel-ocl
-    pkgs.libgcc.libgcc
-    pkgs.libgcc.lib
-    pkgs.libgcc.out
-    # pkgs.zluda
-  ];
 in
 {
   options.custom.services.ollama = {
@@ -36,39 +14,27 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages =
-      (with pkgs; [
-        ollama
-        ollama-cuda
-        aichat
-      ])
-      ++ additionalPackages;
 
     users.users.${config.custom.hm-admin}.extraGroups = [ "ollama" ];
 
     services = {
 
-      # NOTE: ollama models: https://ollama.com/library
       ollama = {
         enable = true;
-        acceleration = "cuda";
         inherit (cfg) package;
+        acceleration = "cuda";
         user = "ollama";
+
         environmentVariables = {
-          OLLAMA_CONTEXT_LENGTH = "131072";
-          HIP_VISIBLE_DEVICES = "0,1";
-          OLLAMA_INTEL_GPU = "1";
+          # General & NVIDIA tuning
+          # OLLAMA_CONTEXT_LENGTH = "16384";
+          OLLAMA_CONTEXT_LENGTH = "65536";
           OLLAMA_SCHED_SPREAD = "1";
           OLLAMA_MAX_LOADED_MODELS = "2";
           OLLAMA_NUM_PARALLEL = "2";
-          OLLAMA_NUM_GPU = "999";
+          OLLAMA_NUM_GPU = "999"; # Forces all layers to offload to the GPU
           OLLAMA_GPU_OVERHEAD = "1";
           OLLAMA_DEBUG = "1";
-          CUDA_PATH = "${pkgs.lib.makeLibraryPath [
-            pkgs.cudaPackages.cudatoolkit
-            pkgs.cudaPackages.cuda_cudart
-          ]}";
-          LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath additionalPackages}:$LD_LIBRARY_PATH";
         };
       };
 
@@ -76,7 +42,7 @@ in
         enable = true;
         environment = {
           OLLAMA_API_BASE_URL = "http://127.0.0.1:${toString config.services.ollama.port}";
-          # Disable authentication
+          # Disable authentication and telemetry
           WEBUI_AUTH = "False";
           ANONYMIZED_TELEMETRY = "False";
           DO_NOT_TRACK = "True";
@@ -87,6 +53,6 @@ in
       };
 
     };
-  };
 
+  };
 }
