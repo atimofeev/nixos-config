@@ -10,6 +10,7 @@
 
     inputs.niri.homeModules.niri
 
+    ./animations.nix
     ./gestures.nix
     ./input.nix
     ./keybinds.nix
