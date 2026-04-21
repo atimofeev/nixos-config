@@ -156,11 +156,19 @@
         enable = true;
         package = pkgs.ansible_2_17;
       };
+      cato = {
+        enable = true;
+        # package = pkgs.unstable.cato-client;
+      };
       kube-tools.enable = true;
       misc-tools.enable = true;
       opentofu = {
         enable = true;
         package = pkgs.unstable.opentofu;
+      };
+      openvpn = {
+        enable = true;
+        autoStart = false;
       };
       wpa2-enterprise-fix.enable = true;
     };
