@@ -16,11 +16,13 @@
   nix = {
     settings = {
       auto-optimise-store = true;
+      connect-timeout = 5;
       download-buffer-size = 524288000;
       experimental-features = [
         "nix-command"
         "flakes"
       ];
+      fallback = true;
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
