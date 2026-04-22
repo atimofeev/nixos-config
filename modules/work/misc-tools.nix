@@ -18,6 +18,7 @@ in
       nodejs
       python3
       ruby
+      uv
 
       awscli2
       cloudlens
