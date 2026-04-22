@@ -101,7 +101,7 @@
       automount.enable = true;
       boot = {
         enable = true;
-        kernelPackages = pkgs.linuxPackages_6_19;
+        kernelPackages = pkgs.linuxPackages_7_0;
       };
       catppuccin = {
         enable = true;
