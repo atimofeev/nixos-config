@@ -57,9 +57,11 @@
         enable = true;
         package = pkgs.unstable.k9s;
       };
+      mcp.enable = true;
       mpv.enable = true;
       nushell.enable = true;
       obsidian.enable = true;
+      opencode.enable = true;
       qbittorrent.enable = true;
       ripgrep.enable = true;
       rofi.enable = true;
