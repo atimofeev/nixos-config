@@ -427,7 +427,7 @@ in
         osdIdleInhibitorEnabled = true;
         osdMicMuteEnabled = true;
         osdCapsLockEnabled = true;
-        osdPowerProfileEnabled = false;
+        osdPowerProfileEnabled = true;
         osdAudioOutputEnabled = true;
         powerActionConfirm = true;
         powerActionHoldDuration = 0.5;
