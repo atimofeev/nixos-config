@@ -14,6 +14,8 @@
   };
 
   nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    registry.unstable.flake = inputs.nixpkgs-unstable;
     settings = {
       auto-optimise-store = true;
       connect-timeout = 5;
@@ -34,7 +36,6 @@
         "nix-cache.prosto.dev:fkJJVvqlmSQsfTTtdCrMUIg5f46+Aamve++PL3XEzNQ="
       ];
     };
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
   nixpkgs.config.allowUnfree = true;
