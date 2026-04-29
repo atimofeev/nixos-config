@@ -62,6 +62,10 @@
       nushell.enable = true;
       obsidian.enable = true;
       opencode.enable = true;
+      pi-coding-agent = {
+        enable = true;
+        package = pkgs.unstable.pi-coding-agent;
+      };
       qbittorrent.enable = true;
       ripgrep.enable = true;
       rofi.enable = true;
