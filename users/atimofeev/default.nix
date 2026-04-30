@@ -28,6 +28,7 @@
     };
 
     applications = {
+      ai-skills.enable = true;
       atuin.enable = true;
       bash.enable = true;
       bat.enable = true;
