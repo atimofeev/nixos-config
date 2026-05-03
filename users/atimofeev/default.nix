@@ -29,7 +29,14 @@
 
     applications = {
       ai-skills.enable = true;
-      atuin.enable = true;
+      atuin = {
+        enable = true;
+        package = pkgs.unstable.atuin;
+        sync = {
+          enable = true;
+          address = "https://atuin.prosto.dev";
+        };
+      };
       bash.enable = true;
       bat.enable = true;
       btop.enable = true;

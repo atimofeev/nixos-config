@@ -21,6 +21,7 @@ in
     };
 
     sops.secrets = {
+      "personal/atuin-encryption-key".path = "${home}/.local/share/atuin/key";
       "personal/spotify-client-id" = { };
       "personal/ssh_keys/id_ed25519_sk" = {
         sopsFile = ../../../secrets + "/${osConfig.networking.hostName}.yaml";
