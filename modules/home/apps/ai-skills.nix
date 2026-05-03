@@ -7,13 +7,6 @@
 let
   cfg = config.custom-hm.applications.ai-skills;
 
-  superpowers = pkgs.fetchFromGitHub {
-    owner = "obra";
-    repo = "superpowers";
-    rev = "v5.0.7";
-    hash = "sha256-HQtO9cZfPPIkHDj64NeQuG9p9WhSKBVkWGWhZkZjZoo=";
-  };
-
   nixomatic-skill = pkgs.fetchFromGitHub {
     owner = "curriedsoftware";
     repo = "nixomatic-skill";
@@ -31,7 +24,6 @@ let
   merged-skills = pkgs.symlinkJoin {
     name = "merged-ai-skills";
     paths = [
-      "${superpowers}/skills"
       "${terraform-skill}/skills"
       nixomatic-skill
     ];
