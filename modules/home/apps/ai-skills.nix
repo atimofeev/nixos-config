@@ -14,6 +14,13 @@ let
     hash = "sha256-HQtO9cZfPPIkHDj64NeQuG9p9WhSKBVkWGWhZkZjZoo=";
   };
 
+  nixomatic-skill = pkgs.fetchFromGitHub {
+    owner = "curriedsoftware";
+    repo = "nixomatic-skill";
+    rev = "f3e901bb0ffac88582ce29e4c43a882f46fe0254";
+    hash = "sha256-RqQ+D7V3Yv4gIO7HlvTd5XtgQZARrOqm97lg2t9zlKc=";
+  };
+
   terraform-skill = pkgs.fetchFromGitHub {
     owner = "antonbabenko";
     repo = "terraform-skill";
@@ -26,6 +33,7 @@ let
     paths = [
       "${superpowers}/skills"
       "${terraform-skill}/skills"
+      nixomatic-skill
     ];
   };
 
