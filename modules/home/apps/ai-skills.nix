@@ -7,6 +7,13 @@
 let
   cfg = config.custom-hm.applications.ai-skills;
 
+  antigravity-awesome-skills = pkgs.fetchFromGitHub {
+    owner = "sickn33";
+    repo = "antigravity-awesome-skills";
+    rev = "v10.9.0";
+    hash = "sha256-adHmjcp7tjbw18j1hDQD6Z+96fgdu+57Rw+nxIZURgY=";
+  };
+
   nixomatic-skill = pkgs.fetchFromGitHub {
     owner = "curriedsoftware";
     repo = "nixomatic-skill";
@@ -24,6 +31,7 @@ let
   merged-skills = pkgs.symlinkJoin {
     name = "merged-ai-skills";
     paths = [
+      "${antigravity-awesome-skills}/skills"
       "${terraform-skill}/skills"
       nixomatic-skill
     ];
