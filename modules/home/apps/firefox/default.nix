@@ -10,7 +10,6 @@ in
 {
 
   imports = [
-    ./betterfox.nix
     ./extensions.nix
     ./policies.nix
     ./search.nix

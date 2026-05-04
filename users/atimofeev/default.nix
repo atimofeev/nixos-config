@@ -42,15 +42,7 @@
       btop.enable = true;
       carapace.enable = true;
       eza.enable = true;
-      firefox = {
-        enable = true;
-        betterfox = {
-          enable = true;
-          settings = {
-            fastfox.enable = true;
-          };
-        };
-      };
+      firefox.enable = true;
       fish.enable = true;
       gemini-cli = {
         enable = true;
