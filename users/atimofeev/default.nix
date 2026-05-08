@@ -61,7 +61,10 @@
       mcp.enable = true;
       mpv.enable = true;
       nushell.enable = true;
-      obsidian.enable = true;
+      obsidian = {
+        enable = true;
+        package = pkgs.unstable.obsidian;
+      };
       opencode.enable = true;
       pi-coding-agent = {
         enable = true;
