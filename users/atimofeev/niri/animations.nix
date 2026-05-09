@@ -2,13 +2,13 @@
 
 let
 
-  softSpring.spring = {
+  softSpring.spring._props = {
     damping-ratio = 0.85;
     stiffness = 1500;
     epsilon = 0.0001;
   };
 
-  stiffSpring.spring = {
+  stiffSpring.spring._props = {
     damping-ratio = 0.95;
     stiffness = 2000;
     epsilon = 0.0001;
@@ -28,15 +28,6 @@ let
 
 in
 {
-  programs.niri.settings.animations = {
-    enable = true;
-  }
-  // lib.genAttrs softAnimations (_: {
-    enable = true;
-    kind = softSpring;
-  })
-  // lib.genAttrs stiffAnimations (_: {
-    enable = true;
-    kind = stiffSpring;
-  });
+  wayland.windowManager.niri.settings.animations =
+    (lib.genAttrs softAnimations (_: softSpring)) // (lib.genAttrs stiffAnimations (_: stiffSpring));
 }

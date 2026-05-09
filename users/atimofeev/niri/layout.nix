@@ -1,6 +1,6 @@
 {
 
-  programs.niri.settings.layout = {
+  wayland.windowManager.niri.settings.layout = {
 
     gaps = 3;
 
@@ -8,30 +8,29 @@
 
     default-column-width.proportion = 0.5;
 
-    preset-column-widths = [
+    preset-column-widths._children = [
       { proportion = 0.5; }
       { proportion = 1.0; }
     ];
 
-    preset-window-heights = [
+    preset-window-heights._children = [
       { proportion = 0.5; }
       { proportion = 1.0; }
     ];
 
-    empty-workspace-above-first = true;
+    empty-workspace-above-first = { };
 
-    focus-ring.enable = false;
+    focus-ring.off = { };
 
     border = {
-      enable = true;
       width = 3;
-      active.gradient = {
+      active-gradient._props = {
         from = "#c6a0f6";
         to = "#8aadf4";
         angle = 90;
       };
-      inactive.color = "#505050";
-      urgent.color = "#9b0000";
+      inactive-color = "#505050";
+      urgent-color = "#9b0000";
     };
 
   };

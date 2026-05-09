@@ -4,6 +4,7 @@
   imports = [
 
     ./neovim
+    ./niri
     ./shell-aliases.nix
 
   ];

@@ -71,7 +71,7 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote";
 
-    niri.url = "github:sodiboo/niri-flake";
+    niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 

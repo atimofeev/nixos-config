@@ -1,11 +1,5 @@
+{ pkgs, ... }:
 {
-  pkgs,
-  vars,
-  ...
-}:
-{
-
-  home-manager.users.${vars.username} = import ./config;
 
   environment.systemPackages = [ pkgs.unstable.xwayland-satellite ];
 
@@ -13,6 +7,7 @@
 
     niri = {
       enable = true;
+      package = pkgs.unstable.niri;
       # FIX: nautilus is required for screensharing
       # https://github.com/niri-wm/niri/issues/544
       # useNautilus = false;

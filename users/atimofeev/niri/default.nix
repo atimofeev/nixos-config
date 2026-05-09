@@ -1,14 +1,14 @@
 {
   inputs,
   lib,
-  pkgs,
+  osConfig,
   ...
 }:
 {
 
   imports = [
 
-    inputs.niri.homeModules.niri
+    inputs.niri-nix.homeModules.default
 
     ./animations.nix
     ./gestures.nix
@@ -25,16 +25,14 @@
     wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
   };
 
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri;
+  wayland.windowManager.niri = {
+    inherit (osConfig.programs.niri) enable package;
     settings = {
       debug.honor-xdg-activation-with-invalid-serial = { };
-      hotkey-overlay.skip-at-startup = true;
+      hotkey-overlay.skip-at-startup = { };
       overview.backdrop-color = "#1e1e2e";
-      prefer-no-csd = true;
+      prefer-no-csd = { };
       screenshot-path = null;
-      xwayland-satellite.enable = true;
     };
   };
 
