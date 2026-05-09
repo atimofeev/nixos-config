@@ -17,13 +17,15 @@ in
       enable = true;
       servers = {
 
-        terraform = {
+        github = {
           command = "docker";
           args = [
             "run"
             "-i"
             "--rm"
-            "hashicorp/terraform-mcp-server:0.5.1"
+            "-e"
+            "GITHUB_PERSONAL_ACCESS_TOKEN"
+            "ghcr.io/github/github-mcp-server"
           ];
         };
 
@@ -46,9 +48,18 @@ in
           ];
         };
 
+        terraform = {
+          command = "docker";
+          args = [
+            "run"
+            "-i"
+            "--rm"
+            "hashicorp/terraform-mcp-server:0.5.1"
+          ];
+        };
+
       };
     };
   };
 
 }
-
