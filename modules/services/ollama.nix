@@ -30,7 +30,8 @@ in
         environmentVariables = {
           # General & NVIDIA tuning
           # OLLAMA_CONTEXT_LENGTH = "16384";
-          OLLAMA_CONTEXT_LENGTH = "65536";
+          OLLAMA_CONTEXT_LENGTH = "32768";
+          # OLLAMA_CONTEXT_LENGTH = "65536";
           OLLAMA_SCHED_SPREAD = "1";
           OLLAMA_MAX_LOADED_MODELS = "2";
           OLLAMA_NUM_PARALLEL = "2";
