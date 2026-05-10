@@ -17,6 +17,8 @@ in
 
     users.users.${config.custom.hm-admin}.extraGroups = [ "ollama" ];
 
+    hardware.nvidia-container-toolkit.enable = true;
+
     services = {
 
       ollama = {
