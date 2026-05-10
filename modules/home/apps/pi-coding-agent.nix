@@ -14,7 +14,9 @@ let
     ACTIVE EVERY RESPONSE. No revert after many turns. No filler drift.
     Code/commits/PRs: normal. Off: "stop caveman" / "normal mode".
 
-    Only use git commands when explicitly requested
+    Git commands only on request.
+
+    Call subagents when makes sense.
   '';
 in
 {
