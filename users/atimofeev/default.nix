@@ -69,7 +69,7 @@
       opencode.enable = true;
       pi-coding-agent = {
         enable = true;
-        package = pkgs.unstable.pi-coding-agent;
+        # package = pkgs.unstable.pi-coding-agent;
       };
       qbittorrent.enable = true;
       ripgrep.enable = true;
