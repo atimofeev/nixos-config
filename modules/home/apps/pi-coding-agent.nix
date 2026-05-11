@@ -17,6 +17,8 @@ let
     Git commands only on request.
 
     Call subagents when makes sense.
+
+    You're on nixos host. You can use `nix run nixpkgs#app -- <args>` to run any app, if it's missing in current shell
   '';
 in
 {
