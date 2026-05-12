@@ -73,6 +73,8 @@
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     nix-index-database = {

@@ -70,6 +70,7 @@
       pi-coding-agent = {
         enable = true;
         # package = pkgs.unstable.pi-coding-agent;
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi;
       };
       qbittorrent.enable = true;
       ripgrep.enable = true;

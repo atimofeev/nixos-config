@@ -6,6 +6,23 @@
 }:
 let
   cfg = config.custom-hm.applications.pi-coding-agent;
+
+  wrappedPkg = cfg.package.overrideAttrs (old: {
+    postInstall = (old.postInstall or "") + ''
+      wrapProgram "$out/bin/pi" \
+        --set NPM_CONFIG_PREFIX "/home/atimofeev/.pi/npm/" \
+        --set AWS_PROFILE "ai" \
+        --set PI_SKIP_VERSION_CHECK 1 \
+        --set PI_TELEMETRY 0 \
+        --prefix PATH : "${
+          lib.makeBinPath [
+            pkgs.ripgrep
+            pkgs.nodejs_latest
+          ]
+        }"
+    '';
+  });
+
   system_prompt = ''
     Terse like caveman. Technical substance exact. Only fluff die.
     Drop: articles, filler (just/really/basically), pleasantries, hedging.
@@ -22,7 +39,6 @@ let
   '';
 in
 {
-
   options.custom-hm.applications.pi-coding-agent = {
     enable = lib.mkEnableOption "pi-coding-agent bundle";
     package = lib.mkPackageOption pkgs "pi-coding-agent" { };
@@ -30,11 +46,10 @@ in
 
   config = lib.mkIf cfg.enable {
     home = {
-      packages = [ cfg.package ];
+      packages = [ wrappedPkg ];
       file = {
         ".pi/agent/SYSTEM.md".text = system_prompt;
       };
     };
   };
-
 }
