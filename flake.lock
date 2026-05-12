@@ -100,17 +100,18 @@
       "flake": false,
       "locked": {
         "dir": "themes/Macchiato/Lavender",
-        "lastModified": 1759018582,
-        "narHash": "sha256-5A57Lyctq497SSph7B+ucuEyF1gGVTsuI3zuBItGfg4=",
-        "owner": "catppuccin",
-        "repo": "zen-browser",
-        "rev": "c855685442c6040c4dda9c8d3ddc7b708de1cbaa",
+        "lastModified": 1773337132,
+        "narHash": "sha256-67FcMfxrkKKcDHNIKcXhrKaBgm0HKWnEEmAotcAgnuM=",
+        "owner": "code-irisnk",
+        "repo": "catppuccin-zen-browser",
+        "rev": "d13d2631e5767ddebe4e46581b974102d99e095b",
         "type": "github"
       },
       "original": {
         "dir": "themes/Macchiato/Lavender",
-        "owner": "catppuccin",
-        "repo": "zen-browser",
+        "owner": "code-irisnk",
+        "ref": "main",
+        "repo": "catppuccin-zen-browser",
         "type": "github"
       }
     },

@@ -46,7 +46,8 @@
     catppuccin.url = "github:catppuccin/nix/release-25.11";
 
     catppuccin-zen-browser = {
-      url = "github:catppuccin/zen-browser?dir=themes/Macchiato/Lavender";
+      # url = "github:catppuccin/zen-browser?dir=themes/Macchiato/Lavender";
+      url = "github:code-irisnk/catppuccin-zen-browser/main?dir=themes/Macchiato/Lavender";
       flake = false;
     };
 
