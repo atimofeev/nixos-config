@@ -41,11 +41,6 @@
     };
   };
 
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rustland";
-  };
-
   custom = {
 
     user-shell = "fish";
@@ -123,6 +118,7 @@
       logrotate-nvim.enable = true;
       power-profiles-daemon.enable = true;
       printing.enable = true;
+      scx.enable = true;
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;

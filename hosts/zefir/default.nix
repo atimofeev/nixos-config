@@ -57,11 +57,6 @@
     };
   };
 
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rustland";
-  };
-
   custom = {
 
     user-shell = "fish";
@@ -145,6 +140,7 @@
         enable = true;
         package = pkgs.unstable.ollama-cuda;
       };
+      scx.enable = true;
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;
