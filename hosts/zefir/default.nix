@@ -73,7 +73,7 @@
           package = pkgs.unstable.asusctl;
         };
         backlight-fix.enable = true;
-        cpu-throttling-fix.enable = true;
+        # cpu-throttling-fix.enable = true;
         fn-lock-fix.enable = true;
       };
       bluetooth.enable = true;
@@ -88,6 +88,19 @@
         zsa.enable = true;
       };
       power.enable = true;
+      rapl-power-limit = {
+        enable = true;
+        profiles = {
+          balanced = {
+            pl1Watts = 50;
+            pl2Watts = 55;
+          };
+          performance = {
+            pl1Watts = 50;
+            pl2Watts = 55;
+          };
+        };
+      };
       sound.enable = true;
       ssd.enable = true;
     };
