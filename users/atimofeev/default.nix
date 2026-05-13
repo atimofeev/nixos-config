@@ -29,7 +29,39 @@
     };
 
     applications = {
-      ai-skills.enable = true;
+      ai-skills = {
+        enable = true;
+        antigravity-awesome-skills = [
+          "aws-cost-cleanup"
+          "aws-cost-optimizer"
+          "aws-iam-best-practices"
+          "bash-defensive-patterns"
+          "bash-pro"
+          "cicd-automation-workflow-automate"
+          "cloud-architect"
+          "cloud-devops"
+          "deployment-engineer"
+          "deployment-pipeline-design"
+          "deployment-procedures"
+          "docker-expert"
+          "gitlab-ci-patterns"
+          "gitops-workflow"
+          "grafana-dashboards"
+          "helm-chart-scaffolding"
+          "hybrid-cloud-architect"
+          "k8s-manifest-generator"
+          "kubernetes-architect"
+          "kubernetes-deployment"
+          "prometheus-configuration"
+          "secrets-management"
+          "terraform-aws-modules"
+          "terraform-infrastructure"
+        ];
+        hashicorp-terraform-skills.enable = true;
+        nixomatic-skill.enable = true;
+        terraform-skill.enable = true;
+        terramate-skills.enable = true;
+      };
       atuin = {
         enable = true;
         package = pkgs.unstable.atuin;
