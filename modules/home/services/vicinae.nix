@@ -44,8 +44,8 @@ in
       extensions = [
         (config.lib.vicinae.mkRayCastExtension {
           name = "gif-search";
-          sha256 = "sha256-G7il8T1L+P/2mXWJsb68n4BCbVKcrrtK8GnBNxzt73Q=";
-          rev = "4d417c2dfd86a5b2bea202d4a7b48d8eb3dbaeb1";
+          sha256 = "sha256-aWIYh6tQbdZxT04TRVEc/HmgJUXFl0eMFpIZpCaIQ4U=";
+          rev = "57a031113af4c6a35912a7e90e5937fb1aacc40b";
         })
         # NOTE: won't build
         # https://github.com/nix-community/home-manager/issues/8262
