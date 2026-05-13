@@ -160,6 +160,7 @@
         enable = true;
         # package = pkgs.unstable.cato-client;
       };
+      globalprotect.enable = true;
       kube-tools.enable = true;
       misc-tools.enable = true;
       opentofu = {
