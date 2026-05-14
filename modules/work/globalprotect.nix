@@ -8,6 +8,26 @@ let
   cfg = config.custom.work.globalprotect;
   hmUser = config.custom.hm-admin;
   firefoxEnabled = config.custom-hm.applications.firefox.enable or false;
+
+  # HIP report script for GlobalProtect CSD (Host Information Profile).
+  # openconnect invokes this as --csd-wrapper to generate the HIP XML report
+  # required by GlobalProtect gateways for host posture assessment.
+  # Source: https://gitlab.com/openconnect/openconnect/-/blob/master/trojans/hipreport.sh
+  hipreportScript =
+    pkgs.runCommand "hipreport"
+      {
+        src = pkgs.fetchFromGitLab {
+          owner = "openconnect";
+          repo = "openconnect";
+          rev = "a7e751442e0e4bb8e3f18965960b1428e1a26bbc";
+          hash = "sha256-OV5LMTV3NqSASChelVh5Hpw+ZnuJ89FPLkGTCej2j4w=";
+        };
+      }
+      ''
+        mkdir -p $out/bin
+        install -m755 $src/trojans/hipreport.sh $out/bin/hipreport.sh
+        patchShebangs $out/bin/hipreport.sh
+      '';
 in
 {
 
@@ -19,7 +39,13 @@ in
     portal = lib.mkOption {
       type = lib.types.str;
       default = "$GP_PORTAL";
-      description = "Portal hostname/url (default: env var GP_PORTAL from sops secret).";
+      description = "Portal hostname/url (default: env var GP_PORTAL).";
+    };
+
+    gateway = lib.mkOption {
+      type = lib.types.str;
+      default = "$GP_GATEWAY";
+      description = "Portal gateway (default: env var GP_GATEWAY).";
     };
 
     enableGnomeKeyring = lib.mkOption {
@@ -50,9 +76,10 @@ in
 
     home-manager.users.${hmUser} = {
 
-      custom-hm.user.shellAliases = lib.mkIf (cfg.portal != null) {
-        gp-start = "sudo -E gpclient connect --as-gateway --default-browser ${cfg.portal} &";
-        gp-stop = "sudo pkill gpclient";
+      custom-hm.user.shellAliases = lib.mkIf (cfg.portal != null) rec {
+        gp-start = "sudo -E sh -c 'gpclient connect --default-browser --hip --csd-wrapper ${hipreportScript}/bin/hipreport.sh --gateway ${cfg.gateway} ${cfg.portal} > /dev/null 2> /tmp/gpclient-error.log &'";
+        gp-stop = "sudo pkill -9 gpclient";
+        gp-restart = "${gp-stop}; ${gp-start}";
       };
 
       # NOTE: https://github.com/yuezk/GlobalProtect-openconnect/issues/589
