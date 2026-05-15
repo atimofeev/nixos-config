@@ -147,7 +147,7 @@ in
           };
           "addon@darkreader.org" = {
             default_area = "navbar";
-            install_url = "file:///${pkgs.darkreader-declarative}/firefox.xpi";
+            install_url = "file:///${pkgs.darkreader-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/addon@darkreader.org.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
             updates_disabled = true;
@@ -182,7 +182,7 @@ in
           };
           "surfingkeys@brookhong.github.io" = {
             default_area = "menubar";
-            install_url = "file:///${pkgs.surfingkeys-declarative}/firefox.xpi";
+            install_url = "file:///${pkgs.surfingkeys-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/surfingkeys@brookhong.github.io.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
             updates_disabled = true;

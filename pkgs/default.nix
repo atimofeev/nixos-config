@@ -1,13 +1,17 @@
+{ inputs, ... }:
+
 {
 
   nixpkgs.overlays = [
     (_final: prev: {
       # falcon = prev.callPackage ./falcon.nix { };
-      darkreader-declarative = prev.callPackage ./darkreader-declarative.nix { };
+      darkreader-declarative =
+        inputs.firefox-extensions-declarative.packages.${prev.stdenv.hostPlatform.system}.darkreader-declarative;
       kubectl-login = prev.callPackage ./kubectl-login.nix { };
       linux-g14 = prev.callPackage ./linux-g14.nix { };
       nvidia-hide = prev.callPackage ./nvidia-hide.nix { };
-      surfingkeys-declarative = prev.callPackage ./surfingkeys-declarative.nix { };
+      surfingkeys-declarative =
+        inputs.firefox-extensions-declarative.packages.${prev.stdenv.hostPlatform.system}.surfingkeys-declarative;
       vault-kv-mv = prev.callPackage ./vault-kv-mv.nix { };
     })
   ];

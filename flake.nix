@@ -63,6 +63,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-extensions-declarative.url = "github:firefox-extensions-declarative/firefox-extensions-declarative";
+
     github-avatar = {
       url = "https://avatars.githubusercontent.com/u/39891735?v=4";
       flake = false;
