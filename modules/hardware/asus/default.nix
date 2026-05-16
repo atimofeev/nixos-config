@@ -5,6 +5,7 @@
     ./backlight-fix.nix
     ./cpu-throttling-fix.nix
     ./fn-lock-fix.nix
+    ./stuck-active-dgpu-fix.nix
   ];
 
 }

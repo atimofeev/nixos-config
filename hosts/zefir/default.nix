@@ -75,6 +75,7 @@
         backlight-fix.enable = true;
         # cpu-throttling-fix.enable = true;
         fn-lock-fix.enable = true;
+        stuck-active-dgpu-fix.enable = true;
       };
       bluetooth.enable = true;
       gpu-ordering = {
