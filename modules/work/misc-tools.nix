@@ -15,6 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      gcc
       gnumake
       nodejs
       python3
