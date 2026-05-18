@@ -8,7 +8,7 @@
         y = 0;
       };
       scale = 1.33;
-      variable-refresh-rate = { };
+      # variable-refresh-rate = { };
     }
     {
       _args = [ "BOE 0x0747" ];
