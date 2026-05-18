@@ -33,6 +33,7 @@ in
         dns = "systemd-resolved";
         plugins = [ pkgs.networkmanager-openvpn ];
         unmanaged = [ "docker*" ];
+        wifi.powersave = true;
       };
 
       firewall = {
