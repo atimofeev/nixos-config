@@ -80,8 +80,8 @@
       bluetooth.enable = true;
       gpu-ordering = {
         enable = true;
-        dgpu = "0x8086:0x7d51";
-        igpu = "0x10de:0x2f58";
+        dgpu = "0x10de:0x2f58";
+        igpu = "0x8086:0x7d51";
       };
       nvidia.enable = true;
       peripherals = {
