@@ -88,7 +88,12 @@
         logitech.logi-bolt-disable-wakeup = true;
         zsa.enable = true;
       };
-      power.enable = true;
+      power = {
+        enable = true;
+        disable-wol = true;
+        powertop = true;
+        wifi-powersave = true;
+      };
       rapl-power-limit = {
         enable = true;
         profiles = {
