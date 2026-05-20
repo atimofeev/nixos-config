@@ -1,10 +1,12 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   cfg = config.custom.work.openvpn;
+  hmUser = config.custom.hm-admin;
 in
 {
 
@@ -15,45 +17,65 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    security.sudo.extraRules = [
-      {
-        groups = [ "wheel" ];
-        runAs = "root";
-        commands =
-          map
-            (action: {
-              command = "/run/current-system/sw/bin/systemctl ${action} openvpn-officeVPN.service";
-              options = [ "NOPASSWD" ];
-            })
-            [
-              "restart"
-              "start"
-              "stop"
-            ];
-      }
-    ];
+    sops.secrets = {
+      "work/openvpn-main-files/ca".owner = config.custom.hm-admin;
+      "work/openvpn-main-files/cert".owner = config.custom.hm-admin;
+      "work/openvpn-main-files/key".owner = config.custom.hm-admin;
+      "work/openvpn-main-files/ta".owner = config.custom.hm-admin;
+    };
 
-    services.openvpn.servers = {
+    networking.networkmanager = {
 
-      # NOTE: config defined in ../system/secrets.nix
-      officeVPN = {
-        # updateResolvConf = true;
-        inherit (cfg) autoStart;
-      };
+      plugins = [ pkgs.networkmanager-openvpn ];
 
-      AH-VPN = {
-        autoStart = false;
-        # https://ipmilist.advancedhosters.com/
-        config = "config /home/${config.custom.hm-admin}/secrets/AH-VPN.conf";
+      ensureProfiles.profiles.openvpn-main = {
+        connection = {
+          id = "openvpn-main";
+          type = "vpn";
+          autoconnect = cfg.autoStart;
+          permissions = "user:${hmUser}:";
+        };
+        vpn = {
+          auth = "SHA512";
+          ca = config.sops.secrets."work/openvpn-main-files/ca".path;
+          cert = config.sops.secrets."work/openvpn-main-files/cert".path;
+          cipher = "AES-256-CBC";
+          data-ciphers = "AES-256-CBC:AES-256-GCM:AES-128-GCM:CHACHA20-POLY1305";
+          data-ciphers-fallback = "AES-256-CBC";
+          comp-lzo = "adaptive";
+          allow-compression = "asym";
+          connection-type = "$OPENVPN_MAIN_CONNECTION_TYPE";
+          dev = "tun";
+          key = config.sops.secrets."work/openvpn-main-files/key".path;
+          password-flags = "0";
+          remote = "$OPENVPN_MAIN_REMOTE";
+          remote-cert-tls = "server";
+          service-type = "org.freedesktop.NetworkManager.openvpn";
+          ta = config.sops.secrets."work/openvpn-main-files/ta".path;
+          ta-dir = "1";
+          tls-cipher = "$OPENVPN_MAIN_TLS_CIPHER";
+          tunnel-mtu = "1400";
+          username = "$OPENVPN_MAIN_USERNAME";
+        };
+        ipv4 = {
+          method = "auto";
+          never-default = true;
+          ignore-auto-dns = true;
+          dns-priority = 50;
+        };
+        ipv6 = {
+          method = "disabled";
+        };
+        vpn-secrets.password = "$OPENVPN_MAIN_PASSWORD";
       };
 
     };
 
-    home-manager.users.${config.custom.hm-admin}.custom-hm.user.shellAliases = {
-      vpn-restart = "sudo systemctl restart openvpn-officeVPN.service";
-      vpn-start = "sudo systemctl start openvpn-officeVPN.service";
-      vpn-status = "systemctl status openvpn-officeVPN.service";
-      vpn-stop = "sudo systemctl stop openvpn-officeVPN.service";
+    home-manager.users.${hmUser}.custom-hm.user.shellAliases = {
+      vpn-start = "nmcli connection up openvpn-main";
+      vpn-stop = "nmcli connection down openvpn-main";
+      vpn-restart = "nmcli connection down openvpn-main; nmcli connection up openvpn-main";
+      vpn-status = "nmcli connection show openvpn-main";
     };
 
   };

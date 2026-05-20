@@ -23,18 +23,10 @@ in
       fi
     '';
 
-    services = {
-      homepage-dashboard.environmentFile = config.sops.secrets."work/homepage-env".path;
-      openvpn.servers.officeVPN = lib.mkIf config.custom.work.openvpn.enable {
-        config = ''
-          config /home/${config.custom.hm-admin}/secrets/officeVPN.conf
-          auth-user-pass ${config.sops.secrets."work/vpn-creds".path}
-        '';
-      };
-    };
+    services.homepage-dashboard.environmentFile = config.sops.secrets."work/homepage-env".path;
 
     networking.networkmanager.ensureProfiles.environmentFiles = [
-      config.sops.secrets."work/env-vars".path
+      config.sops.secrets."work/vpn-envs".path
     ];
 
     sops.secrets = {
@@ -44,14 +36,7 @@ in
         owner = config.custom.hm-admin;
         restartUnits = [ "homepage-dashboard.service" ];
       };
-      "work/vpn-creds" = lib.mkIf config.custom.work.openvpn.enable (
-        lib.mkMerge [
-          { }
-          (lib.mkIf config.custom.work.openvpn.autoStart {
-            restartUnits = [ "openvpn-officeVPN.service" ];
-          })
-        ]
-      );
+      "work/vpn-envs".owner = config.custom.hm-admin;
     };
 
   };
