@@ -1,0 +1,61 @@
+Subject: Forward csd-wrapper, csd-user, and usergroup to openconnect at runtime
+
+Upstream NetworkManager-openconnect 1.2.10 reads enable_csd_trojan and
+csd_wrapper from vpn.data but never passes them to openconnect: the
+forwarding block is dead-coded behind `if (FALSE && priv->tun_name)`
+(see TODO comment above). It also has no support for forwarding
+"usergroup".
+
+For the GlobalProtect ('gp') protocol, the gateway hits hipreportcheck.esp
+during the cookie-authenticated tunnel phase and silently degrades the ACL
+when no HIP report is submitted. openconnect must therefore receive
+--csd-wrapper at runtime, not just during pre-auth. usergroup is also
+required by some GP deployments to address the correct gateway.
+
+This patch:
+  * unconditionally forwards --csd-wrapper / --csd-user when
+    enable_csd_trojan=yes and csd_wrapper is set;
+  * uses --csd-user=nobody so openconnect can drop privileges itself;
+  * forwards "usergroup" from vpn.data as --usergroup.
+
+--- a/src/nm-openconnect-service.c
++++ b/src/nm-openconnect-service.c
+@@ -439,6 +439,7 @@
+ 	char csd_user_arg[60];
+ 	const char *props_vpn_gw, *props_cookie, *props_cacert, *props_mtu, *props_gwcert, *props_proxy;
+ 	const char *props_csd_enable, *props_csd_wrapper, *props_resolve;
++	const char *props_usergroup;
+ 	const char *props_disable_udp;
+ 	const char *protocol;
+ 	const char *props_tun_name;
+@@ -554,18 +555,18 @@
+ 		 * However, it is still not safe to run untrusted scripts provided by the user.
+ 		 *
+ 		 * This needs a different solution, for now, just log a warning. */
+-		if (FALSE && priv->tun_name) {
+-			/* Replicate the CSD parameters used in the authentication phase, for
+-			   supported protocols which may need to invoke the security trojan ("CSD")
+-			   in the tunnel/connection phase. */
+-			g_ptr_array_add (openconnect_argv, (gpointer) "--csd-wrapper");
+-			g_ptr_array_add (openconnect_argv, (gpointer) props_csd_wrapper);
+-			g_ptr_array_add (openconnect_argv, (gpointer) "--csd-user");
+-			g_ptr_array_add (openconnect_argv, (gpointer) nm_sprintf_buf (csd_user_arg, "%d", gl.tun_owner));
+-		} else {
+-			_LOGW ("openconnect won't call csd-wrapper script because it cannot drop privileges to user \"%s\"",
+-			       NM_OPENCONNECT_USER);
+-		}
++		/* nixos-config: enable runtime CSD forwarding unconditionally; use
++		 * --csd-user=nobody so openconnect drops privileges itself. */
++		g_ptr_array_add (openconnect_argv, (gpointer) "--csd-wrapper");
++		g_ptr_array_add (openconnect_argv, (gpointer) props_csd_wrapper);
++		g_ptr_array_add (openconnect_argv, (gpointer) "--csd-user");
++		g_ptr_array_add (openconnect_argv, (gpointer) "nobody");
++	}
++
++	props_usergroup = nm_setting_vpn_get_data_item (s_vpn, "usergroup");
++	if (props_usergroup && *props_usergroup) {
++		g_ptr_array_add (openconnect_argv, (gpointer) "--usergroup");
++		g_ptr_array_add (openconnect_argv, (gpointer) props_usergroup);
+ 	}
+ 
+ 	g_ptr_array_add (openconnect_argv, (gpointer) props_vpn_gw);
