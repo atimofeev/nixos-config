@@ -18,6 +18,11 @@ in
   options.custom.work.cato = {
     enable = lib.mkEnableOption "Cato client bundle";
     package = lib.mkPackageOption pkgs "cato-client" { };
+    autoStart = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to auto-start cato-client systemd service on boot";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -52,9 +57,8 @@ in
       inherit (cfg) package;
     };
 
-    # NOTE: not sure if this has any effect
-    systemd.services.cato-client.serviceConfig = {
-      ExecStart = lib.mkForce "${cfg.package}/bin/cato-clientd systemd --use-systemd-resolv";
+    systemd.services.cato-client = {
+      wantedBy = lib.mkIf (!cfg.autoStart) (lib.mkForce [ ]);
     };
 
     home-manager.users.${config.custom.hm-admin} = {
@@ -71,7 +75,7 @@ in
       };
 
       custom-hm.user.shellAliases = {
-        cato-restart = "sudo pkill -9 -f cato; sudo sed -i '/10.254.254.1/d' /etc/resolv.conf";
+        cato-restart = "sudo pkill -9 -f cato; sudo sed -i '/10.254.254.1/d' /etc/resolv.conf; sudo systemctl start cato-client";
         cato-start = "cato-sdp start";
         cato-status = "cato-sdp status";
         cato-stop = "cato-sdp stop";
