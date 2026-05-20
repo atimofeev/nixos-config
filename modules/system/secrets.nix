@@ -33,6 +33,10 @@ in
       };
     };
 
+    networking.networkmanager.ensureProfiles.environmentFiles = [
+      config.sops.secrets."work/env-vars".path
+    ];
+
     sops.secrets = {
       "personal/env-vars".owner = config.custom.hm-admin;
       "work/env-vars".owner = config.custom.hm-admin;
