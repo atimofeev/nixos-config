@@ -113,7 +113,7 @@ in
         controlCenterShowBluetoothIcon = true;
         controlCenterShowAudioIcon = true;
         controlCenterShowAudioPercent = false;
-        controlCenterShowVpnIcon = false;
+        controlCenterShowVpnIcon = true;
         controlCenterShowBrightnessIcon = false;
         controlCenterShowBrightnessPercent = false;
         controlCenterShowMicIcon = false;
@@ -175,6 +175,11 @@ in
             enabled = true;
             id = "colorPicker";
             width = 50;
+          }
+          {
+            enabled = true;
+            id = "builtin_vpn";
+            width = 100;
           }
         ];
         showWorkspaceIndex = false;
