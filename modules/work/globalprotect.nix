@@ -43,7 +43,7 @@ in
           vpn = {
             service-type = "org.freedesktop.NetworkManager.openconnect";
             protocol = "gp";
-            gateway = "$GP_GATEWAY_URL";
+            gateway = "$GLOBALPROTECT_GATEWAY";
             csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
             enable_csd_trojan = "yes";
             usergroup = "gateway";
