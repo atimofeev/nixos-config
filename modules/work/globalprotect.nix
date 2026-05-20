@@ -7,26 +7,6 @@
 let
   cfg = config.custom.work.globalprotect;
   hmUser = config.custom.hm-admin;
-
-  # HIP report script for GlobalProtect CSD (Host Information Profile).
-  # openconnect invokes this as --csd-wrapper to generate the HIP XML report
-  # required by GlobalProtect gateways for host posture assessment.
-  # Source: https://gitlab.com/openconnect/openconnect/-/blob/master/trojans/hipreport.sh
-  hipreportScript =
-    pkgs.runCommand "hipreport"
-      {
-        src = pkgs.fetchFromGitLab {
-          owner = "openconnect";
-          repo = "openconnect";
-          rev = "a7e751442e0e4bb8e3f18965960b1428e1a26bbc";
-          hash = "sha256-OV5LMTV3NqSASChelVh5Hpw+ZnuJ89FPLkGTCej2j4w=";
-        };
-      }
-      ''
-        mkdir -p $out/bin
-        install -m755 $src/trojans/hipreport.sh $out/bin/hipreport.sh
-        patchShebangs $out/bin/hipreport.sh
-      '';
 in
 {
   options.custom.work.globalprotect = {
@@ -64,8 +44,8 @@ in
             service-type = "org.freedesktop.NetworkManager.openconnect";
             protocol = "gp";
             gateway = "$GP_PORTAL";
-            csd-wrapper = "${hipreportScript}/bin/hipreport.sh";
             enable-csd-trojan = "yes";
+            csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
           };
           ipv4 = {
             method = "auto";
