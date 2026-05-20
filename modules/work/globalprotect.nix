@@ -31,12 +31,6 @@ in
 {
   options.custom.work.globalprotect = {
     enable = lib.mkEnableOption "GlobalProtect VPN (NM + DMS)";
-
-    autoconnect = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Auto-connect at boot and attempt reconnect on interruption (vpn.persistent)";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -63,7 +57,7 @@ in
           connection = {
             id = "GlobalProtect";
             type = "vpn";
-            autoconnect = cfg.autoconnect;
+            autoconnect = false;
             permissions = "user:${hmUser}:";
           };
           vpn = {
