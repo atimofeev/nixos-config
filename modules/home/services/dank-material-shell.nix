@@ -42,6 +42,7 @@ in
       enable = true;
 
       dgop.package = pkgs.unstable.dgop;
+      quickshell.package = pkgs.unstable.quickshell;
 
       systemd = {
         enable = true;
@@ -326,6 +327,7 @@ in
         batterySuspendBehavior = 0;
         batteryProfileName = "0";
         batteryChargeLimit = 100;
+        lowerDisplayRefreshRateOnBattery = true;
         lockBeforeSuspend = true;
         loginctlLockIntegration = true;
         fadeToLockEnabled = true;

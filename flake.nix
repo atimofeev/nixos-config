@@ -52,7 +52,9 @@
     };
 
     dank-material-shell = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
+      # NOTE: waits for merge https://github.com/AvengeMedia/DankMaterialShell/pull/2428
+      # url = "github:AvengeMedia/DankMaterialShell/stable";
+      url = "github:atimofeev/DankMaterialShell";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
