@@ -158,6 +158,9 @@
       ollama = {
         enable = true;
         package = pkgs.unstable.ollama-cuda;
+        environment = {
+          OLLAMA_CONTEXT_LENGTH = "32768";
+        };
       };
       scx.enable = true;
       yubikey = {
