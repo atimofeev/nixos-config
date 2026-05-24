@@ -697,6 +697,22 @@
         "url": "https://codeberg.org/BANanaD3V/niri-nix"
       }
     },
+    "niri-pr-fork": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779651868,
+        "narHash": "sha256-bNvzDk/VISmjGZWZFWj8EK9dW8osmDkSxI3zCUVAMm0=",
+        "owner": "atimofeev",
+        "repo": "niri",
+        "rev": "e05cf3e1e1b84fd10674ce1369135323d23c46c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "atimofeev",
+        "repo": "niri",
+        "type": "github"
+      }
+    },
     "niri-unstable": {
       "flake": false,
       "locked": {
@@ -1030,6 +1046,7 @@
         "lanzaboote": "lanzaboote",
         "llm-agents": "llm-agents",
         "niri-nix": "niri-nix",
+        "niri-pr-fork": "niri-pr-fork",
         "nix-gaming": "nix-gaming",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",

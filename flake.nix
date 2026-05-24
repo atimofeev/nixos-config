@@ -78,6 +78,11 @@
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
+    niri-pr-fork = {
+      url = "github:atimofeev/niri";
+      flake = false;
+    };
+
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     nix-gaming.url = "github:fufexan/nix-gaming";

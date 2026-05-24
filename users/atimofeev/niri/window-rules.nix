@@ -111,6 +111,9 @@ in
       opacity = 1.0;
       open-floating = true;
       open-focused = false;
+      focus-on-activate = false;
+      focus-ring.off = { };
+      border.off = { };
       default-column-width.proportion = 0.25;
       default-window-height.proportion = 0.25;
       default-floating-position._props = {
