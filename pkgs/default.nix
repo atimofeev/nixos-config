@@ -12,6 +12,7 @@
       nvidia-hide = prev.callPackage ./nvidia-hide.nix { };
       surfingkeys-declarative =
         inputs.firefox-extensions-declarative.packages.${prev.stdenv.hostPlatform.system}.surfingkeys-declarative;
+      glci = prev.callPackage ./glci.nix { };
       vault-kv-mv = prev.callPackage ./vault-kv-mv.nix { };
     })
   ];

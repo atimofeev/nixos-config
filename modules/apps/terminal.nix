@@ -46,6 +46,7 @@ in
       fzf
       gh
       unstable.glab
+      glci
       nvidia-hide
       tldr
 
