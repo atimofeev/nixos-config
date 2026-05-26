@@ -20,7 +20,7 @@ in
       emacs
       vscode
       firefox
-      telegram-desktop
+      unstable.telegram-desktop
       spotify
 
       # typing
