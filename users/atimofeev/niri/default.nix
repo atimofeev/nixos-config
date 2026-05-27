@@ -11,6 +11,7 @@
     inputs.niri-nix.homeModules.default
 
     ./animations.nix
+    ./debug.nix
     ./gestures.nix
     ./input.nix
     ./keybinds.nix
@@ -28,7 +29,6 @@
   wayland.windowManager.niri = {
     inherit (osConfig.programs.niri) enable package;
     settings = {
-      debug.honor-xdg-activation-with-invalid-serial = { };
       hotkey-overlay.skip-at-startup = { };
       overview.backdrop-color = "#1e1e2e";
       prefer-no-csd = { };
