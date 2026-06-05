@@ -17,6 +17,7 @@ in
     environment.systemPackages = with pkgs; [
       gcc
       gnumake
+      just
       nodejs
       python3
       ruby
