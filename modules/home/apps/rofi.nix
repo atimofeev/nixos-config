@@ -11,7 +11,7 @@ let
   launcher = config.custom-hm.user.launcher.app;
 
   uwsm = lib.getExe pkgs.uwsm;
-  prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
+  prefix = if osConfig.programs.hyprland.withUWSM or false then "${uwsm} app --" else "";
   pkill = lib.getExe' pkgs.procps "pkill";
   wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
   wtype = lib.getExe pkgs.wtype;

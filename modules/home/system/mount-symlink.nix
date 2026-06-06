@@ -1,19 +1,19 @@
 {
   config,
   lib,
-  osConfig,
+  osConfig ? {},
   ...
 }:
 let
   cfg = config.custom-hm.system.mount-symlink;
-  osCfg = osConfig.custom.system.automount;
+  osCfg = osConfig.custom.system.automount or {};
 in
 {
 
   options.custom-hm.system.mount-symlink = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = osCfg.enable;
+      default = osCfg.enable or false;
       description = "Enable symlink to media mounts";
     };
   };

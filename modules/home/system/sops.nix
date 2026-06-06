@@ -16,7 +16,7 @@ in
   options.custom-hm.system.sops = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = osConfig.custom.system.sops.enable;
+      default = osConfig.custom.system.sops.enable or false;
       description = "Enable sops integration. Defaults to enabled if system sops is configured.";
     };
   };
