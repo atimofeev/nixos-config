@@ -23,7 +23,7 @@ in
       fi
     '';
 
-    services.homepage-dashboard.environmentFile = config.sops.secrets."work/homepage-env".path;
+    services.homepage-dashboard.environmentFiles = [ config.sops.secrets."work/homepage-env".path ];
 
     networking.networkmanager.ensureProfiles.environmentFiles = [
       config.sops.secrets."work/vpn-envs".path

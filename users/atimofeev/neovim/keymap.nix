@@ -1,5 +1,5 @@
 _: {
-  programs.neovim.extraLuaConfig = # lua
+  programs.neovim.initLua = # lua
     ''
       vim.g.mapleader = ' '
       vim.g.maplocalleader = ' '

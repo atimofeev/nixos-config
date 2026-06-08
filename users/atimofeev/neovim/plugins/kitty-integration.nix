@@ -3,7 +3,7 @@
   programs = {
 
     neovim = {
-      extraLuaConfig = # lua
+      initLua = # lua
         ''
           vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufWritePost" }, {
             desc = "Update kitty tab title with current filename",

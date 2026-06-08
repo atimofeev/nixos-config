@@ -23,7 +23,7 @@ in
       enable = true;
       inherit (cfg) package;
       inherit (cfg) enableMcpIntegration;
-      rules = ''
+      context = ''
         Terse like caveman. Technical substance exact. Only fluff die.
         Drop: articles, filler (just/really/basically), pleasantries, hedging.
         Fragments OK. Short synonyms. Code unchanged.

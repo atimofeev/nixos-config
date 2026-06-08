@@ -27,7 +27,9 @@ in
     programs.zen-browser = {
 
       enable = true;
-      nativeMessagingHosts = [ pkgs.firefoxpwa ];
+      # BUG: firefoxpwa 2.18.2 wrapper build fails (missing lib/firefoxpwa dir).
+      # Use unwrapped package directly — provides the native messaging host.
+      nativeMessagingHosts = [ pkgs.firefoxpwa-unwrapped ];
       inherit (config.programs.firefox) policies;
       profiles.default = rec {
         isDefault = true;

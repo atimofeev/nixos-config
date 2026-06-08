@@ -24,6 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
+      autoEnable = true;
       inherit (osConfig.catppuccin) accent flavor;
 
       chromium.enable = false; # chromium is configured outside of home-manager

@@ -26,6 +26,7 @@ in
   config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
+      autoEnable = true;
       accent = lib.mkIf (cfg.accent != null) cfg.accent;
       flavor = lib.mkIf (cfg.flavor != null) cfg.flavor;
     };
