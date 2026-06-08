@@ -26,14 +26,18 @@ in
       inherit (cfg) package;
       systemd.enable = true;
       settings = {
-        faviconService = "twenty";
+        activate_on_single_click = true;
+        close_on_focus_loss = true;
         favorites = [ "applications:zen-beta" ];
-        font = {
+        font.normal = {
+          family = "DejaVuSansM Nerd Font Mono";
           size = 11.5;
         };
-        popToRootOnClose = false;
-        rootSearch = {
-          searchFiles = false;
+        pop_to_root_on_close = true;
+        providers = {
+          application.preferences.defaultAction = "launch";
+          developer.ebabled = false;
+          wm.enabled = false;
         };
         window = {
           csd = true;
