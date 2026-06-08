@@ -2,7 +2,7 @@
 final: _prev: {
   unstable = import inputs.nixpkgs-unstable {
     inherit (final.stdenv.hostPlatform) system;
-    config.allowUnfree = true;
+    inherit (final) config;
     overlays = [
       (import ./niri.nix { inherit inputs; })
     ];
