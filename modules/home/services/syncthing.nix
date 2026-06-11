@@ -24,6 +24,7 @@ in
           milaptop.id = "OMLCF55-CZON22Z-3IVO7WL-TRJ2RBF-EZIRIHI-LM6DLGC-H2RM22P-3N6GQQF";
           zefir.id = "OGKDC5I-ZWEPHMX-RIEGN72-EWF4ETK-NQ253V5-6AIDHNP-HKD7LRN-GAZOXAM";
           "Pixel 5a".id = "6TLETF7-HMGU76V-M5SN43R-ZCHPQX7-KDJGIHM-VVXHQ3H-BXWDFJN-7LPKRA3";
+          OnePlus15.id = "SBLJMOD-KGVUGIX-FB3TYZ5-ZIZ2ZCS-7EDQF6T-TRDFXKE-2TU6CD4-OVCIPQ7";
           steamdeck.id = "3XZ4Q4E-55W4RY3-GQEYRUR-OVZJZFU-YGO3CXX-Z2YDRFG-W7O44AY-XBTY5AG";
         };
 
@@ -34,6 +35,7 @@ in
               "milaptop"
               "zefir"
               "Pixel 5a"
+              "OnePlus15"
             ];
             ignorePerms = true;
           };
