@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -11,8 +12,8 @@ in
   options.custom.system.boot = {
     enable = lib.mkEnableOption "boot bundle";
     kernelPackages = lib.mkOption {
-      default = null;
-      type = lib.types.nullOr lib.types.raw;
+      default = pkgs.linuxPackages;
+      type = lib.types.raw;
     };
   };
 
