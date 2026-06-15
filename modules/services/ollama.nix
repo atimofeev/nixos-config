@@ -51,7 +51,6 @@ in
       ollama = {
         enable = true;
         inherit (cfg) package;
-        acceleration = "cuda";
         user = "ollama";
         environmentVariables = cfg.environment;
       };

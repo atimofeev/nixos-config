@@ -26,6 +26,7 @@ in
     programs.firefox = {
       enable = true;
       inherit (cfg) package;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.default.isDefault = true;
     };
   };
