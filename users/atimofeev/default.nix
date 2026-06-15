@@ -87,6 +87,7 @@
         enable = true;
         package = pkgs.htop-vim;
       };
+      imv.enable = true;
       k9s = {
         enable = true;
         package = pkgs.unstable.k9s;
