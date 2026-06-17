@@ -22,6 +22,7 @@ in
     ]
     ++ (with pkgs; [
       unstable.tfsort
+      terramate
 
       # import tools
       terraformer
