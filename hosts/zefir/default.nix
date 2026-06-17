@@ -26,18 +26,6 @@
   time.timeZone = "Europe/Podgorica";
   system.stateVersion = "24.11";
 
-  boot = {
-    blacklistedKernelModules = [
-      # NOTE: block Realtek Card Reader, which prevents deep sleep
-      "rtsx_pci"
-      "rtsx_pci_sdmmc"
-    ];
-    kernelParams = [
-      "pcie_aspm=force"
-      "nvidia.NVreg_EnableS0ixPowerManagement=1"
-    ];
-  };
-
   hardware = {
     intelgpu.driver = "xe";
     enableRedistributableFirmware = true;
