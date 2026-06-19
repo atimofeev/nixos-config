@@ -55,7 +55,7 @@ in
         battery.display = [
           {
             style = "fg:red bg:surface0";
-            threshold = 79;
+            threshold = 75;
           }
         ];
 
