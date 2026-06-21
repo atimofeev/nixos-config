@@ -144,7 +144,7 @@
       };
       logrotate-nvim.enable = true;
       ollama = {
-        enable = true;
+        enable = false;
         package = pkgs.unstable.ollama-cuda;
         environment = {
           OLLAMA_CONTEXT_LENGTH = "32768";
