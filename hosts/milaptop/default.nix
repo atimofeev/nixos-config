@@ -119,6 +119,10 @@
       power-profiles-daemon.enable = true;
       printing.enable = true;
       scx.enable = true;
+      searxng = {
+        enable = true;
+        port = 3000;
+      };
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;

@@ -150,6 +150,7 @@
           OLLAMA_CONTEXT_LENGTH = "32768";
         };
       };
+      searxng.enable = true;
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;
