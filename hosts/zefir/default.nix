@@ -150,7 +150,10 @@
           OLLAMA_CONTEXT_LENGTH = "32768";
         };
       };
-      searxng.enable = true;
+      searxng = {
+        enable = true;
+        port = 3000;
+      };
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;
