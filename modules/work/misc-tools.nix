@@ -23,6 +23,7 @@ in
       ruby
       uv
 
+      awsx
       awscli2
       cloudlens
       dig

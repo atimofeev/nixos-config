@@ -61,4 +61,12 @@
     unset = "set -e";
   };
 
+  # awsx + fzf: pick profile interactively, switch in-place
+  programs.fish.functions.ax = ''
+    set profile (awsx list 2>&1 | grep 'aws=' | awk '{print $1}' | fzf)
+    if test -n "$profile"
+      awsx use $profile | source
+    end
+  '';
+
 }

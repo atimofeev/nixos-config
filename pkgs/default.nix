@@ -4,6 +4,7 @@
 
   nixpkgs.overlays = [
     (_final: prev: {
+      awsx = prev.callPackage ./awsx.nix { };
       # falcon = prev.callPackage ./falcon.nix { };
       darkreader-declarative =
         inputs.firefox-extensions-declarative.packages.${prev.stdenv.hostPlatform.system}.darkreader-declarative;
