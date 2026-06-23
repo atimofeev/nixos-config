@@ -172,6 +172,28 @@ Often no `options`/`enable` toggle. Apply config directly, sometimes wire HM con
 
 Home side lives under `modules/desktop/<wm>/config/` with explicit `imports = [ ... ];`.
 
+#### Attribute set merging rule
+
+When a module configures multiple sub-attributes of the same parent attribute, nest them under one parent block. Never repeat the parent prefix:
+
+```nix
+# WRONG — repeated parent
+programs.fish.shellAliases = { ... };
+programs.fish.functions.ax = '' ... '';
+programs.fish.functions.ar = '' ... '';
+
+# CORRECT — nested, sorted keys
+programs.fish = {
+  shellAliases = { ... };
+  functions = {
+    ar = '' ... '';
+    ax = '' ... '';
+  };
+};
+```
+
+Sort keys alphabetically within each attribute set.
+
 ### Import Style
 
 ```nix
@@ -234,7 +256,7 @@ in x
 
 1. **Pure functions**: Use `imports` from flake inputs when available
 2. **Reusability**: Create reusable modules for common patterns
-3. **Documentation**: Add comments before complex logic
+3. **Documentation**: Add comments only before complex/non-obvious logic. Never comment trivial code.
 4. **Testing**: Use `nix flake check` before committing
 5. **Overlays**: Keep overlays minimal, prefer direct imports
 6. **Variables**: Use `variables.nix` for shared configuration
