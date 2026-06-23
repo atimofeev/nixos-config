@@ -34,6 +34,7 @@ in
               $username
               $env_var
               $kubernetes
+              $aws
               [](fg:surface0 bg:subtext0)
               $directory
               [](fg:subtext0 bg:surface1)
@@ -70,6 +71,13 @@ in
           format = "[$symbol $cluster( \\($namespace\\))]($style)";
           style = "bold fg:teal bg:surface0";
           symbol = "☸";
+        };
+
+        aws = {
+          disabled = false;
+          format = "[$symbol $profile( \\($region\\))]($style)";
+          style = "bold fg:yellow bg:surface0";
+          symbol = "☁️";
         };
 
         env_var = {
