@@ -39,7 +39,6 @@
         antigravity-awesome-skills = [
           "aws-cost-cleanup"
           "aws-cost-optimizer"
-          "aws-iam-best-practices"
           "bash-defensive-patterns"
           "bash-pro"
           "cicd-automation-workflow-automate"
