@@ -22,8 +22,12 @@
 
   ];
 
-  custom-hm.services = {
-    wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+  custom-hm = {
+    services.wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+    system = {
+      gtk.enable = lib.mkDefault true;
+      qt.enable = lib.mkDefault true;
+    };
   };
 
   wayland.windowManager.niri = {

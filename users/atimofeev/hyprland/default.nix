@@ -2,12 +2,6 @@
 {
 
   imports = [
-
-    ./apps/gtk.nix
-    ./apps/hyprlock.nix
-    ./apps/qt.nix
-    ./apps/xdg-mime.nix # file association
-
     ./animations.nix
     ./cursor.nix
     ./decorations.nix
@@ -24,10 +18,17 @@
     snapshot
   ];
 
-  custom-hm.services = {
-    hyprdynamicmonitors.enable = lib.mkDefault true;
-    hyprland-per-window-layout.enable = lib.mkDefault true;
-    wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+  custom-hm = {
+    services = {
+      hyprdynamicmonitors.enable = lib.mkDefault true;
+      hyprland-per-window-layout.enable = lib.mkDefault true;
+      wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+    };
+
+    system = {
+      gtk.enable = lib.mkDefault true;
+      qt.enable = lib.mkDefault true;
+    };
   };
 
   wayland.windowManager.hyprland = {
