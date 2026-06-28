@@ -2,6 +2,7 @@
   inputs,
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 {
@@ -20,6 +21,10 @@
     ./window-rules.nix
     ./workspaces.nix
 
+  ];
+
+  home.packages = with pkgs; [
+    libnotify
   ];
 
   custom-hm = {
