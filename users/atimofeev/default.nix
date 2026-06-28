@@ -4,7 +4,11 @@
   imports = [
 
     ./neovim
+
+    # ./gnome
+    # ./hyprland
     ./niri
+
     ./shell-aliases.nix
 
   ];

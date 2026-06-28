@@ -1,12 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  vars,
-  ...
-}:
-{
-
-  home-manager.users.${vars.username} = import ./config;
 
   environment.systemPackages = with pkgs; [
     gnome-tweaks

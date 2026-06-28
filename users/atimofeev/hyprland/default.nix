@@ -32,6 +32,15 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+
+    # # Strip wayland-sessions to avoid duplicate DM entries
+    # # (NixOS programs.hyprland.enable already provides them)
+    # package = pkgs.hyprland.overrideAttrs (old: {
+    #   postInstall = (old.postInstall or "") + ''
+    #     rm -rf $out/share/wayland-sessions
+    #   '';
+    # });
+
     configType = "hyprlang";
     systemd.enable = false;
     settings = {
