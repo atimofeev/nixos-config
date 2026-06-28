@@ -12,6 +12,7 @@
     inputs.niri-nix.homeModules.default
 
     ./animations.nix
+    ./cursor.nix
     ./debug.nix
     ./gestures.nix
     ./input.nix
