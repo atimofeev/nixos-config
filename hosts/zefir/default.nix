@@ -11,10 +11,6 @@
 
     # ./disko-config.nix
     ./hardware-configuration.nix
-
-    ../../modules/desktop/hyprland
-    ../../modules/desktop/niri
-
   ];
 
   # Asus Zephyrus G16 2025 GU605CR
@@ -48,6 +44,8 @@
   custom = {
 
     user-shell = "fish";
+
+    desktop.niri.enable = true;
 
     hm-users = [
       "atimofeev"

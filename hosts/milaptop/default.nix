@@ -12,11 +12,6 @@
 
     ./hardware-configuration.nix
     ./sound.nix
-
-    ../../modules/desktop/hyprland
-    ../../modules/desktop/niri
-    # ../../modules/desktop/gnome
-
   ];
 
   # Xiaomi Mi Notebook Pro 15.6 2018
@@ -44,6 +39,8 @@
   custom = {
 
     user-shell = "fish";
+
+    desktop.niri.enable = true;
 
     hm-users = [
       "atimofeev"
