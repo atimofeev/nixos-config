@@ -150,6 +150,7 @@
     system = {
       gtk.enable = true;
       nix-index.enable = true;
+      qt.enable = true;
     };
 
   };
