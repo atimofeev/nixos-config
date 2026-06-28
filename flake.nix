@@ -3,14 +3,11 @@
 
   outputs =
     { nixpkgs, ... }@inputs:
-    let
-      vars = import ./variables.nix;
-    in
     {
       nixosConfigurations = {
 
         milaptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/milaptop
             ./modules
@@ -20,7 +17,7 @@
         };
 
         zefir = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/zefir
             ./modules
