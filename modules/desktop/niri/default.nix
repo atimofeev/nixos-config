@@ -34,10 +34,13 @@ in
         inherit (cfg) package useNautilus;
       };
 
-      uwsm.waylandCompositors.niri = {
-        binPath = "/run/current-system/sw/bin/niri-session";
-        comment = "A scrollable-tiling Wayland compositor";
-        prettyName = "Niri";
+      uwsm = {
+        enable = lib.mkDefault true;
+        waylandCompositors.niri = {
+          binPath = "/run/current-system/sw/bin/niri-session";
+          comment = "A scrollable-tiling Wayland compositor";
+          prettyName = "Niri";
+        };
       };
     };
 
