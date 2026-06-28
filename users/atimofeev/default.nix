@@ -10,6 +10,7 @@
     ./niri
 
     ./shell-aliases.nix
+    ./xdg-mime.nix
 
   ];
 
