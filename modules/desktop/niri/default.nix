@@ -1,7 +1,13 @@
 { pkgs, ... }:
 {
 
-  environment.systemPackages = [ pkgs.unstable.xwayland-satellite ];
+  environment = {
+    sessionVariables = {
+      GSK_RENDERER = "cairo"; # NOTE: https://github.com/NixOS/nixpkgs/issues/353990
+      NIXOS_OZONE_WL = "1"; # wayland for electron apps
+    };
+    systemPackages = [ pkgs.unstable.xwayland-satellite ];
+  };
 
   programs = {
 
