@@ -69,6 +69,11 @@ in
         #   rev = "f8ee7250696ef4ba4b7f20804bb3ea99dff24aab";
         # })
         # (config.lib.vicinae.mkRayCastExtension {
+        #   name = "duck-duck-go-search";
+        #   sha256 = "sha256-bE/JiJxo2a2ZKo9fTj1Z3CCwbA9gUVSZYP8fjsHjBMA=";
+        #   rev = "870667fc671801a467deb7c4c7fc72992efe3820";
+        # })
+        # (config.lib.vicinae.mkRayCastExtension {
         #   name = "weather";
         #   sha256 = "sha256-GopBV/7AiOTUYdz3anWcL2gd9dDg+6tgO4wckO4ATRs=";
         #   rev = "542ed079c2eb5a95df0835d83ab1f1c2b1970e44";
