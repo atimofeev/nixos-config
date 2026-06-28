@@ -28,6 +28,14 @@ in
       '';
       type = lib.types.str;
     };
+    clipboard-cmd = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.str;
+    };
+    web-search-cmd = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.str;
+    };
   };
 
   config = lib.mkIf (launcher == "rofi" || cfg.enable) {

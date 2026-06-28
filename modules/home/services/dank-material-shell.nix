@@ -21,9 +21,17 @@ in
       default = "graphical-session.target";
       type = lib.types.str;
     };
-    launcher-cmd = lib.mkOption {
+    command = lib.mkOption {
       default = "dms ipc spotlight toggle";
       type = lib.types.str;
+    };
+    clipboard-cmd = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.str;
+    };
+    web-search-cmd = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.str;
     };
   };
 

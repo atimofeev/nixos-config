@@ -20,22 +20,34 @@ in
       description = "Which app launcher to use.";
     };
     command = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.nullOr lib.types.str;
       readOnly = true;
-      description = "The command string for the currently active launcher.";
+      description = "Launcher default CMD";
+    };
+    clipboard-cmd = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      readOnly = true;
+      description = "Launcher CMD for clipboard manager";
+    };
+    web-search-cmd = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      readOnly = true;
+      description = "Launcher CMD for web search";
     };
   };
 
-  config = {
-    custom-hm.user.launcher.command =
-      let
-        launcherMap = {
-          rofi = config.custom-hm.applications.rofi.command;
-          vicinae = config.custom-hm.services.vicinae.command;
-          dms = config.custom-hm.services.dank-material-shell.launcher-cmd;
-        };
-      in
-      launcherMap.${cfg.app};
-  };
+  config =
+    let
+      launcherMap = {
+        rofi = config.custom-hm.applications.rofi;
+        vicinae = config.custom-hm.services.vicinae;
+        dms = config.custom-hm.services.dank-material-shell;
+      };
+    in
+    {
+      custom-hm.user.launcher = {
+        inherit (launcherMap.${cfg.app}) command clipboard-cmd web-search-cmd;
+      };
+    };
 
 }
