@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -28,6 +29,7 @@
     enableRedistributableFirmware = true;
     nvidia = {
       open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       prime = {
         offload.enable = true;
         intelBusId = "PCI:0:2:0";
@@ -70,7 +72,7 @@
       automount.enable = true;
       boot = {
         enable = true;
-        kernelPackages = pkgs.linuxPackages_6_18;
+        kernelPackages = pkgs.unstable.linuxPackages;
       };
       catppuccin = {
         enable = true;
