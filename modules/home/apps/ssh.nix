@@ -22,7 +22,8 @@ in
       enable = true;
       inherit (cfg) package;
       enableDefaultConfig = false;
-      matchBlocks."*" = {
+      settings.default = {
+        header = "Host *";
         addKeysToAgent = "yes";
         serverAliveInterval = 3;
       };

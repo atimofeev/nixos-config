@@ -12,10 +12,8 @@ in
     boot.kernelParams = [
       "i915.enable_psr=0" # NOTE: reduce flickering at low brightness
       "xe.enable_psr=0"
-      "i915.enable_dpcd_backlight=1"
-      "xe.enable_dpcd_backlight=1"
-      "nvidia.NVreg_EnableBacklightHandler=0"
-      "nvidia.NVReg_RegistryDwords=EnableBrightnessControl=0"
+      "i915.enable_dpcd_backlight=3" # NOTE: fix backlight control
+      "xe.enable_dpcd_backlight=3"
     ];
   };
 

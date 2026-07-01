@@ -17,13 +17,25 @@ in
       enable = true;
       servers = {
 
+        aws-docs = {
+          command = "docker";
+          args = [
+            "run"
+            "--interactive"
+            "--rm"
+            "--env"
+            "AWS_DOCUMENTATION_PARTITION=aws"
+            "mcp/aws-documentation:latest"
+          ];
+        };
+
         github = {
           command = "docker";
           args = [
             "run"
-            "-i"
+            "--interactive"
             "--rm"
-            "-e"
+            "--env"
             "GITHUB_PERSONAL_ACCESS_TOKEN"
             "ghcr.io/github/github-mcp-server"
           ];
@@ -42,7 +54,7 @@ in
           command = "docker";
           args = [
             "run"
-            "-i"
+            "--interactive"
             "--rm"
             "ghcr.io/utensils/mcp-nixos:2.4.1"
           ];
@@ -52,7 +64,7 @@ in
           command = "docker";
           args = [
             "run"
-            "-i"
+            "--interactive"
             "--rm"
             "hashicorp/terraform-mcp-server:0.5.1"
           ];

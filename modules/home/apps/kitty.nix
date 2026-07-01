@@ -51,6 +51,7 @@ in
         cursor_trail = 3;
         enable_audio_bell = "no";
         focus_follows_mouse = "yes";
+        strip_trailing_spaces = "smart";
 
         # Fix issues related to SSH (may break kitty functionality):
         term = "xterm-256color";

@@ -16,6 +16,9 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
+    withRuby = true;
 
     extraPackages = with pkgs; [
       # soft deps
@@ -24,7 +27,7 @@
       wl-clipboard
     ];
 
-    extraLuaConfig = # lua
+    initLua = # lua
       ''
         -- Sync clipboard between OS and Neovim.
         --  Schedule the setting after `UiEnter` because it can increase startup-time.

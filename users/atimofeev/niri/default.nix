@@ -2,6 +2,7 @@
   inputs,
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 {
@@ -11,6 +12,7 @@
     inputs.niri-nix.homeModules.default
 
     ./animations.nix
+    ./cursor.nix
     ./debug.nix
     ./gestures.nix
     ./input.nix
@@ -22,8 +24,16 @@
 
   ];
 
-  custom-hm.services = {
-    wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+  home.packages = with pkgs; [
+    libnotify
+  ];
+
+  custom-hm = {
+    services.wayland-pipewire-idle-inhibit.enable = lib.mkDefault true;
+    system = {
+      gtk.enable = lib.mkDefault true;
+      qt.enable = lib.mkDefault true;
+    };
   };
 
   wayland.windowManager.niri = {

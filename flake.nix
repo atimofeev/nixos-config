@@ -3,14 +3,11 @@
 
   outputs =
     { nixpkgs, ... }@inputs:
-    let
-      vars = import ./variables.nix;
-    in
     {
       nixosConfigurations = {
 
         milaptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/milaptop
             ./modules
@@ -20,7 +17,7 @@
         };
 
         zefir = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/zefir
             ./modules
@@ -52,17 +49,17 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     asus-px-keyboard-tool.url = "github:a-chaudhari/asus-px-keyboard-tool";
 
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    catppuccin.url = "github:catppuccin/nix/main";
 
     catppuccin-zen-browser = {
       # url = "github:catppuccin/zen-browser?dir=themes/Macchiato/Lavender";

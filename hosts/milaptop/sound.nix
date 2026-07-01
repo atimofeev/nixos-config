@@ -13,6 +13,7 @@ let
     in
     pkgs.pipewire.overrideAttrs (og-pkg: {
       name = "${og-pkg.pname}-no-mic-boost";
+      separateDebugInfo = false;
       buildCommand = # bash
         ''
           set -euo pipefail

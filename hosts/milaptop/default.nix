@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -12,11 +13,6 @@
 
     ./hardware-configuration.nix
     ./sound.nix
-
-    ../../modules/desktop/hyprland
-    ../../modules/desktop/niri
-    # ../../modules/desktop/gnome
-
   ];
 
   # Xiaomi Mi Notebook Pro 15.6 2018
@@ -33,6 +29,7 @@
     enableRedistributableFirmware = true;
     nvidia = {
       open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       prime = {
         offload.enable = true;
         intelBusId = "PCI:0:2:0";
@@ -44,6 +41,8 @@
   custom = {
 
     user-shell = "fish";
+
+    desktop.niri.enable = true;
 
     hm-users = [
       "atimofeev"
@@ -73,7 +72,7 @@
       automount.enable = true;
       boot = {
         enable = true;
-        kernelPackages = pkgs.linuxPackages_6_18;
+        kernelPackages = pkgs.unstable.linuxPackages;
       };
       catppuccin = {
         enable = true;
@@ -119,6 +118,10 @@
       power-profiles-daemon.enable = true;
       printing.enable = true;
       scx.enable = true;
+      searxng = {
+        enable = true;
+        port = 3000;
+      };
       yubikey = {
         enable = true;
         yubikey-touch-detector = true;

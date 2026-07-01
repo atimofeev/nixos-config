@@ -15,6 +15,7 @@
       )
       [
         ./apps
+        ./desktop
         ./hardware
         ./services
         ./system

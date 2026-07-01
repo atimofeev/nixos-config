@@ -17,23 +17,69 @@ in
       default = "vicinae toggle";
       type = lib.types.str;
     };
+    clipboard-cmd = lib.mkOption {
+      default = "vicinae vicinae://launch/clipboard/history";
+      type = lib.types.str;
+    };
+    web-search-cmd = lib.mkOption {
+      default = "vicinae vicinae://launch/scripts/ddg-search.sh";
+      type = lib.types.str;
+    };
   };
 
   config = lib.mkIf (launcher == "vicinae" || cfg.enable) {
+
+    xdg.dataFile."vicinae/scripts/ddg-search.sh" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+
+        # @raycast.schemaVersion 1
+        # @raycast.title Search DDG
+        # @raycast.mode silent
+        # @raycast.icon 🦆
+
+        query="$1"
+
+        if [ -z "$query" ]; then
+          # query=$(echo | vicinae dmenu -p "Search DDG: ")
+          query=$(echo | vicinae dmenu -p "Search DDG: " -H 80 --no-footer)
+        fi
+
+        if [ -z "$query" ]; then
+          exit 0
+        fi
+
+        selection=$(${pkgs.ddgr}/bin/ddgr --json -n 10 "$query" | \
+          ${pkgs.jq}/bin/jq -r '.[] | "\(.title)  |  \(.url)"' | \
+          vicinae dmenu -p "Select Result: ")
+
+        if [ -n "$selection" ]; then
+          url=$(echo "$selection" | awk '{print $NF}')
+
+          # Escape the daemon's cgroup and launch in the user session
+          ${pkgs.systemd}/bin/systemd-run --user --no-block ${pkgs.xdg-utils}/bin/xdg-open "$url"
+        fi
+      '';
+    };
 
     programs.vicinae = {
       enable = true;
       inherit (cfg) package;
       systemd.enable = true;
       settings = {
-        faviconService = "twenty";
+        activate_on_single_click = true;
+        close_on_focus_loss = true;
         favorites = [ "applications:zen-beta" ];
-        font = {
+        font.normal = {
+          family = "DejaVuSansM Nerd Font Mono";
           size = 11.5;
         };
-        popToRootOnClose = false;
-        rootSearch = {
-          searchFiles = false;
+        pop_to_root_on_close = true;
+        providers = {
+          application.preferences.defaultAction = "launch";
+          developer.ebabled = false;
+          wm.enabled = false;
         };
         window = {
           csd = true;
@@ -63,6 +109,11 @@ in
         #   name = "catppuccin";
         #   sha256 = "sha256-mR1jpp1PAVae2P5PB+cr4jbYF47EEtdj6koKRRnU7wo=";
         #   rev = "f8ee7250696ef4ba4b7f20804bb3ea99dff24aab";
+        # })
+        # (config.lib.vicinae.mkRayCastExtension {
+        #   name = "duck-duck-go-search";
+        #   sha256 = "sha256-bE/JiJxo2a2ZKo9fTj1Z3CCwbA9gUVSZYP8fjsHjBMA=";
+        #   rev = "870667fc671801a467deb7c4c7fc72992efe3820";
         # })
         # (config.lib.vicinae.mkRayCastExtension {
         #   name = "weather";

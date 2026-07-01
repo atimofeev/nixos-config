@@ -1,31 +1,43 @@
 {
   config,
+  lib,
   pkgs,
-  vars,
   ...
 }:
+let
+  cfg = config.custom.desktop.gnome;
+in
 {
 
-  home-manager.users.${vars.username} = import ./config;
-
-  environment.systemPackages = with pkgs; [
-    gnome-tweaks
-    dconf-editor
-    gnomeExtensions.pop-shell
-    gnomeExtensions.appindicator
-    gnomeExtensions.pip-on-top
-    gnomeExtensions.gamemode-shell-extension
-  ];
-
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+  options.custom.desktop.gnome = {
+    enable = lib.mkEnableOption "GNOME desktop bundle";
+    terminal = lib.mkOption {
+      default = "kitty";
+      description = "Terminal used by nautilus-open-any-terminal.";
+      type = lib.types.str;
+    };
   };
 
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    inherit (config.custom-hm.user) terminal;
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      dconf-editor
+      gnome-tweaks
+      gnomeExtensions.appindicator
+      gnomeExtensions.gamemode-shell-extension
+      gnomeExtensions.pip-on-top
+      gnomeExtensions.pop-shell
+    ];
+
+    programs.nautilus-open-any-terminal = {
+      enable = true;
+      inherit (cfg) terminal;
+    };
+
+    services.xserver = {
+      enable = true;
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
+    };
   };
 
 }

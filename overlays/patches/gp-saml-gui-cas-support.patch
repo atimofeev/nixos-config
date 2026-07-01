@@ -1,0 +1,212 @@
+Subject: Support GlobalProtect CAS callback in gp-saml-gui
+
+GlobalProtect CAS/default-browser auth may return either a base64 encoded
+HTML comment with prelogin-cookie or a query string callback with
+cas-as=1&un=<user>&token=<token>. WebKit may fail to navigate the custom URI
+or leave it as a page link, so intercept navigation failures and scan loaded
+page bodies. For CAS token callbacks, emit gateway:token so patched
+OpenConnect can submit token during GP login. Also advertise CAS support and a
+modern app-version during prelogin.
+
+--- a/gp_saml_gui.py	1970-01-01 01:00:01.000000000 +0100
++++ b/gp_saml_gui.py
+@@ -29,13 +29,15 @@
+ import xml.etree.ElementTree as ET
+ import ssl
+ import tempfile
++import re
+ 
+ from operator import setitem
+ from os import path, dup2, execvp, environ
+ from shlex import quote
+ from sys import stderr, platform
+ from binascii import a2b_base64, b2a_base64
+-from urllib.parse import urlparse, urlencode, urlunsplit
++from urllib.parse import urlparse, urlencode, urlunsplit, unquote, parse_qs
++from html import unescape
+ from html.parser import HTMLParser
+ 
+ 
+@@ -63,6 +65,7 @@
+         self.success = False
+         self.saml_result = {}
+         self.verbose = args.verbose
++        self.server = args.server
+ 
+         self.ctx = WebKit2.WebContext.get_default()
+         if not args.verify:
+@@ -88,7 +91,9 @@
+         window.show_all()
+         window.set_title("SAML Login")
+         window.connect('delete-event', self.close)
++        self.wview.connect('decide-policy', self.on_decide_policy)
+         self.wview.connect('load-changed', self.on_load_changed)
++        self.wview.connect('load-failed', self.on_load_failed)
+         self.wview.connect('resource-load-started', self.log_resources)
+ 
+         if html:
+@@ -100,6 +105,71 @@
+         self.closed = True
+         Gtk.main_quit()
+ 
++    def parse_globalprotect_callback(self, uri):
++        if not uri.lower().startswith('globalprotectcallback:'):
++            return None
++
++        payload = unquote(uri.split(':', 1)[1]).strip()
++        if payload.startswith('/'):
++            payload = payload[1:]
++
++        if payload.startswith('cas-as'):
++            values = parse_qs(payload, keep_blank_values=True)
++            username = (values.get('un') or values.get('username') or [''])[0]
++            token = (values.get('token') or [''])[0]
++            if username and token:
++                return {
++                    'saml-username': username,
++                    'token': token,
++                }
++            return {}
++
++        try:
++            payload = a2b_base64(payload + '=' * (-len(payload) % 4)).decode('utf-8')
++        except Exception:
++            pass
++        return self.parse_saml_comments(payload)
++
++    def handle_globalprotect_callback(self, uri):
++        fd = self.parse_globalprotect_callback(uri)
++        if fd is None:
++            return False
++
++        if self.verbose:
++            print('[SAML   ] Got GlobalProtect callback URI', file=stderr)
++
++        if fd:
++            if self.verbose:
++                print('[SAML   ] Got SAML/CAS result data from GlobalProtect callback', file=stderr)
++            self.saml_result.update(fd)
++            self.saml_result.setdefault('server', self.server)
++            self.check_done()
++        elif self.verbose:
++            print('[SAML   ] GlobalProtect callback did not contain usable auth data', file=stderr)
++        return True
++
++    def handle_globalprotect_callback_from_content(self, content):
++        content = unescape(content)
++        match = re.search(r'globalprotectcallback:[^\s"\'<>]+', content, re.IGNORECASE)
++        if not match:
++            return False
++        return self.handle_globalprotect_callback(match.group(0))
++
++    def on_decide_policy(self, webview, decision, decision_type):
++        if decision_type != WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
++            return False
++
++        action = decision.get_navigation_action()
++        request = action.get_request() if action else None
++        uri = request.get_uri() if request else None
++        if uri and self.handle_globalprotect_callback(uri):
++            decision.ignore()
++            return True
++        return False
++
++    def on_load_failed(self, webview, event, uri, error):
++        return self.handle_globalprotect_callback(uri or '')
++
+     def log_resources(self, webview, resource, request):
+         if self.verbose > 1:
+             print('[REQUEST] %s for resource %s' % (request.get_http_method() or 'Request', resource.get_uri()), file=stderr)
+@@ -169,10 +239,8 @@
+             # asynchronous call to fetch body content, continue processing in callback:
+             mr.get_data(None, self.response_callback, ct)
+ 
+-    def response_callback(self, resource, result, ct):
+-        data = resource.get_data_finish(result)
+-        content = data.decode(ct.params.get("charset") or "utf-8")
+ 
++    def parse_saml_comments(self, content):
+         html_parser = CommentHtmlParser()
+         html_parser.feed(content)
+ 
+@@ -181,15 +249,22 @@
+             if self.verbose > 1:
+                 print("[SAML   ] Found comment in response body: '%s'" % comment, file=stderr)
+             try:
+-                # xml parser requires valid xml with a single root tag, but our expected content
+-                # is just a list of data tags, so we need to improvise
+                 xmlroot = ET.fromstring("<fakexmlroot>%s</fakexmlroot>" % comment)
+-                # search for any valid first level xml tags (inside our fake root) that could contain SAML data
+                 for elem in xmlroot:
+                     if elem.tag.startswith("saml-") or elem.tag in COOKIE_FIELDS:
+                         fd[elem.tag] = elem.text
+             except ET.ParseError:
+-                pass  # silently ignore any comments that don't contain valid xml
++                pass
++        return fd
++
++    def response_callback(self, resource, result, ct):
++        data = resource.get_data_finish(result)
++        content = data.decode(ct.params.get("charset") or "utf-8")
++
++        if self.handle_globalprotect_callback_from_content(content):
++            return
++
++        fd = self.parse_saml_comments(content)
+ 
+         if self.verbose > 1:
+             print("[SAML   ] Finished parsing response body for %s" % resource.get_uri(), file=stderr)
+@@ -204,7 +279,7 @@
+ 
+     def check_done(self):
+         d = self.saml_result
+-        if 'saml-username' in d and ('prelogin-cookie' in d or 'portal-userauthcookie' in d):
++        if 'saml-username' in d and ('prelogin-cookie' in d or 'portal-userauthcookie' in d or 'token' in d):
+             if self.verbose:
+                 print("[SAML   ] Got all required SAML headers, done.", file=stderr)
+             self.success = True
+@@ -332,7 +407,16 @@
+         sam, uri, html = 'URI', args.server, None
+     else:
+         endpoint = 'https://{}/{}'.format(args.server, if2prelogin[args.interface])
+-        data = {'tmp':'tmp', 'kerberos-support':'yes', 'ipv6-support':'yes', 'clientVer':4100, 'clientos':args.clientos, **args.extra}
++        data = {
++            'tmp': 'tmp',
++            'kerberos-support': 'yes',
++            'ipv6-support': 'yes',
++            'cas-support': 'yes',
++            'clientVer': 4100,
++            'clientos': args.clientos,
++            'app-version': '6.3.0-33',
++            **args.extra,
++        }
+         if args.verbose:
+             print("Looking for SAML auth tags in response to %s..." % endpoint, file=stderr)
+         try:
+@@ -402,7 +486,7 @@
+     un = slv.saml_result.get('saml-username')
+     server = slv.saml_result.get('server', args.server)
+ 
+-    for cn, ifh in (('prelogin-cookie','gateway'), ('portal-userauthcookie','portal')):
++    for cn, ifh in (('prelogin-cookie','gateway'), ('portal-userauthcookie','portal'), ('token','gateway')):
+         cv = slv.saml_result.get(cn)
+         if cv:
+             break
+--- a/test-globalprotect-login.py	1970-01-01 01:00:01.000000000 +0100
++++ b/test-globalprotect-login.py
+@@ -54,9 +54,14 @@
+ if prelogin:
+     data={
+         # sent by many clients but not known to have any effect
+-        'tmp': 'tmp', 'clientVer': 4100, 'kerberos-support': 'yes', 'ipv6-support': 'yes',
++        'tmp': 'tmp',
++        'clientVer': 4100,
++        'kerberos-support': 'yes',
++        'ipv6-support': 'yes',
++        'cas-support': 'yes',
+         # affects some clients' behavior (https://github.com/dlenski/gp-saml-gui/issues/6#issuecomment-599743060)
+         'clientos': args.clientos,
++        'app-version': '6.3.0-33',
+         **extra
+     }
+ else:

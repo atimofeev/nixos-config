@@ -10,7 +10,7 @@ let
   prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
 
   term = "${prefix} ${config.custom-hm.user.terminal}";
-  inherit (config.custom-hm.user) editor;
+  inherit (config.custom-hm.user) editor launcher;
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
   btop = lib.getExe config.custom-hm.applications.btop.package;
@@ -24,9 +24,9 @@ let
   yazi = lib.getExe pkgs.yazi;
 
   asus-switch-profile = pkgs.writeShellScript "asus-switch-profile" ''
-    asusctl profile next 
+    asusctl profile next
     name="$(asusctl profile get | sed -n 's/.*Active profile: //p')"
-    notify-send -i power-profile-performance-symbolic "$name" "ASUS Profile" 
+    notify-send -i power-profile-performance-symbolic "$name" "ASUS Profile"
   '';
 
   # toggle-touchpad = pkgs.writeShellScript "toggle-touchpad" ''
@@ -63,8 +63,9 @@ in
       browser-exe
       "--new-window"
     ];
-    "Mod+A".spawn-sh = config.custom-hm.user.launcher.command;
-    "Mod+V".spawn-sh = config.custom-hm.services.cliphist.command;
+    "Mod+A" = lib.mkIf (launcher.command != null) { spawn-sh = launcher.command; };
+    "Mod+V" = lib.mkIf (launcher.clipboard-cmd != null) { spawn-sh = launcher.clipboard-cmd; };
+    "Mod+D" = lib.mkIf (launcher.web-search-cmd != null) { spawn-sh = launcher.web-search-cmd; };
 
     # media keys
     "XF86AudioLowerVolume".spawn-sh =

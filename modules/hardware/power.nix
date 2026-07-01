@@ -59,10 +59,9 @@ in
         ACTION=="add", SUBSYSTEM=="net", KERNEL=="en*", RUN+="${pkgs.ethtool}/bin/ethtool -s $name wol d"
       '';
     };
-    systemd.sleep.extraConfig = # ini
-      ''
-        HibernateOnACPower=false
-      '';
+    systemd.sleep.settings.Sleep = {
+      HibernateOnACPower = false;
+    };
   };
 
 }

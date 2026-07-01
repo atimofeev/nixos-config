@@ -1,0 +1,28 @@
+Subject: Include app-version and CAS token support in GlobalProtect auth
+
+Some GlobalProtect servers enforce CAS/default-browser auth. They reject
+prelogin/login requests without modern app-version, and complete auth with a
+globalprotectcallback containing `cas-as=1&un=<user>&token=<token>` instead of
+a prelogin-cookie. Allow `gateway:token` / `portal:token` alternate secret
+flows by sending `passwd=SAMLPASS` along with the token form value.
+
+--- a/auth-globalprotect.c
++++ b/auth-globalprotect.c
+@@ -697,6 +697,7 @@ static int gpst_login(struct openconnect_info *vpninfo, int portal, struct login
+ 		buf_truncate(request_body);
+ 		if (!vpninfo->no_external_auth)
+ 			buf_append(request_body, "cas-support=yes");
++		append_opt(request_body, "app-version", vpninfo->csd_ticket ? : "6.3.0-33");
+ 		result = do_https_request(vpninfo, "POST", "application/x-www-form-urlencoded", request_body, &xml_buf, NULL, HTTP_REDIRECT);
+ 		if (!keep_urlpath) {
+ 			free(vpninfo->urlpath);
+@@ -736,6 +737,9 @@ static int gpst_login(struct openconnect_info *vpninfo, int portal, struct login
+ 		/* submit gateway login (ssl-vpn/login.esp) or portal config (global-protect/getconfig.esp) request */
+ 		buf_truncate(request_body);
+ 		buf_append(request_body, "jnlpReady=jnlpReady&ok=Login&direct=yes&clientVer=4100&prot=https:&internal=no");
++		append_opt(request_body, "app-version", vpninfo->csd_ticket ? : "6.3.0-33");
++		if (ctx->alt_secret && !strcmp(ctx->alt_secret, "token"))
++			append_opt(request_body, "passwd", "SAMLPASS");
+ 		append_opt(request_body, "ipv6-support", vpninfo->disable_ipv6 ? "no" : "yes");
+ 		append_opt(request_body, "clientos", gpst_os_name(vpninfo));
+ 		append_opt(request_body, "os-version", vpninfo->platname);

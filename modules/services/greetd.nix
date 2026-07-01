@@ -24,6 +24,7 @@ in
             "--asterisks"
             "--remember"
             "--remember-user-session"
+            "--sessions /run/current-system/sw/share/wayland-sessions"
             ''
               --greeting "Hey you. You're finally awake."
 

@@ -11,10 +11,6 @@
 
     # ./disko-config.nix
     ./hardware-configuration.nix
-
-    ../../modules/desktop/hyprland
-    ../../modules/desktop/niri
-
   ];
 
   # Asus Zephyrus G16 2025 GU605CR
@@ -25,18 +21,6 @@
   networking.hostName = "zefir";
   time.timeZone = "Europe/Podgorica";
   system.stateVersion = "24.11";
-
-  boot = {
-    blacklistedKernelModules = [
-      # NOTE: block Realtek Card Reader, which prevents deep sleep
-      "rtsx_pci"
-      "rtsx_pci_sdmmc"
-    ];
-    kernelParams = [
-      "pcie_aspm=force"
-      "nvidia.NVreg_EnableS0ixPowerManagement=1"
-    ];
-  };
 
   hardware = {
     intelgpu.driver = "xe";
@@ -60,6 +44,8 @@
   custom = {
 
     user-shell = "fish";
+
+    desktop.niri.enable = true;
 
     hm-users = [
       "atimofeev"
@@ -115,7 +101,7 @@
       automount.enable = true;
       boot = {
         enable = true;
-        kernelPackages = pkgs.linuxPackages_7_0;
+        kernelPackages = pkgs.unstable.linuxPackages_latest;
       };
       catppuccin = {
         enable = true;
@@ -156,11 +142,15 @@
       };
       logrotate-nvim.enable = true;
       ollama = {
-        enable = true;
+        enable = false;
         package = pkgs.unstable.ollama-cuda;
         environment = {
           OLLAMA_CONTEXT_LENGTH = "32768";
         };
+      };
+      searxng = {
+        enable = true;
+        port = 3000;
       };
       yubikey = {
         enable = true;

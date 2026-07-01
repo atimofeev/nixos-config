@@ -41,7 +41,6 @@ in
       asusd = {
         enable = true;
         inherit (cfg) package;
-        enableUserService = true;
         auraConfigs."19b6".text = # ron
           ''
             (

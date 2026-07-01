@@ -22,6 +22,7 @@ in
       enableFishIntegration = config.programs.fish.enable;
       enableNushellIntegration = config.programs.nushell.enable;
       enableZshIntegration = config.programs.zsh.enable;
+      shellWrapperName = "y";
       keymap.mgr.prepend_keymap = [
         {
           on = [ "<Tab>" ];

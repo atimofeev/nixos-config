@@ -4,8 +4,13 @@
   imports = [
 
     ./neovim
+
+    # ./gnome
+    # ./hyprland
     ./niri
+
     ./shell-aliases.nix
+    ./xdg-mime.nix
 
   ];
 
@@ -34,7 +39,6 @@
         antigravity-awesome-skills = [
           "aws-cost-cleanup"
           "aws-cost-optimizer"
-          "aws-iam-best-practices"
           "bash-defensive-patterns"
           "bash-pro"
           "cicd-automation-workflow-automate"
@@ -87,6 +91,7 @@
         enable = true;
         package = pkgs.htop-vim;
       };
+      imv.enable = true;
       k9s = {
         enable = true;
         package = pkgs.unstable.k9s;
@@ -101,7 +106,6 @@
       opencode.enable = true;
       pi-coding-agent = {
         enable = true;
-        # package = pkgs.unstable.pi-coding-agent;
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi;
       };
       qbittorrent.enable = true;

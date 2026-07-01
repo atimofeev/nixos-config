@@ -31,11 +31,11 @@ in
         pkgs.networkmanager-openconnect
       ];
 
-      ensureProfiles = {
+      ensureProfiles.profiles = {
 
-        profiles."GlobalProtect" = {
+        "GlobalProtect-AH" = {
           connection = {
-            id = "GlobalProtect";
+            id = "GlobalProtect-AH";
             type = "vpn";
             autoconnect = false;
             permissions = "user:${hmUser}:";
@@ -43,7 +43,27 @@ in
           vpn = {
             service-type = "org.freedesktop.NetworkManager.openconnect";
             protocol = "gp";
-            gateway = "$GLOBALPROTECT_GATEWAY";
+            gateway = "$GLOBALPROTECT_GATEWAY_AH";
+            csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
+            enable_csd_trojan = "yes";
+            usergroup = "gateway";
+          };
+          ipv4 = {
+            method = "auto";
+          };
+        };
+
+        "GlobalProtect-HTZ" = {
+          connection = {
+            id = "GlobalProtect-HTZ";
+            type = "vpn";
+            autoconnect = false;
+            permissions = "user:${hmUser}:";
+          };
+          vpn = {
+            service-type = "org.freedesktop.NetworkManager.openconnect";
+            protocol = "gp";
+            gateway = "$GLOBALPROTECT_GATEWAY_HTZ";
             csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
             enable_csd_trojan = "yes";
             usergroup = "gateway";

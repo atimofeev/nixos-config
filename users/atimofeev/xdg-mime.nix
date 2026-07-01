@@ -4,7 +4,7 @@ let
   editor = [ "nvim.desktop" ];
   browser = [ "zen-beta.desktop" ];
   fileBrowser = [ "yazi.desktop" ];
-  imageViewer = [ "org.gnome.Loupe.desktop" ]; # TODO: change to sxiv/feh
+  imageViewer = [ "imv.desktop" ];
   # https://www.youtube.com/watch?v=GYW9i_u5PYs
   pdfViewer = [ "org.pwmt.zathura.desktop" ];
   tg = [ "org.telegram.desktop.desktop" ];
