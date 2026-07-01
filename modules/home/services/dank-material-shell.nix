@@ -7,6 +7,64 @@
 }:
 let
   cfg = config.custom-hm.services.dank-material-shell;
+  dmsPackage = inputs.dank-material-shell.packages.${pkgs.stdenv.hostPlatform.system}.dms-shell.overrideAttrs (old: {
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.python3 ];
+    postPatch = (old.postPatch or "") + ''
+      python3 -c ${lib.escapeShellArg ''
+        from pathlib import Path
+
+        path = Path("internal/server/network/backend_networkmanager_gp_saml.go")
+        text = path.read_text()
+        text = text.replace(
+            'log.Infof("[GP-SAML] Got prelogin-cookie from gp-saml-gui, converting to openconnect cookie via --authenticate")',
+            'log.Infof("[GP-SAML] Got GlobalProtect SAML secret from gp-saml-gui, converting to openconnect cookie via --authenticate")',
+        )
+        text = text.replace(
+            "\n\t// Convert prelogin-cookie to full openconnect cookie format\n\tocResult, err := convertGPPreloginCookie(ctx, gateway, result.Cookie, result.User)",
+            "\n\tocResult, err := convertGPAuthSecret(ctx, gateway, result.Host, result.Cookie, result.User)",
+        )
+        text = text.replace(
+            'return nil, fmt.Errorf("GP SAML auth: failed to convert prelogin-cookie: %w", err)',
+            'return nil, fmt.Errorf("GP SAML auth: failed to convert SAML secret: %w", err)',
+        )
+        text = text.replace(
+            "func convertGPPreloginCookie(ctx context.Context, gateway, preloginCookie, user string) (*gpSamlAuthResult, error) {",
+            "func convertGPAuthSecret(ctx context.Context, gateway, hostHint, secret, user string) (*gpSamlAuthResult, error) {",
+        )
+        text = text.replace(
+            "\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"openconnect not found: %w\", err)\n\t}\n\n\targs := []string{",
+            "\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"openconnect not found: %w\", err)\n\t}\n\n\tusergroup := gpSamlUsergroupFromHost(hostHint)\n\n\targs := []string{",
+            1,
+        )
+        text = text.replace(
+            '\t\t"--usergroup=gateway:prelogin-cookie",',
+            '\t\t"--usergroup=" + usergroup,',
+        )
+        text = text.replace("cmd.Stdin = strings.NewReader(preloginCookie)", "cmd.Stdin = strings.NewReader(secret)")
+        text = text.replace(
+            "\nfunc unshellQuote(s string) string {",
+            """\nfunc gpSamlUsergroupFromHost(hostHint string) string {
+        \tconst defaultUsergroup = "gateway:prelogin-cookie"
+
+        \tif hostHint == "" {
+        \t\treturn defaultUsergroup
+        \t}
+
+        \tparts := strings.Split(hostHint, "/")
+        \tlast := parts[len(parts)-1]
+        \tif last == "gateway:token" || last == "portal:token" || last == "gateway:prelogin-cookie" || last == "portal:prelogin-cookie" || last == "portal:portal-userauthcookie" {
+        \t\treturn last
+        \t}
+
+        \treturn defaultUsergroup
+        }
+
+        func unshellQuote(s string) string {""",
+        )
+        path.write_text(text)
+      ''}
+    '';
+  });
   wall = config.custom-hm.user.wallpaper;
 in
 {
@@ -48,6 +106,7 @@ in
 
     programs.dank-material-shell = {
       enable = true;
+      package = dmsPackage;
 
       dgop.package = pkgs.unstable.dgop;
       quickshell.package = pkgs.unstable.quickshell;
