@@ -52,6 +52,7 @@ in
         ignores = [
           "*.swp"
           ".null-ls_*"
+          ".pi-*"
           ".terraform*"
           "terraform.tfstate*"
         ];
