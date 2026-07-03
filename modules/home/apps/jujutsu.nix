@@ -59,6 +59,10 @@ in
             git.context = 3;
           };
 
+          colors = {
+            "diff token".underline = false;
+          };
+
           git = {
             colocate = true;
           };
