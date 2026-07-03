@@ -92,6 +92,7 @@
         package = pkgs.htop-vim;
       };
       imv.enable = true;
+      jujutsu.enable = true;
       k9s = {
         enable = true;
         package = pkgs.unstable.k9s;
