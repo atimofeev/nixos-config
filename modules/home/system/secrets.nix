@@ -34,6 +34,7 @@ in
       "personal/weather-api" = { };
       "work/aws-config".path = "${home}/.aws/config";
       "work/gitlab-config".path = "${home}/repos/betby/.gitconfig";
+      "work/gitlab-config-jj".path = "${home}/.config/jj/conf.d/betby.toml";
       "work/ssh-config" = { };
     };
 
