@@ -43,12 +43,6 @@ in
       git = {
         enable = true;
         inherit (cfg) package;
-        settings = {
-          user = {
-            name = "Artem Timofeev";
-            email = "39891735+atimofeev@users.noreply.github.com";
-          };
-        };
         ignores = [
           "*.swp"
           ".null-ls_*"
@@ -129,6 +123,10 @@ in
           };
           url = {
             "git@github.com:".insteadOf = "gh:";
+          };
+          user = {
+            email = "39891735+atimofeev@users.noreply.github.com";
+            name = "Artem Timofeev";
           };
         };
       };
