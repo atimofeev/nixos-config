@@ -33,7 +33,9 @@
       max-scroll-amount = "51%";
     };
 
-    warp-mouse-to-focus = { };
+    warp-mouse-to-focus._props = {
+      mode = "center-xy-always";
+    };
 
   };
 
