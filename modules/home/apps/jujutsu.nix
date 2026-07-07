@@ -77,6 +77,7 @@ in
           ui = {
             color = "auto";
             conflict-marker-style = "git";
+            default-command = "log";
             diff-formatter = ":git";
             editor = config.custom-hm.user.editor;
             graph.style = "curved";
