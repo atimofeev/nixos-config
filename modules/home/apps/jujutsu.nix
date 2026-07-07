@@ -69,6 +69,7 @@ in
 
           remotes = {
             origin = {
+              auto-track-bookmarks = "main | master | trunk | develop";
               auto-track-created-bookmarks = "*";
             };
           };
