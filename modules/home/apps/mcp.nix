@@ -46,7 +46,7 @@ in
           args = [
             "mcp-server-kubernetes"
             "--kubeconfig"
-            "~/.kube/homelab.yml"
+            "${config.home.homeDirectory}/.kube/homelab.yml"
           ];
         };
 

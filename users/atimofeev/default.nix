@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
 
   imports = [
@@ -18,7 +23,7 @@
 
     user = {
       terminal = "kitty";
-      editor = "nix run ~/repos/nixvim-config/";
+      editor = "nix run ${config.home.homeDirectory}/repos/nixvim-config --";
       launcher.app = "vicinae";
       input = {
         repeat-delay = 275;
