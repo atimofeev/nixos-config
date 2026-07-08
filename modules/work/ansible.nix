@@ -35,6 +35,9 @@ in
             max_diff_size = 0
             [inventory]
             enable_plugins = aws_ec2, ini, yaml
+            [ssh_connection]
+            pipelining = True
+            ssh_args = -o ControlMaster=auto -o ControlPersist=30m -o ConnectionAttempts=100
           '';
       };
 
