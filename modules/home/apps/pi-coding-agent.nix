@@ -9,9 +9,6 @@ let
 
   wrappedPkg = cfg.package.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''
-      # Use same node version for pi binary as for node-gyp/npm (avoids ABI mismatch with native extensions)
-      sed -i "s|/nix/store/[^/]*-nodejs-[^/]*/bin/node|${pkgs.nodejs_latest}/bin/node|" "$out/bin/.pi-wrapped"
-
       wrapProgram "$out/bin/pi" \
         --set NPM_CONFIG_PREFIX "/home/atimofeev/.pi/npm/" \
         --set AWS_PROFILE "ai" \
