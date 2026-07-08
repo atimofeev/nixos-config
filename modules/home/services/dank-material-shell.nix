@@ -119,6 +119,7 @@ in
       enableVPN = false;
 
       settings = {
+        calendarBackend = "dankcal";
         currentThemeName = "dynamic";
         currentThemeCategory = "dynamic";
         customThemeFile = "";
