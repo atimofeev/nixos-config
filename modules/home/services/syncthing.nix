@@ -26,6 +26,7 @@ in
           "Pixel 5a".id = "6TLETF7-HMGU76V-M5SN43R-ZCHPQX7-KDJGIHM-VVXHQ3H-BXWDFJN-7LPKRA3";
           OnePlus15.id = "SBLJMOD-KGVUGIX-FB3TYZ5-ZIZ2ZCS-7EDQF6T-TRDFXKE-2TU6CD4-OVCIPQ7";
           steamdeck.id = "3XZ4Q4E-55W4RY3-GQEYRUR-OVZJZFU-YGO3CXX-Z2YDRFG-W7O44AY-XBTY5AG";
+          latitude-5540.id = "7U6EWKZ-WKXRWO5-FK2PAVD-65ZJOGJ-OB5TZWU-BZZIPGY-5DYPOVT-LJCENA2";
         };
 
         folders = {
@@ -53,6 +54,7 @@ in
             devices = [
               "milaptop"
               "zefir"
+              "latitude-5540"
             ];
             ignorePerms = true;
           };
