@@ -35,7 +35,7 @@ in
       eyedropper # pick colors
       parabolic # download video & audio
       # alpaca # chat with local LLMs
-      unstable.winboat
+      # winboat
     ];
 
   };
