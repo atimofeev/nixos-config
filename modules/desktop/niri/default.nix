@@ -22,6 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       sessionVariables = {
+        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
         GSK_RENDERER = "cairo"; # NOTE: https://github.com/NixOS/nixpkgs/issues/353990
         NIXOS_OZONE_WL = "1"; # wayland for electron apps
       };
