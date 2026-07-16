@@ -6,6 +6,18 @@
 }:
 let
   cfg = config.custom-hm.applications.starship;
+  # NOTE: https://github.com/catppuccin/nix/pull/738
+  catppuccin = {
+    blue = "#89b4fa";
+    mauve = "#cba6f7";
+    red = "#f38ba8";
+    sky = "#89dceb";
+    yellow = "#f9e2af";
+    green = "#a6e3a1";
+    surface2 = "#585b70";
+    surface1 = "#45475a";
+    text = "#cdd6f4";
+  };
 in
 {
 
@@ -39,7 +51,7 @@ in
               $directory
               [](fg:subtext0 bg:surface1)
               $git_branch
-              $git_status
+              ''${custom.jj}
               [](fg:surface1 bg:surface2)
               $time
               [](fg:surface2 bg:surface0)
@@ -97,16 +109,26 @@ in
         };
 
         git_branch = {
-          format = "[ $symbol $branch ]($style)";
+          format = "[ $symbol $branch]($style)";
           style = "fg:text bg:surface1";
           symbol = "";
           truncation_length = 20;
+          only_attached = true;
         };
 
-        git_status = {
-          disabled = true;
-          format = "[$all_status$ahead_behind ]($style)";
+        # NOTE: waiting for https://github.com/starship/starship/issues/6076 resolution
+        custom.jj = {
+          command = "prompt";
+          format = "[ $output]($style)";
           style = "fg:text bg:surface1";
+          ignore_timeout = true;
+          shell = [
+            (lib.getExe pkgs.starship-jj)
+            "--ignore-working-copy"
+            "starship"
+          ];
+          use_stdin = false;
+          when = true;
         };
 
         time = {
@@ -145,6 +167,105 @@ in
 
       };
     };
+
+    # NOTE: waiting for https://github.com/starship/starship/issues/6076 resolution
+    xdg.configFile."starship-jj/starship-jj.toml".text = ''
+      module_separator = " "
+      reset_color = false
+
+      [bookmarks]
+      search_depth = 100
+      exclude = []
+
+      [[module]]
+      type = "Symbol"
+      symbol = ""
+      color = "${catppuccin.text}"
+      bg_color = "${catppuccin.surface1}"
+
+      [[module]]
+      type = "Bookmarks"
+      separator = ""
+      color = "${catppuccin.text}"
+      bg_color = "${catppuccin.surface1}"
+      behind_symbol = "⇡"
+      surround_with_quotes = false
+      ignore_empty_commits = "None"
+
+      [[module]]
+      type = "Commit"
+      previous_message_symbol = "⇣"
+      max_length = 24
+      show_previous_if_empty = false
+      empty_text = ""
+      surround_with_quotes = false
+      color = "${catppuccin.text}"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.non_unique]
+      color = "Black"
+      bg_color = "${catppuccin.surface1}"
+
+      [[module]]
+      type = "State"
+      separator = ""
+
+      [module.conflict]
+      disabled = false
+      text = "C"
+      color = "Red"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.divergent]
+      disabled = false
+      text = "D"
+      color = "Cyan"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.empty]
+      disabled = false
+      text = "E"
+      color = "Yellow"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.immutable]
+      disabled = false
+      text = "I"
+      color = "Yellow"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.hidden]
+      disabled = false
+      text = "H"
+      color = "Yellow"
+      bg_color = "${catppuccin.surface1}"
+
+      [[module]]
+      type = "Metrics"
+      template = "{changed} {added}󰦒{removed} "
+      hide_if_empty = false
+      color = "${catppuccin.text}"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.changed_files]
+      prefix = ""
+      suffix = ""
+      color = "Cyan"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.added_lines]
+      prefix = ""
+      suffix = ""
+      color = "Green"
+      bg_color = "${catppuccin.surface1}"
+
+      [module.removed_lines]
+      prefix = ""
+      suffix = ""
+      color = "Red"
+      bg_color = "${catppuccin.surface1}"
+    '';
+
   };
 
 }
