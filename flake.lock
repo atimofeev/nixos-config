@@ -157,15 +157,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1783720341,
-        "narHash": "sha256-/FPqZ5GTXjNcob1uS5uQkWSZWBhCfb4t3aUsayFhlk8=",
-        "owner": "atimofeev",
+        "lastModified": 1784317725,
+        "narHash": "sha256-p6wQfSfoiC4k7GCGC8Ry+AbbSCwOw4g+2x4SxiS45Rc=",
+        "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "8ff5db56d24951d3edc88ccae08385532af005c7",
+        "rev": "2986e354e88160d4ec2f0db602412afbc87bd612",
         "type": "github"
       },
       "original": {
-        "owner": "atimofeev",
+        "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
         "type": "github"
       }
