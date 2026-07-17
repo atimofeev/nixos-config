@@ -1,13 +1,14 @@
 {
   config,
   lib,
-  osConfig,
+  osConfig ? {},
   pkgs,
   ...
 }:
 let
   cfg = config.custom-hm.applications.btop;
-  inherit (osConfig.custom.hardware) amdgpu nvidia;
+  hasNvidia = osConfig.custom.hardware.nvidia.enable or false;
+  hasAmdgpu = osConfig.custom.hardware.amdgpu.enable or false;
 in
 {
 
@@ -15,9 +16,9 @@ in
     enable = lib.mkEnableOption "btop bundle";
     package = lib.mkPackageOption pkgs "btop" {
       default =
-        if nvidia.enable then
+        if hasNvidia then
           "btop-cuda"
-        else if amdgpu.enable then
+        else if hasAmdgpu then
           "btop-rocm"
         else
           "btop";

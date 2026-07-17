@@ -9,7 +9,7 @@ let
   cfg = config.custom-hm.services.hypridle;
 
   uwsm = lib.getExe pkgs.uwsm;
-  prefix = if osConfig.programs.hyprland.withUWSM then "${uwsm} app --" else "";
+  prefix = if osConfig.programs.hyprland.withUWSM or false then "${uwsm} app --" else "";
 
   brightnessctl = lib.getExe pkgs.brightnessctl;
   hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
@@ -27,7 +27,7 @@ let
     else
       ":";
   suspend-command =
-    if osConfig.custom.hardware.power.hibernate then "suspend-then-hibernate" else "suspend";
+    if osConfig.custom.hardware.power.hibernate or false then "suspend-then-hibernate" else "suspend";
 
 in
 {

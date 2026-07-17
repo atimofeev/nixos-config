@@ -27,6 +27,25 @@
         };
 
       };
+
+      nixOnDroidConfigurations = {
+
+        oneplus-15 = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+          pkgs = import inputs.nixpkgs {
+            system = "aarch64-linux";
+            config.allowUnfree = true;
+            overlays = [
+              ./overlays/unstable.nix
+            ];
+          };
+          extraSpecialArgs = { inherit inputs vars; };
+          home-manager-path = inputs.home-manager.outPath;
+          modules = [
+            ./hosts/oneplus-15
+          ];
+        };
+
+      };
     };
 
   inputs = {
@@ -91,6 +110,11 @@
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/prerelease-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
