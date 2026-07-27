@@ -17,19 +17,22 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [
-      lutris
-      wine
-      winetricks
-      protonup-qt
+    environment = {
+      sessionVariables.PROTON_ENABLE_WAYLAND = "1";
+      systemPackages = with pkgs; [
+        lutris
+        wine
+        winetricks
+        protonup-qt
 
-      # tools
-      mangohud # mangohud %command%
-      moonlight-qt
+        # tools
+        mangohud # mangohud %command%
+        moonlight-qt
 
-      # games
-      space-cadet-pinball
-    ];
+        # games
+        space-cadet-pinball
+      ];
+    };
 
     programs = {
       gamemode = {
