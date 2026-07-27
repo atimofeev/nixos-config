@@ -41,6 +41,7 @@ in
             b = [ "bookmark" ];
             ci = [ "commit" ];
             d = [ "diff" ];
+            e = [ "edit" ];
             f = [
               "git"
               "fetch"
