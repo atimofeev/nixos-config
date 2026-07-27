@@ -194,7 +194,9 @@ in
       write-to-disk = false;
       show-pointer = false;
     };
-    "Mod+Shift+S".spawn-sh = "niri msg action screenshot && ${wl-paste} | ${swappy} -f - ";
+    # "Mod+Shift+S".spawn-sh = "niri msg action screenshot && ${wl-paste} | ${swappy} -f - ";
+    "Mod+Shift+S".spawn-sh =
+      "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.swappy}/bin/swappy -f -";
     "Mod+Print".spawn-sh = "${wl-paste} | ${swappy} -f -";
 
     # focus and movement
