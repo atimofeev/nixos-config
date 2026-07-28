@@ -7,13 +7,26 @@ let
 in
 {
 
-  ansible_2_17 = old_pkgs.ansible_2_17.overrideAttrs (oldAttrs: {
-    propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-      old_pkgs.python3Packages.boto3
-      old_pkgs.python3Packages.botocore
-      old_pkgs.python3Packages.dnspython
-      old_pkgs.python3Packages.hvac
-    ];
-  });
+  ansible_2_17 =
+    let
+      ansibleCore = old_pkgs.python3Packages.ansible-core.overridePythonAttrs (_oldAttrs: rec {
+        version = "2.17.8";
+        src = old_pkgs.fetchPypi {
+          pname = "ansible_core";
+          inherit version;
+          hash = "sha256-Ob6KeYaix9NgabDZciC8L2eDxl/qfG1+Di0A0ayK+Hc=";
+        };
+      });
+    in
+    old_pkgs.python3.withPackages (
+      ps:
+      [ ansibleCore ]
+      ++ (with ps; [
+        boto3
+        botocore
+        dnspython
+        hvac
+      ])
+    );
 
 }
