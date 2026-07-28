@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -31,24 +30,21 @@ in
         };
 
         github = {
-          command = "${pkgs.bash}/bin/bash";
-          args = [
-            "-lc"
-            ''
-              token="$(${pkgs.gh}/bin/gh auth token)" || exit
-              export GITHUB_PERSONAL_ACCESS_TOKEN="$token"
-              exec ${pkgs.docker}/bin/docker run --interactive --rm --env GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
-            ''
-          ];
+          type = "http";
+          url = "https://api.githubcopilot.com/mcp/";
+          auth = "bearer";
+          bearerToken = "!gh auth token";
+          directTools = false;
         };
 
         kubernetes = {
           command = "npx";
-          args = [
-            "mcp-server-kubernetes"
-            "--kubeconfig"
-            "${config.home.homeDirectory}/.kube/homelab.yml"
-          ];
+          args = [ "mcp-server-kubernetes" ];
+          directTools = false;
+          env = {
+            K8S_CONTEXT = "mcp-none";
+            KUBECONFIG_PATH = "${config.home.homeDirectory}/.kube/config";
+          };
         };
 
         nixos = {
