@@ -48,6 +48,7 @@ in
 
       custom-hm.user.shellAliases = {
         t = "tofu";
+        tm = "terramate";
       };
 
     };
