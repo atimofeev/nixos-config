@@ -65,6 +65,7 @@ in
             "--rm"
             "hashicorp/terraform-mcp-server:0.5.1"
           ];
+          directTools = false;
         };
 
       };
