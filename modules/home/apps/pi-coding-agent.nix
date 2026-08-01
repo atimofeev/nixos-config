@@ -18,6 +18,7 @@ let
           lib.makeBinPath [
             pkgs.ripgrep
             pkgs.nodejs_latest
+            pkgs.wlinhibit
           ]
         }" \
         --prefix LD_LIBRARY_PATH : "${pkgs.stdenv.cc.cc.lib}/lib"
@@ -33,5 +34,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [ wrappedPkg ];
+
+    home.file.".pi/codex-helpers".source = "${pkgs.pi-codex-conversion-helpers}";
   };
 }

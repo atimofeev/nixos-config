@@ -6,6 +6,7 @@
     (_final: prev: {
       awsx = prev.callPackage ./awsx.nix { };
       # falcon = prev.callPackage ./falcon.nix { };
+      pi-codex-conversion-helpers = prev.callPackage ./pi-codex-conversion-helpers.nix { };
       darkreader-declarative =
         inputs.firefox-extensions-declarative.packages.${prev.stdenv.hostPlatform.system}.darkreader-declarative;
       kubectl-login = prev.callPackage ./kubectl-login.nix { };
