@@ -14,6 +14,7 @@ let
         --set AWS_PROFILE "ai" \
         --set PI_SKIP_VERSION_CHECK 1 \
         --set PI_TELEMETRY 0 \
+        --set SHELL "${pkgs.bashInteractive}/bin/bash" \
         --prefix PATH : "${
           lib.makeBinPath [
             pkgs.ripgrep
