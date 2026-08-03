@@ -57,6 +57,12 @@ in
           ];
         };
 
+        sidero-docs = {
+          type = "http";
+          url = "https://docs.siderolabs.com/mcp";
+          directTools = false;
+        };
+
         terraform = {
           command = "docker";
           args = [
