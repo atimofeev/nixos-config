@@ -13,7 +13,6 @@ in
   config = lib.mkIf cfg.enable {
 
     programs = {
-      hyprpanel.settings.menus.clock.weather.key = config.sops.secrets."personal/weather-api".path;
       # spotify-player.settings.client_id_command = "cat ${
       #   config.sops.secrets."personal/spotify-client-id".path
       # }";
@@ -31,7 +30,8 @@ in
         sopsFile = ../../../secrets + "/${osConfig.networking.hostName}.yaml";
         path = "${home}/.config/Yubico/u2f_keys";
       };
-      "personal/weather-api" = { };
+      "personal/env/homelab" = { };
+      "personal/env/pi-coding-agent" = { };
       "work/aws-config".path = "${home}/.aws/config";
       "work/gitlab-config".path = "${home}/repos/betby/.gitconfig";
       "work/gitlab-config-jj".path = "${home}/.config/jj/conf.d/betby.toml";

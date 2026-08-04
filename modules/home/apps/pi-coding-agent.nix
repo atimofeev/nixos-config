@@ -7,9 +7,12 @@
 let
   cfg = config.custom-hm.applications.pi-coding-agent;
 
+  envFile = config.sops.secrets."personal/env/pi-coding-agent".path or "";
+
   wrappedPkg = cfg.package.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''
       wrapProgram "$out/bin/pi" \
+        --run 'if [[ -r "${envFile}" ]]; then set -a; source "${envFile}"; set +a; fi' \
         --set NPM_CONFIG_PREFIX "/home/atimofeev/.pi/npm/" \
         --set AWS_PROFILE "ai" \
         --set PI_SKIP_VERSION_CHECK 1 \
