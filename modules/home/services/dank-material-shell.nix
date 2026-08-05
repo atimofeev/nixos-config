@@ -28,19 +28,9 @@ let
             'return nil, fmt.Errorf("GP SAML auth: failed to convert SAML secret: %w", err)',
         )
         text = text.replace(
-            "func convertGPPreloginCookie(ctx context.Context, gateway, preloginCookie, user string) (*gpSamlAuthResult, error) {",
-            "func convertGPAuthSecret(ctx context.Context, gateway, hostHint, secret, user string) (*gpSamlAuthResult, error) {",
+            "func convertGPPreloginCookie(ctx context.Context, gateway, preloginCookie, user string) (*openConnectAuthResult, error) {\n\treturn runOpenConnectAuthenticate(ctx, []string{\n\t\t\"--protocol=gp\",\n\t\t\"--usergroup=gateway:prelogin-cookie\",\n\t\t\"--user=\" + user,\n\t\t\"--passwd-on-stdin\",\n\t\t\"--allow-insecure-crypto\",\n\t\t\"--authenticate\",\n\t\tgateway,\n\t}, preloginCookie)",
+            "func convertGPAuthSecret(ctx context.Context, gateway, hostHint, secret, user string) (*openConnectAuthResult, error) {\n\tusergroup := gpSamlUsergroupFromHost(hostHint)\n\treturn runOpenConnectAuthenticate(ctx, []string{\n\t\t\"--protocol=gp\",\n\t\t\"--usergroup=\" + usergroup,\n\t\t\"--user=\" + user,\n\t\t\"--passwd-on-stdin\",\n\t\t\"--allow-insecure-crypto\",\n\t\t\"--authenticate\",\n\t\tgateway,\n\t}, secret)",
         )
-        text = text.replace(
-            "\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"openconnect not found: %w\", err)\n\t}\n\n\targs := []string{",
-            "\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"openconnect not found: %w\", err)\n\t}\n\n\tusergroup := gpSamlUsergroupFromHost(hostHint)\n\n\targs := []string{",
-            1,
-        )
-        text = text.replace(
-            '\t\t"--usergroup=gateway:prelogin-cookie",',
-            '\t\t"--usergroup=" + usergroup,',
-        )
-        text = text.replace("cmd.Stdin = strings.NewReader(preloginCookie)", "cmd.Stdin = strings.NewReader(secret)")
         text = text.replace(
             "\nfunc unshellQuote(s string) string {",
             """\nfunc gpSamlUsergroupFromHost(hostHint string) string {
