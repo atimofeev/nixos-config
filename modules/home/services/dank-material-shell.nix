@@ -712,6 +712,7 @@ in
           "portal"
         ];
         wallpaperCyclingEnabled = true;
+        wallpaperCyclingRandom = true;
         wallpaperCyclingMode = "interval";
         wallpaperCyclingInterval = 900;
         wallpaperCyclingTime = "06:00";
