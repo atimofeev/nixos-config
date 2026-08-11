@@ -18,6 +18,8 @@ in
           helm-git
         ];
       })
+      argocd
+      argonaut
       cmctl
       kind
       kubectl
