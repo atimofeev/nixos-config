@@ -18,9 +18,25 @@ in
 
     custom.services.power-profiles-daemon.enable = true;
 
-    programs.rog-control-center = {
-      enable = true;
-      autoStart = true;
+    environment.etc."asusd/slash.ron" = {
+      group = "+0";
+      mode = "0644";
+      text = # ron
+        ''
+          (
+              enabled: false,
+              brightness: 50,
+              display_interval: 0,
+              display_mode: Slash,
+              show_on_boot: true,
+              show_on_shutdown: false,
+              show_on_sleep: false,
+              show_on_battery: false,
+              show_battery_warning: false,
+              show_on_lid_closed: false,
+          )
+        '';
+      user = "+0";
     };
 
     services = {
