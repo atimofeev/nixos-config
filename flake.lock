@@ -702,15 +702,16 @@
     "niri-pr-fork": {
       "flake": false,
       "locked": {
-        "lastModified": 1779651868,
-        "narHash": "sha256-bNvzDk/VISmjGZWZFWj8EK9dW8osmDkSxI3zCUVAMm0=",
+        "lastModified": 1786714909,
+        "narHash": "sha256-8BCTxcet+zxU/4TeM3sH4gGro2kI2DN865mvA/incYg=",
         "owner": "atimofeev",
         "repo": "niri",
-        "rev": "e05cf3e1e1b84fd10674ce1369135323d23c46c7",
+        "rev": "7c065d24a4037c47b241f041a46579738834245e",
         "type": "github"
       },
       "original": {
         "owner": "atimofeev",
+        "ref": "feat/multiple-open-on-output",
         "repo": "niri",
         "type": "github"
       }
@@ -1226,11 +1227,11 @@
     "walls": {
       "flake": false,
       "locked": {
-        "lastModified": 1766317396,
-        "narHash": "sha256-ty+ot0ChK5mBURAn711w+b48h2PD97Eip05zcKg+wa0=",
+        "lastModified": 1786797035,
+        "narHash": "sha256-iz/BXMkIxD+tEeqf6SewibcVRhMsfE0uK8kvp3NYlBk=",
         "owner": "atimofeev",
         "repo": "walls",
-        "rev": "b6cdf6bacf068bcc921091ee086d79aa9ba173b9",
+        "rev": "e4b23d59127469dc4677a657f9fd822e51f17ea2",
         "type": "github"
       },
       "original": {
