@@ -55,10 +55,6 @@
       eza.enable = true;
       firefox.enable = true;
       fish.enable = true;
-      gemini-cli = {
-        enable = true;
-        package = pkgs.unstable.gemini-cli;
-      };
       git.enable = true;
       htop = {
         enable = true;
@@ -85,6 +81,10 @@
       qbittorrent.enable = true;
       ripgrep.enable = true;
       rofi.enable = true;
+      rog-control-center = {
+        enable = true;
+        package = pkgs.unstable.asusctl;
+      };
       spotify-player = {
         enable = true;
         package = pkgs.unstable.spotify-player;
