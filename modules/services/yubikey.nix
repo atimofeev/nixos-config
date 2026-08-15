@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.custom.services.yubikey;
+  pivProvider = "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
 in
 {
 
@@ -21,9 +22,10 @@ in
   config = lib.mkIf cfg.enable {
 
     environment.systemPackages = with pkgs; [
-      yubioath-flutter
-      yubikey-manager
       pam_u2f
+      yubico-piv-tool
+      yubikey-manager
+      yubioath-flutter
     ];
 
     programs.yubikey-touch-detector = {
@@ -31,8 +33,16 @@ in
       libnotify = true;
       unixSocket = false;
     };
-    # NOTE: required for icon in libnotify
-    home-manager.users.${config.custom.hm-admin}.home.packages = [ pkgs.yubikey-touch-detector ];
+
+    home-manager.users.${config.custom.hm-admin} = {
+      custom-hm.user.shellAliases.ssh-add-yk = "${lib.getExe' pkgs.openssh "ssh-add"} -s ${pivProvider}";
+      home.packages = [ pkgs.yubikey-touch-detector ]; # NOTE: required for icon in libnotify
+      services.ssh-agent = {
+        pkcs11Whitelist = [ "${pkgs.yubico-piv-tool}/lib/*" ];
+        defaultMaximumIdentityLifetime = 8 * 60 * 60;
+      };
+    };
+
     # NOTE: https://github.com/max-baz/yubikey-touch-detector/issues/72
     systemd.user.services.yubikey-touch-detector.serviceConfig.StandardOutput = "null";
 
