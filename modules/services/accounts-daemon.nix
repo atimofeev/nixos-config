@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   ...
 }:
@@ -15,6 +16,9 @@ in
 
   config = lib.mkIf cfg.enable {
     services.accounts-daemon.enable = true;
+    systemd.tmpfiles.rules = [
+      "L+ /home/atimofeev/.face - - - - ${inputs.github-avatar.outPath}"
+    ];
   };
 
 }
