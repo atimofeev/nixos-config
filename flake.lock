@@ -34,11 +34,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1757429398,
-        "narHash": "sha256-9KMo5lliZlwS21ZEmQdusrYKPeEr42VU8WCzgWWHngA=",
+        "lastModified": 1786049846,
+        "narHash": "sha256-2SlUFjDSBEc3o71cVEGXJS+QFaXikoxDnWr/htHoanY=",
         "owner": "a-chaudhari",
         "repo": "asus-px-keyboard-tool",
-        "rev": "4766393c4d08e580a40f714211bf56bc4db0f6bf",
+        "rev": "73369ea136853aed95513886f130c4072bd94ca6",
         "type": "github"
       },
       "original": {
@@ -827,11 +827,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1757034884,
-        "narHash": "sha256-PgLSZDBEWUHpfTRfFyklmiiLBE1i1aGCtz4eRA3POao=",
+        "lastModified": 1783279667,
+        "narHash": "sha256-/NAkDSsve+GNM0Bt6tleJdCGfsTlK89nPjkVOzZMo0s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ca77296380960cd497a765102eeb1356eb80fed0",
+        "rev": "f205b5574fd0cb7da5b702a2da51507b7f4fdd1b",
         "type": "github"
       },
       "original": {
