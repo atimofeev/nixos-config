@@ -23,9 +23,14 @@
             swap = {
               size = "40G";
               content = {
-                type = "swap";
-                discardPolicy = "both";
-                resumeDevice = true; # resume from hiberation from this device
+                type = "luks";
+                name = "swap_crypted";
+                # passwordFile = "/tmp/secret.key";
+                content = {
+                  type = "swap";
+                  discardPolicy = "both";
+                  resumeDevice = true;
+                };
               };
             };
             root = {

@@ -9,7 +9,7 @@
 
     inputs.nixos-hardware.nixosModules.common-cpu-intel
 
-    # ./disko-config.nix
+    ./disko-config.nix
     ./hardware-configuration.nix
   ];
 
