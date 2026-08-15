@@ -1227,11 +1227,11 @@
     "walls": {
       "flake": false,
       "locked": {
-        "lastModified": 1786797035,
-        "narHash": "sha256-iz/BXMkIxD+tEeqf6SewibcVRhMsfE0uK8kvp3NYlBk=",
+        "lastModified": 1786871494,
+        "narHash": "sha256-V8Lwg29jylFs7oyqxhs20uJBIFAhGfOuY+uL35CTHeA=",
         "owner": "atimofeev",
         "repo": "walls",
-        "rev": "e4b23d59127469dc4677a657f9fd822e51f17ea2",
+        "rev": "ee1940deb02219e75e35b9624e20ee89c2dbf514",
         "type": "github"
       },
       "original": {
