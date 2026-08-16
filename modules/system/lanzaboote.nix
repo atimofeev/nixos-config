@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -16,7 +17,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     boot = {
       initrd.systemd.enable = true;
       loader.systemd-boot.enable = lib.mkForce false;
@@ -29,6 +29,8 @@ in
         pkiBundle = "/var/lib/sbctl";
       };
     };
+
+    environment.systemPackages = [ pkgs.sbctl ];
   };
 
 }
