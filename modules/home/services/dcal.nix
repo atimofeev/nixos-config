@@ -33,6 +33,7 @@ in
         customThemeFile = "";
         defaultEventDurationMinutes = 30;
         defaultReminderMinutes = 10;
+        dismissedAccountNotices = [ ];
         firstDayOfWeek = -1;
         lastView = "agenda";
         monthEventTitleLines = 1;
