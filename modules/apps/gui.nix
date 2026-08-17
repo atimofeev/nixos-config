@@ -34,7 +34,6 @@ in
       upscayl
       eyedropper # pick colors
       parabolic # download video & audio
-      # alpaca # chat with local LLMs
       # winboat
     ];
 
