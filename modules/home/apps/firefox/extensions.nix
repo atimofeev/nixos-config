@@ -122,8 +122,8 @@ in
         };
 
         ExtensionSettings = {
+          # translate-web-pages
           "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}" = {
-            # translate-web-pages
             default_area = "menubar";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/traduzir-paginas-web/latest.xpi";
             installation_mode = "normal_installed";
@@ -132,14 +132,23 @@ in
           };
           # bitwarden-password-manager
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+            default_area = "navbar";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
             installation_mode = "normal_installed";
-            default_area = "navbar";
             private_browsing = true;
             updates_disabled = false;
           };
+          # passwork-self-hosted
+          "{5772be84-2f2f-49a8-8236-0e002ce5165d}" = {
+            default_area = "navbar";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/passwork-self-hosted/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+            updates_disabled = false;
+          };
+          # catppuccin-mocha-lavender theme
           "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
-            # catppuccin-mocha-lavender theme
+            default_area = "menubar";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
