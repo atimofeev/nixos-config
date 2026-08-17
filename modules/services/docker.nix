@@ -11,13 +11,17 @@ in
 
   options.custom.services.docker = {
     enable = lib.mkEnableOption "docker bundle";
+    package = lib.mkPackageOption pkgs "docker" { };
   };
 
   config = lib.mkIf cfg.enable {
     users.users.${config.custom.hm-admin}.extraGroups = [ "docker" ];
 
     virtualisation = {
-      docker.enable = true;
+      docker = {
+        enable = true;
+        inherit (cfg) package;
+      };
       oci-containers.backend = "docker";
     };
 

@@ -131,7 +131,10 @@
     services = {
       accounts-daemon.enable = true;
       dbus.enable = true;
-      docker.enable = true;
+      docker = {
+        enable = true;
+        package = pkgs.unstable.docker;
+      };
       greetd.enable = true;
       homepage = {
         enable = true;
