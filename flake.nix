@@ -79,10 +79,7 @@
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
-    niri-pr-fork = {
-      url = "github:atimofeev/niri/feat/multiple-open-on-output";
-      flake = false;
-    };
+    niri-git.url = "github:atimofeev/niri/feat/multiple-open-on-output";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 

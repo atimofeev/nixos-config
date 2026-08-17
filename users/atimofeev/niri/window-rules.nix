@@ -111,7 +111,7 @@ in
       opacity = 1.0;
       open-floating = true;
       open-focused = false;
-      focus-on-xdg-activate = false;
+      on-xdg-activate = "ignore";
       focus-ring.off = { };
       border.off = { };
       default-column-width.proportion = 0.25;

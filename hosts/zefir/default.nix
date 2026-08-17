@@ -46,7 +46,10 @@
 
     user-shell = "fish";
 
-    desktop.niri.enable = true;
+    desktop.niri = {
+      enable = true;
+      package = inputs.niri-git.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+    };
 
     hm-users = [
       "atimofeev"
