@@ -211,6 +211,8 @@ import home-manager.nixosModules.home-manager
 
 Nix uses type inference (Haskell-style), but we add annotations:
 
+- Avoid deprecated `pkgs.system`; use `pkgs.stdenv.hostPlatform.system`.
+
 ```nix
 # Type annotations for clarity
 let
