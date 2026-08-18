@@ -53,7 +53,7 @@ in
             "run"
             "--interactive"
             "--rm"
-            "ghcr.io/utensils/mcp-nixos:2.4.1"
+            "ghcr.io/utensils/mcp-nixos:3.0.1"
           ];
         };
 
