@@ -61,6 +61,14 @@ in
       open-on-workspace = "special";
     }
 
+    # right workspace
+    {
+      match = map matchAppId [
+        "slack"
+      ];
+      open-on-workspace = "right";
+    }
+
     # active / specific titles
     {
       match = [
