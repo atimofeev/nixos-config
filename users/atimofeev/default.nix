@@ -52,6 +52,10 @@
       btop.enable = true;
       carapace.enable = true;
       direnv.enable = true;
+      dsh = {
+        enable = true;
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.dsh;
+      };
       eza.enable = true;
       firefox.enable = true;
       fish.enable = true;
