@@ -16,10 +16,10 @@
         { open-on-output = "Dell Inc. DELL P2422H 4X6V7N3"; }
       ];
     }
-    {
-      _args = [ "left" ];
-      open-on-output = "Dell Inc. DELL P2422H 8WRR0V3";
-    }
+    # {
+    #   _args = [ "left" ];
+    #   open-on-output = "Dell Inc. DELL P2422H 8WRR0V3";
+    # }
   ];
 
 }
