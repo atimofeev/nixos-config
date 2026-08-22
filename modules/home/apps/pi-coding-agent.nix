@@ -7,7 +7,7 @@
 let
   cfg = config.custom-hm.applications.pi-coding-agent;
 
-  envFile = config.sops.secrets."personal/env/pi-coding-agent".path or "";
+  envFile = config.sops.secrets."personal/env/coding-agents".path or "";
 
   wrappedPkg = cfg.package.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''

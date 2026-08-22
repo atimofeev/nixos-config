@@ -31,7 +31,7 @@ in
         path = "${home}/.config/Yubico/u2f_keys";
       };
       "personal/env/homelab" = { };
-      "personal/env/pi-coding-agent" = { };
+      "personal/env/coding-agents" = { };
       "work/aws-config".path = "${home}/.aws/config";
       "work/gitlab-config".path = "${home}/repos/betby/.gitconfig";
       "work/gitlab-config-jj".path = "${home}/.config/jj/conf.d/betby.toml";
