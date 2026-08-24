@@ -23,7 +23,7 @@ in
         lutris
         wine
         winetricks
-        protonup-qt
+        unstable.protonup-qt
 
         # tools
         mangohud # mangohud %command%
