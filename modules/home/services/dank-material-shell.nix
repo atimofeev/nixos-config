@@ -98,7 +98,6 @@ in
       enable = true;
       package = dmsPackage;
 
-      dgop.package = pkgs.unstable.dgop;
       quickshell.package = pkgs.unstable.quickshell;
 
       systemd = {
