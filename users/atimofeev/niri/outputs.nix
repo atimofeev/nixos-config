@@ -11,6 +11,15 @@
       # variable-refresh-rate = { };
     }
     {
+      _args = [ "Samsung Electric Company SAMSUNG 0x01000E00" ];
+      mode = "1920x1080@60";
+      position._props = {
+        x = 1920;
+        y = 0;
+      };
+      scale = 1;
+    }
+    {
       _args = [ "BOE 0x0747" ];
       position._props = {
         x = 0;
