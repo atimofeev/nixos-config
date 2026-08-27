@@ -35,7 +35,7 @@ in
     };
 
     home-manager.users.${config.custom.hm-admin} = {
-      custom-hm.user.shellAliases.ssh-add-yk = "${lib.getExe' pkgs.openssh "ssh-add"} -s ${pivProvider}";
+      custom-hm.user.shellAliases.yk-ssh-add = "${lib.getExe' pkgs.openssh "ssh-add"} -s ${pivProvider}";
       home.packages = [ pkgs.yubikey-touch-detector ]; # NOTE: required for icon in libnotify
       services.ssh-agent = {
         pkcs11Whitelist = [ "${pkgs.yubico-piv-tool}/lib/*" ];
