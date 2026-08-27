@@ -5,6 +5,7 @@ final: _prev: {
     inherit (final) config;
     overlays = [
       (import ./nvidia-objtool-fix.nix)
+      (import ./xone.nix)
     ];
   };
 }
