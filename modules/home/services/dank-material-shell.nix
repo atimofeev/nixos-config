@@ -298,8 +298,9 @@ in
       session = {
         configVersion = 3;
         nightModeAutoEnabled = true;
+        nightModeEnabled = true;
         nightModeEndHour = 8;
-        nightModeStartHour = 22;
+        nightModeStartHour = 23;
         nightModeTemperature = 5000;
         recentColors = [
           "#000000"
