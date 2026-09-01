@@ -23,6 +23,7 @@ in
       "browser.aboutConfig.showWarning" = false;
       "browser.aboutwelcome.enabled" = false;
       "browser.search.suggest.enabled" = true;
+      "browser.tabs.closeWindowWithLastTab" = true;
       "browser.tabs.unloadOnLowMemory" = true;
       "browser.urlbar.shortcuts.bookmarks" = false;
       "browser.urlbar.suggest.calculator" = true;
