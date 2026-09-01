@@ -24,6 +24,9 @@
       click-method = "button-areas";
       dwt = { };
       natural-scroll = { };
+      scroll-factor._props = {
+        horizontal = 1;
+      };
       tap = { };
     };
 
