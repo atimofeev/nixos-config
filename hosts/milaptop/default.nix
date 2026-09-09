@@ -102,6 +102,10 @@
     };
 
     services = {
+      "9router" = {
+        enable = true;
+        headroom.enable = true;
+      };
       accounts-daemon.enable = true;
       dbus.enable = true;
       docker = {

@@ -82,6 +82,7 @@
       power = {
         enable = true;
         disable-wol = true;
+        hibernate = true;
         powertop = true;
         wifi-powersave = true;
       };
@@ -133,6 +134,10 @@
     };
 
     services = {
+      "9router" = {
+        enable = true;
+        headroom.enable = true;
+      };
       accounts-daemon.enable = true;
       dbus.enable = true;
       docker = {
