@@ -15,6 +15,7 @@ let
         --run 'if [[ -r "${envFile}" ]]; then set -a; source "${envFile}"; set +a; fi' \
         --set NPM_CONFIG_PREFIX "/home/atimofeev/.pi/npm/" \
         --set AWS_PROFILE "ai" \
+        --set PI_CACHE_RETENTION long \
         --set PI_SKIP_VERSION_CHECK 1 \
         --set PI_TELEMETRY 0 \
         --set SHELL "${pkgs.bashInteractive}/bin/bash" \
