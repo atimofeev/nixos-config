@@ -1,6 +1,17 @@
-{ lib, config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.custom.services.kanata;
+  sleepTargets = [
+    "hibernate.target"
+    "hybrid-sleep.target"
+    "suspend-then-hibernate.target"
+    "suspend.target"
+  ];
 in
 {
 
@@ -77,6 +88,16 @@ in
             '';
         };
       };
+    };
+
+    systemd.services.kanata-resume = {
+      after = sleepTargets;
+      description = "Restart kanata after resume";
+      serviceConfig = {
+        ExecStart = "${pkgs.systemd}/bin/systemctl restart kanata-default.service";
+        Type = "oneshot";
+      };
+      wantedBy = sleepTargets;
     };
   };
 }
