@@ -85,6 +85,23 @@
         disable-wol = true;
         hibernate = true;
         powertop = true;
+        usb-autosuspend-exclusions = [
+          {
+            # Lenovo Essential Wireless Keyboard and Mouse Combo
+            productId = "60a9";
+            vendorId = "17ef";
+          }
+          {
+            # Microsoft Xbox One Wireless Adapter
+            productId = "02e6";
+            vendorId = "045e";
+          }
+          {
+            # ZSA Voyager
+            productId = "1977";
+            vendorId = "3297";
+          }
+        ];
         wifi-powersave = true;
       };
       rapl-power-limit = {
