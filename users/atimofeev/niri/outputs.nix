@@ -3,6 +3,7 @@
   wayland.windowManager.niri.settings.output = [
     {
       _args = [ "Samsung Display Corp. ATNA60DL01-0  Unknown" ];
+      mode = "2560x1600@240.000";
       position._props = {
         x = 0;
         y = 0;
