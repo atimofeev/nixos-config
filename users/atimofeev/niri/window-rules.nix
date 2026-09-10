@@ -53,9 +53,10 @@ in
     # special workspace
     {
       match = map matchAppId [
+        "org.qbittorrent.qBittorrent"
+        "org.telegram.desktop"
         "spotify"
         "spotify_player"
-        "org.telegram.desktop"
       ];
       opacity = 1.0;
       open-on-workspace = "special";
