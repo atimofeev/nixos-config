@@ -128,8 +128,11 @@ in
             model_info.mode = "responses";
             litellm_params = {
               api_base = "https://opencode.ai/zen/v1";
-              api_key = "none";
-              extra_headers.x-opencode-client = "desktop";
+              api_key = "public";
+              extra_headers = {
+                x-opencode-client = "desktop";
+                x-opencode-session = "litellm-pi-bridge";
+              };
               model = "openai/muse-spark-1.3-contributor-free";
             };
           }
