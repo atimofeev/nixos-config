@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -134,10 +135,6 @@
     };
 
     services = {
-      "9router" = {
-        enable = true;
-        headroom.enable = true;
-      };
       accounts-daemon.enable = true;
       dbus.enable = true;
       docker = {
@@ -152,6 +149,10 @@
       kanata = {
         enable = true;
         devices = [ "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:6:1.0-event-mouse" ];
+      };
+      litellm = {
+        enable = true;
+        environmentFile = config.sops.secrets."personal/env/coding-agents".path;
       };
       logrotate-nvim.enable = true;
       ollama = {

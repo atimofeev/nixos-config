@@ -25,6 +25,7 @@ in
     ];
 
     sops.secrets = {
+      "personal/env/coding-agents".restartUnits = [ "litellm.service" ];
       "work/env-vars".owner = config.custom.hm-admin;
       "work/homepage-env" = {
         owner = config.custom.hm-admin;

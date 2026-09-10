@@ -102,10 +102,6 @@
     };
 
     services = {
-      "9router" = {
-        enable = true;
-        headroom.enable = true;
-      };
       accounts-daemon.enable = true;
       dbus.enable = true;
       docker = {
@@ -120,6 +116,10 @@
       kanata = {
         enable = true;
         devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+      };
+      litellm = {
+        enable = true;
+        environmentFile = config.sops.secrets."personal/env/coding-agents".path;
       };
       logrotate-nvim.enable = true;
       power-profiles-daemon.enable = true;
