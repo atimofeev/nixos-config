@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -7,6 +8,7 @@
 let
   firefoxCfg = config.custom-hm.applications.firefox;
   cfg = firefoxCfg.extensions;
+  extensionPkgs = inputs.firefox-extensions-declarative.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
 
@@ -67,10 +69,6 @@ in
       policies = {
 
         "3rdparty".Extensions = {
-          "surfingkeys@brookhong.github.io" = {
-            showAdvanced = true;
-            snippets = builtins.readFile ./surfingkeys.js;
-          };
           "addon@darkreader.org" = {
             syncSettings = false;
             enableForProtectedPages = true;
@@ -119,12 +117,23 @@ in
                 "vault.bitwarden.eu"
               ];
           };
+          "deArrow@ajay.app" = {
+            titleFormatting = 3;
+            replaceThumbnails = false;
+          };
+          "sponsorBlocker@ajay.app" = {
+            dontShowNotice = true;
+          };
+          "surfingkeys@brookhong.github.io" = {
+            showAdvanced = true;
+            snippets = builtins.readFile ./surfingkeys.js;
+          };
         };
 
         ExtensionSettings = {
           # translate-web-pages
           "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}" = {
-            default_area = "menubar";
+            default_area = "menupanel";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/traduzir-paginas-web/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
@@ -148,7 +157,6 @@ in
           };
           # catppuccin-mocha-lavender theme
           "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
-            default_area = "menubar";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
@@ -156,48 +164,48 @@ in
           };
           "addon@darkreader.org" = {
             default_area = "navbar";
-            install_url = "file:///${pkgs.darkreader-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/addon@darkreader.org.xpi";
+            install_url = "file:///${extensionPkgs.darkreader-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/addon@darkreader.org.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
             updates_disabled = true;
           };
           "deArrow@ajay.app" = {
-            default_area = "menubar";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/dearrow/latest.xpi";
-            installation_mode = "normal_installed";
+            default_area = "menupanel";
+            install_url = "file:///${extensionPkgs.dearrow-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/deArrow@ajay.app.xpi";
+            installation_mode = "force_installed";
             private_browsing = true;
-            updates_disabled = false;
+            updates_disabled = true;
           };
           "idcac-pub@guus.ninja" = {
-            default_area = "menubar";
+            default_area = "menupanel";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/istilldontcareaboutcookies/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
             updates_disabled = false;
           };
           "languagetool-webextension@languagetool.org" = {
-            default_area = "menubar";
+            default_area = "menupanel";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool-webextension@languagetool.org/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
             updates_disabled = false;
           };
           "sponsorBlocker@ajay.app" = {
-            default_area = "menubar";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-            installation_mode = "normal_installed";
+            default_area = "menupanel";
+            install_url = "file:///${extensionPkgs.sponsorblock-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/sponsorBlocker@ajay.app.xpi";
+            installation_mode = "force_installed";
             private_browsing = true;
-            updates_disabled = false;
+            updates_disabled = true;
           };
           "surfingkeys@brookhong.github.io" = {
-            default_area = "menubar";
-            install_url = "file:///${pkgs.surfingkeys-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/surfingkeys@brookhong.github.io.xpi";
+            default_area = "menupanel";
+            install_url = "file:///${extensionPkgs.surfingkeys-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/surfingkeys@brookhong.github.io.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
             updates_disabled = true;
           };
           "uBlock0@raymondhill.net" = {
-            default_area = "menubar";
+            default_area = "menupanel";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/uBlock0@raymondhill.net/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
