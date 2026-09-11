@@ -6,6 +6,68 @@
 }:
 let
   cfg = config.custom.services.litellm;
+
+  deepSeekReasoningInfo = {
+    supports_high_reasoning_effort = true;
+    supports_low_reasoning_effort = true;
+    supports_max_reasoning_effort = true;
+    supports_medium_reasoning_effort = true;
+    supports_minimal_reasoning_effort = true;
+    supports_none_reasoning_effort = false;
+    supports_reasoning = true;
+    supports_xhigh_reasoning_effort = true;
+  };
+  deepSeekOpenCodeInfo = deepSeekReasoningInfo // {
+    max_input_tokens = 1000000;
+    max_output_tokens = 393216;
+  };
+  glmReasoningInfo = {
+    max_input_tokens = 1000000;
+    max_output_tokens = 131072;
+    supports_high_reasoning_effort = false;
+    supports_low_reasoning_effort = false;
+    supports_max_reasoning_effort = true;
+    supports_medium_reasoning_effort = false;
+    supports_minimal_reasoning_effort = false;
+    supports_none_reasoning_effort = false;
+    supports_reasoning = true;
+    supports_xhigh_reasoning_effort = false;
+  };
+  openAIReasoningInfo = {
+    mode = "responses";
+    supports_high_reasoning_effort = true;
+    supports_low_reasoning_effort = true;
+    supports_max_reasoning_effort = true;
+    supports_medium_reasoning_effort = true;
+    supports_minimal_reasoning_effort = false;
+    supports_none_reasoning_effort = true;
+    supports_reasoning = true;
+    supports_xhigh_reasoning_effort = true;
+  };
+  kimiReasoningInfo = {
+    max_input_tokens = 262144;
+    max_output_tokens = 32768;
+    supports_high_reasoning_effort = false;
+    supports_low_reasoning_effort = false;
+    supports_max_reasoning_effort = false;
+    supports_medium_reasoning_effort = false;
+    supports_minimal_reasoning_effort = false;
+    supports_none_reasoning_effort = false;
+    supports_reasoning = true;
+    supports_xhigh_reasoning_effort = false;
+  };
+  gptOssReasoningInfo = {
+    max_input_tokens = 131072;
+    max_output_tokens = 65536;
+    supports_high_reasoning_effort = false;
+    supports_low_reasoning_effort = false;
+    supports_max_reasoning_effort = false;
+    supports_medium_reasoning_effort = false;
+    supports_minimal_reasoning_effort = false;
+    supports_none_reasoning_effort = false;
+    supports_reasoning = true;
+    supports_xhigh_reasoning_effort = false;
+  };
 in
 {
   options.custom.services.litellm = {
@@ -49,11 +111,12 @@ in
         model_list = [
           {
             model_name = "high";
-            model_info.mode = "responses";
+            model_info = openAIReasoningInfo;
             litellm_params.model = "chatgpt/gpt-5.6-sol";
           }
           {
             model_name = "high-opencode";
+            model_info = glmReasoningInfo;
             litellm_params = {
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
@@ -67,11 +130,12 @@ in
           }
           {
             model_name = "medium";
-            model_info.mode = "responses";
+            model_info = openAIReasoningInfo;
             litellm_params.model = "chatgpt/gpt-5.6-terra";
           }
           {
             model_name = "medium-opencode";
+            model_info = kimiReasoningInfo;
             litellm_params = {
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
@@ -85,11 +149,12 @@ in
           }
           {
             model_name = "low";
-            model_info.mode = "responses";
+            model_info = openAIReasoningInfo;
             litellm_params.model = "chatgpt/gpt-5.6-luna";
           }
           {
             model_name = "low-deepseek";
+            model_info = deepSeekReasoningInfo;
             litellm_params = {
               api_key = "os.environ/DEEPSEEK_API_KEY";
               model = "deepseek/deepseek-v4-flash";
@@ -97,6 +162,7 @@ in
           }
           {
             model_name = "low-opencode";
+            model_info = deepSeekOpenCodeInfo;
             litellm_params = {
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
@@ -117,6 +183,7 @@ in
           }
           {
             model_name = "free-ollama";
+            model_info = gptOssReasoningInfo;
             litellm_params = {
               api_base = "https://ollama.com";
               api_key = "os.environ/OLLAMA_API_KEY";
