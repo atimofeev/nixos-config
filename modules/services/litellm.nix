@@ -214,9 +214,12 @@ in
       };
     };
 
-    systemd.tmpfiles.rules = lib.optionals cfg.headroom.enable [
-      "d /var/lib/headroom 0700 1000 1000 -"
-    ];
+    systemd = {
+      services.litellm.serviceConfig.TimeoutStopSec = "10s";
+      tmpfiles.rules = lib.optionals cfg.headroom.enable [
+        "d /var/lib/headroom 0700 1000 1000 -"
+      ];
+    };
 
     virtualisation = lib.mkIf cfg.headroom.enable {
       docker.enable = lib.mkDefault true;
