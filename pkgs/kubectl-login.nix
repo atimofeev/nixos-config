@@ -17,6 +17,14 @@ buildGoModule rec {
 
   vendorHash = "sha256-TajdzIM7eLcO1n+HvGFuC+4dFulf2+aFVYq4duRY6UA=";
 
+  # NOTE: fixes nix store path hardcode in generated kubeconfigs
+  postPatch = ''
+    substituteInPlace cmd/login.go \
+      --replace-fail \
+        'return filepath.EvalSymlinks(exePath)' \
+        'return filepath.Base(exePath), nil'
+  '';
+
   postInstall = ''
     mv $out/bin/openunison-cli $out/bin/kubectl-login
   '';
