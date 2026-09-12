@@ -34,6 +34,8 @@ let
     supports_xhigh_reasoning_effort = false;
   };
   openAIReasoningInfo = {
+    max_input_tokens = 272000;
+    max_output_tokens = 128000;
     mode = "responses";
     supports_high_reasoning_effort = true;
     supports_low_reasoning_effort = true;
