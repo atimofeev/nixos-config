@@ -30,7 +30,8 @@
         listen_on unix:/tmp/kitty
         shell_integration enabled
 
-        action_alias kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
+        # Do not copy Nixvim's wrapper-only startup command into nested Neovim.
+        action_alias kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py --env VIMINIT=
 
         # Browse scrollback buffer in nvim
         map kitty_mod+h kitty_scrollback_nvim
