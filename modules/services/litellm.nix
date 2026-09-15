@@ -8,24 +8,19 @@ let
   cfg = config.custom.services.litellm;
 
   deepSeekReasoningInfo = {
-    supports_high_reasoning_effort = true;
     supports_low_reasoning_effort = true;
     supports_max_reasoning_effort = true;
-    supports_medium_reasoning_effort = true;
     supports_minimal_reasoning_effort = true;
     supports_none_reasoning_effort = false;
     supports_reasoning = true;
     supports_xhigh_reasoning_effort = true;
   };
-  deepSeekOpenCodeInfo = deepSeekReasoningInfo // {
-    max_input_tokens = 1000000;
-    max_output_tokens = 393216;
-  };
-  glmReasoningInfo = {
-    max_input_tokens = 1000000;
+  kimiK3ReasoningInfo = {
+    max_input_tokens = 1048576;
     max_output_tokens = 131072;
-    supports_high_reasoning_effort = false;
-    supports_low_reasoning_effort = false;
+    supported_endpoints = [ "/v1/chat/completions" ];
+    supports_high_reasoning_effort = true;
+    supports_low_reasoning_effort = true;
     supports_max_reasoning_effort = true;
     supports_medium_reasoning_effort = false;
     supports_minimal_reasoning_effort = false;
@@ -33,10 +28,20 @@ let
     supports_reasoning = true;
     supports_xhigh_reasoning_effort = false;
   };
-  openAIReasoningInfo = {
-    max_input_tokens = 272000;
-    max_output_tokens = 128000;
-    mode = "responses";
+  qwen38ReasoningInfo = {
+    max_input_tokens = 1000000;
+    max_output_tokens = 131072;
+    supported_endpoints = [ "/v1/chat/completions" ];
+    supports_high_reasoning_effort = false;
+    supports_low_reasoning_effort = true;
+    supports_max_reasoning_effort = false;
+    supports_medium_reasoning_effort = true;
+    supports_minimal_reasoning_effort = false;
+    supports_none_reasoning_effort = false;
+    supports_reasoning = true;
+    supports_xhigh_reasoning_effort = true;
+  };
+  openAIReasoningOverrides = {
     supports_high_reasoning_effort = true;
     supports_low_reasoning_effort = true;
     supports_max_reasoning_effort = true;
@@ -46,29 +51,13 @@ let
     supports_reasoning = true;
     supports_xhigh_reasoning_effort = true;
   };
-  kimiReasoningInfo = {
-    max_input_tokens = 262144;
-    max_output_tokens = 32768;
-    supports_high_reasoning_effort = false;
-    supports_low_reasoning_effort = false;
-    supports_max_reasoning_effort = false;
-    supports_medium_reasoning_effort = false;
-    supports_minimal_reasoning_effort = false;
-    supports_none_reasoning_effort = false;
-    supports_reasoning = true;
-    supports_xhigh_reasoning_effort = false;
-  };
   gptOssReasoningInfo = {
     max_input_tokens = 131072;
     max_output_tokens = 65536;
-    supports_high_reasoning_effort = false;
     supports_low_reasoning_effort = false;
-    supports_max_reasoning_effort = false;
-    supports_medium_reasoning_effort = false;
     supports_minimal_reasoning_effort = false;
     supports_none_reasoning_effort = false;
     supports_reasoning = true;
-    supports_xhigh_reasoning_effort = false;
   };
 in
 {
@@ -102,28 +91,47 @@ in
         litellm_settings = {
           drop_params = true;
           fallbacks = [
-            { high = [ "high-opencode" ]; }
-            { low = [ "low-deepseek" ]; }
-            { low-deepseek = [ "low-opencode" ]; }
-            { medium = [ "medium-opencode" ]; }
-            { free = [ "free-ollama" ]; }
-            { free-ollama = [ "free-opencode" ]; }
+            {
+              high = [
+                "high-opencode"
+                "free"
+              ];
+            }
+            {
+              medium = [
+                "medium-opencode"
+                "free"
+              ];
+            }
+            {
+              low = [
+                "low-deepseek"
+                "low-opencode"
+                "free"
+              ];
+            }
+            {
+              free = [
+                "free-ollama"
+                "free-opencode"
+              ];
+            }
           ];
         };
         model_list = [
           {
             model_name = "high";
-            model_info = openAIReasoningInfo;
+            model_info = openAIReasoningOverrides;
             litellm_params.model = "chatgpt/gpt-5.6-sol";
           }
           {
             model_name = "high-opencode";
-            model_info = glmReasoningInfo;
+            model_info = kimiK3ReasoningInfo;
             litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
-              model = "openai/glm-5.3-flash";
-              use_chat_completions_api = true;
+              model = "openai/kimi-k3";
               extra_headers = {
                 "x-opencode-session" = "litellm-pi-bridge";
                 "user-agent" = "pi-litellm-bridge/1.0";
@@ -132,17 +140,17 @@ in
           }
           {
             model_name = "medium";
-            model_info = openAIReasoningInfo;
+            model_info = openAIReasoningOverrides;
             litellm_params.model = "chatgpt/gpt-5.6-terra";
           }
           {
             model_name = "medium-opencode";
-            model_info = kimiReasoningInfo;
+            model_info = qwen38ReasoningInfo;
             litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
-              model = "openai/kimi-k2.7-code";
-              use_chat_completions_api = true;
+              model = "openai/qwen3.8-max";
               extra_headers = {
                 "x-opencode-session" = "litellm-pi-bridge";
                 "user-agent" = "pi-litellm-bridge/1.0";
@@ -151,7 +159,7 @@ in
           }
           {
             model_name = "low";
-            model_info = openAIReasoningInfo;
+            model_info = openAIReasoningOverrides;
             litellm_params.model = "chatgpt/gpt-5.6-luna";
           }
           {
@@ -164,12 +172,12 @@ in
           }
           {
             model_name = "low-opencode";
-            model_info = deepSeekOpenCodeInfo;
+            model_info = qwen38ReasoningInfo;
             litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
-              model = "openai/deepseek-v4-flash";
-              use_chat_completions_api = true;
+              model = "openai/qwen3.8-flash";
               extra_headers = {
                 "x-opencode-session" = "litellm-pi-bridge";
                 "user-agent" = "pi-litellm-bridge/1.0";
