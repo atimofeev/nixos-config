@@ -136,6 +136,7 @@
       };
       litellm = {
         enable = true;
+        package = pkgs.unstable.litellm;
         environmentFile = config.sops.secrets."personal/env/coding-agents".path;
       };
       logrotate-nvim.enable = true;
