@@ -4,7 +4,7 @@ final: _prev: {
     inherit (final.stdenv.hostPlatform) system;
     inherit (final) config;
     overlays = [
-      (import ./nvidia-objtool-fix.nix)
+      (import ./nvidia.nix)
       (import ./xone.nix)
     ];
   };

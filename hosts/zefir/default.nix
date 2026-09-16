@@ -28,6 +28,7 @@
     intelgpu.driver = "xe";
     enableRedistributableFirmware = true;
     nvidia = {
+      branch = "new_feature";
       open = true;
       modesetting.enable = true;
       dynamicBoost.enable = true;
