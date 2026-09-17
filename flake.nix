@@ -49,7 +49,8 @@
     };
 
     dank-material-shell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+      # url = "github:AvengeMedia/DankMaterialShell";
+      url = "github:atimofeev/DankMaterialShell?ref=fix-power-resume-reconcile";
       # url = "github:atimofeev/DankMaterialShell/feat/lock-inactive-blurred-wallpaper";
       inputs = {
         nixpkgs.follows = "nixpkgs";
