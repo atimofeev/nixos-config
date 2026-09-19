@@ -7,57 +7,78 @@
 let
   cfg = config.custom.services.litellm;
 
+  # LiteLLM DeepSeek reasoning: see https://github.com/BerriAI/litellm/issues/27439
+  # Preferred fix: https://github.com/BerriAI/litellm/pull/38736
+  # OPEN: an effort value outside this list makes the proxy answer HTTP 200 with a
+  # body of literally `null` instead of forwarding DeepSeek's 422.
+  # https://github.com/BerriAI/litellm/issues/32221 (corroborated for 1.98.0)
   deepSeekReasoningInfo = {
-    supports_low_reasoning_effort = true;
-    supports_max_reasoning_effort = true;
-    supports_minimal_reasoning_effort = true;
-    supports_none_reasoning_effort = false;
+    reasoning_effort_levels = [
+      "none"
+      "minimal"
+      "low"
+      "medium"
+      "high"
+      "xhigh"
+      "max"
+    ];
+    supported_endpoints = [ "/v1/chat/completions" ];
     supports_reasoning = true;
-    supports_xhigh_reasoning_effort = true;
   };
   kimiK3ReasoningInfo = {
     max_input_tokens = 1048576;
     max_output_tokens = 131072;
+    reasoning_effort_levels = [
+      "none"
+      "minimal"
+      "low"
+      "medium"
+      "high"
+      "xhigh"
+      "max"
+    ];
     supported_endpoints = [ "/v1/chat/completions" ];
-    supports_high_reasoning_effort = true;
-    supports_low_reasoning_effort = true;
-    supports_max_reasoning_effort = true;
-    supports_medium_reasoning_effort = false;
-    supports_minimal_reasoning_effort = false;
-    supports_none_reasoning_effort = false;
     supports_reasoning = true;
-    supports_xhigh_reasoning_effort = false;
   };
   qwen38ReasoningInfo = {
     max_input_tokens = 1000000;
     max_output_tokens = 131072;
+    reasoning_effort_levels = [
+      "none"
+      "minimal"
+      "low"
+      "medium"
+      "high"
+      "xhigh"
+      "max"
+    ];
     supported_endpoints = [ "/v1/chat/completions" ];
-    supports_high_reasoning_effort = false;
-    supports_low_reasoning_effort = true;
-    supports_max_reasoning_effort = false;
-    supports_medium_reasoning_effort = true;
-    supports_minimal_reasoning_effort = false;
-    supports_none_reasoning_effort = false;
     supports_reasoning = true;
-    supports_xhigh_reasoning_effort = true;
   };
+  # Every fallback target speaks chat completions only. Without this the client
+  # negotiates /v1/responses from the ChatGPT primary's identity, then LiteLLM's
+  # bridge loses multi-turn tool calls and exposes reasoning as assistant text.
+  # Keep this pin: pi-provider-litellm's maintainer confirmed it is the supported
+  # workaround because fallback targets are invisible during model discovery.
+  #   bridge bug: https://github.com/BerriAI/litellm/issues/42005
+  #   earlier protocol/401 bug: https://github.com/BerriAI/litellm/issues/41385
+  #   client discussion: https://github.com/balcsida/pi-provider-litellm/issues/191
+  # Pi will warn from x-litellm-attempted-fallbacks in a future release; verify
+  # the warning after updating the extension. Do not infer tool calls from JSON
+  # text or globally strip <think>: both can reinterpret legitimate model output.
+  # TODO: recheck the supports_* claims below once the codex quota resets; they
+  # are unverifiable while every ChatGPT route answers 429 usage_limit_reached.
   openAIReasoningOverrides = {
-    supports_high_reasoning_effort = true;
-    supports_low_reasoning_effort = true;
+    supported_endpoints = [ "/v1/chat/completions" ];
     supports_max_reasoning_effort = true;
-    supports_medium_reasoning_effort = true;
     supports_minimal_reasoning_effort = false;
-    supports_none_reasoning_effort = true;
-    supports_reasoning = true;
     supports_xhigh_reasoning_effort = true;
   };
   gptOssReasoningInfo = {
     max_input_tokens = 131072;
     max_output_tokens = 65536;
-    supports_low_reasoning_effort = false;
-    supports_minimal_reasoning_effort = false;
-    supports_none_reasoning_effort = false;
-    supports_reasoning = true;
+    supported_endpoints = [ "/v1/chat/completions" ];
+    supports_reasoning = false;
   };
 in
 {
@@ -90,6 +111,15 @@ in
       settings = {
         litellm_settings = {
           drop_params = true;
+          # Chains cross model families, so a 200 here does not mean the route is
+          # healthy: probe individual routes with `disable_fallbacks: true` or a
+          # broken primary stays hidden behind whichever target answers. Inspect
+          # x-litellm-attempted-fallbacks, x-litellm-model-group and
+          # x-litellm-model-name to identify the deployment that actually served.
+          # pi-provider-litellm cannot discover this graph from /model/info; keep
+          # each public alias pinned to chat completions above.
+          # `free-opencode` is deliberately absent: opencode.ai/zen/v1 answers 403
+          # FreeTierError ("can only be used from within OpenCode") on every call.
           fallbacks = [
             {
               high = [
@@ -111,10 +141,10 @@ in
               ];
             }
             {
-              free = [
-                "free-ollama"
-                "free-opencode"
-              ];
+              free = [ "free-ollama" ];
+            }
+            {
+              "*" = [ "free-ollama" ];
             }
           ];
         };
@@ -132,6 +162,7 @@ in
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
               model = "openai/kimi-k3";
+              use_chat_completions_api = true;
               extra_headers = {
                 "x-opencode-session" = "litellm-pi-bridge";
                 "user-agent" = "pi-litellm-bridge/1.0";
@@ -151,6 +182,7 @@ in
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
               model = "openai/qwen3.8-max";
+              use_chat_completions_api = true;
               extra_headers = {
                 "x-opencode-session" = "litellm-pi-bridge";
                 "user-agent" = "pi-litellm-bridge/1.0";
@@ -164,10 +196,17 @@ in
           }
           {
             model_name = "low-deepseek";
+            # Stock LiteLLM DeepSeek adapter collapses reasoning_effort to binary
+            # thinking.enabled. Use generic OpenAI adapter so Pi's selector reaches
+            # DeepSeek unchanged. See https://github.com/BerriAI/litellm/issues/27439
+            # and https://github.com/BerriAI/litellm/pull/38736.
             model_info = deepSeekReasoningInfo;
             litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
+              api_base = "https://api.deepseek.com/beta";
               api_key = "os.environ/DEEPSEEK_API_KEY";
-              model = "deepseek/deepseek-v4-flash";
+              model = "openai/deepseek-v4-flash";
+              use_chat_completions_api = true;
             };
           }
           {
@@ -178,6 +217,7 @@ in
               api_base = "https://opencode.ai/zen/go/v1";
               api_key = "os.environ/OPENCODE_GO_API_KEY";
               model = "openai/qwen3.8-flash";
+              use_chat_completions_api = true;
               extra_headers = {
                 "x-opencode-session" = "litellm-pi-bridge";
                 "user-agent" = "pi-litellm-bridge/1.0";
@@ -194,27 +234,27 @@ in
           {
             model_name = "free-ollama";
             model_info = gptOssReasoningInfo;
+            # Ollama's OpenAI-compatible endpoint, not the native one: LiteLLM's
+            # ollama adapter ignores the JSON `thinking` field on non-streaming
+            # replies, so gpt-oss answers arrive with empty content.
+            # https://github.com/BerriAI/litellm/issues/41962 (filed; the earlier
+            # https://github.com/BerriAI/litellm/issues/27956 was closed stale on a
+            # premise that no longer holds). Revert to ollama/ once that lands.
             litellm_params = {
-              api_base = "https://ollama.com";
+              api_base = "https://ollama.com/v1";
               api_key = "os.environ/OLLAMA_API_KEY";
-              model = "ollama/gpt-oss:120b";
-            };
-          }
-          {
-            model_name = "free-opencode";
-            model_info.mode = "responses";
-            litellm_params = {
-              api_base = "https://opencode.ai/zen/v1";
-              api_key = "public";
-              extra_headers = {
-                x-opencode-client = "desktop";
-                x-opencode-session = "litellm-pi-bridge";
-              };
-              model = "openai/muse-spark-1.3-contributor-free";
+              model = "openai/gpt-oss:120b";
+              use_chat_completions_api = true;
             };
           }
         ];
         router_settings = {
+          # allowed_fails = 1 with one deployment per model_name means the first
+          # failure cools the route, and later requests report "No deployments
+          # available, try again in 5 seconds" instead of the real upstream error.
+          # Space probes out when diagnosing, or read only the first error.
+          # https://github.com/BerriAI/litellm/issues/40405
+          # https://github.com/BerriAI/litellm/issues/40130
           allowed_fails = 1;
           num_retries = 0;
           routing_strategy = "simple-shuffle";
