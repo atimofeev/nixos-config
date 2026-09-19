@@ -685,11 +685,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1787066416,
-        "narHash": "sha256-ItY8mYCcjSXdBbEYm3Sq0H1P6yYrAWElJ/wXCv3/i5E=",
+        "lastModified": 1789809694,
+        "narHash": "sha256-oiCcXsUw+ZxMDXICeTriB0sAPTBd9TWe9LlwMExjh8I=",
         "owner": "atimofeev",
         "repo": "niri",
-        "rev": "1f24f529f40471f9a08f0699fc88a1174f0e9fbf",
+        "rev": "e075516dbfb134cde5d1b43fa981b7ea62a5f6b8",
         "type": "github"
       },
       "original": {
