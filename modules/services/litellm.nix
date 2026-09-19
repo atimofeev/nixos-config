@@ -60,12 +60,18 @@ let
   # bridge loses multi-turn tool calls and exposes reasoning as assistant text.
   # Keep this pin: pi-provider-litellm's maintainer confirmed it is the supported
   # workaround because fallback targets are invisible during model discovery.
-  #   bridge bug: https://github.com/BerriAI/litellm/issues/42005
-  #   earlier protocol/401 bug: https://github.com/BerriAI/litellm/issues/41385
+  #   bridge regression (fixed on main, closed):
+  #     https://github.com/BerriAI/litellm/issues/42005
+  #   request-side regression tests: https://github.com/BerriAI/litellm/pull/42129
+  #   earlier protocol/401 bug (still open):
+  #     https://github.com/BerriAI/litellm/issues/41385
   #   client discussion: https://github.com/balcsida/pi-provider-litellm/issues/191
-  # Pi will warn from x-litellm-attempted-fallbacks in a future release; verify
-  # the warning after updating the extension. Do not infer tool calls from JSON
-  # text or globally strip <think>: both can reinterpret legitimate model output.
+  #   fallback warning: https://github.com/balcsida/pi-provider-litellm/pull/195
+  # Warning merged after v3.1.0 but is not released yet. After upgrading to the
+  # first release containing merge 1fb530f, verify it fires once for this route
+  # when x-litellm-attempted-fallbacks > 0. Diagnostic only; keep this pin.
+  # Do not infer tool calls from JSON text or globally strip <think>: both can
+  # reinterpret legitimate model output.
   # TODO: recheck the supports_* claims below once the codex quota resets; they
   # are unverifiable while every ChatGPT route answers 429 usage_limit_reached.
   openAIReasoningOverrides = {
@@ -237,9 +243,11 @@ in
             # Ollama's OpenAI-compatible endpoint, not the native one: LiteLLM's
             # ollama adapter ignores the JSON `thinking` field on non-streaming
             # replies, so gpt-oss answers arrive with empty content.
-            # https://github.com/BerriAI/litellm/issues/41962 (filed; the earlier
+            # https://github.com/BerriAI/litellm/issues/41962; preferred fix is
+            # https://github.com/BerriAI/litellm/pull/41967. The earlier
             # https://github.com/BerriAI/litellm/issues/27956 was closed stale on a
-            # premise that no longer holds). Revert to ollama/ once that lands.
+            # premise that no longer holds. Revert to ollama/ after the fix ships
+            # and passes the original non-streaming reasoning sweep.
             litellm_params = {
               api_base = "https://ollama.com/v1";
               api_key = "os.environ/OLLAMA_API_KEY";
