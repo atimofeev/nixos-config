@@ -707,16 +707,15 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1790055345,
-        "narHash": "sha256-h6QBxd471Spg25r+PiIW9rgS0hWq3GcKzrP2ZT8Cf54=",
-        "owner": "atimofeev",
+        "lastModified": 1790061039,
+        "narHash": "sha256-2QxkCh+LWIS0mWF82ptEvM5/FtdPBrdDjRyahT6K3fs=",
+        "owner": "niri-wm",
         "repo": "niri",
-        "rev": "5015095af8a151581ddc96174a48723bcf9e97e5",
+        "rev": "9a35d3774a7ff1acdce07fde05bdc94dfa5a0258",
         "type": "github"
       },
       "original": {
-        "owner": "atimofeev",
-        "ref": "feat/multiple-open-on-output",
+        "owner": "niri-wm",
         "repo": "niri",
         "type": "github"
       }
@@ -1101,6 +1100,7 @@
         "github-avatar": "github-avatar",
         "home-manager": "home-manager",
         "hyprdynamicmonitors": "hyprdynamicmonitors",
+        "jj-hunk": "jj-hunk",
         "lanzaboote": "lanzaboote",
         "llm-agents": "llm-agents",
         "niri-git": "niri-git",

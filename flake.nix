@@ -85,7 +85,7 @@
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
-    niri-git.url = "github:atimofeev/niri/feat/multiple-open-on-output";
+    niri-git.url = "github:niri-wm/niri";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
