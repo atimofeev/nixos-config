@@ -618,6 +618,27 @@
         "type": "github"
       }
     },
+    "jj-hunk": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789463804,
+        "narHash": "sha256-Pe0rLEUMXmq+8eUMmjuu5KvFJ/aN53bTQ6/1rE2YcT0=",
+        "owner": "laulauland",
+        "repo": "jj-hunk",
+        "rev": "9600fb479903ff7baec9ed97b5d199949c0f88b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "laulauland",
+        "repo": "jj-hunk",
+        "rev": "9600fb479903ff7baec9ed97b5d199949c0f88b2",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",

@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -15,6 +16,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    home.packages = [
+      inputs.jj-hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
 
     custom-hm.user.shellAliases = {
       jb = "jj bookmark list";

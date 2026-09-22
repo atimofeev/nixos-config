@@ -76,6 +76,11 @@
 
     hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
 
+    jj-hunk = {
+      url = "github:laulauland/jj-hunk/9600fb479903ff7baec9ed97b5d199949c0f88b2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote.url = "github:nix-community/lanzaboote";
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
