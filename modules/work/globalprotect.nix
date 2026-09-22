@@ -28,6 +28,7 @@ in
     networking.networkmanager = {
 
       plugins = [
+        pkgs.networkmanager-gpclient
         pkgs.networkmanager-openconnect
       ];
 
@@ -67,6 +68,28 @@ in
             csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
             enable_csd_trojan = "yes";
             usergroup = "gateway";
+          };
+          ipv4 = {
+            method = "auto";
+          };
+        };
+
+        "GlobalProtect-HTZ-gpclient" = {
+          connection = {
+            id = "GlobalProtect-HTZ-gpclient";
+            type = "vpn";
+            autoconnect = false;
+            permissions = "user:${hmUser}:";
+          };
+          vpn = {
+            as_gateway = "yes";
+            browser = "embedded";
+            cookie-flags = "2";
+            csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
+            enable_csd_trojan = "yes";
+            gateway = "$GLOBALPROTECT_GATEWAY_HTZ";
+            gateway-flags = "2";
+            service-type = "org.freedesktop.NetworkManager.gpclient";
           };
           ipv4 = {
             method = "auto";
