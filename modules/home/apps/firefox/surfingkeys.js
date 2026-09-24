@@ -43,6 +43,8 @@ const hintsCss = `
 api.Hints.style(hintsCss)
 api.Hints.style(hintsCss, "text")
 
+settings.modeAfterYank = "Normal"
+
 settings.theme = `
 	.sk_theme {
 		background: ${catppuccin.base};
@@ -484,3 +486,5 @@ api.unmap("o") // Omnibar
 api.unmap("s") // Search Selected With
 api.unmap("t") // Open a URL
 api.iunmap("<Ctrl-a>") // start of input field
+api.iunmap("<Ctrl-e>") // end of input field
+api.iunmap("<Ctrl-u>") // delete text before cursor
