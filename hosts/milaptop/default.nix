@@ -107,10 +107,7 @@
         extraLocale = "en_GB.UTF-8";
       };
       logind.enable = true;
-      network = {
-        enable = true;
-        hotspot-bypass = true;
-      };
+      network.enable = true;
       sops.enable = true;
     };
 
