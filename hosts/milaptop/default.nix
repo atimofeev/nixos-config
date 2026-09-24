@@ -160,6 +160,7 @@
       };
       cato = {
         enable = true;
+        autoStart = false;
         # package = pkgs.unstable.cato-client;
       };
       globalprotect.enable = true;
