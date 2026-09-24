@@ -8,10 +8,35 @@ let
   cfg = config.custom-hm.applications.obsidian;
 
   gitSyncObsidian = pkgs.writeShellScript "git-sync-obsidian" ''
-    git add .
-    git commit -m "$(date '+%Y-%m-%d %H:%M:%S')" || true
-    git pull --rebase origin main || true
-    git push origin main'';
+    set -euo pipefail
+
+    cd "${config.home.homeDirectory}/repos/obsidian-vault"
+
+    jj="${pkgs.jujutsu}/bin/jj"
+    git="${pkgs.git}/bin/git"
+    message="$(date '+%Y-%m-%d %H:%M:%S')"
+
+    if [ -d .jj ]; then
+      # jj owns working-copy state in native and colocated repositories.
+      "$jj" git fetch --remote origin
+
+      if ! "$jj" diff --quiet; then
+        "$jj" commit -m "$message"
+      fi
+
+      # jj commit leaves a new empty working-copy commit; publish its parent.
+      "$jj" bookmark set main --revision @-
+      "$jj" git push --remote origin --bookmark main
+    else
+      "$git" add -A
+
+      if ! "$git" diff --cached --quiet; then
+        "$git" commit -m "$message"
+      fi
+
+      "$git" pull --rebase --autostash origin main
+      "$git" push origin main
+    fi'';
 
 in
 {
