@@ -183,10 +183,10 @@ in
             private_browsing = true;
             updates_disabled = false;
           };
-          "languagetool-webextension@languagetool.org" = {
+          "harper@writewithharper.com" = {
             default_area = "menupanel";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool-webextension@languagetool.org/latest.xpi";
             installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/harper@writewithharper.com/latest.xpi";
             private_browsing = true;
             updates_disabled = false;
           };
