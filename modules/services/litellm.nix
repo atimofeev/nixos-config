@@ -78,15 +78,31 @@ let
   # when x-litellm-attempted-fallbacks > 0. Diagnostic only.
   # Do not infer tool calls from JSON text or globally strip <think>: both can
   # reinterpret legitimate model output.
-  # Verified 2026-09-22 through /v1/responses on all three ChatGPT routes:
-  # low/medium/high/xhigh/max succeed without fallback; minimal is rejected.
+  # Verified 2026-09-22 through /v1/responses on all four ChatGPT routes:
+  # effort levels low/medium/high/xhigh/max succeed without fallback; minimal is rejected.
+  # These aliases need explicit limits, capabilities, and zero-cost metadata:
+  # LiteLLM returns null catalog fields for unknown chatgpt/* aliases, which makes
+  # pi-provider-litellm label them incomplete and fail closed on reasoning control.
   openAIReasoningOverrides = {
+    cache_creation_input_token_cost = 0;
+    cache_read_input_token_cost = 0;
+    input_cost_per_token = 0;
+    max_input_tokens = 1050000;
+    max_output_tokens = 128000;
+    output_cost_per_token = 0;
     supported_endpoints = [ "/v1/responses" ];
-    supports_reasoning = true;
+    supports_high_reasoning_effort = true;
+    supports_low_reasoning_effort = true;
     supports_max_reasoning_effort = true;
+    supports_medium_reasoning_effort = true;
     supports_minimal_reasoning_effort = false;
+    supports_none_reasoning_effort = true;
+    supports_reasoning = true;
+    supports_vision = true;
     supports_xhigh_reasoning_effort = true;
   };
+  # LiteLLM does not infer reasoning_effort forwarding for these aliases. Keep
+  # this allowlist on every primary deployment so Pi can send Responses effort.
   geminiFlashInfo = {
     max_input_tokens = 1048576;
     max_output_tokens = 65536;
@@ -185,14 +201,21 @@ in
         };
         model_list = [
           {
+            # Primary Codex routes use Responses; fallback targets use Chat Completions.
             model_name = "xhigh";
             model_info = openAIReasoningOverrides;
-            litellm_params.model = "chatgpt/gpt-6-astra";
+            litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
+              model = "chatgpt/gpt-6-astra";
+            };
           }
           {
             model_name = "high";
             model_info = openAIReasoningOverrides;
-            litellm_params.model = "chatgpt/gpt-5.6-sol";
+            litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
+              model = "chatgpt/gpt-5.6-sol";
+            };
           }
           {
             model_name = "high-opencode";
@@ -209,7 +232,10 @@ in
           {
             model_name = "medium";
             model_info = openAIReasoningOverrides;
-            litellm_params.model = "chatgpt/gpt-6-sol";
+            litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
+              model = "chatgpt/gpt-6-sol";
+            };
           }
           {
             model_name = "medium-opencode";
@@ -226,7 +252,10 @@ in
           {
             model_name = "low";
             model_info = openAIReasoningOverrides;
-            litellm_params.model = "chatgpt/gpt-6-luna";
+            litellm_params = {
+              allowed_openai_params = [ "reasoning_effort" ];
+              model = "chatgpt/gpt-6-luna";
+            };
           }
           {
             model_name = "low-deepseek";
