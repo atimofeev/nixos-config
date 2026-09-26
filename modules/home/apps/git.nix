@@ -82,6 +82,10 @@ in
               upstream = "green";
             };
           };
+          credential."https://github.com".helper = [
+            ""
+            "!${lib.getExe pkgs.gh} auth git-credential"
+          ];
           core = {
             compression = 9;
             preloadindex = true;
