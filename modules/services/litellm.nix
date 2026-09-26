@@ -55,11 +55,17 @@ let
     supported_endpoints = [ "/v1/chat/completions" ];
     supports_reasoning = true;
   };
-  # Every fallback target speaks chat completions only. Without this the client
-  # negotiates /v1/responses from the ChatGPT primary's identity, then LiteLLM's
-  # bridge loses multi-turn tool calls and exposes reasoning as assistant text.
-  # Keep this pin: pi-provider-litellm's maintainer confirmed it is the supported
-  # workaround because fallback targets are invisible during model discovery.
+  # Every fallback target speaks chat completions only, so the fallback graph has
+  # to be bridged server-side. LiteLLM 1.100.1 bridges /v1/responses to chat-only
+  # deployments correctly, including native tool calls, so the ChatGPT primaries
+  # stay on the Responses API: that is the only path the official Codex client
+  # uses, and it is not probed by Cloudflare. Verified 2026-09-21 against this
+  # proxy on 1.100.1:
+  #   /v1/responses  model=high          -> chatgpt/gpt-5.6-sol, fallbacks=0
+  #   /v1/chat/...   model=high          -> Cloudflare managed challenge on
+  #     https://chatgpt.com/backend-api/codex/chat/completions, fallbacks=1
+  #   /v1/responses  model=low-deepseek  -> openai/deepseek-v4-flash, function_call intact
+  # The old chat-completions pin below caused the Cloudflare challenge and is gone.
   #   bridge regression (fixed on main, closed):
   #     https://github.com/BerriAI/litellm/issues/42005
   #   request-side regression tests: https://github.com/BerriAI/litellm/pull/42129
@@ -69,16 +75,25 @@ let
   #   fallback warning: https://github.com/balcsida/pi-provider-litellm/pull/195
   # Warning merged after v3.1.0 but is not released yet. After upgrading to the
   # first release containing merge 1fb530f, verify it fires once for this route
-  # when x-litellm-attempted-fallbacks > 0. Diagnostic only; keep this pin.
+  # when x-litellm-attempted-fallbacks > 0. Diagnostic only.
   # Do not infer tool calls from JSON text or globally strip <think>: both can
   # reinterpret legitimate model output.
-  # TODO: recheck the supports_* claims below once the codex quota resets; they
-  # are unverifiable while every ChatGPT route answers 429 usage_limit_reached.
+  # Verified 2026-09-22 through /v1/responses on all three ChatGPT routes:
+  # low/medium/high/xhigh/max succeed without fallback; minimal is rejected.
   openAIReasoningOverrides = {
-    supported_endpoints = [ "/v1/chat/completions" ];
+    supported_endpoints = [ "/v1/responses" ];
+    supports_reasoning = true;
     supports_max_reasoning_effort = true;
     supports_minimal_reasoning_effort = false;
     supports_xhigh_reasoning_effort = true;
+  };
+  geminiFlashInfo = {
+    max_input_tokens = 1048576;
+    max_output_tokens = 65536;
+    supported_endpoints = [ "/v1/chat/completions" ];
+    supports_function_calling = true;
+    supports_parallel_function_calling = true;
+    supports_reasoning = false;
   };
   gptOssReasoningInfo = {
     max_input_tokens = 131072;
@@ -122,20 +137,29 @@ in
           # broken primary stays hidden behind whichever target answers. Inspect
           # x-litellm-attempted-fallbacks, x-litellm-model-group and
           # x-litellm-model-name to identify the deployment that actually served.
-          # pi-provider-litellm cannot discover this graph from /model/info; keep
-          # each public alias pinned to chat completions above.
+          # pi-provider-litellm cannot discover this graph from /model/info.
           # `free-opencode` is deliberately absent: opencode.ai/zen/v1 answers 403
           # FreeTierError ("can only be used from within OpenCode") on every call.
           fallbacks = [
             {
+              xhigh = [
+                "high"
+                "high-opencode"
+                "low-deepseek"
+                "free"
+              ];
+            }
+            {
               high = [
                 "high-opencode"
+                "low-deepseek"
                 "free"
               ];
             }
             {
               medium = [
                 "medium-opencode"
+                "low-deepseek"
                 "free"
               ];
             }
@@ -147,14 +171,24 @@ in
               ];
             }
             {
-              free = [ "free-ollama" ];
-            }
-            {
-              "*" = [ "free-ollama" ];
+              free = [
+                "free-ollama"
+                "free-gemini"
+              ];
             }
           ];
+          # Deliberately no `"*"` wildcard: a generic fallback resolves for every
+          # intermediate hop too, so high-opencode failing jumped straight to
+          # free-ollama and low-deepseek/free were never tried. Verified 2026-09-22
+          # on 1.100.1: without the wildcard the outer loop advances the full chain.
+          # Do not re-add it. Route-level truth comes from x-litellm-model-group.
         };
         model_list = [
+          {
+            model_name = "xhigh";
+            model_info = openAIReasoningOverrides;
+            litellm_params.model = "chatgpt/gpt-6-astra";
+          }
           {
             model_name = "high";
             model_info = openAIReasoningOverrides;
@@ -169,16 +203,13 @@ in
               api_key = "os.environ/OPENCODE_GO_API_KEY";
               model = "openai/kimi-k3";
               use_chat_completions_api = true;
-              extra_headers = {
-                "x-opencode-session" = "litellm-pi-bridge";
-                "user-agent" = "pi-litellm-bridge/1.0";
-              };
+              extra_headers."x-opencode-session" = "litellm-pi-bridge";
             };
           }
           {
             model_name = "medium";
             model_info = openAIReasoningOverrides;
-            litellm_params.model = "chatgpt/gpt-5.6-terra";
+            litellm_params.model = "chatgpt/gpt-6-sol";
           }
           {
             model_name = "medium-opencode";
@@ -189,16 +220,13 @@ in
               api_key = "os.environ/OPENCODE_GO_API_KEY";
               model = "openai/qwen3.8-max";
               use_chat_completions_api = true;
-              extra_headers = {
-                "x-opencode-session" = "litellm-pi-bridge";
-                "user-agent" = "pi-litellm-bridge/1.0";
-              };
+              extra_headers."x-opencode-session" = "litellm-pi-bridge";
             };
           }
           {
             model_name = "low";
             model_info = openAIReasoningOverrides;
-            litellm_params.model = "chatgpt/gpt-5.6-luna";
+            litellm_params.model = "chatgpt/gpt-6-luna";
           }
           {
             model_name = "low-deepseek";
@@ -224,10 +252,7 @@ in
               api_key = "os.environ/OPENCODE_GO_API_KEY";
               model = "openai/qwen3.8-flash";
               use_chat_completions_api = true;
-              extra_headers = {
-                "x-opencode-session" = "litellm-pi-bridge";
-                "user-agent" = "pi-litellm-bridge/1.0";
-              };
+              extra_headers."x-opencode-session" = "litellm-pi-bridge";
             };
           }
           {
@@ -235,6 +260,14 @@ in
             litellm_params = {
               api_key = "os.environ/OPENROUTER_API_KEY";
               model = "openrouter/openrouter/free";
+            };
+          }
+          {
+            model_name = "free-gemini";
+            model_info = geminiFlashInfo;
+            litellm_params = {
+              api_key = "os.environ/GEMINI_API_KEY";
+              model = "gemini/gemini-3.6-flash";
             };
           }
           {
@@ -257,15 +290,14 @@ in
           }
         ];
         router_settings = {
-          # allowed_fails = 1 with one deployment per model_name means the first
-          # failure cools the route, and later requests report "No deployments
+          # allowed_fails = 1 with one deployment per model_name means two failures
+          # cool the route, and later requests report "No deployments
           # available, try again in 5 seconds" instead of the real upstream error.
           # Space probes out when diagnosing, or read only the first error.
           # https://github.com/BerriAI/litellm/issues/40405
           # https://github.com/BerriAI/litellm/issues/40130
           allowed_fails = 1;
           num_retries = 0;
-          routing_strategy = "simple-shuffle";
         };
       };
     };
