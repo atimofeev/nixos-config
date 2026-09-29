@@ -1,0 +1,488 @@
+--- a/internal/config/hotkey.go
++++ b/internal/config/hotkey.go
+@@ -26,6 +26,7 @@
+ 	Override    bool   `yaml:"override"`
+ 	Description string `yaml:"description"`
+ 	Command     string `yaml:"command"`
++	Global      string `yaml:"global"`
+ 	KeepHistory bool   `yaml:"keepHistory"`
+ }
+ 
+--- a/internal/config/json/schemas/hotkeys.json
++++ b/internal/config/json/schemas/hotkeys.json
+@@ -13,8 +13,10 @@
+           "override": { "type": "boolean" },
+           "description": {"type": "string"},
+           "command": {"type": "string"},
++          "global": {"type": "string", "enum": ["command", "back", "redraw", "persist", "clear-filter", "toggle-header", "toggle-crumbs", "help", "history-back", "history-forward", "last-view", "aliases", "goto", "quit"]},
+           "keepHistory": {"type": "boolean"}
+-        }
++        },
++        "not": {"required": ["command", "global"], "properties": {"command": {"minLength": 1}, "global": {"minLength": 1}}}
+       }
+     }
+   },
+--- /dev/null
++++ b/internal/config/global_hotkeys_test.go
+@@ -0,0 +1,58 @@
++// SPDX-License-Identifier: Apache-2.0
++// Copyright Authors of K9s
++
++package config_test
++
++import (
++	"os"
++	"path/filepath"
++	"testing"
++
++	"github.com/derailed/k9s/internal/config"
++	"github.com/derailed/k9s/internal/config/data"
++	configjson "github.com/derailed/k9s/internal/config/json"
++	"github.com/stretchr/testify/require"
++	"gopkg.in/yaml.v3"
++)
++
++func TestGlobalHotkeysSchema(t *testing.T) {
++	cases := []struct {
++		name, record string
++		valid        bool
++	}{
++		{"global", `{shortCut: ";", global: command, description: Command mode, override: true}`, true},
++		{"resource", `{shortCut: p, command: pods}`, true},
++		{"empty-command", `{shortCut: ";", global: command, command: ""}`, true},
++		{"unknown", `{shortCut: q, global: unknown}`, false},
++		{"conflict", `{shortCut: q, global: back, command: pods}`, false},
++	}
++	for _, tc := range cases {
++		t.Run(tc.name, func(t *testing.T) {
++			content := []byte("hotKeys:\n  test: " + tc.record + "\n")
++			err := data.JSONValidator.Validate(configjson.HotkeysSchema, content)
++			if tc.valid {
++				require.NoError(t, err)
++			} else {
++				require.Error(t, err)
++			}
++		})
++	}
++	// Keep the upstream command-only fixture valid.
++	content, err := os.ReadFile("testdata/hotkeys/hotkeys.yaml")
++	require.NoError(t, err)
++	// Fixture intentionally uses its original vendor shortcut spelling.
++	require.NoError(t, data.JSONValidator.Validate(configjson.HotkeysSchema, content))
++}
++
++func TestGlobalHotkeysDecodeAndLoad(t *testing.T) {
++	content := []byte("hotKeys:\n  command: {shortCut: ';', global: command, description: Command mode, override: true}\n")
++	var decoded config.HotKeys
++	require.NoError(t, yaml.Unmarshal(content, &decoded))
++	require.Equal(t, "command", decoded.HotKey["command"].Global)
++	require.Empty(t, decoded.HotKey["command"].Command)
++	path := filepath.Join(t.TempDir(), "hotkeys.yaml")
++	require.NoError(t, os.WriteFile(path, content, 0600))
++	loaded := config.NewHotKeys()
++	require.NoError(t, loaded.LoadHotKeys(path))
++	require.Equal(t, decoded.HotKey, loaded.HotKey)
++}
+--- a/internal/view/actions.go
++++ b/internal/view/actions.go
+@@ -70,6 +70,9 @@
+ 		errs = errors.Join(errs, err)
+ 	}
+ 	for k, hk := range hh.HotKey {
++		if hk.Global != "" {
++			continue
++		}
+ 		key, err := asKey(hk.ShortCut)
+ 		if err != nil {
+ 			errs = errors.Join(errs, err)
+--- a/internal/view/app.go
++++ b/internal/view/app.go
+@@ -56,6 +56,7 @@
+ 	showHeader    bool
+ 	showLogo      bool
+ 	showCrumbs    bool
++	globalHotkeys map[tcell.Key]globalHotkey
+ }
+ 
+ // NewApp returns a K9s app instance.
+@@ -105,6 +106,7 @@
+ 	a.App.Init()
+ 	a.SetInputCapture(a.keyboard)
+ 	a.bindKeys()
++	a.loadGlobalHotkeys()
+ 
+ 	// Allow initialization even without a valid connection
+ 	// We'll fall back to context view in defaultCmd
+@@ -244,6 +246,7 @@
+ }
+ 
+ func (a *App) keyboard(evt *tcell.EventKey) *tcell.EventKey {
++	evt = a.mapGlobalHotkey(evt)
+ 	if k, ok := a.HasAction(ui.AsKey(evt)); ok && !a.Content.IsTopDialog() {
+ 		return k.Action(evt)
+ 	}
+@@ -472,6 +475,7 @@
+ 		if err != nil {
+ 			return err
+ 		}
++		a.loadGlobalHotkeys()
+ 		if cns, ok := ci.NSArg(); ok {
+ 			ct.Namespace.Active = cns
+ 		}
+--- a/internal/view/helpers.go
++++ b/internal/view/helpers.go
+@@ -179,6 +179,15 @@
+ 
+ // AsKey maps a string representation of a key to a tcell key.
+ func asKey(key string) (tcell.Key, error) {
++	if key == "Backspace2" {
++		return tcell.KeyBackspace2, nil
++	}
++	if key == "Backspace" {
++		return tcell.KeyBackspace, nil
++	}
++	if len(key) == 1 && key[0] >= 32 && key[0] <= 126 {
++		return tcell.Key(key[0]), nil
++	}
+ 	for k, v := range tcell.KeyNames {
+ 		if key == v {
+ 			return k, nil
+--- /dev/null
++++ b/internal/view/global_hotkeys.go
+@@ -0,0 +1,144 @@
++// SPDX-License-Identifier: Apache-2.0
++// Copyright Authors of K9s
++
++package view
++
++import (
++	"errors"
++	"fmt"
++	"sort"
++
++	"github.com/derailed/k9s/internal/config"
++	"github.com/derailed/k9s/internal/ui"
++	"github.com/derailed/tcell/v2"
++)
++
++// Global shortcuts are aliases: dispatch still runs the original event handlers.
++var globalHotkeyTargets = map[string]tcell.Key{
++	"aliases":         tcell.KeyCtrlA,
++	"back":            tcell.KeyEscape,
++	"clear-filter":    tcell.KeyCtrlU,
++	"command":         ui.KeyColon,
++	"goto":            tcell.KeyEnter,
++	"help":            ui.KeyHelp,
++	"history-back":    ui.KeyLeftBracket,
++	"history-forward": ui.KeyRightBracket,
++	"last-view":       ui.KeyDash,
++	"persist":         tcell.KeyCtrlP,
++	"quit":            tcell.KeyCtrlC,
++	"redraw":          tcell.KeyCtrlR,
++	"toggle-crumbs":   tcell.KeyCtrlG,
++	"toggle-header":   tcell.KeyCtrlE,
++}
++
++type globalHotkey struct {
++	target   tcell.Key
++	override bool
++}
++
++func hotkeyCodes(shortcut string) ([]tcell.Key, error) {
++	key, err := asKey(shortcut)
++	if err != nil {
++		return nil, err
++	}
++	if key == tcell.KeyBackspace || key == tcell.KeyBackspace2 {
++		return []tcell.Key{tcell.KeyBackspace, tcell.KeyBackspace2}, nil
++	}
++	return []tcell.Key{key}, nil
++}
++
++func compileGlobalHotkeys(hh config.HotKeys) (map[tcell.Key]globalHotkey, error) {
++	names := make([]string, 0, len(hh.HotKey))
++	for name := range hh.HotKey {
++		names = append(names, name)
++	}
++	sort.Strings(names)
++	bindings := make(map[tcell.Key]globalHotkey)
++	owners := make(map[tcell.Key]string)
++	var errs error
++	for _, name := range names {
++		hk := hh.HotKey[name]
++		if hk.Global == "" {
++			continue
++		}
++		codes, err := hotkeyCodes(hk.ShortCut)
++		if err != nil {
++			errs = errors.Join(errs, fmt.Errorf("hotkey %q: %w", name, err))
++			continue
++		}
++		for _, code := range codes {
++			if owner, found := owners[code]; found {
++				errs = errors.Join(errs, fmt.Errorf("duplicate hotkey %q in %q and %q", hk.ShortCut, owner, name))
++			} else {
++				owners[code] = name
++			}
++		}
++		target, found := globalHotkeyTargets[hk.Global]
++		if !found {
++			errs = errors.Join(errs, fmt.Errorf("hotkey %q: unknown global action %q", name, hk.Global))
++			continue
++		}
++		if hk.Command != "" {
++			errs = errors.Join(errs, fmt.Errorf("hotkey %q: command and global are mutually exclusive", name))
++			continue
++		}
++		for _, code := range codes {
++			bindings[code] = globalHotkey{target: target, override: hk.Override}
++		}
++	}
++	// Reject ambiguous configurations atomically, leaving all default bindings intact.
++	if errs != nil {
++		return nil, errs
++	}
++	return bindings, nil
++}
++
++func (a *App) loadGlobalHotkeys() {
++	a.globalHotkeys = nil
++	hh := config.NewHotKeys()
++	if err := hh.Load(a.Config.ContextHotkeysPath()); err != nil {
++		a.Flash().Err(err)
++		return
++	}
++	bindings, err := compileGlobalHotkeys(hh)
++	if err != nil {
++		a.Flash().Err(err)
++		return
++	}
++	a.globalHotkeys = bindings
++}
++
++func (a *App) mapGlobalHotkey(evt *tcell.EventKey) *tcell.EventKey {
++	if a.Content.IsTopDialog() {
++		return evt
++	}
++	key := ui.AsKey(evt)
++	binding, found := a.globalHotkeys[key]
++	if !found {
++		return evt
++	}
++	if a.InCmdMode() {
++		// Text and editing keys must remain literal in every prompt.
++		switch evt.Key() {
++		case tcell.KeyRune, tcell.KeyBackspace, tcell.KeyBackspace2, tcell.KeyDelete:
++			return evt
++		}
++		if binding.target != tcell.KeyCtrlU && binding.target != tcell.KeyEnter {
++			return evt
++		}
++	}
++	if !binding.override {
++		if _, occupied := a.HasAction(key); occupied {
++			return evt
++		}
++		if view, ok := a.Content.Top().(interface{ Actions() *ui.KeyActions }); ok {
++			if _, occupied := view.Actions().Get(key); occupied {
++				return evt
++			}
++		}
++	}
++	if binding.target >= 32 && binding.target <= 126 {
++		return tcell.NewEventKey(tcell.KeyRune, rune(binding.target), tcell.ModNone)
++	}
++	return tcell.NewEventKey(binding.target, 0, tcell.ModNone)
++}
+--- /dev/null
++++ b/internal/view/global_hotkeys_test.go
+@@ -0,0 +1,189 @@
++// SPDX-License-Identifier: Apache-2.0
++// Copyright Authors of K9s
++
++package view
++
++import (
++	"testing"
++
++	"github.com/derailed/k9s/internal/config"
++	"github.com/derailed/k9s/internal/config/mock"
++	"github.com/derailed/k9s/internal/model"
++	"github.com/derailed/k9s/internal/ui"
++	"github.com/derailed/tcell/v2"
++	"github.com/derailed/tview"
++	"github.com/stretchr/testify/require"
++)
++
++func globalTestApp(t *testing.T) *App {
++	t.Helper()
++	a := &App{App: ui.NewApp(mock.NewMockConfig(t), ""), Content: NewPageStack()}
++	a.App.Init()
++	a.bindKeys()
++	var err error
++	a.globalHotkeys, err = compileGlobalHotkeys(config.HotKeys{HotKey: map[string]config.HotKey{
++		"command":   {ShortCut: ";", Global: "command", Override: true},
++		"backspace": {ShortCut: "Backspace", Global: "back", Override: true},
++		"back":      {ShortCut: "q", Global: "back", Override: true},
++	}})
++	require.NoError(t, err)
++	return a
++}
++
++func TestCompileGlobalHotkeys(t *testing.T) {
++	a := globalTestApp(t)
++	require.Len(t, a.globalHotkeys, 4)
++	for _, key := range []tcell.Key{tcell.KeyBackspace, tcell.KeyBackspace2, ui.KeyQ} {
++		require.Equal(t, tcell.KeyEscape, a.globalHotkeys[key].target)
++	}
++	require.Equal(t, tcell.Key(ui.KeyColon), a.globalHotkeys[tcell.Key(';')].target)
++	cases := map[string]map[string]config.HotKey{
++		"unknown":           {"a": {ShortCut: "q", Global: "unknown"}},
++		"conflict":          {"a": {ShortCut: "q", Global: "back", Command: "pods"}},
++		"invalid":           {"a": {ShortCut: "invalid", Global: "back"}},
++		"duplicate":         {"a": {ShortCut: "q", Global: "back"}, "b": {ShortCut: "q", Global: "command"}},
++		"backspace-overlap": {"a": {ShortCut: "Backspace", Global: "back"}, "b": {ShortCut: "Backspace2", Global: "back"}},
++	}
++	for name, hotkeys := range cases {
++		t.Run(name, func(t *testing.T) {
++			bindings, err := compileGlobalHotkeys(config.HotKeys{HotKey: hotkeys})
++			require.Error(t, err)
++			require.Nil(t, bindings)
++		})
++	}
++	bindings, err := compileGlobalHotkeys(config.HotKeys{HotKey: map[string]config.HotKey{
++		"global":             {ShortCut: "q", Global: "back"},
++		"invalid-resource":   {ShortCut: "invalid", Command: "pods"},
++		"resource":           {ShortCut: "q", Command: "pods"},
++		"duplicate-resource": {ShortCut: "q", Command: "nodes"},
++	}})
++	require.NoError(t, err)
++	require.Len(t, bindings, 1)
++}
++
++func TestGlobalHotkeyPunctuation(t *testing.T) {
++	for key := byte(32); key <= 126; key++ {
++		got, err := asKey(string(key))
++		require.NoError(t, err)
++		require.Equal(t, tcell.Key(key), got)
++	}
++	key, err := asKey("Ctrl-R")
++	// Named keys retain vendor spelling, rather than inventing punctuation syntax.
++	if err != nil {
++		key, err = asKey(tcell.KeyNames[tcell.KeyCtrlR])
++	}
++	require.NoError(t, err)
++	require.Equal(t, tcell.KeyCtrlR, key)
++}
++
++func TestGlobalHotkeysCommandAndDefault(t *testing.T) {
++	for _, r := range []rune{';', ':'} {
++		t.Run(string(r), func(t *testing.T) {
++			a := globalTestApp(t)
++			require.Nil(t, a.keyboard(tcell.NewEventKey(tcell.KeyRune, r, tcell.ModNone)))
++			require.True(t, a.InCmdMode())
++		})
++	}
++}
++
++func TestGlobalHotkeysNoConfigAndDialogs(t *testing.T) {
++	a := globalTestApp(t)
++	evt := tcell.NewEventKey(tcell.KeyRune, ';', tcell.ModNone)
++	a.globalHotkeys = nil
++	require.Same(t, evt, a.keyboard(evt))
++	require.False(t, a.InCmdMode())
++	a = globalTestApp(t)
++	a.Content.AddPage("dialog", tview.NewModalForm("Dialog", tview.NewForm()), true, true)
++	for _, evt := range []*tcell.EventKey{evt, tcell.NewEventKey(tcell.KeyRune, 'q', 0), tcell.NewEventKey(tcell.KeyBackspace, 0, 0)} {
++		require.Same(t, evt, a.keyboard(evt))
++	}
++	require.False(t, a.InCmdMode())
++}
++
++func TestGlobalHotkeysOverrideAndBackDispatch(t *testing.T) {
++	a := globalTestApp(t)
++	evt := tcell.NewEventKey(tcell.KeyCtrlE, 0, 0)
++	a.globalHotkeys[tcell.KeyCtrlE] = globalHotkey{target: tcell.KeyEscape}
++	require.Same(t, evt, a.mapGlobalHotkey(evt))
++	d := NewDetails(a, "test", "test", contentTXT, false)
++	invoked := 0
++	d.actions.Add(ui.KeyQ, ui.NewKeyAction("Local", func(*tcell.EventKey) *tcell.EventKey { invoked++; return nil }, false))
++	d.actions.Add(tcell.KeyEscape, ui.NewKeyAction("Back", func(*tcell.EventKey) *tcell.EventKey { invoked++; return nil }, false))
++	a.Content.Push(d)
++	q := tcell.NewEventKey(tcell.KeyRune, 'q', 0)
++	a.globalHotkeys[ui.KeyQ] = globalHotkey{target: tcell.KeyEscape}
++	require.Same(t, q, a.mapGlobalHotkey(q))
++	require.Nil(t, d.keyboard(a.keyboard(q)))
++	require.Equal(t, 1, invoked)
++	a.globalHotkeys[ui.KeyQ] = globalHotkey{target: tcell.KeyEscape, override: true}
++	for _, evt := range []*tcell.EventKey{q, tcell.NewEventKey(tcell.KeyBackspace, 0, 0), tcell.NewEventKey(tcell.KeyBackspace2, 0, 0)} {
++		mapped := a.keyboard(evt)
++		require.Equal(t, tcell.KeyEscape, mapped.Key())
++		require.Nil(t, d.keyboard(mapped))
++	}
++	require.Equal(t, 4, invoked)
++}
++
++func TestGlobalHotkeysPromptInput(t *testing.T) {
++	for _, filter := range []bool{false, true} {
++		t.Run(map[bool]string{false: "command", true: "filter"}[filter], func(t *testing.T) {
++			a := globalTestApp(t)
++			buff := a.CmdBuff()
++			if filter {
++				buff = model.NewFishBuff('/', model.FilterBuffer)
++			}
++			a.ResetPrompt(buff)
++			buff.SetActive(true)
++			require.True(t, a.InCmdMode())
++			for _, r := range []rune{'q', ';'} {
++				evt := tcell.NewEventKey(tcell.KeyRune, r, 0)
++				require.Same(t, evt, a.keyboard(evt))
++				a.Prompt().SendKey(a.keyboard(evt))
++			}
++			require.Equal(t, "q;", buff.GetText())
++			for _, key := range []tcell.Key{tcell.KeyBackspace, tcell.KeyBackspace2} {
++				evt := tcell.NewEventKey(key, 0, 0)
++				require.Same(t, evt, a.keyboard(evt))
++				a.Prompt().SendKey(a.keyboard(evt))
++			}
++			require.Empty(t, buff.GetText())
++		})
++	}
++}
++
++func TestGlobalHotkeysPromptControlActions(t *testing.T) {
++	for _, filter := range []bool{false, true} {
++		a := globalTestApp(t)
++		buff := a.CmdBuff()
++		if filter {
++			buff = model.NewFishBuff('/', model.FilterBuffer)
++		}
++		a.ResetPrompt(buff)
++		buff.SetText("query", "", true)
++		control := tcell.NewEventKey(tcell.KeyCtrlX, 0, 0)
++		for _, target := range []tcell.Key{tcell.KeyCtrlU, tcell.KeyEnter} {
++			a.globalHotkeys[tcell.KeyCtrlX] = globalHotkey{target: target, override: true}
++			mapped := a.mapGlobalHotkey(control)
++			require.Equal(t, target, mapped.Key())
++			if target == tcell.KeyCtrlU {
++				// Run the same global-to-prompt capture chain as live input.
++				if evt := a.keyboard(control); evt != nil {
++					a.Prompt().SendKey(evt)
++				}
++				require.Empty(t, buff.GetText())
++			}
++			for _, evt := range []*tcell.EventKey{
++				tcell.NewEventKey(tcell.KeyRune, 'q', 0),
++				tcell.NewEventKey(tcell.KeyRune, ';', 0),
++				tcell.NewEventKey(tcell.KeyBackspace, 0, 0),
++				tcell.NewEventKey(tcell.KeyBackspace2, 0, 0),
++				tcell.NewEventKey(tcell.KeyDelete, 0, 0),
++			} {
++				a.globalHotkeys[ui.AsKey(evt)] = globalHotkey{target: target, override: true}
++				require.Same(t, evt, a.mapGlobalHotkey(evt))
++			}
++		}
++		a.globalHotkeys[tcell.KeyCtrlX] = globalHotkey{target: tcell.KeyEscape, override: true}
++		require.Same(t, control, a.mapGlobalHotkey(control))
++	}
++}

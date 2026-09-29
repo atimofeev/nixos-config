@@ -19,8 +19,9 @@ in
   config = lib.mkIf cfg.enable {
     programs.k9s = {
       enable = true;
-      inherit (cfg) package;
-
+      package = cfg.package.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./global-hotkeys.patch ];
+      });
       aliases = {
         cr = "clusterrole";
         crb = "clusterrolebinding";
@@ -28,6 +29,26 @@ in
         dp = "deployment";
         rb = "rolebinding";
         sec = "secrets";
+      };
+      hotKeys = {
+        back = {
+          description = "Back";
+          global = "back";
+          override = true;
+          shortCut = "q";
+        };
+        backspace = {
+          description = "Back";
+          global = "back";
+          override = true;
+          shortCut = "Backspace";
+        };
+        command-mode = {
+          description = "Command mode";
+          global = "command";
+          override = true;
+          shortCut = ";";
+        };
       };
     };
   };
