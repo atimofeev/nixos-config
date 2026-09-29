@@ -20,8 +20,8 @@ let
       "free"
     ];
     low = [
-      "low-codex"
       "low-deepseek"
+      "low-codex"
       "low-opencode"
       "free"
     ];
@@ -219,7 +219,7 @@ let
       model_info = openAIReasoningOverrides;
       litellm_params = {
         allowed_openai_params = [ "reasoning_effort" ];
-        model = "chatgpt/gpt-6-sol";
+        model = "chatgpt/gpt-6.1-sol";
       };
     };
     "medium-opencode" = {
