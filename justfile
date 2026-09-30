@@ -5,6 +5,11 @@ unfree_env := "NIXPKGS_ALLOW_UNFREE=1"
 default:
     @just --list --unsorted
 
+# Format & partition disks
+[positional-arguments]
+disko-init host:
+    sudo nix run github:nix-community/disko -- --mode disko hosts/{{host}}/disko-config.nix
+
 # Run nixos-rebuild. Actions: switch, boot, test, dry-build, dry-activate, build
 [positional-arguments]
 rebuild action host *extra='':
