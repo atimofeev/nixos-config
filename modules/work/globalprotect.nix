@@ -23,9 +23,31 @@ in
 
       ensureProfiles.profiles = {
 
-        "GlobalProtect-HTZ-gpclient" = {
+        "GlobalProtect-AMS" = {
           connection = {
-            id = "GlobalProtect-HTZ-gpclient";
+            id = "GlobalProtect-AMS";
+            type = "vpn";
+            autoconnect = false;
+            permissions = "user:${hmUser}:";
+          };
+          vpn = {
+            as_gateway = "yes";
+            browser = "embedded";
+            cookie-flags = "2";
+            csd_wrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
+            enable_csd_trojan = "yes";
+            gateway = "$GLOBALPROTECT_GATEWAY_AMS";
+            gateway-flags = "2";
+            service-type = "org.freedesktop.NetworkManager.gpclient";
+          };
+          ipv4 = {
+            method = "auto";
+          };
+        };
+
+        "GlobalProtect-HTZ" = {
+          connection = {
+            id = "GlobalProtect-HTZ";
             type = "vpn";
             autoconnect = false;
             permissions = "user:${hmUser}:";
