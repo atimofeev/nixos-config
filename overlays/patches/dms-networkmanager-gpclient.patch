@@ -1,0 +1,197 @@
+--- a/internal/server/network/backend_networkmanager_vpn.go
++++ b/internal/server/network/backend_networkmanager_vpn.go
+@@ -3,6 +3,7 @@
+ import (
+ 	"bufio"
+ 	"context"
++	"encoding/json"
+ 	"errors"
+ 	"fmt"
+ 	"maps"
+@@ -227,6 +228,10 @@
+ 	b.state.VPNErrorUuid = ""
+ 	b.stateMutex.Unlock()
+ 
++	b.cachedOpenConnectMu.Lock()
++	b.cachedOpenConnectAuth = nil
++	b.cachedOpenConnectMu.Unlock()
++
+ 	if singleActive {
+ 		active, err := b.ListActiveVPN()
+ 		if err == nil && len(active) > 0 {
+@@ -330,6 +335,18 @@
+ 	var openConnectAuth *openConnectAuthResult
+ 
+ 	switch authAction {
++	case "gpclient":
++		gateway := vpnData["gateway"]
++		if gateway == "" {
++			return fmt.Errorf("gpclient gateway is empty")
++		}
++		authCtx, authCancel := context.WithTimeout(context.Background(), 5*time.Minute)
++		authJSON, authErr := runGPClientAuth(authCtx, gateway)
++		authCancel()
++		if authErr != nil {
++			return fmt.Errorf("gpclient authentication failed: %w", authErr)
++		}
++		openConnectAuth = &openConnectAuthResult{Cookie: authJSON, Host: gateway}
+ 	case "openvpn_username":
+ 		if b.promptBroker == nil {
+ 			return fmt.Errorf("OpenVPN password authentication requires interactive prompt")
+@@ -434,12 +451,54 @@
+ 	return nil
+ }
+ 
++func runGPClientAuth(ctx context.Context, gateway string) (string, error) {
++	if gateway == "" {
++		return "", fmt.Errorf("gpclient gateway is empty")
++	}
++
++	gpauthPath, err := exec.LookPath("gpauth")
++	if err != nil {
++		return "", fmt.Errorf("gpauth not found: %w", err)
++	}
++
++	cmd := exec.CommandContext(ctx, gpauthPath, "--gateway", gateway)
++	output, err := cmd.Output()
++	if err != nil {
++		if ctx.Err() != nil {
++			return "", fmt.Errorf("gpauth timed out or was cancelled: %w", ctx.Err())
++		}
++		return "", fmt.Errorf("gpauth failed: %w", err)
++	}
++
++	authJSON := strings.TrimSpace(string(output))
++	if authJSON == "" {
++		return "", fmt.Errorf("gpauth produced no authentication JSON")
++	}
++
++	var result struct {
++		Success *json.RawMessage `json:"success"`
++		Failure *string          `json:"failure"`
++	}
++	if err := json.Unmarshal([]byte(authJSON), &result); err != nil {
++		return "", fmt.Errorf("gpauth produced unexpected authentication output")
++	}
++	if result.Success == nil {
++		if result.Failure != nil && *result.Failure != "" {
++			return "", fmt.Errorf("gpauth authentication cancelled: %s", *result.Failure)
++		}
++		return "", fmt.Errorf("gpauth authentication failed")
++	}
++	return authJSON, nil
++}
++
+ func detectVPNAuthAction(serviceType string, data map[string]string) string {
+ 	if data == nil {
+ 		return ""
+ 	}
+ 
+ 	switch {
++	case serviceType == "org.freedesktop.NetworkManager.gpclient":
++		return "gpclient"
+ 	case strings.Contains(serviceType, "openconnect"):
+ 		protocol := data["protocol"]
+ 		if needsExternalBrowserAuth(protocol, data["authtype"], data["username"], data) {
+--- a/internal/server/network/agent_networkmanager.go
++++ b/internal/server/network/agent_networkmanager.go
+@@ -154,6 +154,40 @@
+ 		}
+ 	}
+ 
++	if settingName == "vpn" && vpnSvc == "org.freedesktop.NetworkManager.gpclient" && a.backend != nil {
++		a.backend.cachedOpenConnectMu.Lock()
++		cached := a.backend.cachedOpenConnectAuth
++		if cached != nil && cached.ConnectionUUID == connUuid {
++			a.backend.cachedOpenConnectAuth = nil
++			a.backend.cachedOpenConnectMu.Unlock()
++			log.Infof("[SecretAgent] Using cached gpclient authentication for %s", connUuid)
++			return buildGPClientSecretsResponse(settingName, cached.Cookie, cached.Host), nil
++		}
++		a.backend.cachedOpenConnectMu.Unlock()
++
++		if flags&nmSecretAgentFlagAllowInteraction == 0 {
++			return nil, dbus.NewError("org.freedesktop.NetworkManager.SecretAgent.Error.NoSecrets", nil)
++		}
++
++		gateway := ""
++		if vpnSettings, ok := conn["vpn"]; ok {
++			if dataVariant, ok := vpnSettings["data"]; ok {
++				if data, ok := dataVariant.Value().(map[string]string); ok {
++					gateway = data["gateway"]
++				}
++			}
++		}
++
++		authCtx, authCancel := context.WithTimeout(context.Background(), 5*time.Minute)
++		defer authCancel()
++		authJSON, err := runGPClientAuth(authCtx, gateway)
++		if err != nil {
++			log.Warnf("[SecretAgent] gpclient authentication failed: %v", err)
++			return nil, dbus.MakeFailedError(fmt.Errorf("gpclient authentication failed: %w", err))
++		}
++		return buildGPClientSecretsResponse(settingName, authJSON, gateway), nil
++	}
++
+ 	// Phase 1: Determine if this connection is ours and what fields we need.
+ 	if a.backend != nil {
+ 		a.backend.stateMutex.RLock()
+@@ -991,6 +1025,17 @@
+ 	return out
+ }
+ 
++func buildGPClientSecretsResponse(settingName, cookie, gateway string) nmSettingMap {
++	out := nmSettingMap{}
++	vpnSec := nmVariantMap{}
++	vpnSec["secrets"] = dbus.MakeVariant(map[string]string{
++		"cookie":  cookie,
++		"gateway": gateway,
++	})
++	out[settingName] = vpnSec
++	return out
++}
++
+ func buildOpenConnectSecretsResponse(settingName, cookie, host, fingerprint string) nmSettingMap {
+ 	out := nmSettingMap{}
+ 	vpnSec := nmVariantMap{}
+--- a/internal/server/network/backend_networkmanager_vpn_test.go
++++ b/internal/server/network/backend_networkmanager_vpn_test.go
+@@ -141,6 +141,13 @@
+ 	})
+ }
+ 
++func TestDetectVPNAuthAction_GPClient(t *testing.T) {
++	data := map[string]string{"gateway": "vpn.example.test"}
++
++	assert.Equal(t, "gpclient", detectVPNAuthAction("org.freedesktop.NetworkManager.gpclient", data))
++	assert.Empty(t, detectVPNAuthAction("org.freedesktop.NetworkManager.gpclient-other", data))
++}
++
+ func TestDetectVPNAuthAction_Fortinet(t *testing.T) {
+ 	service := "org.freedesktop.NetworkManager.openconnect"
+ 
+--- a/internal/server/network/agent_networkmanager_test.go
++++ b/internal/server/network/agent_networkmanager_test.go
+@@ -122,6 +122,22 @@
+ 	}
+ }
+ 
++func TestBuildGPClientSecretsResponse(t *testing.T) {
++	authJSON := `{"success":{"token":"secret"}}`
++	result := buildGPClientSecretsResponse("vpn", authJSON, "vpn.example.test")
++
++	vpnSec := result["vpn"]
++	secretsVariant, ok := vpnSec["secrets"]
++	assert.True(t, ok)
++	secrets, ok := secretsVariant.Value().(map[string]string)
++	assert.True(t, ok)
++	assert.Equal(t, map[string]string{
++		"cookie":  authJSON,
++		"gateway": "vpn.example.test",
++	}, secrets)
++	assert.NotContains(t, secrets, "gwcert")
++}
++
+ func TestBuildOpenConnectSecretsResponse(t *testing.T) {
+ 	tests := []struct {
+ 		name        string
