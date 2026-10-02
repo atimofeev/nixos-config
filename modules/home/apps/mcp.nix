@@ -57,6 +57,11 @@ in
           ];
         };
 
+        paperless = {
+          type = "http";
+          url = "http://127.0.0.1:3001/mcp";
+        };
+
         sidero-docs = {
           type = "http";
           url = "https://docs.siderolabs.com/mcp";
