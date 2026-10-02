@@ -53,6 +53,7 @@ in
       "full-screen-api.warning.delay" = -1;
       "full-screen-api.warning.timeout" = 0;
 
+      "media.suspend-background-video.enabled" = false;
       "media.videocontrols.picture-in-picture.enabled" = true;
       "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = true;
       "permissions.default.desktop-notification" = 2;
