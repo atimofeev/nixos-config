@@ -17,7 +17,7 @@ rebuild action host *extra='':
 
 # Enroll Secure Boot keys, including Microsoft certificates
 secure-boot-keys-enroll:
-    sudo sbctl enroll-keys --microsoft
+    sudo nix run nixpkgs#sbctl enroll-keys -- --microsoft
 
 luks-list-devices:
     sudo systemd-cryptenroll --list-devices
