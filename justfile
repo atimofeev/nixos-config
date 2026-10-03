@@ -1,7 +1,7 @@
 # Default Nix flags
 unfree_env := "NIXPKGS_ALLOW_UNFREE=1"
 
-# show available recipes
+[private]
 default:
     @just --list --unsorted
 
