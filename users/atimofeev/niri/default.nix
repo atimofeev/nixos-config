@@ -14,6 +14,7 @@
     ./animations.nix
     ./cursor.nix
     ./debug.nix
+    ./dgpu-dock.nix
     ./gestures.nix
     ./input.nix
     ./keybinds.nix
