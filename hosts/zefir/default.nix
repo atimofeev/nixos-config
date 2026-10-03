@@ -67,7 +67,6 @@
         backlight-fix.enable = true;
         # cpu-throttling-fix.enable = true;
         fn-lock-fix.enable = true;
-        stuck-active-dgpu-fix.enable = true;
         touchpad-fix.enable = true;
       };
       bluetooth.enable = true;
@@ -75,6 +74,7 @@
         enable = true;
         dgpu = "0x10de:0x2f58";
         igpu = "0x8086:0x7d51";
+        dgpuDock.enable = true;
       };
       nvidia.enable = true;
       peripherals = {
