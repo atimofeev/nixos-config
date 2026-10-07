@@ -14,13 +14,14 @@ let
 
     jj="${pkgs.jujutsu}/bin/jj"
     git="${pkgs.git}/bin/git"
-    message="$(date '+%Y-%m-%d %H:%M:%S')"
+    message="chore(vault): sync notes $(date '+%Y-%m-%d %H:%M:%S')"
 
     if [ -d .jj ]; then
       # jj owns working-copy state in native and colocated repositories.
       "$jj" git fetch --remote origin
 
-      if ! "$jj" diff --quiet; then
+      changes="$("$jj" diff --name-only)"
+      if [ -n "$changes" ]; then
         "$jj" commit -m "$message"
       fi
 
