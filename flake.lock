@@ -707,15 +707,16 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1790884237,
-        "narHash": "sha256-3BtIY8xxJHLai3/73kOqgSgcVmqpSKpz9uUstQYgfLk=",
-        "owner": "niri-wm",
+        "lastModified": 1791102647,
+        "narHash": "sha256-dbpISqowUDPTdf0Cnjz4frtzck9dFhU8y8uaXtlB75o=",
+        "owner": "atimofeev",
         "repo": "niri",
-        "rev": "ed22699d99462f61ab171472d3ea67e844ea580d",
+        "rev": "484314b73af1b8f84c4e074d86b07f9ff00dbf34",
         "type": "github"
       },
       "original": {
-        "owner": "niri-wm",
+        "owner": "atimofeev",
+        "ref": "fix-activation-cursor-warp",
         "repo": "niri",
         "type": "github"
       }

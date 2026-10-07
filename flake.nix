@@ -85,7 +85,7 @@
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
-    niri-git.url = "github:niri-wm/niri";
+    niri-git.url = "github:atimofeev/niri/fix-activation-cursor-warp";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
