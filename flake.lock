@@ -159,16 +159,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1789640874,
-        "narHash": "sha256-DZBqD1Iq4JOjJP8aOBPdvd0JgFuCYBa7u0EC1JnJPCY=",
+        "lastModified": 1791616134,
+        "narHash": "sha256-LECPSflOvfaslDwtWm7JuZg8zDdOjDSEDIMgGRaVm0k=",
         "owner": "atimofeev",
         "repo": "DankMaterialShell",
-        "rev": "73827024e4a05504b77a71a887de836ddc22dd69",
+        "rev": "44ee414314150bf5602d82b375dfdeb52512c87c",
         "type": "github"
       },
       "original": {
         "owner": "atimofeev",
-        "ref": "fix-power-resume-reconcile",
+        "ref": "feat/lock-inactive-blurred-wallpaper",
         "repo": "DankMaterialShell",
         "type": "github"
       }
@@ -176,11 +176,11 @@
     "dank-qml-common": {
       "flake": false,
       "locked": {
-        "lastModified": 1788376015,
-        "narHash": "sha256-/tT8rTznLADndTwLBzdgzzgfJH1ZhYQibYo5v/F8U+U=",
+        "lastModified": 1791581769,
+        "narHash": "sha256-Q87fFPp2fysHdMrk2/sQ7+c+Sc2RZAQGKnAZWEEFOHQ=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "26396ce432d6c71c3f5367438f96f4a8d667e160",
+        "rev": "9314fc4df5a90c95bddcda83d696a1fd8c895aea",
         "type": "github"
       },
       "original": {
