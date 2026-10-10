@@ -31,7 +31,7 @@ in
             enable_plugins = aws_ec2, aws_ssm, yaml
             host_key_checking = false
             interpreter_python = auto_silent
-            inventory = /home/${config.custom.hm-admin}/repos/betby/ansible/playbooks/inventories/prod/
+            inventory = /home/${config.custom.hm-admin}/repos/betby/ops/ansible/playbooks/inventories/prod/
             max_diff_size = 0
             [inventory]
             enable_plugins = aws_ec2, ini, yaml
