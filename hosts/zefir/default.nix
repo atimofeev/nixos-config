@@ -21,6 +21,18 @@
   # dGPU: Nvidia RTX 5070 Ti (Blackwell)
 
   networking.hostName = "zefir";
+  # Preserve existing NetworkManager profile and stored password while constraining home Wi-Fi to 2.4GHz.
+  systemd.services.home-wifi-band-lock = {
+    after = [ "NetworkManager.service" ];
+    before = [ "network-online.target" ];
+    requires = [ "NetworkManager.service" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.networkmanager}/bin/nmcli connection modify MikroTik-2E6F23 802-11-wireless.band bg";
+      RemainAfterExit = true;
+      Type = "oneshot";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
   time.timeZone = "Europe/Podgorica";
   system.stateVersion = "26.05";
 
