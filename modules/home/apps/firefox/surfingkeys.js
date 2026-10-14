@@ -44,6 +44,7 @@ api.Hints.style(hintsCss)
 api.Hints.style(hintsCss, "text")
 
 settings.modeAfterYank = "Normal"
+settings.tabsThreshold = 0
 
 settings.theme = `
 	.sk_theme {
@@ -94,90 +95,130 @@ settings.theme = `
 		font-size: 12px;
 	}
 	#sk_omnibar {
+		box-sizing: border-box;
 		overflow: hidden;
 		position: fixed;
-		width: 80%;
-		max-height: 80%;
-		left: 10%;
+		width: min(720px, calc(100% - 32px));
+		max-height: calc(100vh - 32px);
+		left: calc((100% - min(720px, calc(100% - 32px))) / 2);
+		border: 1px solid ${catppuccin.surface1};
+		border-radius: 16px;
+		background: linear-gradient(145deg, ${catppuccin.base}, ${catppuccin.mantle});
 		text-align: left;
-		box-shadow: 0px 2px 10px ${catppuccin.overlay0};
+		box-shadow: 0 24px 72px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
 		z-index: 2147483000;
 	}
-	.sk_omnibar_middle {
-		top: 10%;
-		border-radius: 4px;
+	#sk_omnibar, #sk_omnibar input {
+		font-family: Cantarell, "Noto Sans", sans-serif !important;
 	}
-	.sk_omnibar_bottom {
-		bottom: 0;
-		border-radius: 4px 4px 0px 0px;
+	#sk_omnibar.sk_omnibar_middle {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	#sk_omnibar.sk_omnibar_bottom {
+		bottom: 12px;
 	}
 	#sk_omnibar span.omnibar_highlight {
-		text-shadow: 0 0 0.01em;
+		color: ${catppuccin.blue};
+		font-weight: 600;
+		text-shadow: none;
 	}
-	#sk_omnibarSearchArea .prompt, #sk_omnibarSearchArea .resultPage {
-		display: inline-block;
-		font-size: 20px;
+	#sk_omnibarSearchArea {
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		min-height: 64px;
+		margin: 0;
+		padding: 16px 20px;
+		border-bottom: 1px solid ${catppuccin.surface0};
+	}
+	.sk_omnibar_middle #sk_omnibarSearchArea, .sk_omnibar_bottom #sk_omnibarSearchArea {
+		margin: 0;
+	}
+	#sk_omnibarSearchArea .prompt {
+		flex: 0 0 auto;
 		width: auto;
+		padding: 4px 8px;
+		border-radius: 6px;
+		background: rgba(137, 180, 250, 0.1);
+		color: ${catppuccin.sapphire};
+		font-size: 12px;
+	}
+	#sk_omnibarSearchArea .resultPage {
+		flex: 0 0 auto;
+		width: auto;
+		color: ${catppuccin.overlay1};
+		font-size: 11px;
 	}
 	#sk_omnibarSearchArea>input {
-		display: inline-block;
-		width: 100%;
+		min-width: 0;
+		width: 0;
 		flex: 1;
 		font-size: 20px;
-		margin-bottom: 0;
-		padding: 0px 0px 0px 0.5rem;
+		line-height: 1.5;
+		margin: 0;
+		padding: 0;
 		background: transparent;
 		border-style: none;
 		outline: none;
 	}
-	#sk_omnibarSearchArea {
-		display: flex;
-		align-items: center;
-		border-bottom: 1px solid ${catppuccin.overlay2};
-	}
-	.sk_omnibar_middle #sk_omnibarSearchArea {
-		margin: 0.5rem 1rem;
-	}
-	.sk_omnibar_bottom #sk_omnibarSearchArea {
-		margin: 0.2rem 1rem;
-	}
-	.sk_omnibar_middle #sk_omnibarSearchResult>ul {
-		margin-top: 0;
-	}
-	.sk_omnibar_bottom #sk_omnibarSearchResult>ul {
-		margin-bottom: 0;
-	}
 	#sk_omnibarSearchResult {
-		max-height: 60vh;
-		overflow: hidden;
-		margin: 0rem 0.6rem;
+		box-sizing: border-box;
+		/* Reserve search row, panel borders, and viewport gutters. */
+		max-height: calc(100vh - 64px - 2px - 32px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		margin: 0;
+		padding: 10px;
+		scrollbar-width: thin;
+		scrollbar-color: ${catppuccin.surface1} transparent;
 	}
 	#sk_omnibarSearchResult:empty {
 		display: none;
 	}
 	#sk_omnibarSearchResult>ul {
+		margin: 0;
 		padding: 0;
+		list-style: none;
 	}
 	#sk_omnibarSearchResult>ul>li {
-		padding: 0.2rem 0rem;
-		display: block;
-		max-height: 600px;
-		overflow-x: hidden;
-		overflow-y: auto;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin: 3px 0;
+		padding: 10px 12px;
+		border-radius: 10px;
+		background: transparent;
 	}
 	.sk_theme #sk_omnibarSearchResult>ul>li:nth-child(odd) {
-		background: ${catppuccin.surface0};
+		background: transparent;
+	}
+	.sk_theme #sk_omnibarSearchResult>ul>li:hover {
+		background: rgba(137, 180, 250, 0.06);
 	}
 	.sk_theme #sk_omnibarSearchResult>ul>li.focused {
-		background: ${catppuccin.overlay0};
+		background: rgba(137, 180, 250, 0.16);
+		box-shadow: inset 0 0 0 1px ${catppuccin.blue};
 	}
 	.sk_theme #sk_omnibarSearchResult>ul>li.window {
-		border: 2px solid ${catppuccin.overlay2};
-		border-radius: 8px;
-		margin: 4px 0px;
+		display: block;
+		border: 1px solid ${catppuccin.surface0};
+		border-radius: 10px;
+		margin: 3px 0;
 	}
 	.sk_theme #sk_omnibarSearchResult>ul>li.window.focused {
-		border: 2px solid ${catppuccin.mauve};
+		border-color: ${catppuccin.blue};
+	}
+	#sk_omnibarSearchResult li .text-container {
+		flex: 1;
+		min-width: 0;
+	}
+	#sk_omnibarSearchResult li img.icon, #sk_omnibarSearchResult li div.icon {
+		flex: 0 0 18px;
+		width: 18px;
+		height: 18px;
+		object-fit: contain;
 	}
 	.sk_theme div.table {
 		display: table;
@@ -186,15 +227,20 @@ settings.theme = `
 		vertical-align: middle;
 		display: table-cell;
 	}
+	#sk_omnibarSearchResult li div.title, #sk_omnibarSearchResult li div.url, #sk_omnibarSearchResult li.focused div.url {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
 	#sk_omnibarSearchResult li div.title {
 		text-align: left;
+		font-size: 14px;
+		font-weight: 500;
 	}
 	#sk_omnibarSearchResult li div.url {
-		font-weight: bold;
-		white-space: nowrap;
-	}
-	#sk_omnibarSearchResult li.focused div.url {
-		white-space: normal;
+		color: ${catppuccin.subtext0};
+		font-size: 12px;
+		font-weight: normal;
 	}
 	#sk_omnibarSearchResult li span.annotation {
 		float: right;
@@ -456,16 +502,15 @@ settings.theme = `
 	}
 	@media only screen and (max-width: 767px) {
 		#sk_omnibar {
-			width: 100%;
-			left: 0;
+			width: calc(100% - 16px);
+			left: 8px;
+			border-radius: 12px;
 		}
-		#sk_omnibarSearchResult {
-			max-height: 50vh;
-			overflow: scroll;
+		#sk_omnibar.sk_omnibar_bottom {
+			bottom: 8px;
 		}
-		.sk_omnibar_bottom #sk_omnibarSearchArea {
-			margin: 0;
-			padding: 0.2rem;
+		#sk_omnibarSearchArea {
+			padding: 12px;
 		}
 	}
 `
@@ -488,3 +533,9 @@ api.unmap("t") // Open a URL
 api.iunmap("<Ctrl-a>") // start of input field
 api.iunmap("<Ctrl-e>") // end of input field
 api.iunmap("<Ctrl-u>") // delete text before cursor
+
+// Mappings
+
+api.mapkey("<Ctrl-k>", "Search open tabs", function () {
+	api.Front.openOmnibar({ type: "Tabs" })
+})
