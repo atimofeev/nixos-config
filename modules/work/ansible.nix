@@ -37,7 +37,7 @@ in
             enable_plugins = aws_ec2, ini, yaml
             [ssh_connection]
             pipelining = True
-            ssh_args = -o ControlMaster=auto -o ControlPersist=30m -o ConnectionAttempts=100
+            ssh_args = -o ControlMaster=auto -o ControlPersist=30m -o ConnectionAttempts=1 -o ConnectTimeout=5 -o ServerAliveInterval=5 -o ServerAliveCountMax=2
           '';
       };
 
