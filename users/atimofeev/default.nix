@@ -60,6 +60,10 @@
       firefox.enable = true;
       fish.enable = true;
       git.enable = true;
+      herdr = {
+        enable = true;
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr;
+      };
       htop = {
         enable = true;
         package = pkgs.htop-vim;
