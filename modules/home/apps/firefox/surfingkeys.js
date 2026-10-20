@@ -533,9 +533,3 @@ api.unmap("t") // Open a URL
 api.iunmap("<Ctrl-a>") // start of input field
 api.iunmap("<Ctrl-e>") // end of input field
 api.iunmap("<Ctrl-u>") // delete text before cursor
-
-// Mappings
-
-api.mapkey("<Ctrl-k>", "Search open tabs", function () {
-	api.Front.openOmnibar({ type: "Tabs" })
-})
