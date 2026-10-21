@@ -21,6 +21,7 @@
     tb = "nc termbin.com 9999"; # [command] | tb
     nf = "neofetch --backend off --color_blocks off";
     chx = "chmod +x";
+    z-index-repos = "find -P ~/repos \\( -name .git -o -name .jj \\) -prune -printf '%h\\0' | sort -zu | xargs -0 -r zoxide add --";
 
     # WORK
     d = "docker";
