@@ -15,6 +15,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.sessionVariables._ZO_EXCLUDE_DIRS = lib.concatStringsSep ":" [
+      "*/.git"
+      "*/.git/*"
+      "*/.jj"
+      "*/.jj/*"
+      "*/.terraform"
+      "*/.terraform/*"
+    ];
     programs.zoxide = {
       enable = true;
       inherit (cfg) package;
