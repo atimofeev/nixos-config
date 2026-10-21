@@ -13,6 +13,7 @@ let
     postInstall = (old.postInstall or "") + ''
       wrapProgram "$out/bin/pi" \
         --run 'if [[ -r "${envFile}" ]]; then set -a; source "${envFile}"; set +a; fi' \
+        --run 'if [[ "''${TERM_PROGRAM:-}" == herdr && -z "''${PI_HYPERLINKS:-}" ]]; then export PI_HYPERLINKS=1; fi' \
         --set NPM_CONFIG_PREFIX "/home/atimofeev/.pi/npm/" \
         --set AWS_PROFILE "ai" \
         --set PI_CACHE_RETENTION long \
