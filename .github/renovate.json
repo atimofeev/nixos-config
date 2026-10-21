@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": false,
+  "dependencyDashboard": false,
+  "enabledManagers": ["nix"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["* 0-5 * * 1"]
+  },
+  "nix": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "Refresh flake.lock together; suppress per-input update PRs.",
+      "matchManagers": ["nix"],
+      "matchUpdateTypes": ["!lockFileMaintenance"],
+      "enabled": false
+    }
+  ],
+  "timezone": "Europe/Podgorica"
+}
