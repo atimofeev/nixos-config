@@ -216,7 +216,9 @@ let
       };
     };
     "medium-codex" = {
-      model_info = openAIReasoningOverrides;
+      model_info = openAIReasoningOverrides // {
+        max_input_tokens = 500000;
+      };
       litellm_params = {
         allowed_openai_params = [ "reasoning_effort" ];
         model = "chatgpt/gpt-6.1-sol";
