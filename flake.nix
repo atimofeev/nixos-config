@@ -48,16 +48,16 @@
       flake = false;
     };
 
-    dank-material-shell = {
-      # url = "github:AvengeMedia/DankMaterialShell";
+    dux-shell = {
+      # url = "github:duxlabs-dev/dux-shell";
       url = "github:atimofeev/DankMaterialShell/feat/lock-inactive-blurred-wallpaper";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
     };
 
-    dankcalendar = {
-      url = "github:AvengeMedia/dankcalendar";
+    dux-calendar = {
+      url = "github:duxlabs-dev/dux-calendar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

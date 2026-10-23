@@ -6,17 +6,18 @@
   ...
 }:
 let
-  cfg = config.custom-hm.services.dcal;
+  cfg = config.custom-hm.services.dux-calendar;
 in
 {
 
-  imports = [ inputs.dankcalendar.homeModules.dank-calendar ];
+  imports = [ inputs.dux-calendar.homeModules.default ];
 
-  options.custom-hm.services.dcal = {
-    enable = lib.mkEnableOption "DankCalendar daemon for DMS calendar integration";
+  options.custom-hm.services.dux-calendar = {
+    enable = lib.mkEnableOption "Dux Calendar integration for Dux Shell";
   };
 
   config = lib.mkIf cfg.enable {
+    # Upstream retains the pre-rebrand namespace and dcal runtime names.
     programs.dank-calendar = {
       enable = true;
       systemd.enable = true;

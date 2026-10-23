@@ -6,17 +6,17 @@
   ...
 }:
 let
-  cfg = config.custom-hm.services.dank-material-shell;
+  cfg = config.custom-hm.services.dux-shell;
   wall = config.custom-hm.user.wallpaper;
 in
 {
 
   imports = [
-    inputs.dank-material-shell.homeModules.dank-material-shell
+    inputs.dux-shell.homeModules.default
   ];
 
-  options.custom-hm.services.dank-material-shell = {
-    enable = lib.mkEnableOption "dank-material-shell bundle";
+  options.custom-hm.services.dux-shell = {
+    enable = lib.mkEnableOption "Dux Shell bundle";
     package = lib.mkPackageOption pkgs "dms-shell" { };
     target = lib.mkOption {
       default = "graphical-session.target";
@@ -38,7 +38,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    # HACK: https://github.com/AvengeMedia/DankMaterialShell/issues/1073
+    # HACK: https://github.com/duxlabs-dev/dux-shell/issues/1073
     # fix for autostart apps tray functionality
     systemd.user.services.dms = {
       Service.ExecStartPost = "${pkgs.coreutils}/bin/sleep 5";
@@ -47,6 +47,7 @@ in
       ];
     };
 
+    # Upstream retains the pre-rebrand module namespace and dms runtime names.
     programs.dank-material-shell = {
       enable = true;
       inherit (cfg) package;

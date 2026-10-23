@@ -114,8 +114,8 @@
 
     services = {
       cliphist.enable = true;
-      dank-material-shell.enable = true;
-      dcal.enable = true;
+      dux-calendar.enable = true;
+      dux-shell.enable = true;
       hypridle.enable = false;
       hyprpanel.enable = false;
       hyprpaper.enable = false;

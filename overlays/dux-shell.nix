@@ -1,7 +1,7 @@
 { inputs, ... }:
 final: _prev:
 {
-  dms-shell = inputs.dank-material-shell.packages.${final.stdenv.hostPlatform.system}.dms-shell.overrideAttrs (old: {
+  dms-shell = inputs.dux-shell.packages.${final.stdenv.hostPlatform.system}.dms-shell.overrideAttrs (old: {
     nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
       final.makeWrapper
     ];

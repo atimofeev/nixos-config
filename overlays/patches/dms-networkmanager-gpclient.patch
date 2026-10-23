@@ -38,7 +38,7 @@
  	case "openvpn_username":
  		if b.promptBroker == nil {
  			return fmt.Errorf("OpenVPN password authentication requires interactive prompt")
-@@ -434,12 +451,54 @@
+@@ -453,12 +470,54 @@
  	return nil
  }
  
@@ -95,9 +95,9 @@
  		if needsExternalBrowserAuth(protocol, data["authtype"], data["username"], data) {
 --- a/internal/server/network/agent_networkmanager.go
 +++ b/internal/server/network/agent_networkmanager.go
-@@ -154,6 +154,40 @@
- 		}
- 	}
+@@ -151,6 +151,40 @@
+ 
+ 	connUuid := readConnUUID(conn)
  
 +	if settingName == "vpn" && vpnSvc == "org.freedesktop.NetworkManager.gpclient" && a.backend != nil {
 +		a.backend.cachedOpenConnectMu.Lock()
@@ -136,7 +136,7 @@
  	// Phase 1: Determine if this connection is ours and what fields we need.
  	if a.backend != nil {
  		a.backend.stateMutex.RLock()
-@@ -991,6 +1025,17 @@
+@@ -1164,6 +1198,17 @@
  	return out
  }
  
@@ -156,8 +156,8 @@
  	vpnSec := nmVariantMap{}
 --- a/internal/server/network/backend_networkmanager_vpn_test.go
 +++ b/internal/server/network/backend_networkmanager_vpn_test.go
-@@ -141,6 +141,13 @@
- 	})
+@@ -39,6 +39,13 @@
+ 	assert.Error(t, err)
  }
  
 +func TestDetectVPNAuthAction_GPClient(t *testing.T) {
@@ -172,7 +172,7 @@
  
 --- a/internal/server/network/agent_networkmanager_test.go
 +++ b/internal/server/network/agent_networkmanager_test.go
-@@ -122,6 +122,22 @@
+@@ -74,6 +74,22 @@
  	}
  }
  

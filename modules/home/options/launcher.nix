@@ -41,7 +41,7 @@ in
       launcherMap = {
         rofi = config.custom-hm.applications.rofi;
         vicinae = config.custom-hm.services.vicinae;
-        dms = config.custom-hm.services.dank-material-shell;
+        dms = config.custom-hm.services.dux-shell;
       };
     in
     {
