@@ -111,6 +111,7 @@ in
                 "gemini.google.com"
                 "github.com"
                 "mail.google.com"
+                "meet.google.com"
                 "reddit.com"
                 "registry.terraform.io"
                 "robot.hetzner.com"
