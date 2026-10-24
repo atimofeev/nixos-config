@@ -13,7 +13,7 @@
 | Display manager | tuigreet          |
 | Compositor      | Niri              |
 | Session Manager | uwsm              |
-| Shell           | DankMaterialShell |
+| Shell           | Dux Shell         |
 | Launcher        | Vicinae           |
 
 #### Hyprland
