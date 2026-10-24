@@ -6,7 +6,7 @@ NixOS configuration repository for agentic development.
 
 - **Purpose**: Personal NixOS system configuration for milaptop, zefir, rpi4 hosts
 - **Desktop**: Niri compositor, Hyprland (phasing out), Gnome (abandoned)
-- **Shell**: DankMaterialShell + Fish/Nushell + Starship
+- **Shell**: Dux Shell + Fish/Nushell + Starship
 - **Editor**: Neovim (Nixvim configuration)
 
 ## Build Commands
