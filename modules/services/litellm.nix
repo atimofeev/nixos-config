@@ -216,9 +216,7 @@ let
       };
     };
     "medium-codex" = {
-      model_info = openAIReasoningOverrides // {
-        max_input_tokens = 500000;
-      };
+      model_info = builtins.removeAttrs openAIReasoningOverrides [ "max_input_tokens" ];
       litellm_params = {
         allowed_openai_params = [ "reasoning_effort" ];
         model = "chatgpt/gpt-6.1-sol";
