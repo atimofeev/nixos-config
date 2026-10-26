@@ -102,6 +102,15 @@ in
             ];
           }
           {
+            aws_homelab = [
+              {
+                abbr = "AW";
+                href = "{{HOMEPAGE_VAR_AWS_HOMELAB_URL}}";
+                icon = "si-amazonwebservices-#FF9900";
+              }
+            ];
+          }
+          {
             nextcloud = [
               {
                 abbr = "NC";
