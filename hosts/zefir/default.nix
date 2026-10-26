@@ -116,19 +116,6 @@
         ];
         wifi-powersave = true;
       };
-      rapl-power-limit = {
-        enable = true;
-        profiles = {
-          balanced = {
-            pl1Watts = 50;
-            pl2Watts = 55;
-          };
-          performance = {
-            pl1Watts = 50;
-            pl2Watts = 55;
-          };
-        };
-      };
       sound.enable = true;
       ssd.enable = true;
     };
