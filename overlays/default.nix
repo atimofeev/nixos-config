@@ -8,6 +8,7 @@
     (import ./curl-ws.nix) # NOTE: enables ws/wss support
     (import ./dux-shell.nix { inherit inputs; })
     (import ./firefoxpwa.nix) # NOTE: pin 2.18.0, 2.18.2 build bug
+    (import ./globalprotect-openconnect.nix) # NOTE: NM plugin requires gpclient/gpauth 3.x
     (import ./kitty.nix) # NOTE: fixes kitty-open being used as a terminal app
     (import ./spotify-player.nix) # NOTE: required for wayland-pipewire-idle-inhibit
     (import ./starship-jj.nix) # NOTE: use unreleased hex color support
