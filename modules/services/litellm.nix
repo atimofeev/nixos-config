@@ -298,6 +298,10 @@ in
         CHATGPT_TOKEN_DIR = "/var/lib/litellm/chatgpt";
       };
       settings = {
+        general_settings = {
+          master_key = "os.environ/LITELLM_API_KEY";
+          trusted_proxy_ranges = [ ];
+        };
         litellm_settings = {
           drop_params = true;
           # Chains cross model families, so a 200 here does not mean the route is
