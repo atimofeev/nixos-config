@@ -16,6 +16,7 @@
   networkmanager,
   pkg-config,
   procps,
+  python3,
   stdenv,
   systemd,
   xdg-utils,
@@ -23,31 +24,20 @@
 
 stdenv.mkDerivation {
   pname = "networkmanager-gpclient";
-  version = "0.1.0-unstable-2026-07-06";
+  version = "0.1.0-unstable-2026-10-25";
 
   src = fetchFromGitHub {
     owner = "jdpipe";
     repo = "networkmanager-gpclient";
-    rev = "7189cf618cbf2f4ea921c520688408b30d0f9365";
-    hash = "sha256-Vf6OG4Yhzf5NSc5QVTIqVU83VFM7sc81ODkjXWy/Zo4=";
+    rev = "a170f43b616bad23c852dac44498dbfe384ae60b";
+    hash = "sha256-RU3INfeXuerE4hy2sIV2wFkmczb59V7krVCg+f2pd3E=";
   };
 
   postPatch = ''
-    sed -i 's|^NM_PLUGIN_DIR=.*|NM_PLUGIN_DIR="$out/lib/NetworkManager"|' configure.ac
-    substituteInPlace src/nm-gpclient-service.c \
-      --replace-fail '"/usr/bin/gpclient"' '"${lib.getExe' gpclient "gpclient"}"' \
-      --replace-fail '"/var/run/gpclient.lock"' '"/run/gpclient.lock"' \
-      --replace-fail 'system ("/sbin/modprobe tun")' 'system ("${lib.getExe' kmod "modprobe"} tun")'
-    substituteInPlace properties/nm-gpclient-editor.c \
-      --replace-fail '"/usr/bin/gpclient"' '"${lib.getExe' gpclient "gpclient"}"'
+    # Embedded authentication is still missing upstream: jdpipe/networkmanager-gpclient#2.
     substituteInPlace auth-dialog/nm-gpclient-auth-dialog.c \
-      --replace-fail 'g_ptr_array_add(argv, "gpauth");' \
-        'g_ptr_array_add(argv, "${lib.getExe' gpauth "gpauth"}");' \
       --replace-fail $'\tg_ptr_array_add(argv, "--browser");\n\tg_ptr_array_add(argv, (gpointer) browser);' \
         $'\tif (strcmp(browser, "embedded") != 0) {\n\t\tg_ptr_array_add(argv, "--browser");\n\t\tg_ptr_array_add(argv, (gpointer) browser);\n\t}'
-    substituteInPlace src/nm-gpclient-browser-helper \
-      --replace-fail 'log=''${NM_GPCLIENT_BROWSER_LOG:-/tmp/nm-gpclient-browser-helper.log}' \
-        'log=''${NM_GPCLIENT_BROWSER_LOG:-/dev/null}'
   '';
 
   nativeBuildInputs = [
@@ -73,14 +63,39 @@ stdenv.mkDerivation {
     "--enable-absolute-paths"
     "--with-authdlg=yes"
     "--with-gnome=yes"
+    "--with-gpauth=${lib.getExe' gpauth "gpauth"}"
+    "--with-gpclient=${lib.getExe' gpclient "gpclient"}"
     "--with-gtk4=yes"
+    "--with-modprobe=${lib.getExe' kmod "modprobe"}"
+    "--with-nm-plugin-dir=${placeholder "out"}/lib/NetworkManager"
+    "--with-nm-vpn-service-dir=${placeholder "out"}/lib/NetworkManager/VPN"
     "--with-sso-mib=no"
     "--without-libnm-glib"
   ];
 
+  doCheck = true;
+  doInstallCheck = true;
+  nativeCheckInputs = [ python3 ];
+  nativeInstallCheckInputs = [ python3 ];
+
+  preCheck = ''
+    patchShebangs tools
+    substituteInPlace tools/test-auth-dialog-cancel.py \
+      --replace-fail '#!/usr/bin/env python3' '#!${lib.getExe python3}'
+  '';
+
+  postCheck = ''
+    ./tools/test-auth-dialog.sh
+    ./tools/test-auth-dialog-quit.sh
+    ./tools/test-editor-plugin.sh
+    ./tools/test-packaging.sh
+    substituteInPlace tools/test-auth-dialog.sh \
+      --replace-fail 'DATA_VAL=default' 'DATA_VAL=embedded' \
+      --replace-fail ' --browser default' ""
+    ./tools/test-auth-dialog.sh
+  '';
+
   postInstall = ''
-    install -Dm755 src/nm-gpclient-browser-helper \
-      "$out/libexec/nm-gpclient-browser-helper"
     wrapProgram "$out/libexec/nm-gpclient-browser-helper" \
       --prefix PATH : ${
         lib.makeBinPath [
@@ -90,6 +105,19 @@ stdenv.mkDerivation {
           xdg-utils
         ]
       }
+  '';
+
+  installCheckPhase = ''
+    runHook preInstallCheck
+    substituteInPlace tools/test-upstream-auth.sh \
+      --replace-fail '#!/usr/bin/env python3' '#!${lib.getExe python3}'
+    export GPCLIENT_TOP_SRCDIR="$TMPDIR/installed-helper-test"
+    mkdir -p "$GPCLIENT_TOP_SRCDIR/src"
+    ln -s "$out/libexec/nm-gpclient-browser-helper" \
+      "$GPCLIENT_TOP_SRCDIR/src/nm-gpclient-browser-helper"
+    bash tools/test-upstream-auth.sh \
+      ${lib.getExe' gpclient "gpclient"} ${lib.getExe' gpauth "gpauth"}
+    runHook postInstallCheck
   '';
 
   passthru = {
