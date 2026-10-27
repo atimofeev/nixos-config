@@ -13,6 +13,7 @@
       nvidia-hide = prev.callPackage ./nvidia-hide.nix { };
       glci = prev.callPackage ./glci.nix { };
       vault-kv-mv = prev.callPackage ./vault-kv-mv.nix { };
+      vicinae-bluetooth = prev.callPackage ./vicinae-bluetooth { };
       vicinae-networkmanager-vpn = prev.callPackage ./vicinae-networkmanager-vpn { };
     })
   ];

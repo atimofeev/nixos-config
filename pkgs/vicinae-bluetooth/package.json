@@ -1,0 +1,34 @@
+{
+  "name": "bluetooth-picker",
+  "title": "Picker",
+  "description": "Connect and disconnect paired Bluetooth devices using BlueZ.",
+  "version": "1.0.0",
+  "author": "atimofeev",
+  "license": "MIT",
+  "icon": "bluetooth.svg",
+  "platforms": [
+    "Linux"
+  ],
+  "categories": [
+    "System"
+  ],
+  "commands": [
+    {
+      "name": "bluetooth",
+      "title": "Bluetooth",
+      "description": "Pick a paired Bluetooth device to connect or disconnect.",
+      "mode": "view",
+      "keywords": [
+        "bluetooth",
+        "devices",
+        "headphones",
+        "headset",
+        "keyboard",
+        "mouse"
+      ]
+    }
+  ],
+  "dependencies": {
+    "@vicinae/api": "^0.28.1"
+  }
+}

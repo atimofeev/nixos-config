@@ -88,6 +88,7 @@ in
         };
       };
       extensions = [
+        pkgs.vicinae-bluetooth
         pkgs.vicinae-networkmanager-vpn
         (config.lib.vicinae.mkRayCastExtension {
           name = "gif-search";
