@@ -15,6 +15,7 @@
       vault-kv-mv = prev.callPackage ./vault-kv-mv.nix { };
       vicinae-bluetooth = prev.callPackage ./vicinae-bluetooth { };
       vicinae-networkmanager-vpn = prev.callPackage ./vicinae-networkmanager-vpn { };
+      vicinae-wifi = prev.callPackage ./vicinae-wifi { };
     })
   ];
 

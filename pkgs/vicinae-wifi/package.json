@@ -1,0 +1,33 @@
+{
+  "name": "wifi-picker",
+  "title": "Picker",
+  "description": "Connect and disconnect nearby Wi-Fi networks using NetworkManager.",
+  "version": "1.0.0",
+  "author": "atimofeev",
+  "license": "MIT",
+  "icon": "wifi.svg",
+  "platforms": [
+    "Linux"
+  ],
+  "categories": [
+    "System"
+  ],
+  "commands": [
+    {
+      "name": "wifi",
+      "title": "Wi-Fi",
+      "description": "Pick a nearby Wi-Fi network, connect or disconnect, and rescan.",
+      "mode": "view",
+      "keywords": [
+        "wifi",
+        "wi-fi",
+        "wireless",
+        "network",
+        "networkmanager"
+      ]
+    }
+  ],
+  "dependencies": {
+    "@vicinae/api": "^0.28.1"
+  }
+}

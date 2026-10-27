@@ -90,6 +90,7 @@ in
       extensions = [
         pkgs.vicinae-bluetooth
         pkgs.vicinae-networkmanager-vpn
+        pkgs.vicinae-wifi
         (config.lib.vicinae.mkRayCastExtension {
           name = "gif-search";
           sha256 = "sha256-aWIYh6tQbdZxT04TRVEc/HmgJUXFl0eMFpIZpCaIQ4U=";
