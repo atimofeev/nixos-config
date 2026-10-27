@@ -88,6 +88,7 @@ in
         };
       };
       extensions = [
+        pkgs.vicinae-networkmanager-vpn
         (config.lib.vicinae.mkRayCastExtension {
           name = "gif-search";
           sha256 = "sha256-aWIYh6tQbdZxT04TRVEc/HmgJUXFl0eMFpIZpCaIQ4U=";

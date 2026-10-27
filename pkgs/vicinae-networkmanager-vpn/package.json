@@ -1,0 +1,35 @@
+{
+  "name": "networkmanager-vpn",
+  "title": "VPN",
+  "description": "Connect and disconnect existing NetworkManager VPN profiles.",
+  "version": "1.0.0",
+  "author": "atimofeev",
+  "license": "MIT",
+  "icon": "vpn.svg",
+  "platforms": [
+    "Linux"
+  ],
+  "categories": [
+    "System",
+    "Security"
+  ],
+  "commands": [
+    {
+      "name": "vpn",
+      "title": "NetworkManager",
+      "description": "Toggle saved VPN connections using the existing authentication agent.",
+      "mode": "view",
+      "keywords": [
+        "vpn",
+        "network",
+        "networkmanager",
+        "openvpn",
+        "globalprotect",
+        "wireguard"
+      ]
+    }
+  ],
+  "dependencies": {
+    "@vicinae/api": "^0.28.1"
+  }
+}
