@@ -214,6 +214,7 @@ in
         fadeToDpmsGracePeriod = 15;
         fadeToLockGracePeriod = 15;
         lockBeforeSuspend = true;
+        lockScreenBlurInactiveBackground = true;
         lockScreenNotificationMode = 2;
         lowerDisplayRefreshRateOnBattery = true;
         matugenTemplateNeovim = true;
