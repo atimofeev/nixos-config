@@ -120,11 +120,11 @@
       "flake": false,
       "locked": {
         "dir": "themes/Macchiato/Lavender",
-        "lastModified": 1779483618,
-        "narHash": "sha256-ZIS+OTpUJ/X7nsrprvu/kMufkTCHgB9qIBLoiSJI0oQ=",
+        "lastModified": 1793101899,
+        "narHash": "sha256-DegtATvy8KpRQ6qQ/6GUoap14Y5NrJc436qxNm8+EJU=",
         "owner": "code-irisnk",
         "repo": "catppuccin-zen-browser",
-        "rev": "ae756cc442fcc6f9427cdca5978f148f7f792dfa",
+        "rev": "3cab8ac0fdb3cd53ba7a3e103aca7e4b9f7f7570",
         "type": "github"
       },
       "original": {
