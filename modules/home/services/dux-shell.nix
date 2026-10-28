@@ -223,7 +223,7 @@ in
         monoFontFamily = "FiraCode Nerd Font";
         networkPreference = "wifi";
         notificationOverlayEnabled = true;
-        osdMediaPlaybackEnabled = true;
+        osdMediaPlaybackEnabled = false;
         osdPowerProfileEnabled = true;
         powerMenuActions = [
           "reboot"
