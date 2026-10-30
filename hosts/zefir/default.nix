@@ -20,6 +20,8 @@
   # iGPU: Intel Arc 140T
   # dGPU: Nvidia RTX 5070 Ti (Blackwell)
 
+  boot.kernel.sysctl."vm.swappiness" = 30;
+
   networking.hostName = "zefir";
   # Preserve existing NetworkManager profile and stored password while constraining home Wi-Fi to 2.4GHz.
   systemd.services.home-wifi-band-lock = {
