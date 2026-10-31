@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -20,6 +21,7 @@ in
 
     services.asus-px-keyboard-tool = {
       enable = true;
+      package = pkgs.asus-px-keyboard-tool;
       settings = {
         fnlock = {
           enabled = true;

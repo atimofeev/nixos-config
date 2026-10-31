@@ -4,6 +4,7 @@
   nixpkgs.overlays = [
     (import ./unstable.nix { inherit inputs; })
     (import ./ansible_2_17.nix) # NOTE: reached EOL
+    (import ./asus-px-keyboard-tool.nix { inherit inputs; })
     (import ./cato-client.nix) # NOTE: bump to `5.6.0.4138`
     (import ./curl-ws.nix) # NOTE: enables ws/wss support
     (import ./dux-shell.nix { inherit inputs; })

@@ -277,6 +277,17 @@ Key Nix packages used (no custom derivations needed):
 - VCV Rack (overlay: `overlays/vcv-rack.nix`)
 - Ansible 2.17 (overlay: `overlays/ansible_2_17.nix`)
 
+### Package source patches
+
+- Apply package source fixes in `overlays/<package>.nix`, not inline `overrideAttrs` in feature or service modules.
+- Keep patch files in `overlays/patches/` and append to existing patches with `(old.patches or [ ]) ++ [ ./patches/<fix>.patch ]`.
+- Register overlays in `overlays/default.nix`; pass `inputs` when patching a flake-provided package.
+- For flake packages, override `inputs.<name>.packages.${final.stdenv.hostPlatform.system}.<package>` inside the overlay and expose it as `pkgs.<package>`.
+- Modules select `package = pkgs.<package>;`. Set this explicitly when an upstream module defaults to its own flake package, otherwise it bypasses the overlay.
+- Build the service-selected package and verify its generated `ExecStart` points to the patched output. Include regression tests where practical.
+
+ASUS keyboard example: `overlays/asus-px-keyboard-tool.nix` applies `overlays/patches/asus-px-keyboard-tool-hid-id.patch`. The patch parses the full hexadecimal HID instance suffix (`.000B` = 11, `.0010` = 16), instead of parsing only the last character as decimal. `modules/hardware/asus/fn-lock-fix.nix` selects the patched package.
+
 ## Common Workflows
 
 ### Add new service
