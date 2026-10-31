@@ -248,6 +248,7 @@ in
         showWorkspaceApps = true;
         soundNewNotification = false;
         widgetBackgroundColor = "s";
+        workspaceUrgentColorMode = "secondaryContainer";
       };
 
       session = {
