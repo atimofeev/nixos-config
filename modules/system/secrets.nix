@@ -27,6 +27,10 @@ in
     sops.secrets = {
       "personal/env/coding-agents".restartUnits = [ "litellm.service" ];
       "work/env-vars".owner = config.custom.hm-admin;
+      "work/falcon-sensor-cid" = {
+        mode = "0400";
+        restartUnits = [ "falcon-sensor.service" ];
+      };
       "work/homepage-env" = {
         owner = config.custom.hm-admin;
         restartUnits = [ "homepage-dashboard.service" ];

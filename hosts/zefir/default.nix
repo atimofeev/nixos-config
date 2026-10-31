@@ -201,6 +201,10 @@
         autoStart = false;
         # package = pkgs.unstable.cato-client;
       };
+      crowdstrike-falcon = {
+        enable = true;
+        cidFile = config.sops.secrets."work/falcon-sensor-cid".path;
+      };
       globalprotect.enable = true;
       kube-tools.enable = true;
       misc-tools.enable = true;
