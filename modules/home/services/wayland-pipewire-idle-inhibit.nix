@@ -27,6 +27,7 @@ in
         node_blacklist = [
           { name = "[Ff]irefox"; }
           { name = "[Ss]potify"; }
+          { name = "^quickshell$"; }
         ];
       };
     };
