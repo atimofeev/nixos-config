@@ -26,9 +26,9 @@ in
               width = "80%";
             }
           ];
-          goto = "ctrl+space";
+          goto = "ctrl+k";
           navigate_pane_down = "ctrl+j";
-          navigate_pane_up = "ctrl+k";
+          navigate_pane_up = "";
           navigate_workspace_down = [
             "down"
             "j"
