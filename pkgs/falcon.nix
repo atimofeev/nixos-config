@@ -1,3 +1,15 @@
+# Packaging quirks:
+# - Proprietary .deb supplied by the security team; requireFile below documents
+#   the exact filename, checksum, and local import command. Never upload this
+#   package/closure to public caches; allowSubstitutes does not prevent uploads.
+# - No vendor patches or Debian maintainer scripts: preserve ELF integrity and
+#   run falconctl through the Nix glibc loader. modules/work/falcon.nix supplies
+#   service-local FHS bind mounts and writable state under /opt/CrowdStrike.
+# - Binary self-updates are not integrated; use Nix-managed installer upgrades
+#   coordinated with sensor update policy and maintenance protection.
+# - In 8.11, --backend=bpf is ignored. The bundled kernel check's default regex
+#   can falsely match; use falcon-kernel-check -k "$(uname -r)". This checks only
+#   the bundled kernel-mode list, not BPF compatibility or full protection.
 {
   bash,
   buildEnv,
