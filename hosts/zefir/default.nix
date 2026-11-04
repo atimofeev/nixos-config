@@ -23,6 +23,7 @@
   boot.kernel.sysctl."vm.swappiness" = 30;
 
   networking.hostName = "zefir";
+
   # Preserve existing NetworkManager profile and stored password while constraining home Wi-Fi to 2.4GHz.
   systemd.services.home-wifi-band-lock = {
     after = [ "NetworkManager.service" ];
@@ -116,7 +117,7 @@
             vendorId = "3297";
           }
         ];
-        wifi-powersave = true;
+        # wifi-powersave = true;
       };
       sound.enable = true;
       ssd.enable = true;
