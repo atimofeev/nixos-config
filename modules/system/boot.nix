@@ -20,6 +20,10 @@ in
   config = lib.mkIf cfg.enable {
     boot = {
       inherit (cfg) kernelPackages;
+      kernel.sysctl = {
+        "fs.inotify.max_user_instances" = 1024;
+        "fs.inotify.max_user_watches" = 524288;
+      };
       loader = {
         systemd-boot = {
           enable = true;
