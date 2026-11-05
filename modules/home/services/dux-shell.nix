@@ -52,7 +52,8 @@ in
       enable = true;
       inherit (cfg) package;
 
-      quickshell.package = pkgs.unstable.quickshell;
+      quickshell.package =
+        inputs.dux-shell.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.quickshell;
 
       systemd = {
         enable = true;
@@ -66,6 +67,7 @@ in
         acMonitorTimeout = 600;
         acProfileName = "2";
         acSuspendTimeout = 1800;
+        barElevationEnabled = false;
         barConfigs = [
           {
             autoHide = false;
@@ -87,16 +89,22 @@ in
               }
             ];
             enabled = true;
+            followInterfaceStyle = false;
             fontScale = 1.3000000000000007;
             gothCornerRadiusOverride = false;
             gothCornerRadiusValue = 12;
             gothCornersEnabled = false;
             id = "default";
-            innerPadding = -1;
+            innerPadding = 0;
             leftWidgets = [
               {
                 enabled = true;
+                groupWorkspaceApps = false;
                 id = "workspaceSwitcher";
+                maxWorkspaceIcons = 6;
+                showOccupiedWorkspacesOnly = true;
+                showWorkspaceApps = true;
+                workspaceUrgentColorMode = "secondaryContainer";
               }
               {
                 enabled = true;
@@ -138,6 +146,7 @@ in
             squareCorners = false;
             transparency = 0;
             visible = true;
+            widgetFollowInterfaceStyle = false;
             widgetOutlineColor = "surfaceText";
             widgetOutlineEnabled = true;
             widgetOutlineOpacity = 0.19;
@@ -151,75 +160,121 @@ in
         batterySuspendTimeout = 600;
         calendarBackend = "dankcal";
         clockFormat = "24h";
+        controlCenterColumns = 8;
         controlCenterWidgets = [
           {
             enabled = true;
+            h = 1;
+            id = "user";
+            w = 5;
+          }
+          {
+            enabled = true;
+            h = 1;
+            id = "settings";
+            small = true;
+            w = 1;
+          }
+          {
+            enabled = true;
+            h = 1;
+            id = "lock";
+            small = true;
+            w = 1;
+          }
+          {
+            enabled = true;
+            h = 1;
+            id = "power";
+            small = true;
+            w = 1;
+          }
+          {
+            enabled = true;
+            h = 1;
             id = "volumeSlider";
-            width = 50;
+            small = true;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "brightnessSlider";
-            width = 50;
+            small = true;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "wifi";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "bluetooth";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "audioOutput";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "audioInput";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "nightMode";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "doNotDisturb";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "idleInhibitor";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "colorPicker";
-            width = 50;
+            w = 4;
           }
           {
             enabled = true;
+            h = 1;
             id = "builtin_vpn";
-            width = 100;
+            w = 8;
+          }
+          {
+            enabled = true;
+            h = 1;
+            id = "edit";
+            small = true;
+            w = 1;
           }
         ];
-        cornerRadius = 12;
         currentThemeCategory = "dynamic";
         currentThemeName = "dynamic";
         fadeToDpmsGracePeriod = 15;
         fadeToLockGracePeriod = 15;
+        fixedRadius = 12;
         lockBeforeSuspend = true;
         lockScreenBlurInactiveBackground = true;
-        lockScreenNotificationMode = 2;
         lowerDisplayRefreshRateOnBattery = true;
         matugenTemplateNeovim = true;
         maxFprintTries = 3;
-        maxWorkspaceIcons = 6;
         monoFontFamily = "FiraCode Nerd Font";
         networkPreference = "wifi";
         notificationOverlayEnabled = true;
@@ -234,21 +289,17 @@ in
           "restart"
           "hibernate"
         ];
-        runningAppsCurrentWorkspace = false;
+        radiusMode = "fixed";
         screenPreferences = {
           lockScreen = [ "eDP-1" ];
         };
         scrollTitleEnabled = false;
         showOnLastDisplay = {
-          dock = true;
           notifications = true;
           osd = true;
         };
-        showOccupiedWorkspacesOnly = true;
-        showWorkspaceApps = true;
         soundNewNotification = false;
         widgetBackgroundColor = "s";
-        workspaceUrgentColorMode = "secondaryContainer";
       };
 
       session = {

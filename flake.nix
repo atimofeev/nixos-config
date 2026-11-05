@@ -50,10 +50,7 @@
 
     dux-shell = {
       # url = "github:duxlabs-dev/dux-shell";
-      url = "github:atimofeev/DankMaterialShell/feat/lock-inactive-blurred-wallpaper";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      url = "github:atimofeev/DankMaterialShell/fix/refresh-runtime-state";
     };
 
     dux-calendar = {
