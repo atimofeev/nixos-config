@@ -65,8 +65,8 @@ in
     };
     wifi-powersave = lib.mkOption {
       description = "Enable WiFi power saving via NetworkManager";
-      default = true;
-      type = lib.types.bool;
+      default = null;
+      type = lib.types.nullOr lib.types.bool;
     };
     disable-wol = lib.mkOption {
       description = "Disable Wake-on-LAN on ethernet interfaces";
@@ -83,6 +83,12 @@ in
       resumeCommands = lib.concatStringsSep "\n" (
         lib.optional cfg.powertop "${pkgs.powertop}/bin/powertop --auto-tune"
         ++ lib.optional hasUsbAutosuspendExclusions "${restoreUsbAutosuspendExclusions}"
+        ++ lib.optional (cfg.wifi-powersave == false) ''
+          for device in /sys/class/net/*; do
+            [ -d "$device/phy80211" ] || continue
+            ${pkgs.iw}/bin/iw dev "''${device##*/}" set power_save off
+          done
+        ''
       );
     };
     networking.networkmanager.wifi.powersave = cfg.wifi-powersave;

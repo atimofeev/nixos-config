@@ -105,7 +105,7 @@
             vendorId = "3297";
           }
         ];
-        # wifi-powersave = true;
+        wifi-powersave = false;
       };
       sound.enable = true;
       ssd.enable = true;
