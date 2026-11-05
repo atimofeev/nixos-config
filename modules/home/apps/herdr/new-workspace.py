@@ -62,16 +62,16 @@ def main():
     )
     workspace = identifier(created, "workspace", "workspace_id")
     try:
-        editor_tab = identifier(created, "tab", "tab_id")
-        api("tab", "rename", editor_tab, "neojj")
-        editor_pane = identifier(created, "root_pane", "pane_id")
-        api("pane", "run", editor_pane, "nix run ~/repos/nixvim-config -- -c Neojj")
-        agent = api(
+        agent_tab = identifier(created, "tab", "tab_id")
+        api("tab", "rename", agent_tab, "pi-agent")
+        agent_pane = identifier(created, "root_pane", "pane_id")
+        api("pane", "run", agent_pane, "pi")
+        editor = api(
             "tab", "create", "--workspace", workspace, "--cwd", directory,
-            "--label", "pi-agent", "--no-focus", expect_json=True,
+            "--label", "neojj", "--no-focus", expect_json=True,
         )
-        pane = identifier(agent, "root_pane", "pane_id")
-        api("pane", "run", pane, "pi")
+        pane = identifier(editor, "root_pane", "pane_id")
+        api("pane", "run", pane, "nix run ~/repos/nixvim-config -- -c Neojj")
         api("workspace", "focus", workspace)
     except Exception:
         print(f"Setup incomplete; workspace {workspace} kept for inspection.", file=sys.stderr)
