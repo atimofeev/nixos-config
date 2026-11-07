@@ -135,7 +135,13 @@
     };
 
     applications = {
-      chromium.enable = true;
+      chromium = {
+        enable = true;
+        package = pkgs.chromium.override {
+          # Keep WebGPU on Intel to avoid cross-GPU canvas texture import failures.
+          commandLineArgs = "--enable-features=Vulkan --use-webgpu-power-preference=force-low-power";
+        };
+      };
       common-gui.enable = true;
       common-terminal.enable = true;
       games.enable = true;
