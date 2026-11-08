@@ -28,7 +28,7 @@ in
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
         "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
         "enamippconapkdmgfgjchkhakpfinmaj" # DeArrow
-        "oldceeleldhonbafppcapldpdifcinji" # LanguageTool
+        "lodbfhdipoipcjmlebjbgmmgekckhpfb" # Harper
         "jehmdpemhgfgjblpkilmeoafmkhbckhi" # ScrollAnywhere
         "gfbliohnnapiefjpjlpjnehglfpaknnc" # Surfingkeys
       ];
