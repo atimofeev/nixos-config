@@ -8,7 +8,7 @@
       # disable-direct-scanout = { };
       # enable-overlay-planes = { };
       # NOTE: fix for glitchy dual-monitor output from single type-c port; itself causes lag, stutter
-      # wait-for-frame-completion-before-queueing = { };
+      wait-for-frame-completion-before-queueing = { };
     };
   };
 
