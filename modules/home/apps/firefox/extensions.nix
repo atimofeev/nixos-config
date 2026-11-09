@@ -104,6 +104,7 @@ in
                 "*.awsapps.com"
                 "*.passwork.io"
                 "configure.zsa.io"
+                "console.clickhouse.cloud"
                 "console.hetzner.com"
                 "dash.cloudflare.com"
                 "diffchecker.com"
