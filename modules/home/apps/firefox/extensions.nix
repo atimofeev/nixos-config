@@ -171,6 +171,13 @@ in
             private_browsing = true;
             updates_disabled = true;
           };
+          "addon@karakeep.app" = {
+            default_area = "navbar";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/karakeep/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+            updates_disabled = false;
+          };
           "deArrow@ajay.app" = {
             default_area = "menupanel";
             install_url = "file:///${extensionPkgs.dearrow-declarative}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/deArrow@ajay.app.xpi";
