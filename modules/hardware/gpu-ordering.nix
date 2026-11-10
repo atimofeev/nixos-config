@@ -21,12 +21,12 @@ in
     dgpu = lib.mkOption {
       description = "vendor:device for dGPU";
       type = lib.types.str;
-      example = "0x8086:0x7d51";
+      example = "0x10de:0x2f58";
     };
     igpu = lib.mkOption {
       description = "vendor:device for iGPU";
       type = lib.types.str;
-      example = "0x10de:0x2f58";
+      example = "0x8086:0x7d51";
     };
     dgpuDock = {
       enable = lib.mkEnableOption ''
@@ -55,6 +55,8 @@ in
       ''
         SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{vendor}=="${builtins.elemAt d 0}", ATTRS{device}=="${builtins.elemAt d 1}", SYMLINK+="dri/dgpu"
         SUBSYSTEM=="drm", KERNEL=="card*", ATTRS{vendor}=="${builtins.elemAt i 0}", ATTRS{device}=="${builtins.elemAt i 1}", SYMLINK+="dri/igpu"
+        SUBSYSTEM=="drm", KERNEL=="renderD*", ATTRS{vendor}=="${builtins.elemAt d 0}", ATTRS{device}=="${builtins.elemAt d 1}", SYMLINK+="dri/dgpu-render"
+        SUBSYSTEM=="drm", KERNEL=="renderD*", ATTRS{vendor}=="${builtins.elemAt i 0}", ATTRS{device}=="${builtins.elemAt i 1}", SYMLINK+="dri/igpu-render"
       ''
       + lib.optionalString dock.enable ''
         ACTION=="add|change", SUBSYSTEM=="drm", KERNEL=="card[0-9]*", ATTRS{vendor}=="${builtins.elemAt d 0}", ATTRS{device}=="${builtins.elemAt d 1}", RUN+="${lib.getExe dockScript} auto"

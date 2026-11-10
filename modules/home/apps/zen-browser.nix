@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  osConfig,
   pkgs,
   ...
 }:
@@ -27,6 +28,12 @@ in
     programs.zen-browser = {
 
       enable = true;
+      # Keep NVIDIA EGL probing out of the browser and use the managed iGPU alias.
+      env = lib.mkIf osConfig.custom.hardware.gpu-ordering.enable {
+        MOZ_DRM_DEVICE = "/dev/dri/igpu-render";
+        __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+        __GLX_VENDOR_LIBRARY_NAME = "mesa";
+      };
       # BUG: firefoxpwa 2.18.2 wrapper build fails (missing lib/firefoxpwa dir).
       # Use unwrapped package directly — provides the native messaging host.
       nativeMessagingHosts = [ pkgs.firefoxpwa-unwrapped ];
