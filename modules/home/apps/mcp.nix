@@ -6,6 +6,23 @@
 }:
 let
   cfg = config.custom-hm.applications.mcp;
+  awsProxy = pkgs.writeShellApplication {
+    name = "aws-mcp-proxy";
+    runtimeInputs = [
+      pkgs.awscli2
+      pkgs.uv
+    ];
+    text = ''
+      profiles="$(aws configure list-profiles)"
+      AWS_MCP_PROXY_PROFILES="''${profiles//$'\n'/ }"
+      default_profile="''${AWS_PROFILE:-''${AWS_DEFAULT_PROFILE:-}}"
+      if [[ -n "$default_profile" ]]; then
+        AWS_MCP_PROXY_PROFILES="$default_profile $AWS_MCP_PROXY_PROFILES"
+      fi
+      export AWS_MCP_PROXY_PROFILES
+      exec uvx "$@"
+    '';
+  };
   # The server requires a default context; never default to a real cluster.
   kubernetesBlankConfig = pkgs.writeText "mcp-kubeconfig-blank.json" (
     builtins.toJSON {
@@ -39,16 +56,16 @@ in
       enable = true;
       servers = {
 
-        aws-docs = {
-          command = "docker";
+        aws = {
           args = [
-            "run"
-            "--interactive"
-            "--rm"
-            "--env"
-            "AWS_DOCUMENTATION_PARTITION=aws"
-            "mcp/aws-documentation:latest"
+            "--python"
+            "${pkgs.python3}/bin/python3"
+            "mcp-proxy-for-aws-cli==1.8.0"
+            "https://aws-mcp.us-east-1.api.aws/mcp"
+            "--skip-auth"
           ];
+          command = lib.getExe awsProxy;
+          directTools = false;
         };
 
         github = {
