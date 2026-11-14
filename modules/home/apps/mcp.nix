@@ -1,10 +1,32 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   cfg = config.custom-hm.applications.mcp;
+  # The server requires a default context; never default to a real cluster.
+  kubernetesBlankConfig = pkgs.writeText "mcp-kubeconfig-blank.json" (
+    builtins.toJSON {
+      apiVersion = "v1";
+      clusters = [
+        {
+          cluster.server = "http://127.0.0.1:1";
+          name = "mcp-blank-cluster";
+        }
+      ];
+      contexts = [
+        {
+          context.cluster = "mcp-blank-cluster";
+          name = "mcp-blank-context";
+        }
+      ];
+      current-context = "mcp-blank-context";
+      kind = "Config";
+      users = [ ];
+    }
+  );
 in
 {
 
@@ -38,12 +60,18 @@ in
         };
 
         kubernetes = {
+          args = [
+            "--yes"
+            "kubernetes-mcp-server@0.1.3"
+          ];
           command = "npx";
-          args = [ "mcp-server-kubernetes" ];
           directTools = false;
           env = {
-            K8S_CONTEXT = "mcp-none";
-            KUBECONFIG_PATH = "${config.home.homeDirectory}/.kube/config";
+            KUBECONFIG = lib.concatStringsSep ":" [
+              kubernetesBlankConfig
+              "${config.home.homeDirectory}/.kube/config"
+              "${config.home.homeDirectory}/.kube/homelab.yaml"
+            ];
           };
         };
 
