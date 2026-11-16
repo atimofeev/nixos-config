@@ -1,0 +1,41 @@
+From b7f974b194c949bce3c937a0e23757272c3a9369 Mon Sep 17 00:00:00 2001
+From: Andy Ritger <aritger@nvidia.com>
+Date: Thu, 29 Oct 2026 17:16:31 -0700
+Subject: [PATCH] nvkms: Move nvHsAllocDevice() before nvAllocLutSurfacesEvo()
+X-NVConfidentiality: public
+
+---
+ src/nvidia-modeset/src/nvkms-evo.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/nvidia-modeset/src/nvkms-evo.c b/src/nvidia-modeset/src/nvkms-evo.c
+index 600003f0ab90..d39b0c835813 100644
+--- a/src/nvidia-modeset/src/nvkms-evo.c
++++ b/src/nvidia-modeset/src/nvkms-evo.c
+@@ -9023,6 +9023,11 @@ NVDevEvoPtr nvAllocDevEvo(const struct NvKmsAllocDeviceRequest *pRequest,
+         goto done;
+     }
+ 
++    if (!nvHsAllocDevice(pDevEvo, pRequest)) {
++        status = NVKMS_ALLOC_DEVICE_STATUS_FATAL_ERROR;
++        goto done;
++    }
++
+     if (!nvAllocLutSurfacesEvo(pDevEvo)) {
+         nvEvoLogDev(pDevEvo, EVO_LOG_ERROR,
+             "Failed to allocate memory for the display color lookup table.");
+@@ -9047,11 +9052,6 @@ NVDevEvoPtr nvAllocDevEvo(const struct NvKmsAllocDeviceRequest *pRequest,
+         goto done;
+     }
+ 
+-    if (!nvHsAllocDevice(pDevEvo, pRequest)) {
+-        status = NVKMS_ALLOC_DEVICE_STATUS_FATAL_ERROR;
+-        goto done;
+-    }
+-
+     if (!pDevEvo->displaylessHw && !nvInitHdmiLibrary(pDevEvo)) {
+         status = NVKMS_ALLOC_DEVICE_STATUS_FATAL_ERROR;
+         goto done;
+-- 
+2.55.0
+

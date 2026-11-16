@@ -1,34 +1,18 @@
-# NVIDIA 615.71.09 backport
-# nixpkgs#561660 adds 615.71.09 to nixos-unstable; this overlay backports it
-# to the repo's pinned nixpkgs-unstable so zefir can select it before merge.
-# objtool --hacks=jump_label workaround from open-gpu-kernel-modules#1095 is
-# no longer needed: Linux 7.2 Kbuild already runs objtool with
-# CONFIG_HAVE_JUMP_LABEL_HACK=y and CONFIG_OBJTOOL_WERROR unset, so
-# unpatched open modules already contain NOPs at jump-label sites.
-
 _: prev: {
   linuxPackages_latest = prev.linuxPackages_latest.extend (
     _: kprev: {
       nvidiaPackages = kprev.nvidiaPackages.extend (
         _: nprev: {
-          new_feature = nprev.mkDriver {
-            version = "615.71.09";
-            sha256_64bit = "sha256-zc7tIrvrYSSNGm3qvCWWZz46ZQFpjucayNL9wo87cP4=";
-            sha256_aarch64 = "sha256-IbekQhE7cFfmnPZaLY9NDYcF7CoNZ+2Qb7sRd4EOgWM=";
-            openSha256 = "sha256-3gByMYIwFzRaLdDG+roCEOuKRRJDrljG9AlLnRZTirM=";
-            settingsSha256 = "sha256-LK1LU8mDkM/XVRKPBtuOZh9nIP/lGFLAJnmasEX8jhg=";
-            persistencedSha256 = "sha256-qPRb+3d88+2RcpUkoBTbjIaImnQ+jX+/6p1vXcJ5geE=";
-          };
-
-          # Driver-only test on Linux 7.2.6: replace the active new_feature block.
-          # new_feature = nprev.mkDriver {
-          #   version = "615.78.08";
-          #   sha256_64bit = "sha256-Pj9t3cLudnoIGFMAr3vjyyhuznZpjS3eNSRZl4LQf/4=";
-          #   sha256_aarch64 = "sha256-UHYBE1AYHoGgMfD9AS/jX+S+N8eCDWUft6qolK9Eejc=";
-          #   openSha256 = "sha256-HBINiOjL0ZJLIAJeNIBYHBnwgUXtNwPPtnFpAI1YwF4=";
-          #   settingsSha256 = "sha256-inDRpG02sdDgHmlqgu/DsgK8OFdOt1fZIYyXdhlGC/c=";
-          #   persistencedSha256 = "sha256-RzeR6Ldct6MUxjnXRyThdh5Y3jjMehTVg85MtwuWNX4=";
-          # };
+          new_feature = nprev.new_feature.overrideAttrs (old: {
+            passthru = old.passthru // {
+              open = old.passthru.open.overrideAttrs (oldOpen: {
+                patches = (oldOpen.patches or [ ]) ++ [
+                  # Fix display freezes: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/1289#issuecomment-6511752945
+                  ./patches/nvidia-nvkms-alloc-device-before-lut-surfaces.patch
+                ];
+              });
+            };
+          });
         }
       );
     }
