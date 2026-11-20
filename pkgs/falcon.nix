@@ -38,6 +38,42 @@
 }:
 let
   version = "8.11.0-19508";
+  src =
+    (requireFile {
+      name = "falcon-sensor_${version}_amd64.deb";
+      sha256 = "efe5dc643c3dc292e2c7dfd4698315f098e9d76584fa3ac830298c020250aefc";
+      message = ''
+        Obtain falcon-sensor_${version}_amd64.deb from your security team, then run:
+          nix-store --add-fixed sha256 /path/to/falcon-sensor_${version}_amd64.deb
+        Do not commit or publish the proprietary installer.
+      '';
+    }).overrideAttrs
+      {
+        allowSubstitutes = false;
+      };
+  payload = stdenvNoCC.mkDerivation {
+    pname = "falcon-sensor-payload";
+    inherit src version;
+
+    nativeBuildInputs = [ dpkg ];
+    dontUnpack = true;
+    dontFixup = true;
+    allowSubstitutes = false;
+    preferLocalBuild = true;
+
+    # Pin the vendor tree, not the extraction toolchain or runtime dependencies.
+    # On sensor upgrades, update this recursive hash as well as the installer hash.
+    outputHash = "sha256-ixxW+2KoNwZYeOIHZqWyA7W2VVsfe6PLeCDErVKXQ/Y=";
+    outputHashAlgo = "sha256";
+    outputHashMode = "recursive";
+
+    installPhase = ''
+      runHook preInstall
+      dpkg-deb -x "$src" extracted
+      cp -a extracted/opt/CrowdStrike "$out"
+      runHook postInstall
+    '';
+  };
   libraries = [
     glibc
     libnl
@@ -75,26 +111,9 @@ let
 in
 stdenvNoCC.mkDerivation {
   pname = "falcon-sensor";
-  inherit version;
+  inherit src version;
 
-  src =
-    (requireFile {
-      name = "falcon-sensor_${version}_amd64.deb";
-      sha256 = "efe5dc643c3dc292e2c7dfd4698315f098e9d76584fa3ac830298c020250aefc";
-      message = ''
-        Obtain falcon-sensor_${version}_amd64.deb from your security team, then run:
-          nix-store --add-fixed sha256 /path/to/falcon-sensor_${version}_amd64.deb
-        Do not commit or publish the proprietary installer.
-      '';
-    }).overrideAttrs
-      {
-        allowSubstitutes = false;
-      };
-
-  nativeBuildInputs = [
-    dpkg
-    makeWrapper
-  ];
+  nativeBuildInputs = [ makeWrapper ];
   dontUnpack = true;
   # Preserve vendor binaries, including their interpreter and integrity metadata.
   dontFixup = true;
@@ -103,11 +122,11 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     runHook preInstall
-    mkdir -p "$out"
-    dpkg-deb -x "$src" "$out"
+    mkdir -p "$out/opt"
+    ln -s ${payload} "$out/opt/CrowdStrike"
     makeWrapper ${glibc}/lib/ld-linux-x86-64.so.2 "$out/bin/falconctl" \
       --add-flags "--library-path ${libraryPath}" \
-      --add-flags "$out/opt/CrowdStrike/falconctl"
+      --add-flags "${payload}/falconctl"
     makeWrapper ${bash}/bin/bash "$out/bin/falcon-kernel-check" \
       --prefix PATH : ${
         lib.makeBinPath [
@@ -117,12 +136,12 @@ stdenvNoCC.mkDerivation {
           gnused
         ]
       } \
-      --add-flags "$out/opt/CrowdStrike/falcon-kernel-check"
+      --add-flags "${payload}/falcon-kernel-check"
     runHook postInstall
   '';
 
   passthru = {
-    inherit libraryPath runtime;
+    inherit libraryPath payload runtime;
   };
 
   meta = {
