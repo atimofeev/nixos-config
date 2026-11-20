@@ -21,11 +21,6 @@ in
     programs.dank-calendar = {
       enable = true;
       systemd.enable = true;
-      quickshell.package =
-        if config.programs.dank-material-shell.enable then
-          config.programs.dank-material-shell.quickshell.package
-        else
-          pkgs.unstable.quickshell;
       settings = {
         allDayReminderDaysBefore = 0;
         allDayReminderTime = "09:00";

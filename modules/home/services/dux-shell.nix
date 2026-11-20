@@ -52,9 +52,6 @@ in
       enable = true;
       inherit (cfg) package;
 
-      quickshell.package =
-        inputs.dux-shell.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.quickshell;
-
       systemd = {
         enable = true;
         inherit (cfg) target;
