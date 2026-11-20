@@ -3,7 +3,7 @@
   stdenv,
   autoPatchelfHook,
   fetchurl,
-  openssl_3,
+  openssl,
 }:
 let
   version = "3.0.0";
@@ -18,7 +18,10 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ autoPatchelfHook ];
-  buildInputs = [ openssl_3 stdenv.cc.cc.lib ];
+  buildInputs = [
+    openssl
+    stdenv.cc.cc.lib
+  ];
 
   unpackPhase = ''
     tar xzf $src
