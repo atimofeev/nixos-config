@@ -10,7 +10,9 @@ in
 
   # Writable fragment rewritten by niri-dgpu-dock: keeps the dGPU out of the
   # compositor (so it can runtime-suspend) unless an output is attached to it.
-  wayland.windowManager.niri.settings.include = lib.mkIf dgpuDock [ "dgpu-dock.kdl" ];
+  wayland.windowManager.niri.settings.include = lib.mkIf dgpuDock [
+    { _args = [ "dgpu-dock.kdl" ]; }
+  ];
 
   # Manual override, for when hot-plug detection cannot wake a suspended dGPU.
   wayland.windowManager.niri.settings.binds = lib.mkIf dgpuDock {
