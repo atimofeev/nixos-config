@@ -53,6 +53,7 @@
 
     desktop.niri = {
       enable = true;
+      dgpuDock = true;
       nvidiaMstWorkaround = true;
       package = inputs.niri-git.packages.${pkgs.stdenv.hostPlatform.system}.niri;
     };
@@ -77,7 +78,6 @@
         enable = true;
         dgpu = "0x10de:0x2f58";
         igpu = "0x8086:0x7d51";
-        dgpuDock.enable = true;
       };
       nvidia.enable = true;
       peripherals = {

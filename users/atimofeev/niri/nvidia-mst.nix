@@ -37,7 +37,7 @@ lib.mkIf enabled {
         "--fragment"
         fragment
         "--gpu"
-        osConfig.custom.hardware.gpu-ordering.dgpuDock.dgpuPath
+        "/dev/dri/dgpu"
         "--niri"
         (lib.getExe osConfig.programs.niri.package)
       ];
