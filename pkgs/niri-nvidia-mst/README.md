@@ -2,7 +2,8 @@
 
 Enabled on zefir by `custom.desktop.niri.nvidiaMstWorkaround`. The Home Manager
 module starts a session-scoped user service and includes a writable
-`~/.config/niri/nvidia-mst.kdl`. The existing dGPU binding/power helper is separate.
+`~/.config/niri/nvidia-mst.kdl`. The existing dGPU binding/power helper is separate. Both policies reuse the event
+subscriptions and atomic-file/process helpers in `pkgs/niri-session/`.
 Hosts without the option retain the previous static debug setting.
 
 ## Detection
@@ -71,7 +72,7 @@ concurrent writers. Do not run a second watcher against the same fragment.
 Package builds run the Python state-machine tests without accessing real devices:
 
 ```bash
-python -B -m unittest discover -s pkgs/niri-nvidia-mst -v
+PYTHONPATH=pkgs/niri-session python -B -m unittest discover -s pkgs/niri-nvidia-mst -v
 ```
 
 Also validate the actual generated Niri configuration with both fragment states

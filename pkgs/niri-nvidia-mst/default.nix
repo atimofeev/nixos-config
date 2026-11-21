@@ -35,8 +35,8 @@ stdenv.mkDerivation {
   doCheck = true;
   checkPhase = ''
     runHook preCheck
-    PYTHONDONTWRITEBYTECODE=1 ${python}/bin/python -m unittest discover \
-      -s ${./.} -p 'test_*.py' -v
+    PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=${../niri-session} \
+      ${python}/bin/python -m unittest discover -s ${./.} -p 'test_*.py' -v
     runHook postCheck
   '';
 
@@ -44,6 +44,7 @@ stdenv.mkDerivation {
     runHook preInstall
     install -Dm755 nvidia-mst-probe $out/libexec/niri-nvidia-mst/nvidia-mst-probe
     install -Dm644 ${./watcher.py} $out/libexec/niri-nvidia-mst/watcher.py
+    install -Dm644 ${../niri-session/niri_session.py} $out/libexec/niri-nvidia-mst/niri_session.py
     makeWrapper ${python}/bin/python $out/bin/niri-nvidia-mst \
       --add-flags "$out/libexec/niri-nvidia-mst/watcher.py" \
       --set NVKMS_PROBE "$out/libexec/niri-nvidia-mst/nvidia-mst-probe"
