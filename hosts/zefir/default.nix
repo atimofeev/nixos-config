@@ -53,6 +53,7 @@
 
     desktop.niri = {
       enable = true;
+      nvidiaMstWorkaround = true;
       package = inputs.niri-git.packages.${pkgs.stdenv.hostPlatform.system}.niri;
     };
 

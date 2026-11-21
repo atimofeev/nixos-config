@@ -11,6 +11,7 @@ in
 
   options.custom.desktop.niri = {
     enable = lib.mkEnableOption "Niri desktop bundle";
+    nvidiaMstWorkaround = lib.mkEnableOption "automatic frame-completion workaround for active NVIDIA MST displays";
     package = lib.mkPackageOption pkgs.unstable "niri" { };
     useNautilus = lib.mkOption {
       default = true;

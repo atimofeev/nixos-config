@@ -19,6 +19,7 @@
     ./input.nix
     ./keybinds.nix
     ./layout.nix
+    ./nvidia-mst.nix
     ./outputs.nix
     ./window-rules.nix
     ./workspaces.nix
