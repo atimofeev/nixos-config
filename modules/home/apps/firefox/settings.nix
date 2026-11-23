@@ -22,8 +22,10 @@ in
     programs.firefox.profiles.default.settings = {
       "browser.aboutConfig.showWarning" = false;
       "browser.aboutwelcome.enabled" = false;
+      "browser.low_commit_space_threshold_mb" = 4096;
       "browser.search.suggest.enabled" = true;
       "browser.tabs.closeWindowWithLastTab" = true;
+      "browser.tabs.min_inactive_duration_before_unload" = 300000;
       "browser.tabs.unloadOnLowMemory" = true;
       "browser.urlbar.shortcuts.bookmarks" = false;
       "browser.urlbar.suggest.calculator" = true;
