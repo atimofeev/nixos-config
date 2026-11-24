@@ -64,6 +64,7 @@ in
         acMonitorTimeout = 600;
         acProfileName = "2";
         acSuspendTimeout = 1800;
+        animationDuration = 0;
         barElevationEnabled = false;
         barConfigs = [
           {
@@ -287,6 +288,7 @@ in
           "hibernate"
         ];
         radiusMode = "fixed";
+        reduceMotion = true;
         screenPreferences = {
           lockScreen = [ "eDP-1" ];
         };
