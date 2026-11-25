@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import shlex
 import shutil
 import subprocess
 import sys
@@ -71,7 +72,13 @@ def main():
             "--label", "neojj", "--no-focus", expect_json=True,
         )
         pane = identifier(editor, "root_pane", "pane_id")
-        api("pane", "run", pane, "nix run ~/repos/nixvim-config -- -c Neojj")
+        command = ["nix", "run", str(Path.home() / "repos/nixvim-config"), "--", "-c", "Neojj"]
+        # Keep Neojj as this tab's restart command, even after it exits.
+        api(
+            "pane", "report-agent", pane, "--source", f"neojj-{pane}",
+            "--agent", "neojj", "--state", "idle", "--", *command,
+        )
+        api("pane", "run", pane, shlex.join(command))
         api("workspace", "focus", workspace)
     except Exception:
         print(f"Setup incomplete; workspace {workspace} kept for inspection.", file=sys.stderr)
