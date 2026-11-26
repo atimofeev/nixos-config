@@ -1,0 +1,206 @@
+Subject: [PATCH] nvidia: defer NVPCF notifications until runtime resume
+
+Backport PR #1299 at 555c98d1bdbc138c8ee2588f5e268e6eb005a468.
+Coalesce firmware power-policy notifications while the GPU is idle and
+replay them on resume instead of waking the GPU for each battery tick.
+Include the reviewer's PM-mode guard to avoid locking an uninitialized
+mutex when runtime power management is disabled.
+
+Upstream-PR: https://github.com/NVIDIA/open-gpu-kernel-modules/pull/1299
+Upstream-Issue: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/860
+Guard: https://github.com/NVIDIA/open-gpu-kernel-modules/pull/1299#issuecomment-6562120451
+NVIDIA-Bug: 4084236
+
+---
+diff --git a/src/nvidia/arch/nvalloc/unix/include/nv-priv.h b/src/nvidia/arch/nvalloc/unix/include/nv-priv.h
+index a3dcebfd32..904d3ba3d2 100644
+--- a/src/nvidia/arch/nvalloc/unix/include/nv-priv.h
++++ b/src/nvidia/arch/nvalloc/unix/include/nv-priv.h
+@@ -241,6 +241,9 @@ typedef struct nv_dynamic_power_s
+     PORT_ATOMIC nv_dynamic_power_state_t state;
+     NvS32 refcount;
+ 
++    /* Coalesced NVPCF notification to replay after runtime resume. */
++    NvBool nvpcf_notify_pending;
++
+     /*
+      * A word on lock ordering.  These locks must be taken in the order:
+      *
+diff --git a/src/nvidia/arch/nvalloc/unix/include/osapi.h b/src/nvidia/arch/nvalloc/unix/include/osapi.h
+index 6402bdb828..dba75690e3 100644
+--- a/src/nvidia/arch/nvalloc/unix/include/osapi.h
++++ b/src/nvidia/arch/nvalloc/unix/include/osapi.h
+@@ -185,6 +185,7 @@ NV_STATUS  RmPowerManagementTegra   (OBJGPU *pGpu, nv_pm_action_t pmAction);
+ NV_STATUS  os_ref_dynamic_power     (nv_state_t *, nv_dynamic_power_mode_t);
+ void       os_unref_dynamic_power   (nv_state_t *, nv_dynamic_power_mode_t);
+ void       RmHandleDisplayChange    (nvidia_stack_t *, nv_state_t *);
++NvBool     RmDeferNvpcfNotifyIfIdle (nv_state_t *);
+ void       RmUpdateGc6ConsoleRefCount (nv_state_t *, NvBool);
+ 
+ NvBool     rm_get_uefi_console_status (nv_state_t *);
+diff --git a/src/nvidia/arch/nvalloc/unix/src/dynamic-power.c b/src/nvidia/arch/nvalloc/unix/src/dynamic-power.c
+index fa61d949f8..f487832d66 100644
+--- a/src/nvidia/arch/nvalloc/unix/src/dynamic-power.c
++++ b/src/nvidia/arch/nvalloc/unix/src/dynamic-power.c
+@@ -172,6 +172,8 @@ static void RmScheduleCallbackToIndicateIdle(OBJGPU *);
+ static NvBool RmCheckForGcxSupportOnCurrentState(OBJGPU *);
+ static void RmScheduleCallbackToRemoveIdleHoldoff(OBJGPU *);
+ static void RmQueueIdleSustainedWorkitem(OBJGPU *);
++static void RmReplayNvpcfNotify(NvU32, void *);
++static void RmQueueNvpcfReplay(OBJGPU *);
+ 
+ /*!
+  * @brief Wrapper that checks lock order for the dynamic power mutex.  Locking
+@@ -374,6 +376,7 @@ static void RmForceGpuNotIdle(
+     nv_priv_t *nvp = NV_GET_NV_PRIV(nv);
+     nv_dynamic_power_state_t old_state;
+     NvBool ret;
++    NvBool bReplayNvpcf = NV_FALSE;
+ 
+     acquireDynamicPowerMutex(nvp);
+ 
+@@ -383,6 +386,8 @@ static void RmForceGpuNotIdle(
+     {
+     case NV_DYNAMIC_POWER_STATE_IDLE_INDICATED:
+         nv_indicate_not_idle(nv);
++        bReplayNvpcf = nvp->dynamic_power.nvpcf_notify_pending;
++        nvp->dynamic_power.nvpcf_notify_pending = NV_FALSE;
+         NV_ASSERT(nvp->dynamic_power.deferred_idle_enabled);
+         RmScheduleCallbackForIdlePreConditions(pGpu);
+         /* fallthrough */
+@@ -407,6 +412,11 @@ static void RmForceGpuNotIdle(
+     nv_release_mmap_lock(nv);
+ 
+     releaseDynamicPowerMutex(nvp);
++
++    if (bReplayNvpcf)
++    {
++        RmQueueNvpcfReplay(pGpu);
++    }
+ }
+ 
+ /*!
+@@ -1109,6 +1119,7 @@ os_ref_dynamic_power(
+     nv_priv_t *nvp = NV_GET_NV_PRIV(nv);
+     NV_STATUS status = NV_OK;
+     NvS32 ref;
++    NvBool bReplayNvpcf = NV_FALSE;
+ 
+     if (nvp == NULL)
+     {
+@@ -1163,6 +1174,8 @@ os_ref_dynamic_power(
+                 nvp->dynamic_power.refcount--;
+                 break;
+             }
++            bReplayNvpcf = nvp->dynamic_power.nvpcf_notify_pending;
++            nvp->dynamic_power.nvpcf_notify_pending = NV_FALSE;
+             if (nvp->dynamic_power.deferred_idle_enabled)
+             {
+                 RmScheduleCallbackForIdlePreConditions(NV_GET_NV_PRIV_PGPU(nv));
+@@ -1185,6 +1198,11 @@ os_ref_dynamic_power(
+ 
+     releaseDynamicPowerMutex(nvp);
+ 
++    if (bReplayNvpcf)
++    {
++        RmQueueNvpcfReplay(NV_GET_NV_PRIV_PGPU(nv));
++    }
++
+     return status;
+ }
+ 
+@@ -1459,6 +1477,66 @@ static void RmRemoveIdleHoldoff(
+     }
+ }
+ 
++static void RmReplayNvpcfNotify(
++    NvU32 gpuInstance,
++    void *pArgs
++)
++{
++    OBJGPU *pGpu = gpumgrGetGpu(gpuInstance);
++
++    gpuNotifySubDeviceEvent(pGpu, NV2080_NOTIFIERS_NVPCF_EVENTS,
++                            NULL, 0, 0, 0);
++}
++
++static void RmQueueNvpcfReplay(
++    OBJGPU *pGpu
++)
++{
++    NV_STATUS status = osQueueWorkItem(pGpu,
++                           RmReplayNvpcfNotify,
++                           NULL,
++                           (OsQueueWorkItemFlags){.bLockGpuGroupSubdevice = NV_TRUE});
++
++    if (status != NV_OK)
++    {
++        nv_state_t *nv = NV_GET_NV_STATE(pGpu);
++        nv_priv_t *nvp = NV_GET_NV_PRIV(nv);
++
++        acquireDynamicPowerMutex(nvp);
++        nvp->dynamic_power.nvpcf_notify_pending = NV_TRUE;
++        releaseDynamicPowerMutex(nvp);
++
++        NV_PRINTF(LEVEL_ERROR,
++                  "Failed to queue deferred NVPCF notification: 0x%x\n",
++                  status);
++    }
++}
++
++/* Check under the mutex so a concurrent resume cannot race the defer. */
++NvBool RmDeferNvpcfNotifyIfIdle(
++    nv_state_t *nv
++)
++{
++    nv_priv_t *nvp = NV_GET_NV_PRIV(nv);
++    NvBool bDefer;
++
++    /* Disabled PM may leave the mutex NULL; coarse mode needs no deferral. */
++    if ((nvp == NULL) || (NV_DYNAMIC_PM_FINE > nvp->dynamic_power.mode))
++    {
++        return NV_FALSE;
++    }
++
++    acquireDynamicPowerMutex(nvp);
++    bDefer = nvp->dynamic_power.state == NV_DYNAMIC_POWER_STATE_IDLE_INDICATED;
++    if (bDefer)
++    {
++        nvp->dynamic_power.nvpcf_notify_pending = NV_TRUE;
++    }
++    releaseDynamicPowerMutex(nvp);
++
++    return bDefer;
++}
++
+ /*!
+  * @brief Timer callback to schedule a work item to remove idle hold off
+  * that was applied after GC6 exit.
+diff --git a/src/nvidia/arch/nvalloc/unix/src/osapi.c b/src/nvidia/arch/nvalloc/unix/src/osapi.c
+index a3d614d45e..1ee862178a 100644
+--- a/src/nvidia/arch/nvalloc/unix/src/osapi.c
++++ b/src/nvidia/arch/nvalloc/unix/src/osapi.c
+@@ -6118,13 +6118,18 @@ void NV_API_CALL rm_acpi_nvpcf_notify(
+         if (pGpu != NULL)
+         {
+             nv_state_t *nv = NV_GET_NV_STATE(pGpu);
+-            if ((rmStatus = os_ref_dynamic_power(nv, NV_DYNAMIC_PM_FINE)) ==
+-                                                                         NV_OK)
++
++            /*
++             * NVPCF events carry no payload, so coalesce them while suspended
++             * and replay one after resume.
++             */
++            if (!RmDeferNvpcfNotifyIfIdle(nv) &&
++                (os_ref_dynamic_power(nv, NV_DYNAMIC_PM_FINE) == NV_OK))
+             {
+-               gpuNotifySubDeviceEvent(pGpu, NV2080_NOTIFIERS_NVPCF_EVENTS,
+-                                       NULL, 0, 0, 0);
++                gpuNotifySubDeviceEvent(pGpu, NV2080_NOTIFIERS_NVPCF_EVENTS,
++                                        NULL, 0, 0, 0);
++                os_unref_dynamic_power(nv, NV_DYNAMIC_PM_FINE);
+             }
+-            os_unref_dynamic_power(nv, NV_DYNAMIC_PM_FINE);
+         }
+         rmapiLockRelease();
+     }
