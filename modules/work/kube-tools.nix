@@ -40,12 +40,16 @@ in
       unstable.talosctl
     ];
 
-    # TODO: improve colorscheme (or even port catppuccin?)
-    # https://kubecolor.github.io/customizing/themes/
-    # https://kubecolor.github.io/reference/config/
-    home-manager.users.${config.custom.hm-admin}.programs.kubecolor = {
-      enable = true;
-      enableAlias = true;
+    home-manager.users.${config.custom.hm-admin} = {
+      custom-hm.user.shellAliases.k-unset-context = "kubectl config unset current-context";
+
+      # TODO: improve colorscheme (or even port catppuccin?)
+      # https://kubecolor.github.io/customizing/themes/
+      # https://kubecolor.github.io/reference/config/
+      programs.kubecolor = {
+        enable = true;
+        enableAlias = true;
+      };
     };
 
   };
