@@ -1,26 +1,26 @@
 --- a/internal/server/network/backend_networkmanager_vpn.go
 +++ b/internal/server/network/backend_networkmanager_vpn.go
-@@ -3,6 +3,7 @@
- import (
+@@ -4,6 +4,7 @@
  	"bufio"
+ 	"cmp"
  	"context"
 +	"encoding/json"
  	"errors"
  	"fmt"
  	"maps"
-@@ -227,6 +228,10 @@
- 	b.state.VPNErrorUuid = ""
+@@ -266,6 +267,10 @@
+ 	b.vpnUnaskedFields = nil
  	b.stateMutex.Unlock()
  
-+	b.cachedOpenConnectMu.Lock()
-+	b.cachedOpenConnectAuth = nil
-+	b.cachedOpenConnectMu.Unlock()
++	b.cachedVPNSecretsMu.Lock()
++	b.cachedVPNSecrets = nil
++	b.cachedVPNSecretsMu.Unlock()
 +
  	if singleActive {
  		active, err := b.ListActiveVPN()
  		if err == nil && len(active) > 0 {
-@@ -330,6 +335,18 @@
- 	var openConnectAuth *openConnectAuthResult
+@@ -371,6 +376,18 @@
+ 	var vpnSecrets, storedSecrets map[string]string
  
  	switch authAction {
 +	case "gpclient":
@@ -34,11 +34,11 @@
 +		if authErr != nil {
 +			return fmt.Errorf("gpclient authentication failed: %w", authErr)
 +		}
-+		openConnectAuth = &openConnectAuthResult{Cookie: authJSON, Host: gateway}
++		vpnSecrets = map[string]string{"cookie": authJSON, "gateway": gateway}
  	case "openvpn_username":
  		if b.promptBroker == nil {
  			return fmt.Errorf("OpenVPN password authentication requires interactive prompt")
-@@ -453,12 +470,54 @@
+@@ -517,12 +534,54 @@
  	return nil
  }
  
@@ -93,36 +93,32 @@
  	case strings.Contains(serviceType, "openconnect"):
  		protocol := data["protocol"]
  		if needsExternalBrowserAuth(protocol, data["authtype"], data["username"], data) {
+@@ -552,7 +611,7 @@
+ // vpnPluginLogin reports whether the plugin's auth dialog, not a DMS flow, logs in this profile.
+ func vpnPluginLogin(serviceType string, data map[string]string) bool {
+ 	switch {
+-	case data == nil, strings.Contains(serviceType, "openvpn"):
++	case data == nil, serviceType == "org.freedesktop.NetworkManager.gpclient", strings.Contains(serviceType, "openvpn"):
+ 		return false
+ 	case strings.Contains(serviceType, "openconnect"):
+ 		pkcs11 := data["authtype"] == "cert" && strings.HasPrefix(data["usercert"], "pkcs11:")
 --- a/internal/server/network/agent_networkmanager.go
 +++ b/internal/server/network/agent_networkmanager.go
-@@ -151,6 +151,40 @@
- 
- 	connUuid := readConnUUID(conn)
+@@ -226,6 +226,27 @@
+ 		}
+ 	}
  
 +	if settingName == "vpn" && vpnSvc == "org.freedesktop.NetworkManager.gpclient" && a.backend != nil {
-+		a.backend.cachedOpenConnectMu.Lock()
-+		cached := a.backend.cachedOpenConnectAuth
-+		if cached != nil && cached.ConnectionUUID == connUuid {
-+			a.backend.cachedOpenConnectAuth = nil
-+			a.backend.cachedOpenConnectMu.Unlock()
++		if cached := a.backend.takeCachedVPNSecrets(connUuid); cached != nil {
 +			log.Infof("[SecretAgent] Using cached gpclient authentication for %s", connUuid)
-+			return buildGPClientSecretsResponse(settingName, cached.Cookie, cached.Host), nil
++			return vpnSecretsResponse(settingName, cached.Secrets), nil
 +		}
-+		a.backend.cachedOpenConnectMu.Unlock()
 +
 +		if flags&nmSecretAgentFlagAllowInteraction == 0 {
 +			return nil, dbus.NewError("org.freedesktop.NetworkManager.SecretAgent.Error.NoSecrets", nil)
 +		}
 +
-+		gateway := ""
-+		if vpnSettings, ok := conn["vpn"]; ok {
-+			if dataVariant, ok := vpnSettings["data"]; ok {
-+				if data, ok := dataVariant.Value().(map[string]string); ok {
-+					gateway = data["gateway"]
-+				}
-+			}
-+		}
-+
++		gateway := vpnDataFromSettings(conn)["gateway"]
 +		authCtx, authCancel := context.WithTimeout(context.Background(), 5*time.Minute)
 +		defer authCancel()
 +		authJSON, err := runGPClientAuth(authCtx, gateway)
@@ -130,68 +126,79 @@
 +			log.Warnf("[SecretAgent] gpclient authentication failed: %v", err)
 +			return nil, dbus.MakeFailedError(fmt.Errorf("gpclient authentication failed: %w", err))
 +		}
-+		return buildGPClientSecretsResponse(settingName, authJSON, gateway), nil
++		return vpnSecretsResponse(settingName, map[string]string{"cookie": authJSON, "gateway": gateway}), nil
 +	}
 +
- 	// Phase 1: Determine if this connection is ours and what fields we need.
- 	if a.backend != nil {
- 		a.backend.stateMutex.RLock()
-@@ -1164,6 +1198,17 @@
- 	return out
- }
- 
-+func buildGPClientSecretsResponse(settingName, cookie, gateway string) nmSettingMap {
-+	out := nmSettingMap{}
-+	vpnSec := nmVariantMap{}
-+	vpnSec["secrets"] = dbus.MakeVariant(map[string]string{
-+		"cookie":  cookie,
-+		"gateway": gateway,
-+	})
-+	out[settingName] = vpnSec
-+	return out
-+}
-+
- func buildOpenConnectSecretsResponse(settingName, cookie, host, fingerprint string) nmSettingMap {
- 	out := nmSettingMap{}
- 	vpnSec := nmVariantMap{}
+ 	// Phase 2: Resolve fields from hints or password-flags.
+ 	if len(fields) == 0 {
+ 		if settingName == "vpn" {
 --- a/internal/server/network/backend_networkmanager_vpn_test.go
 +++ b/internal/server/network/backend_networkmanager_vpn_test.go
-@@ -39,6 +39,13 @@
- 	assert.Error(t, err)
- }
- 
-+func TestDetectVPNAuthAction_GPClient(t *testing.T) {
-+	data := map[string]string{"gateway": "vpn.example.test"}
-+
-+	assert.Equal(t, "gpclient", detectVPNAuthAction("org.freedesktop.NetworkManager.gpclient", data))
-+	assert.Empty(t, detectVPNAuthAction("org.freedesktop.NetworkManager.gpclient-other", data))
-+}
-+
- func TestDetectVPNAuthAction_Fortinet(t *testing.T) {
- 	service := "org.freedesktop.NetworkManager.openconnect"
- 
+@@ -30,7 +30,9 @@
+ 		{"fortinet saml", nm + "openconnect", map[string]string{"protocol": "fortinet", "saml-auth-method": "REDIRECT"}, "fortinet_saml", false},
+ 		{"anyconnect saml", nm + "openconnect", map[string]string{"protocol": "anyconnect", "saml-auth-method": "REDIRECT"}, "", true},
+ 		{"vpnc", nm + "vpnc", map[string]string{"IPSec gateway": "vpn.example.com"}, "", true},
+-		{"gpclient", nm + "gpclient", map[string]string{"protocol": "gp"}, "", true},
++		{"gpclient", nm + "gpclient", map[string]string{"gateway": "vpn.example.test"}, "gpclient", false},
++		{"gpclient other", nm + "gpclient-other", map[string]string{"gateway": "vpn.example.test"}, "", true},
++		{"gpclient no data", nm + "gpclient", nil, "", false},
+ 		{"no data", nm + "vpnc", nil, "", false},
+ 	}
+ 	for _, tt := range tests {
 --- a/internal/server/network/agent_networkmanager_test.go
 +++ b/internal/server/network/agent_networkmanager_test.go
-@@ -74,6 +74,22 @@
- 	}
- }
+@@ -345,6 +345,54 @@
  
-+func TestBuildGPClientSecretsResponse(t *testing.T) {
-+	authJSON := `{"success":{"token":"secret"}}`
-+	result := buildGPClientSecretsResponse("vpn", authJSON, "vpn.example.test")
-+
-+	vpnSec := result["vpn"]
-+	secretsVariant, ok := vpnSec["secrets"]
-+	assert.True(t, ok)
-+	secrets, ok := secretsVariant.Value().(map[string]string)
-+	assert.True(t, ok)
-+	assert.Equal(t, map[string]string{
-+		"cookie":  authJSON,
-+		"gateway": "vpn.example.test",
-+	}, secrets)
-+	assert.NotContains(t, secrets, "gwcert")
+ 			secrets, _ := out["vpn"]["secrets"].Value().(map[string]string)
+ 			assert.Equal(t, map[string]string{"challenge-response": "123456"}, secrets)
++		})
++	}
 +}
 +
- func TestBuildOpenConnectSecretsResponse(t *testing.T) {
- 	tests := []struct {
- 		name        string
++func TestSecretAgent_GetSecrets_GPClient(t *testing.T) {
++	conn := map[string]nmVariantMap{
++		"connection": {"id": dbus.MakeVariant("Work"), "uuid": dbus.MakeVariant("u-1"), "type": dbus.MakeVariant("vpn")},
++		"vpn": {
++			"service-type": dbus.MakeVariant("org.freedesktop.NetworkManager.gpclient"),
++			"data":         dbus.MakeVariant(map[string]string{"gateway": "vpn.example.test"}),
++		},
++	}
++	secrets := map[string]string{"cookie": `{"success":{"token":"secret"}}`, "gateway": "vpn.example.test"}
++	tests := []struct {
++		name, cachedUUID, connectingUUID string
++		flags                            uint32
++		wantSecrets                      bool
++	}{
++		{"cached", "u-1", "u-1", 0, true},
++		{"no interaction", "", "u-1", 0, false},
++		{"different UUID", "u-2", "u-1", 0, false},
++		{"only system", "u-1", "u-1", nmSecretAgentFlagOnlySystem, false},
++		{"different connection", "u-1", "u-2", nmSecretAgentFlagAllowInteraction, false},
++	}
++	for _, tt := range tests {
++		t.Run(tt.name, func(t *testing.T) {
++			backend := &NetworkManagerBackend{state: &BackendState{IsConnectingVPN: true, ConnectingVPNUUID: tt.connectingUUID}}
++			if tt.cachedUUID != "" {
++				backend.cachedVPNSecrets = &cachedVPNSecrets{ConnectionUUID: tt.cachedUUID, Secrets: secrets}
++			}
++			agent := &SecretAgent{backend: backend}
++			out, err := agent.GetSecrets(conn, "/test/path", "vpn", nil, tt.flags)
++			if !tt.wantSecrets {
++				if assert.NotNil(t, err) {
++					assert.Contains(t, err.Name, "NoSecrets")
++				}
++				if tt.cachedUUID != "" {
++					assert.NotNil(t, backend.cachedVPNSecrets)
++				}
++				return
++			}
++			assert.Nil(t, err)
++			assert.Equal(t, secrets, out["vpn"]["secrets"].Value())
++			assert.Nil(t, backend.cachedVPNSecrets)
++			_, err = agent.GetSecrets(conn, "/test/path", "vpn", nil, 0)
++			if assert.NotNil(t, err) {
++				assert.Contains(t, err.Name, "NoSecrets")
++			}
+ 		})
+ 	}
+ }
